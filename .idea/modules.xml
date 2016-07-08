@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Analytics/Analytics.iml" filepath="$PROJECT_DIR$/Analytics/Analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Database/Database.iml" filepath="$PROJECT_DIR$/Database/Database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exercise/Exercise.iml" filepath="$PROJECT_DIR$/Exercise/Exercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FacialExpressionRecognition/FacialExpressionRecognition.iml" filepath="$PROJECT_DIR$/FacialExpressionRecognition/FacialExpressionRecognition.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson/Lesson.iml" filepath="$PROJECT_DIR$/Lesson/Lesson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" filepath="$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Thesis-ITS-1.iml" filepath="$PROJECT_DIR$/Thesis-ITS-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserInterfaces/UserInterfaces.iml" filepath="$PROJECT_DIR$/UserInterfaces/UserInterfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" filepath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" />
+    </modules>
+  </component>
+</project>

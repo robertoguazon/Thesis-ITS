@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.QuizMakerController">
+   <center>
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="463.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="parentBox" prefHeight="390.0" prefWidth="599.0">
+               <children>
+                  <HBox prefHeight="28.0" prefWidth="599.0">
+                     <children>
+                        <Label text="Quiz Title" />
+                        <TextField fx:id="quizTitleTextField" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="tagBox" prefHeight="49.0" prefWidth="599.0">
+                     <children>
+                        <Label text="Tags" />
+                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
+                        <FlowPane fx:id="tagFlowPane" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="50.0" prefWidth="599.0">
+                     <children>
+                        <HBox prefHeight="51.0" prefWidth="585.0">
+                           <children>
+                              <Label text="Item Type" />
+                              <RadioButton fx:id="radioButtonItemType" mnemonicParsing="false" selected="true" text="RadioButtons">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="itemType" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="checkBoxItemType" mnemonicParsing="false" text="CheckBoxes" toggleGroup="$itemType" />
+                              <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="itemsParentBox" prefHeight="200.0" prefWidth="100.0" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="36.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="createQuizButton" mnemonicParsing="false" onAction="#createQuiz" text="Create Quiz" />
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

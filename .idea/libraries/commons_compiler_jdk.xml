@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="commons-compiler-jdk">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-compiler-jdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-compiler.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/janino.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
