@@ -30,7 +30,7 @@ public class Lesson implements Serializable {
 
         String stringTags = "";
         for (String s : this.tags) {
-            stringTags += s + ", ";
+            stringTags += s + ",";
         }
 
         return stringTags;

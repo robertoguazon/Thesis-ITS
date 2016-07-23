@@ -47,6 +47,8 @@ public class ExerciseMain extends Application {
         launch(args);
     }
 
+
+    //used for testing - to be deleted
     public ScrollPane test() {
         QuizItem quizItem1 = new QuizItem();
         quizItem1.setPointsPerCorrect(5);

@@ -23,6 +23,7 @@
                         <FlowPane fx:id="tagFlowPane" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
+                  <VBox fx:id="itemsParentBox" prefHeight="200.0" prefWidth="100.0" />
                   <VBox prefHeight="50.0" prefWidth="599.0">
                      <children>
                         <HBox prefHeight="51.0" prefWidth="585.0">
@@ -39,7 +40,6 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="itemsParentBox" prefHeight="200.0" prefWidth="100.0" />
                </children>
             </VBox>
          </content>

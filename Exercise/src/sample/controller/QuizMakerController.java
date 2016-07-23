@@ -66,6 +66,7 @@ public class QuizMakerController implements Initializable {
         toggleGroups = new ArrayList<>();
         questionTextAreas = new ArrayList<>();
         quizTypeGroups = new ArrayList<>();
+
     }
 
     @FXML
