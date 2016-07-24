@@ -11,12 +11,13 @@ import java.util.Collections;
  */
 public class Lesson implements Serializable {
 
-    private ArrayList<String> tags;
+    protected ArrayList<String> tags;
     private final String lessonId;
 
     public Lesson() {
         //make id
         this.lessonId = "lid" + System.nanoTime();
+        tags = new ArrayList<>();
     }
 
     public String getLessonId() {

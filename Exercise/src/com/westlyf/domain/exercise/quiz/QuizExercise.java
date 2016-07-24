@@ -79,4 +79,24 @@ public class QuizExercise extends Exercise implements Serializable {
         return scrollPane;
     }
 
+    public void addItem(QuizItem quizItem) {
+        this.quizItems.add(quizItem);
+    }
+
+    public void printQuiz() {
+        System.out.println("Quiz: " + quizTitle.getValue());
+
+        System.out.print("Tags: ");
+        for (String tag: tags) {
+            System.out.print(tag + " ");
+        }
+        System.out.println();
+
+        for (QuizItem quizItem : quizItems) {
+            quizItem.printItem();
+        }
+
+        System.out.println("---------");
+    }
+
 }

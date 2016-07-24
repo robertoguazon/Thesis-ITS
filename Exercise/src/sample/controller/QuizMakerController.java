@@ -4,6 +4,8 @@ import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizFactory;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizType;
+import com.westlyf.domain.exercise.quiz.gui.ItemGUI;
+import com.westlyf.domain.exercise.quiz.gui.QuizGUI;
 import com.westlyf.utils.array.ArrayUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -47,9 +49,11 @@ public class QuizMakerController implements Initializable {
     private QuizExercise quiz;
 
     private ArrayList<TextArea> questionTextAreas;
-    private ArrayList<ArrayList<QuizType>> quizTypeGroups;
+    private ArrayList<QuizType> quizTypeGroup;
     private ArrayList<ArrayList<CheckBox>> checkBoxGroups;
     private ArrayList<ToggleGroup> toggleGroups;
+
+    private QuizGUI quizGUI;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,8 +69,11 @@ public class QuizMakerController implements Initializable {
         checkBoxGroups = new ArrayList<>();
         toggleGroups = new ArrayList<>();
         questionTextAreas = new ArrayList<>();
-        quizTypeGroups = new ArrayList<>();
+        quizTypeGroup = new ArrayList<>();
 
+        //gui holder
+        quizGUI = new QuizGUI();
+        quizGUI.setTitle(quizTitleTextField);
     }
 
     @FXML
@@ -83,6 +90,7 @@ public class QuizMakerController implements Initializable {
                 tagFlowPane.getChildren().remove(tagTextField);
                 tagFlowPane.getChildren().remove(removeButton);
                 tagTextFields.remove(tagTextField);
+                quizGUI.removeTag(tagTextField);
             }
         });
 
@@ -90,10 +98,14 @@ public class QuizMakerController implements Initializable {
         tagFlowPane.getChildren().add(removeButton);
 
         this.tagTextFields.add(tagTextField);
+
+        quizGUI.addTag(tagTextField);
     }
 
     @FXML
     private void addItem() {
+        ItemGUI itemGUI = new ItemGUI();
+
         VBox itemBox = new VBox();
         Separator bottomLine = new Separator();
         bottomLine.setPadding(new Insets(10));
@@ -106,14 +118,14 @@ public class QuizMakerController implements Initializable {
 
         Label questionLabel = new Label("Question: ");
         TextArea questionTextArea = new TextArea();
+        itemGUI.setQuestion(questionTextArea);
+
         questionTextArea.setWrapText(true);
         questionTextArea.setPrefWidth(500);
         questionTextArea.setPrefHeight(30);
         questionTextArea.setMinWidth(500);
         HBox questionBox = new HBox();
         questionBox.getChildren().addAll(questionLabel,questionTextArea);
-
-
 
         //add quiztype and choicesButton
         HBox addChoiceBox = new HBox();
@@ -131,16 +143,16 @@ public class QuizMakerController implements Initializable {
         //add listeners
         //add textfields for choices
         QuizType type = (QuizType)itemType.getSelectedToggle().getUserData();
+        itemGUI.setQuizType(type);
 
         ToggleGroup toggleGroup = new ToggleGroup();
         ArrayList<CheckBox> checkBoxGroup = new ArrayList<>();
-        ArrayList<QuizType> quizTypeGroup = new ArrayList<>();
 
         //add to arraylists
         questionTextAreas.add(questionTextArea);
         toggleGroups.add(toggleGroup);
         checkBoxGroups.add(checkBoxGroup);
-        quizTypeGroups.add(quizTypeGroup);
+        quizTypeGroup.add(type);
         addChoicesButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -154,11 +166,11 @@ public class QuizMakerController implements Initializable {
 
                 //add choice and remove button
                 HBox choiceFormatBox = new HBox();
-                quizTypeGroup.add(type);
                 if (type == QuizType.RADIOBUTTON) {
                     radioButton.setToggleGroup(toggleGroup);
                     radioButton.setUserData(choice);
                     choiceFormatBox.getChildren().addAll(radioButton,choice, removeButton);
+
                 } else if (type == QuizType.CHECKBOX) {
                     checkBox.setSelected(false);
                     checkBox.setUserData(choice);
@@ -196,11 +208,16 @@ public class QuizMakerController implements Initializable {
 
                 //remove objects on arraylist
                 questionTextAreas.remove(questionTextArea);
-                quizTypeGroups.remove(quizTypeGroup);
+                quizTypeGroup.remove(type);
                 checkBoxGroups.remove(checkBoxGroup);
                 toggleGroups.remove(toggleGroup);
+                quizGUI.removeItem(itemGUI);
             }
         });
+
+        itemGUI.setChoicesToggleGroup(toggleGroup);
+        itemGUI.setChoicesCheckBoxes(checkBoxGroup);
+        quizGUI.addItem(itemGUI);
     }
 
     @FXML
@@ -209,6 +226,15 @@ public class QuizMakerController implements Initializable {
         //saveTags();
         //saveItems();
         //quizExercise = makeQuiz();
+
+        //test --- below
+        //questionTextAreas - working
+        //pass if not match
+
+
+        quizGUI.completeItems();
+        quizGUI.exportQuiz().printQuiz();
+
     }
 
     //temporary should fix these and store to database

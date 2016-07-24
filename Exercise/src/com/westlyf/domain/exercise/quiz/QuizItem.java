@@ -222,4 +222,28 @@ public class QuizItem implements Serializable {
 
         return group;
     }
+
+    public void addChoice(String choice) {
+        this.choices.add(choice);
+    }
+
+    public void addValidAnswer(String validAnswer) {
+        this.validAnswers.add(validAnswer);
+    }
+
+    public void printItem() {
+        System.out.println("Item:");
+        System.out.println("question: " + question.getValue());
+
+        System.out.println("choices: ");
+        for (String choice: choices) {
+            System.out.println("-" + choice);
+        }
+
+        System.out.println("answers: ");
+        for (String validAnswer: validAnswers) {
+            System.out.println("-" + validAnswer);
+        }
+
+    }
 }
