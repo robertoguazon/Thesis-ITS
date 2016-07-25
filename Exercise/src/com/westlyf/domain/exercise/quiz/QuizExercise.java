@@ -20,19 +20,6 @@ import java.util.ArrayList;
 public class QuizExercise extends Exercise implements Serializable {
 
     private ArrayList<QuizItem> quizItems = new ArrayList();
-    private StringProperty quizTitle = new SimpleStringProperty();
-
-    public String getQuizTitle() {
-        return quizTitle.get();
-    }
-
-    public StringProperty quizTitleProperty() {
-        return quizTitle;
-    }
-
-    public void setQuizTitle(String title) {
-        this.quizTitle.set(title);
-    }
 
     public boolean addItem(QuizType type, String question, ArrayList<String>choices, ArrayList<String> validAnswers) {
         QuizItem quizItem = new QuizItem();
@@ -84,7 +71,7 @@ public class QuizExercise extends Exercise implements Serializable {
     }
 
     public void printQuiz() {
-        System.out.println("Quiz: " + quizTitle.getValue());
+        System.out.println("Quiz: " + title.getValue());
 
         System.out.print("Tags: ");
         for (String tag: tags) {

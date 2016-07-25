@@ -1,5 +1,7 @@
 package com.westlyf.domain.lesson;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.TreeItem;
 
 import java.io.Serializable;
@@ -11,6 +13,7 @@ import java.util.Collections;
  */
 public class Lesson implements Serializable {
 
+    protected StringProperty title = new SimpleStringProperty();
     protected ArrayList<String> tags;
     private final String lessonId;
 
@@ -58,4 +61,15 @@ public class Lesson implements Serializable {
         }
     }
 
+    public void setTitle(String title) {
+        this.title.setValue(title);
+    }
+
+    public String getTitle() {
+        return this.title.getValue();
+    }
+
+    public StringProperty titleProperty() {
+        return this.title;
+    }
 }

@@ -10,7 +10,8 @@ import java.util.ArrayList;
  */
 public class LessonUtil {
 
-    public static ArrayList<Lesson> findLessons(Level level, ArrayList<Lesson> lessons) {
+    //use sql to get lessons per tag
+    public static ArrayList<Lesson> findLessonsExactly(Level level, ArrayList<Lesson> lessons) {
         String levelTagsString = level.getTagsString();
         ArrayList<Lesson> matchingLessons = new ArrayList<>();
 
@@ -19,6 +20,25 @@ public class LessonUtil {
             if (levelTagsString.equals(l.getTagsString())) {
                 matchingLessons.add(l);
             }
+        }
+
+        return matchingLessons;
+    }
+
+    public static ArrayList<Lesson> findLessons(Level level, ArrayList<Lesson> lessons) {
+        ArrayList<String> levelTags = level.getTags();
+        ArrayList<Lesson> matchingLessons = new ArrayList<>();
+
+        for (Lesson l : lessons) {
+            if (level.getTagsString() == null || l.getTagsString() == null) return null;
+
+            ArrayList<String> lTags = l.getTags();
+            for (String tag : lTags) {
+                if (levelTags.contains(tag)) {
+                    matchingLessons.add(l);
+                }
+            }
+
         }
 
         return matchingLessons;

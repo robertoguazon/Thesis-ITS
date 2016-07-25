@@ -91,7 +91,7 @@ public class LessonMainController implements Initializable {
                 Level selectedLevel = selectedLevelItem.getValue();
                 ArrayList<String> tags = selectedLevelItem.getValue().getTags();
 
-                ArrayList<Lesson> selectedLessons = LessonUtil.findLessons(selectedLevel,lessons);
+                ArrayList<Lesson> selectedLessons = LessonUtil.findLessonsExactly(selectedLevel,lessons);
                 if (selectedLessons != null) {
                     if (selectedLessons.get(0) instanceof TextLesson) {
                         lessonTextArea.setVisible(true);

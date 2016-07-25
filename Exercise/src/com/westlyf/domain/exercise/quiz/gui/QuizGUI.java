@@ -84,7 +84,7 @@ public class QuizGUI {
         QuizExercise quizExercise = new QuizExercise();
 
         //set title
-        quizExercise.setQuizTitle(title.getText());
+        quizExercise.setTitle(title.getText());
         //set tag
         for (TextField tag: tags) {
             quizExercise.addTag(tag.getText());

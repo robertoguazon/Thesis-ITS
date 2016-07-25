@@ -14,7 +14,7 @@ public class QuizFactory {
 
     public static QuizExercise createQuiz(String title, ArrayList<String> tags){
         QuizExercise quiz = new QuizExercise();
-        quiz.setQuizTitle(title);
+        quiz.setTitle(title);
         quiz.setTags(tags);
         return quiz;
     }

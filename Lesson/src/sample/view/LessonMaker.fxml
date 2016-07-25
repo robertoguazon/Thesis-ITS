@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LessonMakerController">
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="454.0" prefWidth="628.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="628.0" spacing="10.0">
+                     <children>
+                        <Label text="Title:" />
+                        <TextField fx:id="titleTextField" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox prefHeight="84.0" prefWidth="628.0">
+                     <children>
+                        <Label text="Tags" />
+                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
+                        <FlowPane fx:id="tagsFlowPane" prefHeight="57.0" prefWidth="628.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="43.0" prefWidth="628.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Lesson Type" />
+                              <RadioButton fx:id="textLessonsRadioButton" mnemonicParsing="false" text="Text Lessons">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="lessonTypeGroup" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="videoLessonsRadioButton" mnemonicParsing="false" text="Video Lessons" toggleGroup="$lessonTypeGroup" />
+                              <Button fx:id="okButton" mnemonicParsing="false" onAction="#ok" text="Ok" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
