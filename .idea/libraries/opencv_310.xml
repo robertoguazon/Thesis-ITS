@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="x64">
+  <library name="opencv-310">
     <CLASSES>
       <root url="jar://C:/Programming/opencv/build/java/opencv-310.jar!/" />
     </CLASSES>
