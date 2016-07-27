@@ -1,5 +1,6 @@
 #Thesis-ITS
 
+
 libraries for each module:
 	* Analytics
    	* Database
@@ -14,6 +15,7 @@ libraries for each module:
    * Thesis-ITS-1
    * UserInterfaces
    * VideoPlayer
+
 
 References for each module:
    * FacialExpressionRecognition
