@@ -3,7 +3,11 @@
 
 libraries for each module:
    * Analytics
-      * Database
+   * Data
+      * datafx-core-8.0b5.jar
+      * datafx-flow-8.0b5.jar
+      * javax.inject-1.jar
+   * Database
       * sqlite-jdbc-3.8.11.1
    * Exercise
       * Lesson (module)
