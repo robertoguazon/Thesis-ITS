@@ -2,8 +2,8 @@
 
 
 libraries for each module:
-	* Analytics
-   	* Database
+   * Analytics
+      * Database
       * sqlite-jdbc-3.8.11.1
    * Exercise
       * Lesson (module)
