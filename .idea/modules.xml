@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Analytics/Analytics.iml" filepath="$PROJECT_DIR$/Analytics/Analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Data/Data.iml" filepath="$PROJECT_DIR$/Data/Data.iml" />
       <module fileurl="file://$PROJECT_DIR$/Database/Database.iml" filepath="$PROJECT_DIR$/Database/Database.iml" />
       <module fileurl="file://$PROJECT_DIR$/Exercise/Exercise.iml" filepath="$PROJECT_DIR$/Exercise/Exercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/FacialExpressionRecognition/FacialExpressionRecognition.iml" filepath="$PROJECT_DIR$/FacialExpressionRecognition/FacialExpressionRecognition.iml" />
