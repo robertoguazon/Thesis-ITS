@@ -3,6 +3,8 @@ package sample.controller;
 import com.westlyf.domain.lesson.*;
 import com.westlyf.domain.util.LessonUtil;
 import com.westlyf.domain.util.TreeUtil;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -59,9 +61,9 @@ public class LessonMainController implements Initializable {
         lessonTreeView.setShowRoot(false);
 
         lessons = new ArrayList<Lesson>();
-        ArrayList<String> sampleTags = new ArrayList<>();
-        sampleTags.add("master");
-        sampleTags.add("slave");
+        ArrayList<StringProperty> sampleTags = new ArrayList<>();
+        sampleTags.add(new SimpleStringProperty("master"));
+        sampleTags.add(new SimpleStringProperty("slave"));
         lessons.add(LessonFactory.createTextLesson(
                 "Each variable in Java has a specific type, which determines the size and" +
                 " layout of the variable's memory; the range of values that can be stored within that memory; and the " +
@@ -89,7 +91,7 @@ public class LessonMainController implements Initializable {
             public void changed(ObservableValue<? extends TreeItem<Level>> observable, TreeItem<Level> oldValue, TreeItem<Level> newValue) {
                 TreeItem<Level> selectedLevelItem = (TreeItem<Level>) newValue;
                 Level selectedLevel = selectedLevelItem.getValue();
-                ArrayList<String> tags = selectedLevelItem.getValue().getTags();
+                ArrayList<StringProperty> tags = selectedLevelItem.getValue().getTags();
 
                 ArrayList<Lesson> selectedLessons = LessonUtil.findLessonsExactly(selectedLevel,lessons);
                 if (selectedLessons != null) {

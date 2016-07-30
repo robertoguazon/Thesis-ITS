@@ -1,8 +1,8 @@
 package com.westlyf.domain.lesson;
 
+import com.westlyf.domain.util.comparator.StringPropertyComparator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.TreeItem;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Collections;
 public class Lesson implements Serializable {
 
     protected StringProperty title = new SimpleStringProperty();
-    protected ArrayList<String> tags;
+    protected ArrayList<StringProperty> tags;
     private final String lessonId;
 
     public Lesson() {
@@ -30,30 +30,30 @@ public class Lesson implements Serializable {
     public String getTagsString() {
         if (this.tags == null || this.tags.equals("")) return null;
 
-        Collections.sort(this.tags, String.CASE_INSENSITIVE_ORDER);
+        Collections.sort(this.tags, new StringPropertyComparator());
 
         String stringTags = "";
-        for (String s : this.tags) {
+        for (StringProperty s : this.tags) {
             stringTags += s + ",";
         }
 
         return stringTags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(ArrayList<StringProperty> tags) {
         this.tags = tags;
     }
 
-    public ArrayList<String> getTags() {
+    public ArrayList<StringProperty> getTags() {
         return this.tags;
     }
 
-    public void addTag(String tag) {
+    public void addTag(StringProperty tag) {
         if (this.tags == null) tags = new ArrayList<>();
         this.tags.add(tag);
     }
 
-    public void removeTag(String tag) {
+    public void removeTag(StringProperty tag) {
         for (int i = 0; i < tags.size(); i++) {
             if (this.tags.get(i).equals(tag)) {
                 this.tags.remove(i);

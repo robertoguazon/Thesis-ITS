@@ -2,6 +2,7 @@ package com.westlyf.domain.exercise.quiz.gui;
 
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizFactory;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class QuizGUI {
         quizExercise.setTitle(title.getText());
         //set tag
         for (TextField tag: tags) {
-            quizExercise.addTag(tag.getText());
+            quizExercise.addTag(new SimpleStringProperty(tag.getText()));
         }
 
         //set choices and answers

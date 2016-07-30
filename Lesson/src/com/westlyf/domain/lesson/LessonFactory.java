@@ -1,5 +1,7 @@
 package com.westlyf.domain.lesson;
 
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -21,7 +23,7 @@ public class LessonFactory {
         return textLesson;
     }
 
-    public static TextLesson createTextLesson(String text, ArrayList<String> tags) {
+    public static TextLesson createTextLesson(String text, ArrayList<StringProperty> tags) {
         TextLesson textLesson = new TextLesson();
         textLesson.setText(text);
         textLesson.setTags(tags);

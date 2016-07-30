@@ -2,6 +2,7 @@ package com.westlyf.domain.exercise.quiz;
 
 import com.westlyf.domain.exercise.quiz.gui.ItemGUI;
 import com.westlyf.domain.exercise.quiz.gui.QuizGUI;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 public class QuizFactory {
 
-    public static QuizExercise createQuiz(String title, ArrayList<String> tags){
+    public static QuizExercise createQuiz(String title, ArrayList<StringProperty> tags){
         QuizExercise quiz = new QuizExercise();
         quiz.setTitle(title);
         quiz.setTags(tags);

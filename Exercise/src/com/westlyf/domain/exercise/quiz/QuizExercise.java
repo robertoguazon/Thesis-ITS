@@ -74,7 +74,7 @@ public class QuizExercise extends Exercise implements Serializable {
         System.out.println("Quiz: " + title.getValue());
 
         System.out.print("Tags: ");
-        for (String tag: tags) {
+        for (StringProperty tag: tags) {
             System.out.print(tag + " ");
         }
         System.out.println();

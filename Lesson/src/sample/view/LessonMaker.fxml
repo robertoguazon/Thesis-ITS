@@ -7,9 +7,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LessonMakerController">
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox prefHeight="454.0" prefWidth="628.0">
+            <VBox alignment="CENTER" prefHeight="454.0" prefWidth="628.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="628.0" spacing="10.0">
                      <children>
@@ -24,7 +24,7 @@
                      <children>
                         <Label text="Tags" />
                         <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
-                        <FlowPane fx:id="tagsFlowPane" prefHeight="57.0" prefWidth="628.0" />
+                        <FlowPane fx:id="tagFlowPane" prefHeight="57.0" prefWidth="628.0" />
                      </children>
                   </VBox>
                   <VBox prefHeight="43.0" prefWidth="628.0">
@@ -42,6 +42,12 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <BorderPane fx:id="containerBorderPane" prefHeight="282.0" prefWidth="628.0" />
+                  <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" text="Create">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </content>
