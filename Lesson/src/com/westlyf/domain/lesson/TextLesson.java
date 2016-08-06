@@ -28,4 +28,8 @@ public class TextLesson extends Lesson implements Serializable {
         return text;
     }
 
+    public String toString() {
+        return super.toString() + "\nText: " + text.get();
+    }
+
 }

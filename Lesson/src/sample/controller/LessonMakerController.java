@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,9 +38,14 @@ public class LessonMakerController implements Initializable {
     @FXML private BorderPane containerBorderPane;
     @FXML private Button createButton;
 
+    private TextLesson textLesson;
+    private VideoLesson videoLesson;
     private Lesson lesson;
+
     private ArrayList<StringProperty> tags;
     private BorderPane root;
+
+    public static Stage stage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +53,10 @@ public class LessonMakerController implements Initializable {
         tags = new ArrayList<>();
         addTagButton.setDisable(true);
         textLessonsRadioButton.setSelected(true);
+        createButton.setDisable(true);
+        textLesson = new TextLesson();
+        videoLesson = new VideoLesson();
+        lesson = new Lesson();
     }
 
     @FXML
@@ -59,6 +69,8 @@ public class LessonMakerController implements Initializable {
         StringProperty stringProperty = new SimpleStringProperty();
         stringProperty.bind(tagTextField.textProperty());
         tags.add(stringProperty);
+        textLesson.setTags(tags);
+        videoLesson.setTags(tags);
 
         Button removeButton = new Button("x");
         removeButton.setFocusTraversable(false);
@@ -80,13 +92,15 @@ public class LessonMakerController implements Initializable {
         if (addTagButton.isDisable()) {
             addTagButton.setDisable(false);
         }
+        if (createButton.isDisable()) {
+            createButton.setDisable(false);
+        }
 
         containerBorderPane.getChildren().clear();
 
 
 
         if (textLessonsRadioButton.isSelected()) {
-            lesson = new TextLesson();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/TextLessonMaker.fxml"));
             try {
                 root = loader.load();
@@ -94,18 +108,29 @@ public class LessonMakerController implements Initializable {
                 e.printStackTrace();
             }
 
+            TextLessonMakerController controller = loader.getController();
+
+            textLesson.titleProperty().bind(titleTextField.textProperty());
+            controller.bindTextLesson(textLesson.textProperty());
+
+            lesson = textLesson;
+
         } else if (videoLessonsRadioButton.isSelected()) {
-            lesson = new VideoLesson();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/VideoLessonMaker.fxml"));
+
             try {
                 root = loader.load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
 
-        //to run on both
-        lesson.titleProperty().bind(titleTextField.textProperty());
+            VideoLessonMakerController controller = loader.getController();
+
+            videoLesson.titleProperty().bind(titleTextField.textProperty());
+            controller.bindPath(videoLesson.pathLocationProperty());
+
+            lesson = videoLesson;
+        }
 
         try {
             containerBorderPane.setCenter(root);
@@ -118,6 +143,21 @@ public class LessonMakerController implements Initializable {
     @FXML
     private void create() {
 
+        //TODO create method of LessonMakerController
+
+        if (lesson instanceof TextLesson) {
+            TextLesson textLesson = (TextLesson)lesson;
+            System.out.println(textLesson);
+        } else if (lesson instanceof VideoLesson) {
+            VideoLesson videoLesson = (VideoLesson)lesson;
+            System.out.println(videoLesson);
+        }
+
+
+    }
+
+    public static void setStage(Stage s) {
+        stage = s;
     }
 
 }

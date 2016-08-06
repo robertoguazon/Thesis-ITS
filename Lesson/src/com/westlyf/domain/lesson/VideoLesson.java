@@ -27,4 +27,8 @@ public class VideoLesson extends Lesson implements Serializable {
     public void setPathLocation(String pathLocation) {
         this.pathLocation.set(pathLocation);
     }
+
+    public String toString() {
+        return super.toString() + "\npath location: " + pathLocation.get();
+    }
 }

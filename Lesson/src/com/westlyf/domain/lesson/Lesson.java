@@ -34,7 +34,7 @@ public class Lesson implements Serializable {
 
         String stringTags = "";
         for (StringProperty s : this.tags) {
-            stringTags += s + ",";
+            stringTags += s.get() + ",";
         }
 
         return stringTags;
@@ -71,5 +71,11 @@ public class Lesson implements Serializable {
 
     public StringProperty titleProperty() {
         return this.title;
+    }
+
+    public String toString() {
+        return "title: " + title.get() + "\n" +
+                "tags: " + getTagsString() + "\n" +
+                "lessonid: " + lessonId;
     }
 }

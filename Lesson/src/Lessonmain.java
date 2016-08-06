@@ -8,7 +8,7 @@ import sample.controller.LessonMainController;
 /**
  * Created by robertoguazon on 03/06/2016.
  */
-public class LessonMain extends Application {
+public class Lessonmain extends Application {
 
     private BorderPane root;
     private FXMLLoader rootLoader;
