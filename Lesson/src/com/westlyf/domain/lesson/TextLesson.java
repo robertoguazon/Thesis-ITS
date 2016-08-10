@@ -32,4 +32,10 @@ public class TextLesson extends Lesson implements Serializable {
         return super.toString() + "\nText: " + text.get();
     }
 
+    @Override
+    public String invalid() {
+        return super.invalid() + "\n" +
+                "text: " + ((text == null || text.get().equals("")) ? "empty" : text.get());
+    }
+
 }

@@ -78,4 +78,11 @@ public class Lesson implements Serializable {
                 "tags: " + getTagsString() + "\n" +
                 "lessonid: " + lessonId;
     }
+
+    public String invalid() {
+        return "Invalid Lesson \n" +
+                "title: " + ((title == null || title.get().equals("")) ? "empty" : title.get()) + "\n" +
+                "tags: " + (tags.isEmpty() ? "empty" : getTagsString()) + "\n" +
+                "lessonId: " + ((lessonId == null || lessonId.equals("")) ? "empty" : lessonId);
+    }
 }

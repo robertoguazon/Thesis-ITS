@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -147,10 +144,41 @@ public class LessonMakerController implements Initializable {
 
         if (lesson instanceof TextLesson) {
             TextLesson textLesson = (TextLesson)lesson;
-            System.out.println(textLesson);
+
+            if (isValid(textLesson)) {
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, textLesson.toString());
+                confirmation.setTitle("CONFIRM");
+                confirmation.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        //TODO - updload to database if confirmed
+                        System.out.println("sample upload confirm test");
+                    }
+                });
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR, textLesson.invalid());
+                error.setTitle("INVALID");
+                error.show();
+            }
+
+
         } else if (lesson instanceof VideoLesson) {
             VideoLesson videoLesson = (VideoLesson)lesson;
             System.out.println(videoLesson);
+
+            if (isValid(videoLesson)) {
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, videoLesson.toString());
+                confirmation.setTitle("CONFIRM");
+                confirmation.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        //TODO - updload to database if confirmed
+                        System.out.println("sample upload confirm test");
+                    }
+                });
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR, videoLesson.invalid());
+                error.setTitle("INVALID");
+                error.show();
+            }
         }
 
 
@@ -158,6 +186,24 @@ public class LessonMakerController implements Initializable {
 
     public static void setStage(Stage s) {
         stage = s;
+    }
+
+    private boolean isValid(TextLesson textLesson) {
+        if (textLesson == null) return false;
+        if (textLesson.getTitle() == null || textLesson.getTitle().equals("")) return false;
+        if (textLesson.getTags() == null) return false;
+        if (textLesson.getText() == null || textLesson.getText().equals("")) return false;
+
+        return true;
+    }
+
+    private boolean isValid(VideoLesson videoLesson) {
+        if (videoLesson == null) return false;
+        if (videoLesson.getTitle() == null || videoLesson.getTitle().equals("")) return false;
+        if (videoLesson.getTags() == null) return false;
+        if (videoLesson.getPathLocation() == null || videoLesson.getPathLocation().equals("")) return false;
+
+        return true;
     }
 
 }

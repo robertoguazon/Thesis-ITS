@@ -31,4 +31,9 @@ public class VideoLesson extends Lesson implements Serializable {
     public String toString() {
         return super.toString() + "\npath location: " + pathLocation.get();
     }
+
+    public String invalid() {
+        return super.invalid() + "\n" +
+                "path: " + (pathLocation == null || pathLocation.get().equals("") ? "empty" : pathLocation.get());
+    }
 }

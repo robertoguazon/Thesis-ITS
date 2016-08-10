@@ -8,8 +8,10 @@ import java.sql.Connection;
 public class DatabaseMain {
 
     public static void main(String[] args) {
-        DatabaseConnection.connect();
-        Connection conn = DatabaseConnection.getConnection();
-        System.out.println(conn);
+        Connection user = DatabaseConnection.getUserConnection();
+        Connection lesson = DatabaseConnection.getLessonConn();
+        System.out.println(user);
+        System.out.println(lesson);
     }
+
 }

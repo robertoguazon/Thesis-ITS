@@ -8,29 +8,48 @@ import java.sql.DriverManager;
  */
 public class DatabaseConnection {
 
-    public static Connection conn = null;
+    public static Connection lessonConn = null;
+    public static Connection userConn = null;
+    public static final String defaultUserPath = "jdbc:sqlite:resources/database/user.db";
+    public static final String defautLessonPath = "jdbc:sqlite:resources/database/lesson.db";
 
-    public static void connect() {
-        connect("jdbc:sqlite:resources/database/database.db");
-    }
+    public static Connection connectUser() {return connectUser(defaultUserPath);}
+    public static Connection connectLesson() {return connectLesson(defautLessonPath);}
 
-    public static void connect(String url) {
-
+    private static Connection connect(String url, Connection conn) {
         try {
-            conn = DriverManager.getConnection(url);
-
+            return DriverManager.getConnection(url);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        return null;
     }
 
-    public static Connection getConnection() {
-        if (conn != null) {
-            return conn;
+    public static Connection connectUser(String url) {
+        return connect(url,userConn);
+    }
+
+    public static Connection connectLesson(String url) {
+        return connect(url, lessonConn);
+    }
+
+    public static Connection getUserConnection() {
+        if (userConn != null) {
+            return userConn;
         }
 
-        connect();
-        return conn;
+        userConn = connectUser();
+        return userConn;
+    }
+
+    public static Connection getLessonConn() {
+        if (lessonConn != null) {
+            return lessonConn;
+        }
+
+        lessonConn = connectLesson();
+        return lessonConn;
     }
 
 }
