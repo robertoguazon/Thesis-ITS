@@ -145,7 +145,7 @@ public class LessonMakerController implements Initializable {
         if (lesson instanceof TextLesson) {
             TextLesson textLesson = (TextLesson)lesson;
 
-            if (isValid(textLesson)) {
+            if (textLesson!= null && textLesson.isValid()) {
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, textLesson.toString());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
@@ -155,7 +155,7 @@ public class LessonMakerController implements Initializable {
                     }
                 });
             } else {
-                Alert error = new Alert(Alert.AlertType.ERROR, textLesson.invalid());
+                Alert error = new Alert(Alert.AlertType.ERROR, textLesson.check());
                 error.setTitle("INVALID");
                 error.show();
             }
@@ -165,7 +165,7 @@ public class LessonMakerController implements Initializable {
             VideoLesson videoLesson = (VideoLesson)lesson;
             System.out.println(videoLesson);
 
-            if (isValid(videoLesson)) {
+            if (videoLesson != null && videoLesson.isValid()) {
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, videoLesson.toString());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
@@ -175,7 +175,7 @@ public class LessonMakerController implements Initializable {
                     }
                 });
             } else {
-                Alert error = new Alert(Alert.AlertType.ERROR, videoLesson.invalid());
+                Alert error = new Alert(Alert.AlertType.ERROR, videoLesson.check());
                 error.setTitle("INVALID");
                 error.show();
             }
@@ -188,22 +188,5 @@ public class LessonMakerController implements Initializable {
         stage = s;
     }
 
-    private boolean isValid(TextLesson textLesson) {
-        if (textLesson == null) return false;
-        if (textLesson.getTitle() == null || textLesson.getTitle().equals("")) return false;
-        if (textLesson.getTags() == null) return false;
-        if (textLesson.getText() == null || textLesson.getText().equals("")) return false;
-
-        return true;
-    }
-
-    private boolean isValid(VideoLesson videoLesson) {
-        if (videoLesson == null) return false;
-        if (videoLesson.getTitle() == null || videoLesson.getTitle().equals("")) return false;
-        if (videoLesson.getTags() == null) return false;
-        if (videoLesson.getPathLocation() == null || videoLesson.getPathLocation().equals("")) return false;
-
-        return true;
-    }
 
 }

@@ -40,6 +40,16 @@ public class ExerciseViewerMain extends Application {
         quizItem2.addChoice("1");
         quizItem2.addValidAnswer("1");
         quiz.addItem(quizItem2);
+
+        QuizItem quizItem3 = new QuizItem();
+        quizItem3.setQuestion("My favorite movies?");
+        quizItem3.setType(QuizType.CHECKBOX);
+        quizItem3.addChoice("deadpool");
+        quizItem3.addChoice("ironman");
+        quizItem3.addChoice("batman");
+        quizItem3.addValidAnswer("deadpool");
+        quizItem3.addValidAnswer("ironman");
+        quiz.addItem(quizItem3);
     }
 
     public void start(Stage primaryStage) {

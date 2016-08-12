@@ -86,4 +86,41 @@ public class QuizExercise extends Exercise implements Serializable {
         System.out.println("---------");
     }
 
+    @Override
+    public String toString() {
+
+        return super.toString() + "\n" + quizItems.toString();
+    }
+
+    public boolean isValid() {
+        if (quizItems == null || quizItems.isEmpty()) return false;
+
+        for (QuizItem quizItem : quizItems) {
+            if (!quizItem.isValid()) return false;
+        }
+
+        return true;
+    }
+
+    public String check() {
+
+        String quizItemsCheckString = "";
+        for (QuizItem quizItem : quizItems) {
+            quizItemsCheckString += quizItem.check() + "\n";
+        }
+
+        return super.check() + "\n" + quizItemsCheckString;
+    }
+
+    public String error() {
+        String error = "errors: ";
+        int n = 0;
+        for (QuizItem quizItem : quizItems) {
+            if (!quizItem.isValid()) {
+                n++;
+            }
+        }
+
+        return error + n + " errors";
+    }
 }

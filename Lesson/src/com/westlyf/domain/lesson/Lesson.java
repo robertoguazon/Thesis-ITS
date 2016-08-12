@@ -79,10 +79,17 @@ public class Lesson implements Serializable {
                 "lessonid: " + lessonId;
     }
 
-    public String invalid() {
+    public String check() {
         return "Invalid Lesson \n" +
                 "title: " + ((title == null || title.get().equals("")) ? "empty" : title.get()) + "\n" +
-                "tags: " + (tags.isEmpty() ? "empty" : getTagsString()) + "\n" +
+                "tags: " + ((tags.isEmpty() || tags == null) ? "empty" : getTagsString()) + "\n" +
                 "lessonId: " + ((lessonId == null || lessonId.equals("")) ? "empty" : lessonId);
+    }
+
+    public boolean isValid() {
+        if (title == null || title.get().equals("")) return false;
+        if (tags == null || tags.isEmpty()) return false;
+
+        return true;
     }
 }

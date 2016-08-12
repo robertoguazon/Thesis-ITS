@@ -36,6 +36,29 @@ public class QuizItem implements Serializable {
     public QuizItem() {
     }
 
+    public boolean isValid() {
+        if (question == null || question.get().equals("")) return false;
+        if (choices == null || choices.isEmpty()) return false;
+        if (validAnswers == null || validAnswers.isEmpty())  return false;
+        if (points == null) return false;
+        if (pointsPerCorrect == null) return false;
+        if (answers == null || answers.isEmpty()) return false;
+
+        //TODO - for points system
+        return true;
+    }
+
+    public String check() {
+        return "\n\tItem:\n" +
+                "\tquestion: " + ((question == null || question.get().equals("")) ? "empty" : question.get()) + "\n" +
+                "\tchoices: " + ((choices == null || choices.isEmpty()) ? "empty" : choices.toString()) + "\n" +
+                "\tvalidAnswers: " + ((validAnswers == null || validAnswers.isEmpty()) ? "empty" : validAnswers.size())  + "\n" +
+                "\tpoints per correct: " + ((pointsPerCorrect == null || pointsPerCorrect.get() == 0) ?
+                    "empty" : pointsPerCorrect.get()) + "\n" +
+                "\tanswers: " + ((answers == null || answers.isEmpty()) ? "empty" : answers.size()) + "\n" +
+                "\tpoints: " + ((points == null) ? "empty" : points.get());
+    }
+
     public String getQuestion() {
         return question.get();
     }
@@ -245,5 +268,31 @@ public class QuizItem implements Serializable {
             System.out.println("-" + validAnswer);
         }
 
+    }
+
+    @Override
+    public String toString() {
+        String choicesString = "\tChoices:\n";
+        for (int i = 0; i < choices.size(); i++) {
+            choicesString += "\t\t- " + choices.get(i) + "\n";
+        }
+
+        String validAnswersString = "\tvalid answers:\n";
+        for (int i = 0; i < validAnswers.size(); i++) {
+            validAnswersString += "\t\t* " + validAnswers.get(i) + "\n";
+        }
+
+        String answersString = "\tanswers:\n";
+        for (int i = 0; i < answers.size(); i++) {
+            answersString += "\t\tO " + answers.get(i) + "\n";
+        }
+
+        return  "\nitem: " + "\n" +
+                "\tquestion: " + question.get() + "\n" +
+                choicesString +
+                validAnswersString +
+                answersString +
+                "\tpoints per correct: " + pointsPerCorrect.get() + "\n" +
+                "\tpoints: " + points.get() + "\n";
     }
 }

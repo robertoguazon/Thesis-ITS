@@ -33,9 +33,16 @@ public class TextLesson extends Lesson implements Serializable {
     }
 
     @Override
-    public String invalid() {
-        return super.invalid() + "\n" +
+    public String check() {
+        return super.check() + "\n" +
                 "text: " + ((text == null || text.get().equals("")) ? "empty" : text.get());
+    }
+
+    public boolean isValid() {
+        if (!super.isValid()) return false;
+        if (text == null || text.get().equals("")) return false;
+
+        return true;
     }
 
 }
