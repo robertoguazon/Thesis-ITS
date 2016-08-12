@@ -4,12 +4,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane fx:controller="sample.controller.ExerciseViewerController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ExerciseViewerController">
    <center>
       <VBox fx:id="quizItemVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="quizTitleLabel" prefHeight="35.0" prefWidth="604.0" />
+            <HBox>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="106.0" text="Title:" />
+                  <Label fx:id="quizTitleLabel" prefHeight="40.0" prefWidth="549.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="145.0" text="Tags:" />
+                  <Label fx:id="quizTagsLabel" prefHeight="49.0" prefWidth="572.0" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

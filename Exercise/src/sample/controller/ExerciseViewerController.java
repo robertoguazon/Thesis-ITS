@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.westlyf.domain.exercise.quiz.QuizExercise;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,8 +16,11 @@ import java.util.ResourceBundle;
 public class ExerciseViewerController implements Initializable {
 
     @FXML private Label quizTitleLabel;
+    @FXML private Label quizTagsLabel;
     @FXML private VBox quizItemVBox;
     @FXML private Button submitButton;
+
+    private QuizExercise quiz;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -25,8 +29,14 @@ public class ExerciseViewerController implements Initializable {
 
     @FXML
     private void submit() {
-
+        //TODO - for submission
     }
 
-    //TODO - controller for viewing and answering quizzes
+    public void setQuiz(QuizExercise quiz) {
+        this.quiz = quiz;
+        quizTitleLabel.setText(quiz.getTitle());
+        quizTagsLabel.setText(quiz.getTagsString());
+
+        quizItemVBox.getChildren().add(quiz.getQuizExercise());
+    }
 }
