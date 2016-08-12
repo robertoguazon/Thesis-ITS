@@ -5,10 +5,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/DataFX/src/sample/SimpleController.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/DataFX/src/sample/SimpleMain.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/DataFX/src/sample/SimpleView.fxml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/ExerciseViewerMain.java" afterPath="$PROJECT_DIR$/Exercise/src/ExerciseViewerMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/sample/controller/ExerciseViewerController.java" afterPath="$PROJECT_DIR$/Exercise/src/sample/controller/ExerciseViewerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/sample/view/ExerciseViewer.fxml" afterPath="$PROJECT_DIR$/Exercise/src/sample/view/ExerciseViewer.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
