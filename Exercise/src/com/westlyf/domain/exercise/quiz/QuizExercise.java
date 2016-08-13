@@ -21,6 +21,10 @@ public class QuizExercise extends Exercise implements Serializable {
 
     private ArrayList<QuizItem> quizItems = new ArrayList();
 
+    public QuizExercise() {
+        super();
+    }
+
     public boolean addItem(QuizType type, String question, ArrayList<String>choices, ArrayList<String> validAnswers) {
         QuizItem quizItem = new QuizItem();
         quizItem.setType(type);

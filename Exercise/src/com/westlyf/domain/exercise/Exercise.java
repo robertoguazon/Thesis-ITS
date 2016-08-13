@@ -14,5 +14,8 @@ public class Exercise extends Lesson implements Serializable {
     private IntegerProperty totalItems = new SimpleIntegerProperty();
     private IntegerProperty totalScore = new SimpleIntegerProperty();
 
+    public Exercise() {
+        super();
+    }
 
 }

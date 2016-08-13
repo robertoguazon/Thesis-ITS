@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class VideoLesson extends Lesson implements Serializable {
 
     public VideoLesson() {
-
+        super();
     }
 
     private StringProperty pathLocation = new SimpleStringProperty();

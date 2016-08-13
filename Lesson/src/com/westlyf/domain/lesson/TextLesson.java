@@ -13,7 +13,7 @@ public class TextLesson extends Lesson implements Serializable {
     private StringProperty text = new SimpleStringProperty();
 
     public TextLesson() {
-        //empty
+        super();
     }
 
     public void setText(String text) {
