@@ -15,12 +15,20 @@ public class Lesson implements Serializable {
 
     protected StringProperty title = new SimpleStringProperty();
     protected ArrayList<StringProperty> tags;
-    private final String lessonId;
+    private String lessonId;
 
     public Lesson() {
         //make id
-        this.lessonId = "lid" + System.nanoTime();
+        //this.lessonId = "lid" + System.nanoTime();
         tags = new ArrayList<>();
+    }
+
+    public void makeID() {
+        this.lessonId = "lid" + System.nanoTime();
+    }
+
+    public void setID(String lessonId) {
+        this.lessonId = lessonId;
     }
 
     public String getLessonId() {

@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
@@ -144,14 +145,15 @@ public class LessonMakerController implements Initializable {
 
         if (lesson instanceof TextLesson) {
             TextLesson textLesson = (TextLesson)lesson;
+            textLesson.makeID();
 
             if (textLesson!= null && textLesson.isValid()) {
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, textLesson.toString());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        //TODO - updload to database if confirmed
-                        System.out.println("sample upload confirm test");
+                        LessonDatabase.storeData(textLesson);
+                        System.out.println("data was pushed to database");
                     }
                 });
             } else {
@@ -163,15 +165,15 @@ public class LessonMakerController implements Initializable {
 
         } else if (lesson instanceof VideoLesson) {
             VideoLesson videoLesson = (VideoLesson)lesson;
-            System.out.println(videoLesson);
+            videoLesson.makeID();
 
             if (videoLesson != null && videoLesson.isValid()) {
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, videoLesson.toString());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        //TODO - updload to database if confirmed
-                        System.out.println("sample upload confirm test");
+                        LessonDatabase.storeData(videoLesson);
+                        System.out.println("data was push to database");
                     }
                 });
             } else {

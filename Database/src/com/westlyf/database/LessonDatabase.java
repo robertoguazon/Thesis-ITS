@@ -3,6 +3,7 @@ package com.westlyf.database;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 
@@ -96,6 +97,8 @@ public class LessonDatabase {
                 }
                 storeData(textLesson);
             } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+                alert.show();
                 e.printStackTrace();
             }
 
@@ -181,6 +184,8 @@ public class LessonDatabase {
                 }
                 storeData(videoLesson);
             } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+                alert.show();
                 e.printStackTrace();
             }
 
