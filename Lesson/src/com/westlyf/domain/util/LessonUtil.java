@@ -2,6 +2,7 @@ package com.westlyf.domain.util;
 
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.Level;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
@@ -45,6 +46,23 @@ public class LessonUtil {
         }
 
         return matchingLessons;
+    }
+
+    public static ArrayList<StringProperty> tagsToStringProperty(String s) {
+
+        if (s == null || s.equals("")) {
+            return null;
+        }
+
+        s = s.trim();
+        String[] tags = s.split(",");
+        ArrayList<StringProperty> newTags = new ArrayList<>();
+
+        for (int i = 0; i < tags.length; i++) {
+            newTags.add(new SimpleStringProperty(tags[i]));
+        }
+
+        return newTags;
     }
 
 }

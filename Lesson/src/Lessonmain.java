@@ -1,3 +1,4 @@
+import com.westlyf.domain.util.LessonUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +17,7 @@ public class Lessonmain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        test(); // for testing puposes
         rootLoader = new FXMLLoader(getClass().getResource("sample/view/LessonMain.fxml"));
         root = rootLoader.load();
 
@@ -29,5 +31,10 @@ public class Lessonmain extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void test() {
+        //for testing
+
     }
 }

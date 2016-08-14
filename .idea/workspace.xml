@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" afterPath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/Lesson.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/Lesson.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMakerController$1.class" afterPath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMakerController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMakerController.class" afterPath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMakerController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/lesson.db" afterPath="$PROJECT_DIR$/resources/database/lesson.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/DatabaseMain.java" afterPath="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" afterPath="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/Lesson.iml" afterPath="$PROJECT_DIR$/Lesson/Lesson.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMakerController.java" afterPath="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMakerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/Lessonmain.java" afterPath="$PROJECT_DIR$/Lesson/src/Lessonmain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,7 +76,80 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="LessonDatabase.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6076923">
+              <caret line="331" column="5" selection-start-line="331" selection-start-column="5" selection-end-line="331" selection-end-column="5" />
+              <folding>
+                <element signature="method#createTextLessonTable#0;class#LessonDatabase#0" expanded="false" />
+                <element signature="method#storeData#0;class#LessonDatabase#0" expanded="false" />
+                <element signature="method#createVideoLessonTable#0;class#LessonDatabase#0" expanded="false" />
+                <element signature="method#storeData#1;class#LessonDatabase#0" expanded="false" />
+                <element signature="method#getTextLesson#0;class#LessonDatabase#0" expanded="false" />
+                <element signature="method#getVideoLesson#0;class#LessonDatabase#0" expanded="false" />
+                <element signature="e#9855#9856#0" expanded="true" />
+                <element signature="e#9923#9924#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lesson.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Database/src/DatabaseMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+              <folding>
+                <element signature="method#test#0;class#DatabaseMain#0" expanded="false" />
+                <element signature="method#testPush#0;class#DatabaseMain#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LessonUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lessonmain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lesson/src/Lessonmain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExerciseDatabase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -105,7 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Exercise/src/sample/controller/QuizMakerController.java" />
         <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/controller/FaceDetectionController.java" />
         <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/view/FaceDetection.xml" />
         <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/FaceDetectionMain.java" />
@@ -128,7 +197,6 @@
         <option value="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java" />
         <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizFactory.java" />
         <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java" />
-        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" />
         <option value="$PROJECT_DIR$/Lesson/src/sample/view/TextLessonMaker.fxml" />
         <option value="$PROJECT_DIR$/Lesson/src/sample/controller/TextLessonMakerController.java" />
         <option value="$PROJECT_DIR$/Lesson/src/sample/view/VideoLessonMaker.fxml" />
@@ -149,12 +217,14 @@
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/VideoLesson.java" />
         <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java" />
         <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" />
-        <option value="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/SQLError.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/SQLiteError.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/DatabaseConnection.java" />
-        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" />
         <option value="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMakerController.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/Lessonmain.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" />
+        <option value="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" />
       </list>
     </option>
@@ -205,7 +275,6 @@
     <panes>
       <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -226,6 +295,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,7 +345,7 @@
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\Data\src\sample\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Lesson_LessonMakerMain">
+  <component name="RunManager" selected="Application.Database_DatabaseMain">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -836,7 +906,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34858045" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.340694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
@@ -880,7 +950,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -945,13 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74025977">
-          <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/javafx-src.zip!/com/sun/javafx/collections/VetoableListDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33246753">
@@ -960,33 +1023,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/VideoLessonMaker.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515">
           <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/LessonMaker.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/LessonMaker.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36060607">
           <caret line="7" column="260" selection-start-line="7" selection-start-column="260" selection-end-line="7" selection-end-column="260" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/TextLessonMaker.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/TextLessonMaker.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36060607">
           <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/utils/FileUtils.java">
@@ -1007,17 +1070,17 @@
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
       </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66233766">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.21597096">
             <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66233766">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1036,13 +1099,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/src/sample/SimpleView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/javafx-src.zip!/javafx/scene/control/Alert.java">
@@ -1070,13 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.316883">
           <caret line="83" column="17" selection-start-line="83" selection-start-column="17" selection-end-line="83" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/Lessonmain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42079207">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1130,13 +1186,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Exercise/src/sample/view/ExerciseViewer.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74242425">
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Exercise/src/ExerciseViewerMain.java">
@@ -1195,13 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/DatabaseMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/SQLiteError.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1216,18 +1265,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35324675">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/LessonMakerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1235,15 +1276,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.95584416">
           <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6025974">
-          <caret line="100" column="29" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,20 +1283,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.4857143">
           <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38181818">
-          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-          <folding>
-            <element signature="e#687#688#0" expanded="true" />
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#786#787#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1280,7 +1298,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33766234">
           <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/Lessonmain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/DatabaseMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+          <folding>
+            <element signature="method#test#0;class#DatabaseMain#0" expanded="false" />
+            <element signature="method#testPush#0;class#DatabaseMain#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6076923">
+          <caret line="331" column="5" selection-start-line="331" selection-start-column="5" selection-end-line="331" selection-end-column="5" />
+          <folding>
+            <element signature="method#createTextLessonTable#0;class#LessonDatabase#0" expanded="false" />
+            <element signature="method#storeData#0;class#LessonDatabase#0" expanded="false" />
+            <element signature="method#createVideoLessonTable#0;class#LessonDatabase#0" expanded="false" />
+            <element signature="method#storeData#1;class#LessonDatabase#0" expanded="false" />
+            <element signature="method#getTextLesson#0;class#LessonDatabase#0" expanded="false" />
+            <element signature="method#getVideoLesson#0;class#LessonDatabase#0" expanded="false" />
+            <element signature="e#9855#9856#0" expanded="true" />
+            <element signature="e#9923#9924#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
