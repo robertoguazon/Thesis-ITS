@@ -1,6 +1,9 @@
 package com.westlyf.database;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by robertoguazon on 10/08/2016.
@@ -8,6 +11,14 @@ import java.io.*;
 public class Database {
 
     //TODO - constants sql statements and such
+
+    /**
+     * Constant int variables for DatabaseType
+     * */
+    public static final int
+        USER = 1,
+        LESSON = 2,
+        EXERCISE = 3;
 
     public static byte[] serialize(Serializable object) {
         ByteArrayOutputStream baos;
@@ -46,5 +57,45 @@ public class Database {
         }
 
         return null;
+    }
+
+    //general methods for databases
+    public static int createTable(final int DATABASE_TYPE,String STATEMENT) {
+
+        Connection conn = null;
+        switch (DATABASE_TYPE) {
+            case USER:
+                conn = DatabaseConnection.getUserConnection();
+                break;
+            case LESSON:
+                conn = DatabaseConnection.getLessonConn();
+                break;
+            case EXERCISE:
+                conn = DatabaseConnection.getExerciseConn();
+                break;
+        }
+        Statement stmt = null;
+
+        if (conn == null) {
+            System.err.println("Error connecting to the database");
+            return -1;
+        }
+
+        try {
+
+            stmt = conn.createStatement();
+            stmt.executeUpdate(STATEMENT);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
     }
 }

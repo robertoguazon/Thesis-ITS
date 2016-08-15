@@ -138,6 +138,22 @@ public class QuizItem implements Serializable {
         return this.type;
     }
 
+    public ArrayList<String> getChoices() {
+        return choices;
+    }
+
+    public ArrayList<String> getValidAnswers() {
+        return validAnswers;
+    }
+
+    public ArrayList<String> getAnswers() {
+        return answers;
+    }
+
+    public int getPoints() {
+        return points.get();
+    }
+
     public VBox getItemBox() {
         VBox box = new VBox();
 
@@ -295,4 +311,5 @@ public class QuizItem implements Serializable {
                 "\tpoints per correct: " + pointsPerCorrect.get() + "\n" +
                 "\tpoints: " + points.get() + "\n";
     }
+
 }

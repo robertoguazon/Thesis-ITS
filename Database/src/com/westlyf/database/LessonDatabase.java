@@ -15,57 +15,48 @@ public class LessonDatabase {
 
     //TODO - put all methods for storing and getting data from and into the database
 
-    //CREATING TABLES
-    public static final String CREATE_TEXT_LESSON_TABLE = "CREATE TABLE IF NOT EXISTS text_lesson(" +
+    /**
+     * String statements for creating lesson tables
+     * */
+    public static final String
+            CREATE_TEXT_LESSON_TABLE = "CREATE TABLE IF NOT EXISTS text_lesson(" +
             "lid TEXT NOT NULL UNIQUE," +
             "title TEXT PRIMARY KEY NOT NULL," +
             "tags TEXT NOT NULL," +
             "'text' TEXT NOT NULL" +
-            ")";
-    public static final String CREATE_VIDEO_LESSON_TABLE = "CREATE TABLE IF NOT EXISTS video_lesson(" +
+            ")",
+
+            CREATE_VIDEO_LESSON_TABLE = "CREATE TABLE IF NOT EXISTS video_lesson(" +
             "lid TEXT NOT NULL UNIQUE," +
             "title TEXT PRIMARY KEY NOT NULL," +
             "tags TEXT NOT NULL," +
             "pathLocation TEXT NOT NULL" +
             ")";
 
-    //PUSHING DATA
-    public static final String INSERT_TEXT_LESSON = "INSERT INTO text_lesson(lid,title,tags,text) VALUES(?,?,?,?)";
-    public static final String INSERT_VIDEO_LESSON = "INSERT INTO video_lesson(lid,title,tags,pathLocation) VALUES(?,?,?,?)";
+    /**
+     * String statements for pushing lessons to sqlite
+     * */
+    public static final String
+            INSERT_TEXT_LESSON = "INSERT INTO text_lesson(lid,title,tags,text) VALUES(?,?,?,?)",
+            INSERT_VIDEO_LESSON = "INSERT INTO video_lesson(lid,title,tags,pathLocation) VALUES(?,?,?,?)";
 
-    //PULLING DATA
-    public static final String GET_TEXT_LESSON_USING_LID = "SELECT * FROM text_lesson WHERE lid = ?";
-    public static final String GET_VIDEO_LESSON_USING_LID = "SELECT * FROM video_lesson WHERE lid = ?";
+    /**
+     * String statements for pulling lessons from sqlite
+     * */
+    public static final String
+            GET_TEXT_LESSON_USING_LID = "SELECT * FROM text_lesson WHERE lid = ?",
+            GET_VIDEO_LESSON_USING_LID = "SELECT * FROM video_lesson WHERE lid = ?",
 
-    public static final String GET_TEXT_LESSON_USING_TITLE = "SELECT * FROM text_lesson WHERE title = ?";
-    public static final String GET_VIDEO_LESSON_USING_TITLE = "SELECT * FROM video_lesson WHERE title = ?";
+            GET_TEXT_LESSON_USING_TITLE = "SELECT * FROM text_lesson WHERE title = ?",
+            GET_VIDEO_LESSON_USING_TITLE = "SELECT * FROM video_lesson WHERE title = ?";
+
 
     public static int createTextLessonTable() {
+        return Database.createTable(Database.LESSON, CREATE_TEXT_LESSON_TABLE);
+    }
 
-        Connection lessonConn = DatabaseConnection.getLessonConn();
-        Statement stmt = null;
-
-        if (lessonConn == null) {
-            System.err.println("Error connecting to the lesson database");
-            return -1;
-        }
-
-        try {
-
-            stmt = lessonConn.createStatement();
-            stmt.executeUpdate(CREATE_TEXT_LESSON_TABLE);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return 0;
+    public static int createVideoLessonTable() {
+        return Database.createTable(Database.LESSON, CREATE_VIDEO_LESSON_TABLE);
     }
 
     public static int storeData(TextLesson textLesson) {
@@ -124,34 +115,6 @@ public class LessonDatabase {
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println(e.getErrorCode());
-            }
-        }
-
-        return 0;
-    }
-
-    public static int createVideoLessonTable() {
-
-        Connection lessonConn = DatabaseConnection.getLessonConn();
-        Statement stmt = null;
-
-        if (lessonConn == null) {
-            System.err.println("Error connecting to the lesson database");
-            return -1;
-        }
-
-        try {
-
-            stmt = lessonConn.createStatement();
-            stmt.executeUpdate(CREATE_VIDEO_LESSON_TABLE);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
 

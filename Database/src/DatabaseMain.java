@@ -1,5 +1,8 @@
 import com.westlyf.database.DatabaseConnection;
+import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
+import com.westlyf.domain.exercise.quiz.QuizExercise;
+import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
 import javafx.beans.property.SimpleStringProperty;
@@ -61,16 +64,31 @@ public class DatabaseMain {
         videoLesson.setTags(tagList);
         videoLesson.makeID();
         LessonDatabase.storeData(videoLesson);
+
+        QuizExercise quizExercise = new QuizExercise();
+        quizExercise.setTitle("sample test");
+        quizExercise.addTag("sample");
+        quizExercise.addTag("exercise");
+        quizExercise.addTag("quiz");
+        ArrayList<String> choices = new ArrayList<>();
+        choices.add("game");
+        choices.add("sample test");
+        choices.add("master");
+        ArrayList<String> validAnswers = new ArrayList();
+        validAnswers.add("sample test");
+        quizExercise.addItem(QuizType.RADIOBUTTON, "what is this?", choices, validAnswers);
+        quizExercise.makeID();
+        ExerciseDatabase.storeData(quizExercise);
     }
 
     private static void testPull() {
         System.out.println();
         System.out.println("trying to load sample text lesson using lid...");
-        System.out.println(LessonDatabase.getTextLessonUsingLID("lid527210822633425"));
+        System.out.println(LessonDatabase.getTextLessonUsingLID("lid627925056887413"));
 
         System.out.println();
         System.out.println("trying to load sample video lesson using lid...");
-        System.out.println(LessonDatabase.getVideoLessonUsingLID("lid527210984737022"));
+        System.out.println(LessonDatabase.getVideoLessonUsingLID("lid627925277121613"));
 
         System.out.println();
         System.out.println("trying to load sample text lesson using title...");
@@ -79,5 +97,7 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample video lesson using title...");
         System.out.println(LessonDatabase.getVideoLessonUsingTitle("sample test"));
+
+        System.out.println();
     }
 }

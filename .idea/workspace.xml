@@ -2,13 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" afterPath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/DatabaseMain.class" afterPath="$PROJECT_DIR$/out/production/Database/DatabaseMain.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/Database.class" afterPath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/Database.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/ExerciseDatabase.class" afterPath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/ExerciseDatabase.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/LessonDatabase.class" afterPath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/LessonDatabase.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/Exercise.class" afterPath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/Exercise.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/quiz/QuizExercise.class" afterPath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/quiz/QuizExercise.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/exercise.db" afterPath="$PROJECT_DIR$/resources/database/exercise.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/lesson.db" afterPath="$PROJECT_DIR$/resources/database/lesson.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/Database.iml" afterPath="$PROJECT_DIR$/Database/Database.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/DatabaseMain.java" afterPath="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/com/westlyf/database/Database.java" afterPath="$PROJECT_DIR$/Database/src/com/westlyf/database/Database.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" afterPath="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" afterPath="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/Lessonmain.java" afterPath="$PROJECT_DIR$/Lesson/src/Lessonmain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,80 +89,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="LessonDatabase.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6076923">
-              <caret line="331" column="5" selection-start-line="331" selection-start-column="5" selection-end-line="331" selection-end-column="5" />
-              <folding>
-                <element signature="method#createTextLessonTable#0;class#LessonDatabase#0" expanded="false" />
-                <element signature="method#storeData#0;class#LessonDatabase#0" expanded="false" />
-                <element signature="method#createVideoLessonTable#0;class#LessonDatabase#0" expanded="false" />
-                <element signature="method#storeData#1;class#LessonDatabase#0" expanded="false" />
-                <element signature="method#getTextLesson#0;class#LessonDatabase#0" expanded="false" />
-                <element signature="method#getVideoLesson#0;class#LessonDatabase#0" expanded="false" />
-                <element signature="e#9855#9856#0" expanded="true" />
-                <element signature="e#9923#9924#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lesson.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatabaseMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Database/src/DatabaseMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
-              <folding>
-                <element signature="method#test#0;class#DatabaseMain#0" expanded="false" />
-                <element signature="method#testPush#0;class#DatabaseMain#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LessonUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lessonmain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lesson/src/Lessonmain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExerciseDatabase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -175,7 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/controller/FaceDetectionController.java" />
         <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/view/FaceDetection.xml" />
         <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/FaceDetectionMain.java" />
         <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/controller/FacialFeaturesController.java" />
@@ -208,24 +147,25 @@
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/UserDatabase.java" />
         <option value="$PROJECT_DIR$/Exercise/src/sample/view/ExerciseViewer.fxml" />
         <option value="$PROJECT_DIR$/Exercise/src/ExerciseViewerMain.java" />
-        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" />
         <option value="$PROJECT_DIR$/Exercise/src/sample/controller/ExerciseViewerController.java" />
-        <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" />
-        <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/Database.java" />
         <option value="C:/Programming/programming_tools/sqlite-jdbc-3.8.11.1.jar!/org/sqlite/core/DB.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/TextLesson.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/VideoLesson.java" />
-        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java" />
-        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/SQLError.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/SQLiteError.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMakerController.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java" />
         <option value="$PROJECT_DIR$/Lesson/src/Lessonmain.java" />
+        <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/Database.java" />
+        <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java" />
         <option value="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
-        <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java" />
+        <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" />
       </list>
     </option>
   </component>
@@ -273,8 +213,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -295,7 +235,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -950,7 +890,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -959,13 +899,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FacialExpressionRecognition/src/sample/FacialFeaturesDetectionMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83896106">
-          <caret line="19" column="71" selection-start-line="19" selection-start-column="71" selection-end-line="19" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Programming/programming_tools/DataFX/datafx-flow-8.0b5-sources.jar!/org/datafx/controller/flow/Flow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33246753">
@@ -984,20 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="89" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5584416">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77922076">
-          <caret line="90" column="70" selection-start-line="90" selection-start-column="70" selection-end-line="90" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -1023,33 +942,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/VideoLessonMaker.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515">
           <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/LessonMaker.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/LessonMaker.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36060607">
           <caret line="7" column="260" selection-start-line="7" selection-start-column="260" selection-end-line="7" selection-end-column="260" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/TextLessonMaker.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/TextLessonMaker.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36060607">
           <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/utils/FileUtils.java">
@@ -1063,24 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66233766">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="0.21597096">
-            <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -1099,13 +1000,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/src/sample/SimpleView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/javafx-src.zip!/javafx/scene/control/Alert.java">
@@ -1178,21 +1079,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.148052">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Exercise/src/sample/view/ExerciseViewer.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74242425">
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Exercise/src/ExerciseViewerMain.java">
@@ -1220,20 +1114,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2935065">
           <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52987015">
-          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6181818">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1272,13 +1152,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95584416">
-          <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.4857143">
@@ -1290,7 +1163,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.3090909">
           <caret line="155" column="71" selection-start-line="155" selection-start-column="71" selection-end-line="155" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,22 +1181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/Lessonmain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1333,30 +1189,146 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor vertical-scroll-proportion="0.21597096">
+            <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66233766">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="70" selection-start-line="90" selection-start-column="70" selection-end-line="90" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.8358974">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Lesson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9153846">
+          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding>
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#826#827#0" expanded="true" />
+            <element signature="e#1578#1579#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding>
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+          <folding>
+            <element signature="e#4348#4349#0" expanded="true" />
+            <element signature="e#4378#4379#0" expanded="true" />
+            <element signature="e#4428#4429#0" expanded="true" />
+            <element signature="e#4463#4464#0" expanded="true" />
+            <element signature="e#4508#4509#0" expanded="true" />
+            <element signature="e#4538#4539#0" expanded="true" />
+            <element signature="e#4568#4569#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Database/src/DatabaseMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding>
-            <element signature="method#test#0;class#DatabaseMain#0" expanded="false" />
-            <element signature="method#testPush#0;class#DatabaseMain#0" expanded="false" />
+            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
+            <element signature="method#testPull#0;class#DatabaseMain#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0082508">
+          <caret line="49" column="59" selection-start-line="49" selection-start-column="59" selection-end-line="49" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#storeData#0;class#ExerciseDatabase#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.26237625">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6076923">
-          <caret line="331" column="5" selection-start-line="331" selection-start-column="5" selection-end-line="331" selection-end-column="5" />
+        <state vertical-scroll-proportion="-0.37458745">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
-            <element signature="method#createTextLessonTable#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#storeData#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#createVideoLessonTable#0;class#LessonDatabase#0" expanded="false" />
             <element signature="method#storeData#1;class#LessonDatabase#0" expanded="false" />
             <element signature="method#getTextLesson#0;class#LessonDatabase#0" expanded="false" />
             <element signature="method#getVideoLesson#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="e#9855#9856#0" expanded="true" />
-            <element signature="e#9923#9924#0" expanded="true" />
+            <element signature="e#8872#8873#0" expanded="true" />
+            <element signature="e#8940#8941#0" expanded="true" />
           </folding>
         </state>
       </provider>

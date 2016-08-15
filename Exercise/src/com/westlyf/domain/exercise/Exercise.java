@@ -18,4 +18,12 @@ public class Exercise extends Lesson implements Serializable {
         super();
     }
 
+    public int getTotalItems() {
+        return totalItems.get();
+    }
+
+    public int getTotalScore() {
+        return totalScore.get();
+    }
+
 }
