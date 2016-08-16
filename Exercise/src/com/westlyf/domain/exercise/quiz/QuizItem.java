@@ -44,7 +44,19 @@ public class QuizItem implements Serializable {
         this.answers = quizItemsSerializable.getAnswers();
     }
 
-    public boolean isValid() {
+    public boolean isValidMaker() {
+        if (question == null || question.get().equals("")) return false;
+        if (choices == null || choices.isEmpty()) return false;
+        if (validAnswers == null || validAnswers.isEmpty())  return false;
+        if (points == null) return false;
+        if (pointsPerCorrect == null) return false;
+
+        //TODO - fix points
+
+        return true;
+    }
+
+    public boolean isValidAnsweredFormat() {
         if (question == null || question.get().equals("")) return false;
         if (choices == null || choices.isEmpty()) return false;
         if (validAnswers == null || validAnswers.isEmpty())  return false;

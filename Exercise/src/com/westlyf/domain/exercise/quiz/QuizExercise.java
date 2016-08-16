@@ -100,11 +100,21 @@ public class QuizExercise extends Exercise implements Serializable {
         return super.toString() + "\n" + quizItems.toString();
     }
 
-    public boolean isValid() {
-        if (quizItems == null || quizItems.isEmpty()) return false;
+    public boolean isValidMaker() {
+        if (quizItems == null || quizItems.isEmpty() || !super.isValid()) return false;
 
         for (QuizItem quizItem : quizItems) {
-            if (!quizItem.isValid()) return false;
+            if (!quizItem.isValidMaker()) return false;
+        }
+
+        return true;
+    }
+
+    public boolean isValidAnsweredFormat() {
+        if (quizItems == null || quizItems.isEmpty() || !super.isValid()) return false;
+
+        for (QuizItem quizItem : quizItems) {
+            if (!quizItem.isValidAnsweredFormat()) return false;
         }
 
         return true;
@@ -120,11 +130,23 @@ public class QuizExercise extends Exercise implements Serializable {
         return super.check() + "\n" + quizItemsCheckString;
     }
 
-    public String error() {
+    public String errorAnsweredFormat() {
         String error = "errors: ";
         int n = 0;
         for (QuizItem quizItem : quizItems) {
-            if (!quizItem.isValid()) {
+            if (!quizItem.isValidAnsweredFormat()) {
+                n++;
+            }
+        }
+
+        return error + n + " errors";
+    }
+
+    public String errorMaker() {
+        String error = "errors: ";
+        int n = 0;
+        for (QuizItem quizItem : quizItems) {
+            if (!quizItem.isValidMaker()) {
                 n++;
             }
         }

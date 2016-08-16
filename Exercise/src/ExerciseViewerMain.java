@@ -1,3 +1,5 @@
+import com.westlyf.database.ExerciseDatabase;
+import com.westlyf.domain.exercise.Exercise;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizType;
@@ -17,48 +19,17 @@ import java.io.IOException;
 public class ExerciseViewerMain extends Application {
 
     //sample quiz
-    private QuizExercise quiz;
-
-    {
-        quiz = new QuizExercise();
-        quiz.setTitle("DOTA");
-        quiz.addTag(new SimpleStringProperty("money"));
-        quiz.addTag(new SimpleStringProperty("play"));
-
-        QuizItem quizItem1 = new QuizItem();
-        quizItem1.setQuestion("What is my name");
-        quizItem1.setType(QuizType.RADIOBUTTON);
-        quizItem1.addChoice("juggernaut");
-        quizItem1.addChoice("bounty hunter");
-        quizItem1.addValidAnswer("bounty hunter");
-        quiz.addItem(quizItem1);
-
-        QuizItem quizItem2 = new QuizItem();
-        quizItem2.setQuestion("What is my age");
-        quizItem2.setType(QuizType.CHECKBOX);
-        quizItem2.addChoice("12");
-        quizItem2.addChoice("1");
-        quizItem2.addValidAnswer("1");
-        quiz.addItem(quizItem2);
-
-        QuizItem quizItem3 = new QuizItem();
-        quizItem3.setQuestion("My favorite movies?");
-        quizItem3.setType(QuizType.CHECKBOX);
-        quizItem3.addChoice("deadpool");
-        quizItem3.addChoice("ironman");
-        quizItem3.addChoice("batman");
-        quizItem3.addValidAnswer("deadpool");
-        quizItem3.addValidAnswer("ironman");
-        quiz.addItem(quizItem3);
-    }
-
     public void start(Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sample/view/ExerciseViewer.fxml"));
             BorderPane root = loader.load();
 
             ExerciseViewerController controller = loader.getController();
-            controller.setQuiz(quiz);
+
+            //sample tests load
+            controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid724313411498252"));
+            //controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid724133762778948"));
+            //controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid632146417557684"));
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);

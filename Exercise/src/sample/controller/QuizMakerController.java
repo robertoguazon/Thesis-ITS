@@ -1,5 +1,7 @@
 package sample.controller;
 
+import com.westlyf.database.ExerciseDatabase;
+import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizFactory;
 import com.westlyf.domain.exercise.quiz.QuizItem;
@@ -222,26 +224,32 @@ public class QuizMakerController implements Initializable {
 
     @FXML
     private void createQuiz() {
-        QuizExercise quizExercise;
-        //saveTags();
-        //saveItems();
-        //quizExercise = makeQuiz();
+        try {
+            QuizExercise quizExercise;
+            quizGUI.completeItems();
+            quizExercise = quizGUI.exportQuiz();
+            quizExercise.makeID();
 
-        //test --- below
-        //questionTextAreas - working
-        //pass if not match
+            if (quizExercise.isValidMaker()) {
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?");
+                confirmation.setTitle("CONFIRM");
+                confirmation.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        ExerciseDatabase.storeData(quizExercise);
+                        System.out.println("data was pushed to database");
+                    }
+                });
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR, quizExercise.check());
+                error.setTitle("INVALID");
+                error.show();
+            }
+        } catch (Exception e) {
+            Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            error.setTitle("ERROR");
+            error.show();
+        }
 
-
-        quizGUI.completeItems();
-        quizGUI.exportQuiz().printQuiz();
 
     }
-
-    //temporary should fix these and store to database
-    private ArrayList<QuizExercise> quizExercises = new ArrayList<>();
-
-    private void saveQuiz(QuizExercise quizExercise) {
-        this.quizExercises.add(quizExercise);
-    }
-
 }

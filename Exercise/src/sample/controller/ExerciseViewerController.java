@@ -49,7 +49,7 @@ public class ExerciseViewerController implements Initializable {
         }
         else {
             System.out.println("Invalid Quiz");
-            Alert error = new Alert(Alert.AlertType.ERROR, quiz.error());
+            Alert error = new Alert(Alert.AlertType.ERROR, quiz.errorAnsweredFormat());
             error.setTitle("INVALID");
             error.show();
         }
