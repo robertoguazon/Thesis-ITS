@@ -36,6 +36,10 @@ public class QuizExercise extends Exercise implements Serializable {
         return true;
     }
 
+    public void setQuizItems(ArrayList<QuizItem> quizItems) {
+        this.quizItems = quizItems;
+    }
+
     public boolean addItem(String question, ArrayList<String>choices, ArrayList<String> validAnswers) {
         QuizItem quizItem = new QuizItem();
         quizItem.setType(QuizType.RADIOBUTTON);

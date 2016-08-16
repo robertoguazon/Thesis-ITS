@@ -99,5 +99,11 @@ public class DatabaseMain {
         System.out.println(LessonDatabase.getVideoLessonUsingTitle("sample test"));
 
         System.out.println();
+        System.out.println("trying to load sample quiz exercise using lid...");
+        System.out.println(ExerciseDatabase.getQuizExerciseUsingLID("lid632146417557684"));
+
+        System.out.println();
+        System.out.println("trying to load sample quiz exercise using title...");
+        System.out.println(ExerciseDatabase.getQuizExerciseUsingTitle("sample test"));
     }
 }

@@ -33,7 +33,15 @@ public class QuizItem implements Serializable {
     //B not sure if needed
     private BooleanProperty oneAnswer = new SimpleBooleanProperty(true);
 
-    public QuizItem() {
+    public QuizItem() {}
+
+    public QuizItem(QuizItemSerializable quizItemsSerializable) {
+        this.question.set(quizItemsSerializable.getQuestion());
+        this.choices = quizItemsSerializable.getChoices();
+        this.validAnswers = quizItemsSerializable.getValidAnswers();
+        this.points.set(quizItemsSerializable.getPoints());
+        this.pointsPerCorrect.set(quizItemsSerializable.getPointsPerCorrect());
+        this.answers = quizItemsSerializable.getAnswers();
     }
 
     public boolean isValid() {

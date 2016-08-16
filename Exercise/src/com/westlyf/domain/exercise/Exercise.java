@@ -26,4 +26,12 @@ public class Exercise extends Lesson implements Serializable {
         return totalScore.get();
     }
 
+    public void setTotalItems(int totalItems) {
+        this.totalItems.set(totalItems);
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore.set(totalScore);
+    }
+
 }

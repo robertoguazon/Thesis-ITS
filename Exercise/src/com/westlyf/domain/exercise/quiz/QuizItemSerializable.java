@@ -37,4 +37,32 @@ public class QuizItemSerializable implements Serializable {
         answers = quizItem.getAnswers();
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getPointsPerCorrect() {
+        return pointsPerCorrect;
+    }
+
+    public QuizType getType() {
+        return type;
+    }
+
+    public ArrayList<String> getChoices() {
+        return choices;
+    }
+
+    public ArrayList<String> getValidAnswers() {
+        return validAnswers;
+    }
+
+    public ArrayList<String> getAnswers() {
+        return answers;
+    }
+
 }

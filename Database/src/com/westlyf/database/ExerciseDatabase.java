@@ -4,6 +4,8 @@ import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizItemSerializable;
 import com.westlyf.domain.lesson.TextLesson;
+import com.westlyf.domain.util.LessonUtil;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -117,5 +119,70 @@ public class ExerciseDatabase {
         }
 
         return 0;
+    }
+
+    public static QuizExercise getQuizExercise(String param, final String STATEMENT) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        QuizExercise quizExercise = new QuizExercise();
+        try {
+            ps = exerciseConn.prepareStatement(STATEMENT);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                quizExercise.setID(rs.getString("lid"));
+                quizExercise.setTitle(rs.getString("title"));
+                quizExercise.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+
+                quizExercise.setTotalItems(rs.getInt("totalItems"));
+                quizExercise.setTotalScore(rs.getInt("totalScore"));
+
+                ArrayList<QuizItemSerializable> quizItemsSerializable = (ArrayList<QuizItemSerializable>)Database.deserialize(rs.getBytes("quizItems"));
+                ArrayList<QuizItem> quizItems = new ArrayList<>();
+
+                for (QuizItemSerializable quizItemSerializable : quizItemsSerializable) {
+                    quizItems.add(new QuizItem(quizItemSerializable));
+                }
+
+                quizExercise.setQuizItems(quizItems);
+            } else {
+                System.err.println("No exercises match with param: " + param);
+                return null;
+            }
+
+        } catch (SQLException e) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return quizExercise;
+    }
+
+    public static QuizExercise getQuizExerciseUsingLID(String lid) {
+        return getQuizExercise(lid,GET_QUIZ_EXERCISE_USING_ID);
+    }
+
+    public static QuizExercise getQuizExerciseUsingTitle(String title) {
+        return getQuizExercise(title,GET_QUIZ_EXERCISE_USING_TITLE);
     }
 }
