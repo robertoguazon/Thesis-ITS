@@ -60,7 +60,7 @@ public class Database {
     }
 
     //general methods for databases
-    public static int createTable(final int DATABASE_TYPE,String STATEMENT) {
+    public static int createTable(final int DATABASE_TYPE,final String STATEMENT) {
 
         Connection conn = null;
         switch (DATABASE_TYPE) {
@@ -98,4 +98,5 @@ public class Database {
 
         return 0;
     }
+
 }

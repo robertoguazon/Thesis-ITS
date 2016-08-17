@@ -105,5 +105,9 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample quiz exercise using title...");
         System.out.println(ExerciseDatabase.getQuizExerciseUsingTitle("sample test"));
+
+        System.out.println();
+        System.out.println("trying to load sample quiz exercise using tags...");
+        System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsExactly("money,play,").get(0));
     }
 }

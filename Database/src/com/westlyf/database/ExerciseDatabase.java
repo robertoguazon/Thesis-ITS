@@ -42,7 +42,8 @@ public class ExerciseDatabase {
      * */
     public static final String
             GET_QUIZ_EXERCISE_USING_ID = "SELECT * FROM quiz_exercise where lid = ?",
-            GET_QUIZ_EXERCISE_USING_TITLE = "SELECT * FROM quiz_exercise where title = ?";
+            GET_QUIZ_EXERCISE_USING_TITLE = "SELECT * FROM quiz_exercise where title = ?",
+            GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM quiz_exercise where tags = ?";
 
 
     public static int createQuizExerciseTable() {
@@ -161,8 +162,10 @@ public class ExerciseDatabase {
 
         } catch (SQLException e) {
 
+            /* TODO
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
             alert.show();
+            */
             e.printStackTrace();
         } finally {
 
@@ -184,5 +187,68 @@ public class ExerciseDatabase {
 
     public static QuizExercise getQuizExerciseUsingTitle(String title) {
         return getQuizExercise(title,GET_QUIZ_EXERCISE_USING_TITLE);
+    }
+
+    public static ArrayList<QuizExercise> getQuizExercisesUsingTagsExactly(String tags) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        QuizExercise quizExercise = new QuizExercise();
+        ArrayList<QuizExercise> quizExercises = new ArrayList<>();
+        try {
+            ps = exerciseConn.prepareStatement(GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY);
+            ps.setString(1,tags);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No exercises match with param: " + tags);
+                return null;
+            }
+
+            while (rs.next()) {
+                quizExercise.setID(rs.getString("lid"));
+                quizExercise.setTitle(rs.getString("title"));
+                quizExercise.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+
+                quizExercise.setTotalItems(rs.getInt("totalItems"));
+                quizExercise.setTotalScore(rs.getInt("totalScore"));
+
+                ArrayList<QuizItemSerializable> quizItemsSerializable = (ArrayList<QuizItemSerializable>)Database.deserialize(rs.getBytes("quizItems"));
+                ArrayList<QuizItem> quizItems = new ArrayList<>();
+
+                for (QuizItemSerializable quizItemSerializable : quizItemsSerializable) {
+                    quizItems.add(new QuizItem(quizItemSerializable));
+                }
+
+                quizExercise.setQuizItems(quizItems);
+                quizExercises.add(quizExercise);
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return quizExercises;
     }
 }

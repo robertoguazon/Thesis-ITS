@@ -34,7 +34,7 @@ public class ExerciseViewerController implements Initializable {
     @FXML
     private void submit() {
         //TODO - for submission
-        if (quiz != null && quiz.isValid()) {
+        if (quiz != null && quiz.isValidAnsweredFormat()) {
             System.out.println("Valid Quiz");
 
             Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?");
