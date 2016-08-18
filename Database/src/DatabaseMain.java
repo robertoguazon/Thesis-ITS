@@ -109,5 +109,13 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample quiz exercise using tags...");
         System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsExactly("money,play,").get(0));
+
+        System.out.println();
+        System.out.println("trying to load sample text lessons using tags...");
+        System.out.println(LessonDatabase.getTextLessonsUsingTagsExactly("sample,test,").get(0));
+
+        System.out.println();
+        System.out.println("trying to load sample video lessons using tags...");
+        System.out.println(LessonDatabase.getVideoLessonsUsingTagsExactly("sample,video,").get(0));
     }
 }

@@ -43,7 +43,7 @@ public class ExerciseDatabase {
     public static final String
             GET_QUIZ_EXERCISE_USING_ID = "SELECT * FROM quiz_exercise where lid = ?",
             GET_QUIZ_EXERCISE_USING_TITLE = "SELECT * FROM quiz_exercise where title = ?",
-            GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM quiz_exercise where tags = ?";
+            GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM quiz_exercise WHERE tags = ?";
 
 
     public static int createQuizExerciseTable() {

@@ -1,5 +1,8 @@
 package com.westlyf.database;
 
+import com.westlyf.domain.exercise.quiz.QuizExercise;
+import com.westlyf.domain.exercise.quiz.QuizItem;
+import com.westlyf.domain.exercise.quiz.QuizItemSerializable;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
@@ -7,6 +10,7 @@ import com.westlyf.domain.util.LessonUtil;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by robertoguazon on 10/08/2016.
@@ -48,7 +52,10 @@ public class LessonDatabase {
             GET_VIDEO_LESSON_USING_LID = "SELECT * FROM video_lesson WHERE lid = ?",
 
             GET_TEXT_LESSON_USING_TITLE = "SELECT * FROM text_lesson WHERE title = ?",
-            GET_VIDEO_LESSON_USING_TITLE = "SELECT * FROM video_lesson WHERE title = ?";
+            GET_VIDEO_LESSON_USING_TITLE = "SELECT * FROM video_lesson WHERE title = ?",
+
+            GET_TEXT_LESSONS_USING_TAGS_EXACTLY = "SELECT * FROM text_lesson WHERE tags = ?",
+            GET_VIDEO_LESSONS_USING_TAGS_EXACTLY = "SELECT * FROM video_lesson WHERE tags = ?";
 
 
     public static int createTextLessonTable() {
@@ -294,4 +301,109 @@ public class LessonDatabase {
         return getVideoLesson(title, GET_VIDEO_LESSON_USING_TITLE);
     }
 
+    public static ArrayList<TextLesson> getTextLessonsUsingTagsExactly(String tags) {
+        Connection lessonConn = DatabaseConnection.getLessonConn();
+
+        if (lessonConn == null) {
+            System.err.println("Error connecting to lesson database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        TextLesson textLesson = new TextLesson();
+        ArrayList<TextLesson> textLessons = new ArrayList<>();
+        try {
+            ps = lessonConn.prepareStatement(GET_TEXT_LESSONS_USING_TAGS_EXACTLY);
+            ps.setString(1,tags);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No text lessons match with param: " + tags);
+                return null;
+            }
+
+            while (rs.next()) {
+                textLesson.setID(rs.getString("lid"));
+                textLesson.setTitle(rs.getString("title"));
+                textLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                textLesson.setText(rs.getString("text"));
+
+                textLessons.add(textLesson);
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                lessonConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return textLessons;
+    }
+
+    public static ArrayList<VideoLesson> getVideoLessonsUsingTagsExactly(String tags) {
+        Connection lessonConn = DatabaseConnection.getLessonConn();
+
+        if (lessonConn == null) {
+            System.err.println("Error connecting to lesson database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        VideoLesson videoLesson = new VideoLesson();
+        ArrayList<VideoLesson> videoLessons = new ArrayList<>();
+        try {
+            ps = lessonConn.prepareStatement(GET_VIDEO_LESSONS_USING_TAGS_EXACTLY);
+            ps.setString(1,tags);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No video lessons match with param: " + tags);
+                return null;
+            }
+
+            while (rs.next()) {
+                videoLesson.setID(rs.getString("lid"));
+                videoLesson.setTitle(rs.getString("title"));
+                videoLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                videoLesson.setPathLocation(rs.getString("pathLocation"));
+
+                videoLessons.add(videoLesson);
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                lessonConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return videoLessons;
+    }
 }
