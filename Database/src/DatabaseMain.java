@@ -83,6 +83,22 @@ public class DatabaseMain {
         videoLesson.makeID();
         LessonDatabase.storeData(videoLesson);
 
+        videoLesson.removeTags();
+        videoLesson.setTitle("129367912379127398");
+        videoLesson.setPathLocation("123:\\sasdasdasders\\whatever");
+        videoLesson.addTag("sample");
+        videoLesson.addTag("test");
+        videoLesson.makeID();
+        LessonDatabase.storeData(videoLesson);
+
+        videoLesson.removeTags();
+        videoLesson.setTitle("fkjashdkfjhskfhiwue");
+        videoLesson.setPathLocation("to:\\thepath\\of nowhere");
+        videoLesson.addTag("sample");
+        videoLesson.addTag("quiz");
+        videoLesson.makeID();
+        LessonDatabase.storeData(videoLesson);
+
         QuizExercise quizExercise = new QuizExercise();
         quizExercise.setTitle("sample test");
         quizExercise.addTag("sample");
@@ -138,6 +154,10 @@ public class DatabaseMain {
 
         System.out.println();
         System.out.println("trying to load sample text lessons using tags contains...");
-        System.out.println(LessonDatabase.getTextLessonsUsingTagsContains("sample"));
+        System.out.println(LessonDatabase.getTextLessonsUsingTagsContains("sample", "test"));
+
+        System.out.println();
+        System.out.println("trying to load sample video lessons using tags contains...");
+        System.out.println(LessonDatabase.getVideoLessonsUsingTagsContains("sample", "quiz"));
     }
 }

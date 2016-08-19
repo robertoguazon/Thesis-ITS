@@ -48,7 +48,7 @@ public class LessonUtil {
         return matchingLessons;
     }
 
-    public static ArrayList<StringProperty> tagsToStringProperty(String s) {
+    public static ArrayList<StringProperty> tagsToArrayListStringProperty(String s) {
 
         if (s == null || s.equals("")) {
             return null;
@@ -65,7 +65,7 @@ public class LessonUtil {
         return newTags;
     }
 
-    public static ArrayList<String> tagsToString(String s) {
+    public static ArrayList<String> tagsToArrayList(String s) {
 
         if (s == null || s.equals("")) {
             return null;
@@ -82,12 +82,22 @@ public class LessonUtil {
         return newTags;
     }
 
-    public static ArrayList<String> tagsToString(ArrayList<StringProperty> tags) {
+    public static ArrayList<String> tagsToArrayList(ArrayList<StringProperty> tags) {
         if (tags == null || tags.isEmpty()) return null;
 
         ArrayList<String> newTags = new ArrayList();
         for (StringProperty tag : tags) {
             newTags.add(tag.get());
+        }
+
+        return newTags;
+    }
+
+    public static ArrayList<String> tagsToArrayList(String[] tags) {
+        ArrayList<String> newTags = new ArrayList<>();
+
+        for (int i = 0; i < tags.length; i++) {
+            newTags.add(tags[i]);
         }
 
         return newTags;

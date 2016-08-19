@@ -58,7 +58,8 @@ public class LessonDatabase {
             GET_TEXT_LESSONS_USING_TAGS_EXACTLY = "SELECT * FROM text_lesson WHERE tags = ?",
             GET_VIDEO_LESSONS_USING_TAGS_EXACTLY = "SELECT * FROM video_lesson WHERE tags = ?",
 
-            GET_TEXT_LESSONS_USING_TAGS_CONTAINS = "SELECT * FROM text_lesson WHERE tags LIKE ?";
+            GET_TEXT_LESSONS_USING_TAGS_CONTAINS = "SELECT * FROM text_lesson WHERE tags LIKE ?",
+            GET_VIDEO_LESSONS_USING_TAGS_CONTAINS = "SELECT * FROM video_lesson WHERE tags LIKE ?";
 
 
     public static int createTextLessonTable() {
@@ -212,7 +213,7 @@ public class LessonDatabase {
             if (rs.next()) {
                 textLesson.setID(rs.getString("lid"));
                 textLesson.setTitle(rs.getString("title"));
-                textLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                textLesson.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
                 textLesson.setText(rs.getString("text"));
             } else {
                 System.err.println("No text lessons match with param: " + param);
@@ -258,7 +259,7 @@ public class LessonDatabase {
             if (rs.next()) {
                 videoLesson.setID(rs.getString("lid"));
                 videoLesson.setTitle(rs.getString("title"));
-                videoLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                videoLesson.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
                 videoLesson.setPathLocation(rs.getString("pathLocation"));
             } else {
                 System.err.println("No video lessons match with param: " + param);
@@ -331,7 +332,7 @@ public class LessonDatabase {
                 TextLesson textLesson = new TextLesson();
                 textLesson.setID(rs.getString("lid"));
                 textLesson.setTitle(rs.getString("title"));
-                textLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                textLesson.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
                 textLesson.setText(rs.getString("text"));
 
                 textLessons.add(textLesson);
@@ -384,7 +385,7 @@ public class LessonDatabase {
                 VideoLesson videoLesson = new VideoLesson();
                 videoLesson.setID(rs.getString("lid"));
                 videoLesson.setTitle(rs.getString("title"));
-                videoLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                videoLesson.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
                 videoLesson.setPathLocation(rs.getString("pathLocation"));
 
                 videoLessons.add(videoLesson);
@@ -412,12 +413,13 @@ public class LessonDatabase {
     }
 
     //tags contains
+        //text lessons
     public static ArrayList<TextLesson> getTextLessonsUsingTagsContains(String tags) {
-        return getTextLessonsUsingTagsContains(LessonUtil.tagsToString(tags));
+        return getTextLessonsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
 
-    public static ArrayList<TextLesson> getTextLessonUsingTagsContains(ArrayList<StringProperty> tags) {
-        return getTextLessonsUsingTagsContains(LessonUtil.tagsToString(tags));
+    public static ArrayList<TextLesson> getTextLessonsUsingPropertyTagsContains(ArrayList<StringProperty> tags) {
+        return getTextLessonsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
 
     public static ArrayList<TextLesson> getTextLessonsUsingTagsContains(ArrayList<String> tags) {
@@ -449,17 +451,19 @@ public class LessonDatabase {
                 TextLesson textLesson = new TextLesson();
                 textLesson.setID(rs.getString("lid"));
                 textLesson.setTitle(rs.getString("title"));
-                textLesson.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                textLesson.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
                 textLesson.setText(rs.getString("text"));
 
                 textLessons.add(textLesson);
             }
 
             //check if every matches contains all the other tags
-            for (TextLesson matches : textLessons) {
-                for (int i = 1; i < tags.size(); i++) {
-                    if (!matches.getTagsString().contains(tags.get(i))) {
-                        textLessons.remove(matches);
+            for (int i = 0; i < textLessons.size(); i++) {
+                for (int j = 1; j < tags.size(); j++) {
+                    TextLesson match = textLessons.get(i);
+                    if (!match.getTagsString().contains(tags.get(j))) {
+                        textLessons.remove(match);
+                        i--;
                         break;
                     }
                 }
@@ -484,5 +488,91 @@ public class LessonDatabase {
         }
 
         return textLessons;
+    }
+
+    public static ArrayList<TextLesson> getTextLessonsUsingTagsContains(String ... tags) {
+        return getTextLessonsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+        //video lessons
+    public static ArrayList<VideoLesson> getVideoLessonsUsingTagsContains(String tags) {
+        return getVideoLessonsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<VideoLesson> getVideoLessonsUsingPropertyTagsContains(ArrayList<StringProperty> tags) {
+        return getVideoLessonsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<VideoLesson> getVideoLessonsUsingTagsContains(ArrayList<String> tags) {
+        if (tags == null || tags.isEmpty()) return null;
+
+        Connection lessonConn = DatabaseConnection.getLessonConn();
+
+        if (lessonConn == null) {
+            System.err.println("Error connecting to lesson database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<VideoLesson> videoLessons = new ArrayList<>();
+        String param = "%" + tags.get(0) + "%";
+        try {
+            ps = lessonConn.prepareStatement(GET_VIDEO_LESSONS_USING_TAGS_CONTAINS);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No text lessons contains with param: " + param);
+                return null;
+            }
+
+            while (rs.next()) {
+                VideoLesson videoLesson = new VideoLesson();
+                videoLesson.setID(rs.getString("lid"));
+                videoLesson.setTitle(rs.getString("title"));
+                videoLesson.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+                videoLesson.setPathLocation(rs.getString("pathLocation"));
+
+                videoLessons.add(videoLesson);
+            }
+
+            //check if every matches contains all the other tags
+
+            for (int i = 0; i < videoLessons.size(); i++) {
+                for (int j = 1; j < tags.size(); j++) {
+                    VideoLesson match = videoLessons.get(i);
+                    if (!match.getTagsString().contains(tags.get(j))) {
+                        videoLessons.remove(match);
+                        i--;
+                        break;
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                lessonConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return videoLessons;
+    }
+
+    public static ArrayList<VideoLesson> getVideoLessonsUsingTagsContains(String ... tags) {
+        return getVideoLessonsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
 }

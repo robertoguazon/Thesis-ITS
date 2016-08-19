@@ -142,7 +142,7 @@ public class ExerciseDatabase {
             if (rs.next()) {
                 quizExercise.setID(rs.getString("lid"));
                 quizExercise.setTitle(rs.getString("title"));
-                quizExercise.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                quizExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
 
                 quizExercise.setTotalItems(rs.getInt("totalItems"));
                 quizExercise.setTotalScore(rs.getInt("totalScore"));
@@ -215,7 +215,7 @@ public class ExerciseDatabase {
                 QuizExercise quizExercise = new QuizExercise();
                 quizExercise.setID(rs.getString("lid"));
                 quizExercise.setTitle(rs.getString("title"));
-                quizExercise.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));
+                quizExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
 
                 quizExercise.setTotalItems(rs.getInt("totalItems"));
                 quizExercise.setTotalScore(rs.getInt("totalScore"));
