@@ -200,7 +200,6 @@ public class ExerciseDatabase {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
-        QuizExercise quizExercise = new QuizExercise();
         ArrayList<QuizExercise> quizExercises = new ArrayList<>();
         try {
             ps = exerciseConn.prepareStatement(GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY);
@@ -213,6 +212,7 @@ public class ExerciseDatabase {
             }
 
             while (rs.next()) {
+                QuizExercise quizExercise = new QuizExercise();
                 quizExercise.setID(rs.getString("lid"));
                 quizExercise.setTitle(rs.getString("title"));
                 quizExercise.setTags(LessonUtil.tagsToStringProperty(rs.getString("tags")));

@@ -54,6 +54,24 @@ public class DatabaseMain {
         textLesson.makeID();
         LessonDatabase.storeData(textLesson);
 
+        textLesson.removeTags();
+        textLesson.setTitle("sjfl");
+        textLesson.setText("a simple master and slave text");
+        textLesson.addTag("master");
+        textLesson.addTag("sample");
+        textLesson.addTag("slave");
+        textLesson.makeID();
+        LessonDatabase.storeData(textLesson);
+
+        textLesson.removeTags();
+        textLesson.setTitle("1231371");
+        textLesson.setText("numbers are crazy");
+        textLesson.addTag("master");
+        textLesson.addTag("sample");
+        textLesson.addTag("test");
+        textLesson.makeID();
+        LessonDatabase.storeData(textLesson);
+
         tagList.clear();
 
         VideoLesson videoLesson = new VideoLesson();
@@ -107,15 +125,19 @@ public class DatabaseMain {
         System.out.println(ExerciseDatabase.getQuizExerciseUsingTitle("sample test"));
 
         System.out.println();
-        System.out.println("trying to load sample quiz exercise using tags...");
+        System.out.println("trying to load sample quiz exercise using tags exactly...");
         System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsExactly("money,play,").get(0));
 
         System.out.println();
-        System.out.println("trying to load sample text lessons using tags...");
+        System.out.println("trying to load sample text lessons using tags exactly...");
         System.out.println(LessonDatabase.getTextLessonsUsingTagsExactly("sample,test,").get(0));
 
         System.out.println();
-        System.out.println("trying to load sample video lessons using tags...");
+        System.out.println("trying to load sample video lessons using tags exactly...");
         System.out.println(LessonDatabase.getVideoLessonsUsingTagsExactly("sample,video,").get(0));
+
+        System.out.println();
+        System.out.println("trying to load sample text lessons using tags contains...");
+        System.out.println(LessonDatabase.getTextLessonsUsingTagsContains("sample"));
     }
 }

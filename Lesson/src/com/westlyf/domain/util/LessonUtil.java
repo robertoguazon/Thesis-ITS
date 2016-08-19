@@ -65,4 +65,34 @@ public class LessonUtil {
         return newTags;
     }
 
+    public static ArrayList<String> tagsToString(String s) {
+
+        if (s == null || s.equals("")) {
+            return null;
+        }
+
+        s = s.trim();
+        String[] tags = s.split(",");
+        ArrayList<String> newTags = new ArrayList<>();
+
+        for (int i = 0; i < tags.length; i++) {
+            newTags.add(tags[i]);
+        }
+
+        return newTags;
+    }
+
+    public static ArrayList<String> tagsToString(ArrayList<StringProperty> tags) {
+        if (tags == null || tags.isEmpty()) return null;
+
+        ArrayList<String> newTags = new ArrayList();
+        for (StringProperty tag : tags) {
+            newTags.add(tag.get());
+        }
+
+        return newTags;
+    }
+
+
+
 }

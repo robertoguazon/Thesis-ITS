@@ -104,4 +104,8 @@ public class Lesson implements Serializable {
 
         return true;
     }
+
+    public void removeTags() {
+        this.tags.clear();
+    }
 }
