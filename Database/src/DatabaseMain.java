@@ -1,6 +1,7 @@
 import com.westlyf.database.DatabaseConnection;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
+import com.westlyf.domain.exercise.Exercise;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
@@ -113,6 +114,22 @@ public class DatabaseMain {
         quizExercise.addItem(QuizType.RADIOBUTTON, "what is this?", choices, validAnswers);
         quizExercise.makeID();
         ExerciseDatabase.storeData(quizExercise);
+
+        quizExercise.removeTags();
+        quizExercise.setTitle("aaaaaaaa");
+        quizExercise.addTag("sample");
+        quizExercise.addTag("test");
+        quizExercise.addTag("sweet");
+        quizExercise.makeID();
+        ExerciseDatabase.storeData(quizExercise);
+
+        quizExercise.removeTags();
+        quizExercise.setTitle("s11111111111");
+        quizExercise.addTag("sample");
+        quizExercise.addTag("12");
+        quizExercise.addTag("101");
+        quizExercise.makeID();
+        ExerciseDatabase.storeData(quizExercise);
     }
 
     private static void testPull() {
@@ -159,5 +176,9 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample video lessons using tags contains...");
         System.out.println(LessonDatabase.getVideoLessonsUsingTagsContains("sample", "quiz"));
+
+        System.out.println();
+        System.out.println("trying to load sample quiz exercises using tags contains...");
+        System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsContains("sample"));
     }
 }

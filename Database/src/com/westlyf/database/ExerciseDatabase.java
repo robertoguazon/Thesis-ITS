@@ -4,7 +4,9 @@ import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizItemSerializable;
 import com.westlyf.domain.lesson.TextLesson;
+import com.westlyf.domain.lesson.VideoLesson;
 import com.westlyf.domain.util.LessonUtil;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
@@ -43,7 +45,9 @@ public class ExerciseDatabase {
     public static final String
             GET_QUIZ_EXERCISE_USING_ID = "SELECT * FROM quiz_exercise where lid = ?",
             GET_QUIZ_EXERCISE_USING_TITLE = "SELECT * FROM quiz_exercise where title = ?",
-            GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM quiz_exercise WHERE tags = ?";
+            GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM quiz_exercise WHERE tags = ?",
+
+            GET_QUIZ_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM quiz_exercise WHERE tags LIKE ?";
 
 
     public static int createQuizExerciseTable() {
@@ -250,5 +254,98 @@ public class ExerciseDatabase {
         }
 
         return quizExercises;
+    }
+
+    //tags contains
+        //quiz exercises
+    public static ArrayList<QuizExercise> getQuizExercisesUsingTagsContains(String tags) {
+        return getQuizExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<QuizExercise> getQuizExercisesUsingPropertyTagsContains(ArrayList<StringProperty> tags) {
+        return getQuizExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<QuizExercise> getQuizExercisesUsingTagsContains(ArrayList<String> tags) {
+        if (tags == null || tags.isEmpty()) return null;
+
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<QuizExercise> quizExercises = new ArrayList<>();
+        String param = "%" + tags.get(0) + "%";
+        try {
+            ps = exerciseConn.prepareStatement(GET_QUIZ_EXERCISES_USING_TAGS_CONTAINS);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No quiz exercises contains with param: " + param);
+                return null;
+            }
+
+            while (rs.next()) {
+                QuizExercise quizExercise = new QuizExercise();
+                quizExercise.setID(rs.getString("lid"));
+                quizExercise.setTitle(rs.getString("title"));
+                quizExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                quizExercise.setTotalItems(rs.getInt("totalItems"));
+                quizExercise.setTotalScore(rs.getInt("totalScore"));
+
+                ArrayList<QuizItemSerializable> quizItemsSerializable = (ArrayList<QuizItemSerializable>)Database.deserialize(rs.getBytes("quizItems"));
+                ArrayList<QuizItem> quizItems = new ArrayList<>();
+
+                for (QuizItemSerializable quizItemSerializable : quizItemsSerializable) {
+                    quizItems.add(new QuizItem(quizItemSerializable));
+                }
+
+                quizExercise.setQuizItems(quizItems);
+                quizExercises.add(quizExercise);
+            }
+
+            //check if every matches contains all the other tags
+
+            for (int i = 0; i < quizExercises.size(); i++) {
+                for (int j = 1; j < tags.size(); j++) {
+                    QuizExercise match = quizExercises.get(i);
+                    if (!match.getTagsString().contains(tags.get(j))) {
+                        quizExercises.remove(match);
+                        i--;
+                        break;
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return quizExercises;
+    }
+
+    public static ArrayList<QuizExercise> getQuizExercisesUsingTagsContains(String ... tags) {
+        return getQuizExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
 }
