@@ -16,6 +16,7 @@ libraries for each module:
       * x64 / x86 native
    * Lesson
    * RunTimeCompilation
+      * OpenHFT - Java Runtime Compilation  
    * Thesis-ITS-1
    * UserInterfaces
    * VideoPlayer
