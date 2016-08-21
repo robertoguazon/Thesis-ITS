@@ -45,6 +45,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/DataFX/pom.xml" />
+        <option value="$PROJECT_DIR$/RunTimeCompilation/pom.xml" />
       </list>
     </option>
   </component>

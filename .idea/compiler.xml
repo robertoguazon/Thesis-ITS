@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Data" />
+        <module name="RunTimeCompilation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Data" target="1.8" />
+      <module name="RunTimeCompilation" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
