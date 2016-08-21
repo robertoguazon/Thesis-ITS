@@ -24,7 +24,7 @@ libraries for each module:
 
 References for each module:
    * FacialExpressionRecognition
-      * [Face detection tutorial](http://l.facebook.com/l.php?u=http%3A%2F%2Fopencv-java-tutorials.readthedocs.io%2Fen%2Flatest%2F06-face-detection-and-tracking.html&h=RAQHsfN4Y&s=1)
+      * [Face detection tutorial](http://opencv-java-tutorials.readthedocs.io/en/latest/06-face-detection-and-tracking.html)
    * Data
       * [GuiGarage - DataFX tutorial](http://www.guigarage.com/2014/05/datafx-8-0-tutorials/)
 
