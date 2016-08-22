@@ -4,6 +4,7 @@ import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
+import com.westlyf.utils.FileUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -144,7 +145,7 @@ public class LessonMakerController implements Initializable {
         //TODO create method of LessonMakerController
 
         if (lesson instanceof TextLesson) {
-            TextLesson textLesson = (TextLesson)lesson;
+            TextLesson textLesson = ((TextLesson)lesson).clone();
             textLesson.makeID();
 
             if (textLesson!= null && textLesson.isValid()) {
@@ -164,7 +165,7 @@ public class LessonMakerController implements Initializable {
 
 
         } else if (lesson instanceof VideoLesson) {
-            VideoLesson videoLesson = (VideoLesson)lesson;
+            VideoLesson videoLesson = ((VideoLesson)lesson).clone();
             videoLesson.makeID();
 
             if (videoLesson != null && videoLesson.isValid()) {
@@ -172,8 +173,12 @@ public class LessonMakerController implements Initializable {
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
+                        FileUtils.copyVideoFileTo(videoLesson.getPathLocation(), videoLesson.getLessonId());
+                        String location = videoLesson.getPathLocation();
+                        location = FileUtils.pathToVideo(location, videoLesson.getLessonId());
+                        videoLesson.setPathLocation(location);
                         LessonDatabase.storeData(videoLesson);
-                        System.out.println("data was push to database");
+                        System.out.println("data was pushed to database");
                     }
                 });
             } else {

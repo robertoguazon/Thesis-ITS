@@ -108,4 +108,17 @@ public class Lesson implements Serializable {
     public void removeTags() {
         this.tags.clear();
     }
+
+    public void copy(Lesson lesson) {
+        this.setTitle(lesson.getTitle());
+        this.setTags(lesson.getTags());
+        this.setID(lesson.getLessonId());
+    }
+
+    public Lesson clone() {
+        Lesson clone = new Lesson();
+        clone.copy(this);
+
+        return clone;
+    }
 }

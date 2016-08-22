@@ -10,11 +10,12 @@ import java.io.Serializable;
  */
 public class VideoLesson extends Lesson implements Serializable {
 
+
+    private StringProperty pathLocation = new SimpleStringProperty();
+
     public VideoLesson() {
         super();
     }
-
-    private StringProperty pathLocation = new SimpleStringProperty();
 
     public String getPathLocation() {
         return pathLocation.get();
@@ -42,5 +43,18 @@ public class VideoLesson extends Lesson implements Serializable {
         if (pathLocation == null || pathLocation.get().equals("")) return false;
 
         return true;
+    }
+
+    public void copy(VideoLesson videoLesson) {
+        super.copy(videoLesson);
+
+        this.setPathLocation(videoLesson.getPathLocation());
+    }
+
+    public VideoLesson clone() {
+        VideoLesson clone = new VideoLesson();
+        clone.copy(this);
+
+        return clone;
     }
 }

@@ -45,4 +45,17 @@ public class TextLesson extends Lesson implements Serializable {
         return true;
     }
 
+    public void copy(TextLesson textLesson) {
+        super.copy(textLesson);
+
+        this.setText(textLesson.getText());
+    }
+
+    public TextLesson clone() {
+        TextLesson clone = new TextLesson();
+        clone.copy(this);
+
+        return clone;
+    }
+
 }
