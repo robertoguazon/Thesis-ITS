@@ -1,5 +1,6 @@
 package com.westlyf.video;
 
+import com.westlyf.domain.lesson.VideoLesson;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -12,6 +13,10 @@ public class VideoUtil {
     public static String load(String path) {
         File file = new File(path);
         return file.toURI().toString();
+    }
+
+    public static String load(VideoLesson videoLesson) {
+        return load(videoLesson.getPathLocation());
     }
 
     public static String formatTime(Duration elapsed, Duration duration) {

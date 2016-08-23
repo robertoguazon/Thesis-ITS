@@ -1,5 +1,7 @@
 package sample.controller;
 
+import com.westlyf.database.LessonDatabase;
+import com.westlyf.domain.lesson.VideoLesson;
 import com.westlyf.video.VideoUtil;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -51,7 +53,8 @@ public class MainController implements Initializable {
         volumeSlider.setMaxWidth(Region.USE_PREF_SIZE);
 
        try {
-           this.media = new Media(VideoUtil.load("resources/videos/sample.flv"));
+           VideoLesson videoLesson = LessonDatabase.getVideoLessonUsingLID("lid1275089802453708");
+           this.media = new Media(VideoUtil.load(videoLesson));
            this.player = new MediaPlayer(media);
            this.videoLessonMediaView.setMediaPlayer(player);
            this.player.setAutoPlay(false);

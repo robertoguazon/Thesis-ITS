@@ -1,5 +1,7 @@
 import net.openhft.compiler.CompilerUtils;
 
+import java.lang.reflect.Method;
+
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
