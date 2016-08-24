@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/videos/sample.flv" afterPath="$PROJECT_DIR$/resources/videos/lid1275089802453708.flv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/runtime/PracticalExercise.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/utils/RuntimeUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/target/classes/Main.class" afterPath="$PROJECT_DIR$/RunTimeCompilation/target/classes/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" afterPath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/com/westlyf/video/VideoUtil.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/com/westlyf/video/VideoUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$1.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$2.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$3.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$4.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$5.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$6.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$7.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController.class" afterPath="$PROJECT_DIR$/out/production/VideoPlayer/sample/controller/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/lesson.db" afterPath="$PROJECT_DIR$/resources/database/lesson.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" afterPath="$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/src/main/java/Main.java" afterPath="$PROJECT_DIR$/RunTimeCompilation/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" afterPath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VideoPlayer/src/com/westlyf/video/VideoUtil.java" afterPath="$PROJECT_DIR$/VideoPlayer/src/com/westlyf/video/VideoUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VideoPlayer/src/sample/controller/MainController.java" afterPath="$PROJECT_DIR$/VideoPlayer/src/sample/controller/MainController.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,12 +77,36 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56666666">
-              <caret line="15" column="87" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.47692308">
+              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#test1#0;class#Main#0" expanded="false" />
+                <element signature="method#test2#0;class#Main#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PracticalExercise.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/runtime/PracticalExercise.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RuntimeUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/utils/RuntimeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,9 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FacialExpressionRecognition/src/sample/FacialFeaturesDetectionMain.java" />
-        <option value="$PROJECT_DIR$/DataFX/src/sample/SimpleView.fxml" />
-        <option value="$PROJECT_DIR$/DataFX/src/sample/DataFX_A_SimpleMain.java" />
         <option value="$PROJECT_DIR$/DataFX/src/sample/SimpleController.java" />
         <option value="$PROJECT_DIR$/DataFX/src/sample/SimpleMain.java" />
         <option value="$PROJECT_DIR$/DataFX/pom.xml" />
@@ -176,6 +187,9 @@
         <option value="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMakerController.java" />
         <option value="$PROJECT_DIR$/VideoPlayer/src/com/westlyf/video/VideoUtil.java" />
         <option value="$PROJECT_DIR$/VideoPlayer/src/sample/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/runtime/PracticalExercise.java" />
+        <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/utils/RuntimeUtils.java" />
+        <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/utils/RuntimeUtil.java" />
         <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/Main.java" />
       </list>
     </option>
@@ -224,6 +238,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -332,15 +347,96 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
+              <option name="myItemId" value="RunTimeCompilation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="westlyf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RunTimeCompilation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="westlyf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Exercise" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Exercise" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,15 +475,15 @@
     <property name="SearchEverywhereHistoryKey" value="todo&#9;ACTION&#9;ActivateTODOToolWindow" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\Data\src\sample\view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\Data\src" />
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\Data\src\main\java" />
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\resources\haarcascades" />
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\FacialExpressionRecognition\src\sample\view" />
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\resources\lbpcascades" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\Data\src\sample\view" />
     </key>
   </component>
   <component name="RunManager" selected="Application.RuntimeCompilation_Main">
@@ -942,7 +1038,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -950,7 +1046,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.340694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.340694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
@@ -1004,23 +1100,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_74/javafx-src.zip!/com/sun/javafx/collections/VetoableListDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33246753">
-          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/VideoLessonMaker.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05151515">
-          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/sample/view/LessonMaker.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36060607">
@@ -1186,9 +1265,6 @@
           <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
         </state>
       </provider>
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.21597096">
@@ -1196,6 +1272,9 @@
           </first_editor>
           <second_editor />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java">
@@ -1370,10 +1449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-          <folding>
-            <element signature="e#386#387#0" expanded="false" />
-            <element signature="e#444#445#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1381,16 +1456,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6666667">
           <caret line="58" column="53" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/utils/RuntimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/runtime/PracticalExercise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56666666">
-          <caret line="15" column="87" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
+        <state vertical-scroll-proportion="0.47692308">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#test1#0;class#Main#0" expanded="false" />
+            <element signature="method#test2#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
