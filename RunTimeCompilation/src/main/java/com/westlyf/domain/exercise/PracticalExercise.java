@@ -14,6 +14,8 @@ public class PracticalExercise extends Exercise {
 
     private StringProperty instructions = new SimpleStringProperty();
     private StringProperty code = new SimpleStringProperty();
+    private StringProperty className = new SimpleStringProperty();
+    private StringProperty methodName = new SimpleStringProperty();
 
     private PracticalType practicalType = PracticalType.PRINT;
     private ArrayList<StringProperty[][]> returnValidators = new ArrayList<>();
@@ -69,4 +71,27 @@ public class PracticalExercise extends Exercise {
         return printValidator;
     }
 
+    public String getClassName() {
+        return className.get();
+    }
+
+    public StringProperty classNameProperty() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className.set(className);
+    }
+
+    public String getMethodName() {
+        return methodName.get();
+    }
+
+    public StringProperty methodNameProperty() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName.set(methodName);
+    }
 }
