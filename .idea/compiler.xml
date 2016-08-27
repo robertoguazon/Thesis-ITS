@@ -28,7 +28,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Data" target="1.8" />
-      <module name="RunTimeCompilation" target="1.5" />
+      <module name="RunTimeCompilation" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

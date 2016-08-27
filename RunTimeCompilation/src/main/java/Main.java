@@ -9,12 +9,13 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
 
-        //test1(); -check
-        //test2(); -check
-        //test3(); -check
+        test1(); //-check
+        test2(); //-check
+        test3(); //-check
     }
 
     private static void test1() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        System.out.println("test3");
         // dynamically you can call
         String className = "mypackage.MyClass";
         String javaCode = "package mypackage;\n" +
@@ -36,6 +37,7 @@ public class Main {
     }
 
     private static void test2() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
+        System.out.println("test2");
         String className = "com.westlyf.sample.Sample";
         String javaCode =
                 "package com.westlyf.sample;\n" + "" +
@@ -52,6 +54,7 @@ public class Main {
     }
 
     private static void test3() {
+        System.out.println("test3");
         RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
         System.out.println("6 + 9 * 3 = " + (6 + 9 * 3));
         System.out.println("what is your answer?");
