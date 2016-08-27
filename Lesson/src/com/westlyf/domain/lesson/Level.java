@@ -83,7 +83,7 @@ public class Level implements Serializable {
 
         String stringTags = "";
         for (StringProperty s : this.tags) {
-            stringTags += s + ",";
+            stringTags += s.get() + ",";
         }
 
         return stringTags;

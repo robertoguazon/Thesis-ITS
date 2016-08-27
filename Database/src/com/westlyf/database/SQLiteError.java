@@ -2,6 +2,7 @@ package com.westlyf.database;
 
 /**
  * Created by robertoguazon on 13/08/2016.
+ * from Sqlite
  */
 public class SQLiteError {
 
