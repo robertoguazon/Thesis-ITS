@@ -34,4 +34,9 @@ public class Exercise extends Lesson implements Serializable {
         this.totalScore.set(totalScore);
     }
 
+    public String toString() {
+        //TODO add the fields
+        return super.toString();
+    }
+
 }

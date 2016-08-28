@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.TextLessonMakerController">
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" text="Practical Exercise Print Maker" />
+            <HBox prefHeight="30.0" prefWidth="580.0">
+               <children>
+                  <CheckBox fx:id="mustMatchCheckBox" mnemonicParsing="false" text="Must Match" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Expected Output" wrapText="true" />
+                  <TextArea fx:id="expectedOutputTextArea" prefHeight="105.0" prefWidth="452.0" wrapText="true" />
+                  <Button fx:id="clearExpectedOutputButton" mnemonicParsing="false" onAction="#clearExpectedOutput" prefHeight="25.0" prefWidth="70.0" text="Clear" />
+               </children>
+            </HBox>
+            </children>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

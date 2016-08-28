@@ -1,4 +1,4 @@
-package com.westlyf.domain.exercise;
+package com.westlyf.domain.exercise.practical;
 
 /**
  * Created by robertoguazon on 26/08/2016.
