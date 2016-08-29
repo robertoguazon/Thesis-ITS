@@ -1,5 +1,6 @@
 package sample.controller;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import java.util.ResourceBundle;
  */
 public class PracticalPrintExerciseMakerController implements Initializable {
 
-    @FXML private CheckBox mustMatch;
+    @FXML private CheckBox mustMatchCheckBox;
     @FXML private TextArea expectedOutputTextArea;
     @FXML private Button clearExpectedOutputButton;
 
@@ -30,8 +31,12 @@ public class PracticalPrintExerciseMakerController implements Initializable {
         expectedOutputTextArea.clear();
     }
 
-    public void bindPracticalPrintExercise(StringProperty expectedOutput) {
+    public void bindPrintValidator(StringProperty expectedOutput) {
 
         expectedOutput.bind(expectedOutputTextArea.textProperty());
+    }
+
+    public void bindMustMatch(BooleanProperty mustMatchProperty) {
+        mustMatchProperty.bind(mustMatchCheckBox.selectedProperty());
     }
 }

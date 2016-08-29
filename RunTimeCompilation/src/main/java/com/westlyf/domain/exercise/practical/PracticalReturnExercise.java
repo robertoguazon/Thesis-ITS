@@ -53,10 +53,86 @@ public class PracticalReturnExercise extends PracticalExercise {
         this.parametersTypes.add(parameterType);
     }
 
+    public void clearParametersTypes() {
+        this.parametersTypes.clear();
+    }
+
+    public void removeReturnValidator(PracticalReturnValidator returnValidator) {
+        this.returnValidators.remove(returnValidator);
+    }
+
+    public void clearReturnValidators() {
+        this.returnValidators.clear();
+    }
+
+    @Override
+    public boolean isValid() {
+        if (!super.isValid()) return false;
+        if (returnValidators == null) return false;
+        for (int i = 0; i < returnValidators.size(); i++) {
+            if (!returnValidators.get(i).isValid()) return false;
+        }
+
+
+
+        return true;
+    }
+
+    public ArrayList<PracticalReturnValidator> getReturnValidators() {
+        return returnValidators;
+    }
+
+    public void copy(PracticalReturnExercise practicalReturnExercise) {
+        super.copy(practicalReturnExercise);
+
+        this.setReturnValidators(practicalReturnExercise.getReturnValidators());
+        this.setReturnType(practicalReturnExercise.getReturnType());
+        this.setParameterTypes(practicalReturnExercise.getParameterTypes());
+    }
+
+    public PracticalReturnExercise clone() {
+        PracticalReturnExercise clone = new PracticalReturnExercise();
+        clone.copy(this);
+
+        return clone;
+    }
+
+    @Override
+    public String check() {
+        boolean returnValidatorsValid = true;
+        if (returnValidators.isEmpty()) {
+            returnValidatorsValid = false;
+        } else {
+            for (int i = 0; i < returnValidators.size(); i++) {
+                if (!returnValidators.get(i).isValid()) {
+                    returnValidatorsValid = false;
+                    break;
+                }
+            }
+        }
+
+        boolean parametersTypesValid = true;
+        if (parametersTypes.isEmpty()) {
+            parametersTypesValid = false;
+        } else {
+            for (int i = 0; i < parametersTypes.size(); i++) {
+                if (parametersTypes.get(i) == null) {
+                    parametersTypesValid = false;
+                    break;
+                }
+            }
+        }
+
+        return super.check() + "\n" +
+                "returnValidators: " + ((returnValidatorsValid) ? "valid" : "not valid") + "\n" +
+                "returnType: " + ((returnType == null) ? "printValidator" : returnType) + "\n" +
+                "parameterTypes: " + ((parametersTypesValid) ? "valid" : "not valid");
+    }
 
     @Override
     public String toString() {
         return super.toString() + "\n" +
+                "practicalType: RETURN \n" +
                 "returnType: " + returnType + "\n" +
                 "parameterSize: " + parametersTypes.size() + "\n" +
                 "parametersTypes: " + parametersTypes.toString() + "\n" +

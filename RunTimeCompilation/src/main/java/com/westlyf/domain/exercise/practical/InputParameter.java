@@ -41,6 +41,13 @@ public class InputParameter {
         this.inputType = inputType;
     }
 
+    public boolean isValid() {
+        if(input == null || input.isEmpty().get()) return false;
+        if (inputType == null) return false;
+
+        return true;
+    }
+
     public String toString() {
         return "input: " + input.get() + "\n" +
                 "inputType: " + inputType;

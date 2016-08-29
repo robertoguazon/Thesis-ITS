@@ -39,4 +39,29 @@ public class Exercise extends Lesson implements Serializable {
         return super.toString();
     }
 
+    public void copy(Exercise exercise) {
+        super.copy(exercise);
+
+        this.setTotalItems(exercise.getTotalItems());
+        this.setTotalScore(exercise.getTotalScore());
+    }
+
+    public Exercise clone() {
+        Exercise clone = new Exercise();
+        clone.copy(this);
+
+        return clone;
+    }
+
+    @Override
+    public String check() {
+        return super.check();
+    }
+
+    @Override
+    public boolean isValid() {
+        //TODO - fix
+        return super.isValid();
+    }
+
 }

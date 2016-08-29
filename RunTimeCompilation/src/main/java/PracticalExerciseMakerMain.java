@@ -20,8 +20,8 @@ public class PracticalExerciseMakerMain extends Application {
 
     public static void main(String[] args) {
 
-        test1(); //-check
-        test2(); //-check
+        //test1(); //-check
+        //test2(); //-check
 
         launch(args);
     }

@@ -22,6 +22,10 @@ public class PracticalReturnValidator {
         addInput(new SimpleStringProperty(input), inputType);
     }
 
+    public void addInput(InputParameter inputParameter) {
+        this.inputs.add(inputParameter);
+    }
+
     public void addInput(StringProperty input, DataType inputType) {
         this.inputs.add(new InputParameter(input, inputType));
     }
@@ -44,6 +48,14 @@ public class PracticalReturnValidator {
         this.inputs.clear();
     }
 
+    public void setInputTypeOfInputParameter(InputParameter inputParameter, DataType inputType) {
+        for (int i = 0; i < inputs.size(); i++) {
+            if (inputs.get(i).equals(inputParameter)) {
+                inputs.get(i).setInputType(inputType);
+            }
+        }
+    }
+
     public void setExpectedReturn(String expectedReturn) {
         this.expectedReturn.set(expectedReturn);
     }
@@ -54,6 +66,17 @@ public class PracticalReturnValidator {
 
     public String getExpectedReturn() {
         return this.expectedReturn.get();
+    }
+
+
+    public boolean isValid() {
+        if (expectedReturn == null || expectedReturn.isEmpty().get()) return false;
+        if (inputs == null) return false;
+        for (int i = 0; i < inputs.size(); i++) {
+            if (!inputs.get(i).isValid()) return false;
+        }
+
+        return true;
     }
 
     @Override

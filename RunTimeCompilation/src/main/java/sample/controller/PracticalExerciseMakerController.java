@@ -64,6 +64,17 @@ public class PracticalExerciseMakerController implements Initializable {
         tags = new ArrayList<>();
         practicalPrintExercise = new PracticalPrintExercise();
         practicalReturnExercise = new PracticalReturnExercise();
+
+        //binds
+        practicalPrintExercise.classNameProperty().bind(classNameTextField.textProperty());
+        practicalPrintExercise.methodNameProperty().bind(methodNameTextField.textProperty());
+        practicalPrintExercise.instructionsProperty().bind(instructionsTextArea.textProperty());
+        practicalPrintExercise.codeProperty().bind(codeTextArea.textProperty());
+
+        practicalReturnExercise.classNameProperty().bind(classNameTextField.textProperty());
+        practicalReturnExercise.methodNameProperty().bind(methodNameTextField.textProperty());
+        practicalReturnExercise.instructionsProperty().bind(instructionsTextArea.textProperty());
+        practicalReturnExercise.codeProperty().bind(codeTextArea.textProperty());
     }
 
     @FXML
@@ -116,8 +127,10 @@ public class PracticalExerciseMakerController implements Initializable {
 
             PracticalPrintExerciseMakerController controller = loader.getController();
 
+            //binds
             practicalPrintExercise.titleProperty().bind(titleTextField.textProperty());
-            controller.bindPracticalPrintExercise(practicalPrintExercise.printValidatorProperty());
+            controller.bindPrintValidator(practicalPrintExercise.printValidatorProperty());
+            controller.bindMustMatch(practicalPrintExercise.mustMatchProperty());
 
              practicalExercise = practicalPrintExercise;
 
@@ -133,6 +146,7 @@ public class PracticalExerciseMakerController implements Initializable {
             PracticalReturnExerciseMakerController controller = loader.getController();
 
             practicalReturnExercise.titleProperty().bind(titleTextField.textProperty());
+            controller.setPracticalReturnExercise(practicalReturnExercise);
             //TODO controller bind
 
             practicalExercise = practicalReturnExercise;
@@ -162,6 +176,56 @@ public class PracticalExerciseMakerController implements Initializable {
     @FXML
     private void create() {
         //TODO
+
+        //test
+
+        if (practicalExercise instanceof PracticalPrintExercise) {
+            PracticalPrintExercise practicalPrintExercise = ((PracticalPrintExercise)practicalExercise).clone();
+
+            practicalPrintExercise.makeID();
+            if (practicalPrintExercise != null && practicalPrintExercise.isValid()) {
+
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, practicalPrintExercise.toString());
+                confirmation.setTitle("CONFIRM");
+                confirmation.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        System.out.println(practicalPrintExercise); //TODO - delete log
+                        //TODO - database
+                        System.out.println("data was pushed to database");
+                    }
+                });
+
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR, practicalPrintExercise.check());
+                error.setTitle("INVALID");
+                error.show();
+            }
+
+        } else if (practicalExercise instanceof PracticalReturnExercise) {
+            PracticalReturnExercise practicalReturnExercise = ((PracticalReturnExercise)practicalExercise).clone();
+            practicalReturnExercise.makeID();
+
+            if (practicalReturnExercise != null && practicalReturnExercise.isValid()) {
+
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, practicalReturnExercise.toString());
+                confirmation.setTitle("CONFIRM");
+                confirmation.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        System.out.println(practicalReturnExercise); //TODO -delete log
+                        //TODO -database
+                        System.out.println("data was pushed to database");
+                    }
+                });
+
+            } else {
+                Alert error = new Alert(Alert.AlertType.ERROR, practicalReturnExercise.check());
+                error.setTitle("INVALID");
+                error.show();
+            }
+
+        }
+
+        //end- test
     }
 
     public void setStage(Stage stage) {
