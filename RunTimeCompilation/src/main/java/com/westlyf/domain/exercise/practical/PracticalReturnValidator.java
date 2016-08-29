@@ -13,18 +13,9 @@ public class PracticalReturnValidator {
 
     protected StringProperty expectedReturn = new SimpleStringProperty();
     protected ArrayList<InputParameter> inputs = new ArrayList<>();
-    protected DataType returnType = DataType.STRING;
 
     public PracticalReturnValidator() {
 
-    }
-
-    public DataType getReturnType() {
-        return returnType;
-    }
-
-    public void setReturnType(DataType returnType) {
-        this.returnType = returnType;
     }
 
     public void addInput(String input, DataType inputType) {
@@ -73,8 +64,7 @@ public class PracticalReturnValidator {
             inputsString += input.toString() + "\n";
         }
 
-        return "returnType: " + returnType + "\n" +
-                "expectedReturn: " + expectedReturn.get() + "\n" +
+        return "expectedReturn: " + expectedReturn.get() + "\n" +
                 "inputs: \n" + inputsString;
     }
 }

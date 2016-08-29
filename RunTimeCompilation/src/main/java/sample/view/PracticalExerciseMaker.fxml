@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LessonMakerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.PracticalExerciseMakerController">
     <center>
         <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <content>
@@ -27,16 +27,16 @@
                                 <FlowPane fx:id="tagFlowPane" prefHeight="57.0" prefWidth="628.0" />
                             </children>
                         </VBox>
-                        <VBox prefHeight="352.0" prefWidth="628.0">
+                        <VBox prefHeight="521.0" prefWidth="628.0">
                             <children>
                                 <HBox prefHeight="22.0" prefWidth="628.0">
                                     <children>
                                         <Label text="Practical Exercise Type" />
                                         <RadioButton fx:id="printRadioButton" mnemonicParsing="false" text="Print">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="PracticalTypeGroup" />
+                                    <ToggleGroup fx:id="practicalTypeGroup" />
                                  </toggleGroup></RadioButton>
-                                        <RadioButton fx:id="returnRadioButton" mnemonicParsing="false" text="Return" toggleGroup="$PracticalTypeGroup" />
+                                        <RadioButton fx:id="returnRadioButton" mnemonicParsing="false" text="Return" toggleGroup="$practicalTypeGroup" />
                                         <Button fx:id="okButton" mnemonicParsing="false" onAction="#ok" text="Ok" />
                                     </children>
                                 </HBox>
@@ -59,14 +59,14 @@
                                 <HBox prefHeight="83.0" prefWidth="628.0">
                                     <children>
                                         <Label prefHeight="34.0" prefWidth="79.0" text="Instructions" wrapText="true" />
-                                        <TextArea fx:id="instructionsTextArea" prefHeight="97.0" prefWidth="452.0" wrapText="true" />
+                                        <TextArea fx:id="instructionsTextArea" minHeight="-Infinity" minWidth="-Infinity" prefHeight="98.0" prefWidth="452.0" wrapText="true" />
                                         <Button fx:id="clearInstructionsButton" mnemonicParsing="false" onAction="#clearInstructions" prefHeight="25.0" prefWidth="70.0" text="Clear" />
                                     </children>
                                 </HBox>
-                                <HBox>
+                                <HBox VBox.vgrow="ALWAYS">
                                     <children>
                                         <Label prefHeight="17.0" prefWidth="78.0" text="Code" wrapText="true" />
-                                        <TextArea fx:id="codeTextArea" prefHeight="92.0" prefWidth="452.0" wrapText="true" />
+                                        <TextArea fx:id="codeTextArea" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="452.0" wrapText="true" />
                                         <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" prefHeight="25.0" prefWidth="70.0" text="Clear" />
                                     </children>
                                 </HBox>

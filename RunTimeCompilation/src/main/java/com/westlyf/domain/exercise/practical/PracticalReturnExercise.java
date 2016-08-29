@@ -13,10 +13,20 @@ import java.util.HashMap;
 public class PracticalReturnExercise extends PracticalExercise {
 
     protected ArrayList<PracticalReturnValidator> returnValidators = new ArrayList<>();
-    protected IntegerProperty parameterSize = new SimpleIntegerProperty();
+    protected DataType returnType = DataType.STRING;
+    protected ArrayList<DataType> parametersTypes = new ArrayList<>();
+
 
     public PracticalReturnExercise() {
         super();
+    }
+
+    public DataType getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(DataType returnType) {
+        this.returnType = returnType;
     }
 
     public void setReturnValidators(ArrayList<PracticalReturnValidator> returnValidators) {
@@ -27,22 +37,29 @@ public class PracticalReturnExercise extends PracticalExercise {
         this.returnValidators.add(returnValidator);
     }
 
-    public int getParameterSize() {
-        return parameterSize.get();
+    public int getParametersSize() {
+        return parametersTypes.size();
     }
 
-    public IntegerProperty parameterSizeProperty() {
-        return parameterSize;
+    public void setParameterTypes(ArrayList<DataType> parameterTypes) {
+        this.parametersTypes = parameterTypes;
     }
 
-    public void setParameterSize(int parameterSize) {
-        this.parameterSize.set(parameterSize);
+    public ArrayList<DataType> getParameterTypes() {
+        return this.parametersTypes;
     }
+
+    public void addParameterType(DataType parameterType) {
+        this.parametersTypes.add(parameterType);
+    }
+
 
     @Override
     public String toString() {
         return super.toString() + "\n" +
-                "parameterSize: " + parameterSize.get() + "\n" +
+                "returnType: " + returnType + "\n" +
+                "parameterSize: " + parametersTypes.size() + "\n" +
+                "parametersTypes: " + parametersTypes.toString() + "\n" +
                 "returnValidators: " + returnValidators.toString();
     }
 }

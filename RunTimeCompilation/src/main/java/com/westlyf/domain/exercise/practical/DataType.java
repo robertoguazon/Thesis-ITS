@@ -8,5 +8,5 @@ public enum DataType {
     INT,
     FLOAT,
     STRING,
-    CHAR,
+    CHAR
 }

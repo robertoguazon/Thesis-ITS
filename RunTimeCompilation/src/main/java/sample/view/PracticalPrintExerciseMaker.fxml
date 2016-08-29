@@ -5,11 +5,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.TextLessonMakerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.PracticalPrintExerciseMakerController">
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" text="Practical Exercise Print Maker" />
             <HBox prefHeight="30.0" prefWidth="580.0">
                <children>
                   <CheckBox fx:id="mustMatchCheckBox" mnemonicParsing="false" text="Must Match" />
@@ -28,4 +27,7 @@
             </padding>
         </VBox>
     </center>
+   <top>
+          <Label alignment="CENTER" prefHeight="45.0" prefWidth="162.0" text="Practical Exercise Print Maker" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
