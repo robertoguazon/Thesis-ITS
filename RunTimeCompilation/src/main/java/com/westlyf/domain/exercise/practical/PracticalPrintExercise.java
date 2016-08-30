@@ -81,7 +81,7 @@ public class PracticalPrintExercise extends PracticalExercise {
         } else {
             String checker = printValidator.get().toLowerCase();
             String toBeChecked = output.toLowerCase();
-            if (checker.contains(toBeChecked)) return true;
+            if (toBeChecked.contains(checker)) return true;
             else return false;
         }
     }

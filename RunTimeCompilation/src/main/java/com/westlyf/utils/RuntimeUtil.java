@@ -6,6 +6,7 @@ import net.openhft.compiler.CompilerUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -24,14 +25,18 @@ public class RuntimeUtil {
     }
 
     public static void compile(PracticalPrintExercise practicalPrintExercise) throws Exception {
-        String className = "com.westlyf.sample." + practicalPrintExercise.getClassName();
+        String className = "com.westlyf.sample." + practicalPrintExercise.getLessonId() + "." + practicalPrintExercise.getClassName();
         String javaCode =
-                "package com.westlyf.sample;\n" + practicalPrintExercise.getCode();
+                "package com.westlyf.sample." + practicalPrintExercise.getLessonId() + ";\n"  + practicalPrintExercise.getCode();
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
         Object obj = aClass.newInstance();
         Method main = aClass.getMethod(practicalPrintExercise.getMethodName());
         Object s = main.invoke(obj);
+    }
+
+    public static void reset(final ByteArrayOutputStream stream) throws IOException {
+        stream.reset();
     }
 
 }
