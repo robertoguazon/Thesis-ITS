@@ -134,6 +134,11 @@ public class PracticalExerciseMakerController implements Initializable {
 
              practicalExercise = practicalPrintExercise;
 
+            methodNameTextField.setText("main");
+            if (!methodNameTextField.isDisabled()) {
+                methodNameTextField.setDisable(true);
+            }
+
         } else if (returnRadioButton.isSelected()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PracticalReturnExerciseMaker.fxml"));
 
@@ -150,6 +155,10 @@ public class PracticalExerciseMakerController implements Initializable {
             //TODO controller bind
 
             practicalExercise = practicalReturnExercise;
+
+            if (methodNameTextField.isDisabled()) {
+                methodNameTextField.setDisable(false);
+            }
         }
 
         try {

@@ -32,8 +32,9 @@ public class RuntimeUtil {
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
         Object obj = aClass.newInstance();
-        Method main = aClass.getMethod(practicalPrintExercise.getMethodName());
-        Object s = main.invoke(obj);
+        Method main = aClass.getMethod(practicalPrintExercise.getMethodName(), String[].class);
+        String[] args = new String[1];
+        Object s = main.invoke(obj,args);
     }
 
     public static void reset(final ByteArrayOutputStream stream) throws IOException {

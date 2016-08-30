@@ -42,12 +42,12 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
         practicalPrintExercise.setInstructions("Try output \"word\" by using System.out.println();");
         practicalPrintExercise.setClassName("Sample");
-        practicalPrintExercise.setMethodName("run");
+        practicalPrintExercise.setMethodName("main");
         practicalPrintExercise.setPrintValidator("word");
         practicalPrintExercise.setMustMatch(false);
         practicalPrintExercise.setCode(
                 "public class Sample {\n" +
-                        "   public void run() {\n" +
+                        "   public void main(String[] args) {\n" +
                         "       System.out.println(\"Hello word\");\n" +
                         "   }\n" +
                         "}"
