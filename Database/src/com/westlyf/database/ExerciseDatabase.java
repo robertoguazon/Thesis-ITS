@@ -22,22 +22,49 @@ public class ExerciseDatabase {
     /**
      * String statements for creating exercise tables
      * */
-    public static final String CREATE_EXERCISE_QUIZ_TABLE = "CREATE TABLE IF NOT EXISTS quiz_exercise(" +
-            "lid TEXT NOT NULL UNIQUE," +
-            "title TEXT PRIMARY KEY NOT NULL," +
-            "tags TEXT NOT NULL," +
-            "totalItems INT NOT NULL," +
-            "totalScore INT NOT NULL," +
-            "quizItems BLOB NOT NULL" +
-            ")";
+    public static final String
+            CREATE_EXERCISE_QUIZ_TABLE = "CREATE TABLE IF NOT EXISTS quiz_exercise(" +
+                    "lid TEXT NOT NULL UNIQUE," +
+                    "title TEXT PRIMARY KEY NOT NULL," +
+                    "tags TEXT NOT NULL," +
+
+                    "totalItems INT NOT NULL," +
+                    "totalScore INT NOT NULL," +
+
+                    "quizItems BLOB NOT NULL" +
+                    ")",
+
+            CREATE_EXERCISE_PRACTICAL_TABLE = "CREATE TABLE IF NOT EXISTS practical_exercise(" +
+                    "lid TEXT NOT NULL UNIQUE," +
+                    "title TEXT PRIMARY KEY NOT NULL," +
+                    "tags TEXT NOT NULL," +
+
+                    "totalItems INT NOT NULL," +
+                    "totalScore INT NOT NULL," +
+
+                    "instructions TEXT NOT NULL," +
+                    "code TEXT NOT NULL," +
+                    "className TEXT NOT NULL," +
+                    "methodName TEXT NOT NULL," +
+
+                    "printValidator TEXT NOT NULL," +
+                    "mustMatch INT NOT NULL" +
+
+                    "practicalType TEXT NOT NULL" +
+                    ")";
 
     /**
      * String statements for pushing exercises to sqlite
      * */
     //PUSHING DATA
-    public static final String INSERT_QUIZ_EXERCISE = "INSERT INTO " +
-            "quiz_exercise(lid,title,tags,totalItems,totalScore,quizItems) VALUES " +
-            "(?,?,?,?,?,?)";
+    public static final String
+            INSERT_QUIZ_EXERCISE = "INSERT INTO " +
+                    "quiz_exercise(lid,title,tags,totalItems,totalScore,quizItems) VALUES " +
+                    "(?,?,?,?,?,?)",
+            INSERT_PRACTICAL_EXERCISE = "INSERT INTO " +
+                    "practical_exercise(lid,title,tags, totalItems,totalScore, instructions,code,className,methodName, " +
+                    "printValidator,mustMatch, practicalType) VALUES " +
+                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?)";
 
     /**
      * String statements for pulling exercises from sqlite

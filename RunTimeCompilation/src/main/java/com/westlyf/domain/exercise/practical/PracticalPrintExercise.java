@@ -73,6 +73,19 @@ public class PracticalPrintExercise extends PracticalExercise {
                 "mustMatch: " + ((mustMatch == null) ? "mustMatch" : mustMatch.get());
     }
 
+    //TODO - used for checking - to be fixed
+    public boolean evaluate(String output) {
+        if (mustMatch.get()) {
+            output = output.trim();
+            return (printValidator.equals(output));
+        } else {
+            String checker = printValidator.get().toLowerCase();
+            String toBeChecked = output.toLowerCase();
+            if (checker.contains(toBeChecked)) return true;
+            else return false;
+        }
+    }
+
     public String toString() {
         return super.toString() + "\n" +
                 "practicalType: PRINT \n" +

@@ -1,4 +1,5 @@
 import com.westlyf.utils.RuntimeUtil;
+import net.openhft.compiler.CachedCompiler;
 import net.openhft.compiler.CompilerUtils;
 
 import java.lang.reflect.Field;
@@ -28,6 +29,7 @@ public class Main {
                 "        return n;\n" +
                 "    }\n" +
                 "}\n";
+
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
         Runnable runner = (Runnable) aClass.newInstance();
         Method returnN = aClass.getMethod("returnN", int.class);

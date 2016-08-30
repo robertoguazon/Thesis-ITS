@@ -1,7 +1,14 @@
 package com.westlyf.utils;
 
+import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
+import net.openhft.compiler.CachedCompiler;
+import net.openhft.compiler.CompilerUtils;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by robertoguazon on 24/08/2016.
@@ -14,6 +21,17 @@ public class RuntimeUtil {
     public static void setOutStream(final PrintStream stream) {
         System.out.flush();
         System.setOut(stream);
+    }
+
+    public static void compile(PracticalPrintExercise practicalPrintExercise) throws Exception {
+        String className = "com.westlyf.sample." + practicalPrintExercise.getClassName();
+        String javaCode =
+                "package com.westlyf.sample;\n" + practicalPrintExercise.getCode();
+
+        Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
+        Object obj = aClass.newInstance();
+        Method main = aClass.getMethod(practicalPrintExercise.getMethodName());
+        Object s = main.invoke(obj);
     }
 
 }
