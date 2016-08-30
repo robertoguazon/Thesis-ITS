@@ -64,10 +64,9 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     @FXML
     private void runCode() {
-        clearOutput();
-        currentExercise.makeID();
         if (currentExercise != null) {
             try {
+                RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
                 RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
                 RuntimeUtil.compile(currentExercise);
                 outputTextArea.setText(RuntimeUtil.STRING_OUTPUT.toString());
@@ -93,7 +92,17 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML
     private void submit() {
         //TODO evaluate and get score and push to database
-        System.out.println(RuntimeUtil.STRING_OUTPUT.toString());
+       try {
+           RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
+           RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
+           RuntimeUtil.compile(currentExercise);
+       } catch (Exception e) {
+           System.err.println("Error: " + e.getMessage());
+       } finally {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
+       }
+
+        System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
         System.out.println("Correct: " + currentExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString()));
     }
 

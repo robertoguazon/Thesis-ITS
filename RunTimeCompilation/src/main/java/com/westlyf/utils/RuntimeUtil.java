@@ -25,9 +25,10 @@ public class RuntimeUtil {
     }
 
     public static void compile(PracticalPrintExercise practicalPrintExercise) throws Exception {
-        String className = "com.westlyf.sample." + practicalPrintExercise.getLessonId() + "." + practicalPrintExercise.getClassName();
+        practicalPrintExercise.makeTempID();
+        String className = "com.westlyf.sample." + practicalPrintExercise.getTempID() + "." + practicalPrintExercise.getClassName();
         String javaCode =
-                "package com.westlyf.sample." + practicalPrintExercise.getLessonId() + ";\n"  + practicalPrintExercise.getCode();
+                "package com.westlyf.sample." + practicalPrintExercise.getTempID() + ";\n"  + practicalPrintExercise.getCode();
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
         Object obj = aClass.newInstance();

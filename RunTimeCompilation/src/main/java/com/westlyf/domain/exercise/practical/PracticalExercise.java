@@ -14,8 +14,20 @@ public abstract class PracticalExercise extends Exercise {
     protected StringProperty code = new SimpleStringProperty();
     protected StringProperty className = new SimpleStringProperty();
     protected StringProperty methodName = new SimpleStringProperty();
+    protected String tempID;
 
-    public PracticalExercise() {super();}
+    public PracticalExercise() {
+        super();
+        makeTempID();
+    }
+
+    public void makeTempID() {
+        this.tempID = "tid" + System.nanoTime();
+    }
+
+    public String getTempID() {
+        return tempID;
+    }
 
     public void setInstructions(String instructions) {
         this.instructions.set(instructions);
