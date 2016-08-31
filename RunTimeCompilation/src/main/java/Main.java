@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
 
+
         test1(); //-check
         test2(); //-check
         test3(); //-check

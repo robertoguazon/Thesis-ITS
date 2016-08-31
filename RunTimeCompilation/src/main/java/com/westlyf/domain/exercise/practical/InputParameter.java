@@ -52,4 +52,5 @@ public class InputParameter {
         return "input: " + input.get() + "\n" +
                 "inputType: " + inputType;
     }
+
 }

@@ -68,6 +68,10 @@ public class PracticalReturnValidator {
         return this.expectedReturn.get();
     }
 
+    public ArrayList<InputParameter> getInputs() {
+        return this.inputs;
+    }
+
 
     public boolean isValid() {
         if (expectedReturn == null || expectedReturn.isEmpty().get()) return false;
