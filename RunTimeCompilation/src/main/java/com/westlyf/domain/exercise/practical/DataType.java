@@ -1,5 +1,7 @@
 package com.westlyf.domain.exercise.practical;
 
+import java.io.Serializable;
+
 /**
  * Created by robertoguazon on 28/08/2016.
  */

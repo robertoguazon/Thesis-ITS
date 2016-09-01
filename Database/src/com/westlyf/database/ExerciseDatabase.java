@@ -47,8 +47,12 @@ public class ExerciseDatabase {
                     "className TEXT NOT NULL," +
                     "methodName TEXT NOT NULL," +
 
-                    "printValidator TEXT NOT NULL," +
-                    "mustMatch INT NOT NULL" +
+                    "printValidator TEXT," +
+                    "mustMatch INT," +
+
+                    "returnValidators BLOB," +
+                    "returnType BLOB," +
+                    "parametersTypes BLOB," +
 
                     "practicalType TEXT NOT NULL" +
                     ")";
@@ -64,7 +68,7 @@ public class ExerciseDatabase {
             INSERT_PRACTICAL_EXERCISE = "INSERT INTO " +
                     "practical_exercise(lid,title,tags, totalItems,totalScore, instructions,code,className,methodName, " +
                     "printValidator,mustMatch, practicalType) VALUES " +
-                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?)";
+                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?, ?)";
 
     /**
      * String statements for pulling exercises from sqlite
@@ -73,12 +77,20 @@ public class ExerciseDatabase {
             GET_QUIZ_EXERCISE_USING_ID = "SELECT * FROM quiz_exercise where lid = ?",
             GET_QUIZ_EXERCISE_USING_TITLE = "SELECT * FROM quiz_exercise where title = ?",
             GET_QUIZ_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM quiz_exercise WHERE tags = ?",
+            GET_QUIZ_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM quiz_exercise WHERE tags LIKE ?",
 
-            GET_QUIZ_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM quiz_exercise WHERE tags LIKE ?";
+            GET_PRACTICAL_EXERCISE_USING_ID = "SELECT * FROM practical_exercise where lid = ?",
+            GET_PRACTICAL_EXERCISE_USING_TITLE = "SELECT * FROM practical_exercise where title = ?",
+            GET_PRACTICAL_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM practical_exercise WHERE tags = ?",
+            GET_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM practical_exercise WHERE tags LIKE ?";
 
 
     public static int createQuizExerciseTable() {
         return Database.createTable(Database.EXERCISE,CREATE_EXERCISE_QUIZ_TABLE);
+    }
+
+    public static int createPracticalExerciseTable() {
+        return Database.createTable(Database.EXERCISE,CREATE_EXERCISE_PRACTICAL_TABLE);
     }
 
     public static int storeData(QuizExercise quizExercise) {
