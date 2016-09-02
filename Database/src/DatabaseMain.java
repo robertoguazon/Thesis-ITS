@@ -2,6 +2,7 @@ import com.westlyf.database.DatabaseConnection;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.Exercise;
+import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
@@ -27,9 +28,9 @@ public class DatabaseMain {
         Connection lesson = DatabaseConnection.getLessonConn();
         Connection exercise = DatabaseConnection.getExerciseConn();
 
-        System.out.println(user);
-        System.out.println(lesson);
-        System.out.println(exercise);
+        System.out.println("userDB: " + user);
+        System.out.println("lessonDB: " + lesson);
+        System.out.println("exerciseDB: " + exercise);
 
         testPush();
         testPull();
@@ -130,6 +131,28 @@ public class DatabaseMain {
         quizExercise.addTag("101");
         quizExercise.makeID();
         ExerciseDatabase.storeData(quizExercise);
+
+        PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
+        practicalPrintExercise.setTitle("sample practical print exercise");
+        practicalPrintExercise.addTag("sample");
+        practicalPrintExercise.addTag("practical");
+        practicalPrintExercise.addTag("exercise");
+
+        practicalPrintExercise.setInstructions("just do the following: run the code to see the output of the sample.");
+        practicalPrintExercise.setCode("public class Sample {\n" +
+                "   public static void main(String[] args) {\n" +
+                "       System.out.println(\"Hello World\")\n" +
+                "   }\n" +
+                "}");
+        practicalPrintExercise.setClassName("Sample");
+        practicalPrintExercise.setMethodName("main");
+
+        practicalPrintExercise.setPrintValidator("Hello World");
+        practicalPrintExercise.setMustMatch(false);
+        practicalPrintExercise.makeID();
+        System.out.println("PRACTICAL BEFORE");
+        ExerciseDatabase.storeData(practicalPrintExercise);
+        System.out.println("FINISH PRACTICAL");
     }
 
     private static void testPull() {
@@ -180,5 +203,13 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample quiz exercises using tags contains...");
         System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsContains("sample"));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercise using lid...");
+        System.out.println(ExerciseDatabase.getPracticalExerciseUsingLID("lid2110480049967968"));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercise using title...");
+        System.out.println(ExerciseDatabase.getPracticalExerciseUsingTitle("sample practical print exercise"));
     }
 }

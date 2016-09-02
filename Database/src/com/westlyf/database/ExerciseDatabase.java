@@ -1,5 +1,6 @@
 package com.westlyf.database;
 
+import com.westlyf.domain.exercise.practical.*;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizItemSerializable;
@@ -54,7 +55,7 @@ public class ExerciseDatabase {
                     "returnType BLOB," +
                     "parametersTypes BLOB," +
 
-                    "practicalType TEXT NOT NULL" +
+                    "practicalType BLOB NOT NULL" +
                     ")";
 
     /**
@@ -67,7 +68,7 @@ public class ExerciseDatabase {
                     "(?,?,?,?,?,?)",
             INSERT_PRACTICAL_EXERCISE = "INSERT INTO " +
                     "practical_exercise(lid,title,tags, totalItems,totalScore, instructions,code,className,methodName, " +
-                    "printValidator,mustMatch, practicalType) VALUES " +
+                    "printValidator,mustMatch, returnValidators,returnType,parametersTypes, practicalType) VALUES " +
                     "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?, ?)";
 
     /**
@@ -134,11 +135,6 @@ public class ExerciseDatabase {
                 if (ps == null) {
                     System.out.println("Quiz exercise table does not exist...Creating table...");
                     createQuizExerciseTable();
-                    try {
-                        ps = exerciseConn.prepareStatement(INSERT_QUIZ_EXERCISE);
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
                 }
                 storeData(quizExercise);
             } else {
@@ -154,8 +150,132 @@ public class ExerciseDatabase {
 
         } finally {
             try {
-                ps.close();
-                exerciseConn.close();
+                if (ps != null) {
+                    ps.close();
+                }
+                if (exerciseConn != null) {
+                    exerciseConn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println(e.getErrorCode());
+            }
+        }
+
+        return 0;
+    }
+
+    public static int storeData(PracticalExercise practicalExercise) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return -1;
+        }
+
+        PreparedStatement ps = null;
+        String lid = practicalExercise.getLessonId();
+        String title = practicalExercise.getTitle();
+        String tags = practicalExercise.getTagsString();
+        int totalItems = practicalExercise.getTotalItems();
+        int totalScore = practicalExercise.getTotalScore();
+
+        String instructions = practicalExercise.getInstructions();
+        String code = practicalExercise.getCode();
+        String className = practicalExercise.getClassName();
+        String methodName = practicalExercise.getMethodName();
+
+        //practical print exercise
+        String printValidator = null;
+        int mustMatch = 0;
+
+        //practical return exercise
+        ArrayList<PracticalReturnValidatorSerializable> returnValidatorsSerializables = null;
+        DataType returnType = null;
+        ArrayList<DataType> parametersTypes = null;
+
+        PracticalType practicalType =
+                (practicalExercise instanceof PracticalPrintExercise) ? PracticalType.PRINT : PracticalType.RETURN;
+
+        switch (practicalType) {
+            case PRINT:
+                PracticalPrintExercise practicalPrintExercise = (PracticalPrintExercise) practicalExercise;
+
+                printValidator = practicalPrintExercise.getPrintValidator();
+                mustMatch = (practicalPrintExercise.getMustMatch()) ? 1 : 0;
+                break;
+            case RETURN:
+                PracticalReturnExercise practicalReturnExercise = (PracticalReturnExercise) practicalExercise;
+
+                returnValidatorsSerializables = new ArrayList<>();
+                ArrayList<PracticalReturnValidator> returnValidators = practicalReturnExercise.getReturnValidators();
+                for (int i = 0; i < returnValidators.size(); i++) {
+                    returnValidatorsSerializables.add(new PracticalReturnValidatorSerializable(returnValidators.get(i)));
+                }
+                returnType = practicalReturnExercise.getReturnType();
+
+                parametersTypes = practicalReturnExercise.getParameterTypes();
+                break;
+            default:
+                break;
+        }
+
+
+        try {
+
+            ps = exerciseConn.prepareStatement(INSERT_PRACTICAL_EXERCISE);
+
+            ps.setString(1,lid);
+            ps.setString(2,title);
+            ps.setString(3,tags);
+
+            ps.setInt(4,totalItems);
+            ps.setInt(5,totalScore);
+
+            ps.setString(6,instructions);
+            ps.setString(7,code);
+            ps.setString(8,className);
+            ps.setString(9,methodName);
+
+            ps.setString(10,printValidator);
+            ps.setInt(11,mustMatch);
+
+            ps.setBytes(12,Database.serialize(returnValidatorsSerializables));
+            ps.setBytes(13,Database.serialize(returnType));
+            ps.setBytes(14,Database.serialize(parametersTypes));
+
+            ps.setBytes(15, Database.serialize(practicalType));
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+
+            if (e.getErrorCode() == SQLiteError.SQLITE_ERROR) {
+                if (ps == null) {
+                    System.out.println("Practical exercise table does not exist...Creating table...");
+                    createPracticalExerciseTable();
+                }
+
+                storeData(practicalExercise);
+            } else {
+                /*
+                TODO
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+                alert.show();
+                */
+                e.printStackTrace();
+            }
+
+            return e.getErrorCode();
+
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (exerciseConn != null) {
+                    exerciseConn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println(e.getErrorCode());
@@ -224,12 +344,113 @@ public class ExerciseDatabase {
         return quizExercise;
     }
 
+    public static PracticalExercise getPracticalExercise(String param, final String STATEMENT) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        PracticalExercise practicalExercise = null;
+        PracticalType practicalType = null;
+        try {
+            ps = exerciseConn.prepareStatement(STATEMENT);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                practicalType = (PracticalType)Database.deserialize(rs.getBytes("practicalType"));
+                practicalExercise = (practicalType == PracticalType.PRINT) ? new PracticalPrintExercise() : new PracticalReturnExercise();
+
+
+                practicalExercise.setID(rs.getString("lid"));
+                practicalExercise.setTitle(rs.getString("title"));
+                practicalExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                practicalExercise.setTotalItems(rs.getInt("totalItems"));
+                practicalExercise.setTotalScore(rs.getInt("totalScore"));
+
+                practicalExercise.setInstructions(rs.getString("instructions"));
+                practicalExercise.setCode(rs.getString("code"));
+                practicalExercise.setClassName(rs.getString("className"));
+                practicalExercise.setMethodName(rs.getString("methodName"));
+
+                switch(practicalType) {
+                    case PRINT:
+                        PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
+                        practicalPrintExercise.copy(practicalExercise);
+
+                        practicalPrintExercise.setPrintValidator(rs.getString("printValidator"));
+                        practicalPrintExercise.setMustMatch((rs.getInt("mustMatch") == 1) ? true : false);
+
+                        practicalExercise = practicalPrintExercise;
+                        break;
+                    case RETURN:
+                        PracticalReturnExercise practicalReturnExercise = new PracticalReturnExercise();
+                        practicalReturnExercise.copy(practicalExercise);
+
+                        ArrayList<PracticalReturnValidatorSerializable> returnValidatorSerializables =
+                                (ArrayList<PracticalReturnValidatorSerializable>)Database.deserialize(rs.getBytes("returnValidators"));
+                        ArrayList<PracticalReturnValidator> returnValidators = new ArrayList<>();
+                        for (int i = 0; i < returnValidatorSerializables.size(); i++) {
+                            returnValidators.add(new PracticalReturnValidator(returnValidatorSerializables.get(i)));
+                        }
+                        practicalReturnExercise.setReturnValidators(returnValidators);
+                        practicalReturnExercise.setReturnType((DataType)Database.deserialize(rs.getBytes("returnType")));
+                        practicalReturnExercise.setParameterTypes(
+                                ((ArrayList<DataType>)Database.deserialize(rs.getBytes("parametersTypes"))));
+
+                        practicalExercise = practicalReturnExercise;
+                        break;
+                    default:
+                        break;
+                }
+
+            } else {
+                System.err.println("No exercises match with param: " + param);
+                return null;
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return practicalExercise;
+    }
+
+
     public static QuizExercise getQuizExerciseUsingLID(String lid) {
         return getQuizExercise(lid,GET_QUIZ_EXERCISE_USING_ID);
     }
 
+    public static PracticalExercise getPracticalExerciseUsingLID(String lid) {
+        return getPracticalExercise(lid,GET_PRACTICAL_EXERCISE_USING_ID);
+    }
+
     public static QuizExercise getQuizExerciseUsingTitle(String title) {
         return getQuizExercise(title,GET_QUIZ_EXERCISE_USING_TITLE);
+    }
+
+    public static PracticalExercise getPracticalExerciseUsingTitle(String title) {
+        return getPracticalExercise(title,GET_PRACTICAL_EXERCISE_USING_TITLE);
     }
 
     public static ArrayList<QuizExercise> getQuizExercisesUsingTagsExactly(String tags) {
@@ -387,4 +608,5 @@ public class ExerciseDatabase {
     public static ArrayList<QuizExercise> getQuizExercisesUsingTagsContains(String ... tags) {
         return getQuizExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
+
 }

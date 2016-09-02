@@ -101,11 +101,6 @@ public class LessonDatabase {
                 if (ps == null) {
                     System.out.println("Text lesson table does not exist...Creating table...");
                     createTextLessonTable();
-                    try {
-                        ps = lessonConn.prepareStatement(INSERT_TEXT_LESSON);
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
                 }
                 storeData(textLesson);
             } else {
@@ -121,8 +116,12 @@ public class LessonDatabase {
 
         } finally {
             try {
-                ps.close();
-                lessonConn.close();
+                if (ps != null) {
+                    ps.close();
+                }
+                if (lessonConn != null) {
+                    lessonConn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println(e.getErrorCode());
@@ -163,11 +162,6 @@ public class LessonDatabase {
                 if (ps == null) {
                     System.out.println("video lesson table does not exist...Creating table...");
                     createVideoLessonTable();
-                    try {
-                        ps = lessonConn.prepareStatement(INSERT_VIDEO_LESSON);
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
                 }
                 storeData(videoLesson);
             } else {
@@ -183,8 +177,12 @@ public class LessonDatabase {
 
         } finally {
             try {
-                ps.close();
-                lessonConn.close();
+                if (ps != null) {
+                    ps.close();
+                }
+                if (lessonConn != null) {
+                    lessonConn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }

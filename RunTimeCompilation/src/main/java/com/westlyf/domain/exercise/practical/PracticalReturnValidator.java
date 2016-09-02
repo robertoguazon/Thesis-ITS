@@ -14,6 +14,7 @@ public class PracticalReturnValidator {
     protected StringProperty expectedReturn = new SimpleStringProperty();
     protected ArrayList<InputParameter> inputs = new ArrayList<>();
 
+    public PracticalReturnValidator() {}
     public PracticalReturnValidator(String expectedReturn, ArrayList<InputParameterSerializable> inputsSerializable) {
         ArrayList<InputParameter> inputs = new ArrayList();
 
