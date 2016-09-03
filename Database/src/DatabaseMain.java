@@ -211,5 +211,14 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample practical exercise using title...");
         System.out.println(ExerciseDatabase.getPracticalExerciseUsingTitle("sample practical print exercise"));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercise using tags exactly...");
+        System.out.println(ExerciseDatabase.getPracticalExercisesUsingTagsExactly("exercise,practical,sample,").get(0));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercises using tags contains...");
+        System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsContains("exercise"));
+
     }
 }

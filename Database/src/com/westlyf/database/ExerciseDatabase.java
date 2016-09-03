@@ -516,6 +516,99 @@ public class ExerciseDatabase {
         return quizExercises;
     }
 
+    public static ArrayList<PracticalExercise> getPracticalExercisesUsingTagsExactly(String tags) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<PracticalExercise> practicalExercises = new ArrayList<>();
+        try {
+            ps = exerciseConn.prepareStatement(GET_PRACTICAL_EXERCISES_USING_TAGS_EXACTLY);
+            ps.setString(1,tags);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No exercises match with param: " + tags);
+                return null;
+            }
+
+            while (rs.next()) {
+                PracticalType practicalType = (PracticalType)Database.deserialize(rs.getBytes("practicalType"));
+                PracticalExercise practicalExercise = (practicalType == PracticalType.PRINT) ? new PracticalPrintExercise() : new PracticalReturnExercise();
+
+                practicalExercise.setID(rs.getString("lid"));
+                practicalExercise.setTitle(rs.getString("title"));
+                practicalExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                practicalExercise.setTotalItems(rs.getInt("totalItems"));
+                practicalExercise.setTotalScore(rs.getInt("totalScore"));
+
+                practicalExercise.setInstructions(rs.getString("instructions"));
+                practicalExercise.setCode(rs.getString("code"));
+                practicalExercise.setClassName(rs.getString("className"));
+                practicalExercise.setMethodName(rs.getString("methodName"));
+
+                switch(practicalType) {
+                    case PRINT:
+                        PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
+                        practicalPrintExercise.copy(practicalExercise);
+
+                        practicalPrintExercise.setPrintValidator(rs.getString("printValidator"));
+                        practicalPrintExercise.setMustMatch((rs.getInt("mustMatch") == 1) ? true : false);
+
+                        practicalExercise = practicalPrintExercise;
+                        break;
+                    case RETURN:
+                        PracticalReturnExercise practicalReturnExercise = new PracticalReturnExercise();
+                        practicalReturnExercise.copy(practicalExercise);
+
+                        ArrayList<PracticalReturnValidatorSerializable> returnValidatorSerializables =
+                                (ArrayList<PracticalReturnValidatorSerializable>)Database.deserialize(rs.getBytes("returnValidators"));
+                        ArrayList<PracticalReturnValidator> returnValidators = new ArrayList<>();
+                        for (int i = 0; i < returnValidatorSerializables.size(); i++) {
+                            returnValidators.add(new PracticalReturnValidator(returnValidatorSerializables.get(i)));
+                        }
+                        practicalReturnExercise.setReturnValidators(returnValidators);
+                        practicalReturnExercise.setReturnType((DataType)Database.deserialize(rs.getBytes("returnType")));
+                        practicalReturnExercise.setParameterTypes(
+                                ((ArrayList<DataType>)Database.deserialize(rs.getBytes("parametersTypes"))));
+
+                        practicalExercise = practicalReturnExercise;
+                        break;
+                    default:
+                        break;
+                }
+
+                practicalExercises.add(practicalExercise);
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return practicalExercises;
+    }
+
     //tags contains
         //quiz exercises
     public static ArrayList<QuizExercise> getQuizExercisesUsingTagsContains(String tags) {
@@ -607,6 +700,127 @@ public class ExerciseDatabase {
 
     public static ArrayList<QuizExercise> getQuizExercisesUsingTagsContains(String ... tags) {
         return getQuizExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<PracticalExercise> getPracticalExercisesUsingTagsContains(ArrayList<String> tags) {
+        if (tags == null || tags.isEmpty()) return null;
+
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<PracticalExercise> practicalExercises = new ArrayList<>();
+        String param = "%" + tags.get(0) + "%";
+        try {
+            ps = exerciseConn.prepareStatement(GET_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No practical exercises contains with param: " + param);
+                return null;
+            }
+
+            while (rs.next()) {
+                PracticalType practicalType = (PracticalType)Database.deserialize(rs.getBytes("practicalType"));
+                PracticalExercise practicalExercise = (practicalType == PracticalType.PRINT) ? new PracticalPrintExercise() : new PracticalReturnExercise();
+
+                practicalExercise.setID(rs.getString("lid"));
+                practicalExercise.setTitle(rs.getString("title"));
+                practicalExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                practicalExercise.setTotalItems(rs.getInt("totalItems"));
+                practicalExercise.setTotalScore(rs.getInt("totalScore"));
+
+                practicalExercise.setInstructions(rs.getString("instructions"));
+                practicalExercise.setCode(rs.getString("code"));
+                practicalExercise.setClassName(rs.getString("className"));
+                practicalExercise.setMethodName(rs.getString("methodName"));
+
+                switch(practicalType) {
+                    case PRINT:
+                        PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
+                        practicalPrintExercise.copy(practicalExercise);
+
+                        practicalPrintExercise.setPrintValidator(rs.getString("printValidator"));
+                        practicalPrintExercise.setMustMatch((rs.getInt("mustMatch") == 1) ? true : false);
+
+                        practicalExercise = practicalPrintExercise;
+                        break;
+                    case RETURN:
+                        PracticalReturnExercise practicalReturnExercise = new PracticalReturnExercise();
+                        practicalReturnExercise.copy(practicalExercise);
+
+                        ArrayList<PracticalReturnValidatorSerializable> returnValidatorSerializables =
+                                (ArrayList<PracticalReturnValidatorSerializable>)Database.deserialize(rs.getBytes("returnValidators"));
+                        ArrayList<PracticalReturnValidator> returnValidators = new ArrayList<>();
+                        for (int i = 0; i < returnValidatorSerializables.size(); i++) {
+                            returnValidators.add(new PracticalReturnValidator(returnValidatorSerializables.get(i)));
+                        }
+                        practicalReturnExercise.setReturnValidators(returnValidators);
+                        practicalReturnExercise.setReturnType((DataType)Database.deserialize(rs.getBytes("returnType")));
+                        practicalReturnExercise.setParameterTypes(
+                                ((ArrayList<DataType>)Database.deserialize(rs.getBytes("parametersTypes"))));
+
+                        practicalExercise = practicalReturnExercise;
+                        break;
+                    default:
+                        break;
+                }
+
+                practicalExercises.add(practicalExercise);
+            }
+
+            //check if every matches contains all the other tags
+
+            for (int i = 0; i < practicalExercises.size(); i++) {
+                for (int j = 1; j < tags.size(); j++) {
+                    PracticalExercise match = practicalExercises.get(i);
+                    if (!match.getTagsString().contains(tags.get(j))) {
+                        practicalExercises.remove(match);
+                        i--;
+                        break;
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return practicalExercises;
+    }
+
+    public static ArrayList<PracticalExercise> getPracticalExercisesUsingTagsContains(String tags) {
+        return getPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<PracticalExercise> getPracticalExercisesUsingPropertyTagsContains(ArrayList<StringProperty> tags) {
+        return getPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<PracticalExercise> getPracticalExercisesUsingTagsContains(String ... tags) {
+        return getPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
 
 }
