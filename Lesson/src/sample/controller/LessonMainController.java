@@ -94,18 +94,22 @@ public class LessonMainController implements Initializable {
                 ArrayList<StringProperty> tags = selectedLevelItem.getValue().getTags();
 
                 ArrayList<Lesson> selectedLessons = LessonUtil.findLessonsExactly(selectedLevel,lessons);
-                if (selectedLessons != null || !selectedLessons.isEmpty()) {
-                    if (selectedLessons.get(0) instanceof TextLesson) {
-                        lessonTextArea.setVisible(true);
-                        lessonTextArea.setText(((TextLesson) (selectedLessons.get(0))).getText());
-                    } else if (selectedLessons.get(0) instanceof VideoLesson) {
-                        lessonTextArea.setVisible(false);
+                try {
+                    if (selectedLessons != null || !selectedLessons.isEmpty()) {
+                        if (selectedLessons.get(0) instanceof TextLesson) {
+                            lessonTextArea.setVisible(true);
+                            lessonTextArea.setText(((TextLesson) (selectedLessons.get(0))).getText());
+                        } else if (selectedLessons.get(0) instanceof VideoLesson) {
+                            lessonTextArea.setVisible(false);
                         /*lessonAnchorPane.getChildren().
                             NEED TO BE FIXED *************
                          */
+                        }
+                    } else {
+                        lessonTextArea.setText("");
                     }
-                } else {
-                    lessonTextArea.setText("");
+                } catch (Exception e) {
+                    lessonTextArea.setText("No lesson found");
                 }
             }
         });

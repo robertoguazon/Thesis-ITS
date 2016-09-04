@@ -2,7 +2,10 @@ import com.westlyf.database.DatabaseConnection;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.Exercise;
+import com.westlyf.domain.exercise.practical.DataType;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
@@ -141,7 +144,7 @@ public class DatabaseMain {
         practicalPrintExercise.setInstructions("just do the following: run the code to see the output of the sample.");
         practicalPrintExercise.setCode("public class Sample {\n" +
                 "   public static void main(String[] args) {\n" +
-                "       System.out.println(\"Hello World\")\n" +
+                "       System.out.println(\"Hello World\");\n" +
                 "   }\n" +
                 "}");
         practicalPrintExercise.setClassName("Sample");
@@ -150,9 +153,44 @@ public class DatabaseMain {
         practicalPrintExercise.setPrintValidator("Hello World");
         practicalPrintExercise.setMustMatch(false);
         practicalPrintExercise.makeID();
-        System.out.println("PRACTICAL BEFORE");
         ExerciseDatabase.storeData(practicalPrintExercise);
-        System.out.println("FINISH PRACTICAL");
+
+
+        //practical return exercise push
+        PracticalReturnExercise practicalReturnExercise = new PracticalReturnExercise();
+        practicalReturnExercise.setTitle("sample practical exercise");
+        practicalReturnExercise.addTag("sample");
+        practicalReturnExercise.addTag("exercise");
+        practicalReturnExercise.addTag("practical");
+
+        practicalReturnExercise.setInstructions("make a method that accepts a string variable as parameter and returns the" +
+                "last character");
+        practicalReturnExercise.setClassName("Sample");
+        practicalReturnExercise.setMethodName("run");
+
+        practicalReturnExercise.setCode(
+                "public class Sample {\n" +
+                        "   public char run(String value) {\n" +
+                        "       return value.charAt(value.length() - 1);\n" +
+                        "   }\n" +
+                        "}"
+        );
+
+        practicalReturnExercise.addParameterType(DataType.STRING);
+        practicalReturnExercise.setReturnType(DataType.CHAR);
+
+        PracticalReturnValidator p1 = new PracticalReturnValidator();
+        p1.addInput("master",DataType.STRING);
+        p1.setExpectedReturn("r");
+
+        PracticalReturnValidator p2 = new PracticalReturnValidator();
+        p2.addInput("books1",DataType.STRING);
+        p2.setExpectedReturn("1");
+
+        practicalReturnExercise.addReturnValidator(p1);
+        practicalReturnExercise.addReturnValidator(p2);
+        practicalReturnExercise.makeID();
+        ExerciseDatabase.storeData(practicalReturnExercise);
     }
 
     private static void testPull() {
