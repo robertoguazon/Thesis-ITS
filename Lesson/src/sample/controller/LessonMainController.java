@@ -66,7 +66,7 @@ public class LessonMainController implements Initializable {
         subLevel_1_2.addTag("1");
         subLevel_1_2.addTag("2");
 
-        Controllers.loadAll();
+        Controllers.loadAll(); //TODO - delete and put on before start
         lessonTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<Level>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<Level>> observable, TreeItem<Level> oldValue, TreeItem<Level> newValue) {
