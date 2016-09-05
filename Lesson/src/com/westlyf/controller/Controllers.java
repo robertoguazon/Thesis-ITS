@@ -10,8 +10,10 @@ import com.westlyf.domain.lesson.VideoLesson;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -146,30 +148,30 @@ public class Controllers {
 
             //viewers
             case TEXT_LESSON_VIEWER:
-                parent.getChildren().add(textLessonViewerNode);
+                addToPane(parent,textLessonViewerNode);
                 break;
             case VIDEO_LESSON_VIEWER:
-                parent.getChildren().add(videoLessonViewerNode);
+                addToPane(parent,videoLessonViewerNode);
                 break;
             case QUIZ_EXERCISE_VIEWER:
-                parent.getChildren().add(quizExerciseViewerNode);
+                addToPane(parent,quizExerciseViewerNode);
                 break;
             case PRACTICAL_PRINT_EXERCISE_VIEWER:
-                parent.getChildren().add(practicalPrintExerciseViewerNode);
+                addToPane(parent,practicalPrintExerciseViewerNode);
                 break;
             case PRACTICAL_RETURN_EXERCISE_VIEWER:
-                parent.getChildren().add(practicalReturnExerciseViewerNode);
+                addToPane(parent,practicalReturnExerciseViewerNode);
                 break;
 
             //makers
             case LESSON_MAKER:
-                parent.getChildren().add(lessonMakerNode);
+                addToPane(parent,lessonMakerNode);
                 break;
             case QUIZ_EXERCISE_MAKER:
-                parent.getChildren().add(quizExerciseMakerNode);
+                addToPane(parent,quizExerciseMakerNode);
                 break;
             case PRACTICAL_EXERCISE_MAKER:
-                parent.getChildren().add(practicalExerciseMakerNode);
+                addToPane(parent,practicalExerciseMakerNode);
                 break;
 
             default:
@@ -248,5 +250,13 @@ public class Controllers {
             default:
                 break;
         }
+    }
+
+    private static void addToPane(Pane parent, Node node) {
+        Region region = (Region)node;
+        parent.getChildren().add(region);
+
+        region.prefWidthProperty().bind(parent.widthProperty());
+        region.prefHeightProperty().bind(parent.heightProperty());
     }
 }

@@ -1,5 +1,8 @@
 package sample.controller;
 
+import com.westlyf.controller.ControllerType;
+import com.westlyf.controller.Controllers;
+import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.lesson.*;
 import com.westlyf.domain.util.LessonUtil;
 import com.westlyf.domain.util.TreeUtil;
@@ -27,10 +30,7 @@ import java.util.ResourceBundle;
 public class LessonMainController implements Initializable {
 
     @FXML private TreeView<Level> lessonTreeView;
-    @FXML private TextArea lessonTextArea;
     @FXML private AnchorPane lessonAnchorPane;
-
-    private ArrayList<Lesson> lessons;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,57 +60,24 @@ public class LessonMainController implements Initializable {
         lessonTreeView.setRoot(root);
         lessonTreeView.setShowRoot(false);
 
-        lessons = new ArrayList<Lesson>();
-        ArrayList<StringProperty> sampleTags = new ArrayList<>();
-        sampleTags.add(new SimpleStringProperty("master"));
-        sampleTags.add(new SimpleStringProperty("slave"));
-        lessons.add(LessonFactory.createTextLesson(
-                "Each variable in Java has a specific type, which determines the size and" +
-                " layout of the variable's memory; the range of values that can be stored within that memory; and the " +
-                "set of operations that can be applied to the variable. You must declare all variables befor" +
-                "e they can be used.  " +
-                "\n\n\n" +
-                "    private TextArea textArea;\n" +
-                "    private ScrollPane textAreaScrollPane;\n" +
-                "    private Region textAreaContent;\n" +
-                "\n" +
-                "    protected TextAreaListener(TextArea textArea) {\n" +
-                "        this.textArea = textArea;\n" +
-                "        textArea.skinProperty().addListener(this);\n" +
-                "        textArea.widthProperty().addListener(this);\n" +
-                "        textArea.heightProperty().addListener(this);\n" +
-                "    }\n", sampleTags));
+        subLevel_1_1.addTag("test");
+        subLevel_1_1.addTag("sample");
 
-        lessonTextArea.setWrapText(true);
-        lessonTextArea.setEditable(false);
+        subLevel_1_2.addTag("1");
+        subLevel_1_2.addTag("2");
 
-        subLevel_1_1.setTags(sampleTags);
-
+        Controllers.loadAll();
         lessonTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<Level>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<Level>> observable, TreeItem<Level> oldValue, TreeItem<Level> newValue) {
                 TreeItem<Level> selectedLevelItem = (TreeItem<Level>) newValue;
                 Level selectedLevel = selectedLevelItem.getValue();
-                ArrayList<StringProperty> tags = selectedLevelItem.getValue().getTags();
+                String tags = selectedLevelItem.getValue().getTagsString();
 
-                ArrayList<Lesson> selectedLessons = LessonUtil.findLessonsExactly(selectedLevel,lessons);
-                try {
-                    if (selectedLessons != null || !selectedLessons.isEmpty()) {
-                        if (selectedLessons.get(0) instanceof TextLesson) {
-                            lessonTextArea.setVisible(true);
-                            lessonTextArea.setText(((TextLesson) (selectedLessons.get(0))).getText());
-                        } else if (selectedLessons.get(0) instanceof VideoLesson) {
-                            lessonTextArea.setVisible(false);
-                        /*lessonAnchorPane.getChildren().
-                            NEED TO BE FIXED *************
-                         */
-                        }
-                    } else {
-                        lessonTextArea.setText("");
-                    }
-                } catch (Exception e) {
-                    lessonTextArea.setText("No lesson found");
-                }
+                //TODO - replace with agent this is just a test
+                ArrayList<TextLesson> textLessons = LessonDatabase.getTextLessonsUsingTagsExactly(tags);
+                Controllers.view(ControllerType.TEXT_LESSON_VIEWER,lessonAnchorPane,textLessons.get(0));
+
             }
         });
 

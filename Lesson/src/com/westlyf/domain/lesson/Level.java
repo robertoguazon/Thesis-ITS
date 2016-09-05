@@ -102,6 +102,10 @@ public class Level implements Serializable {
         this.tags.add(tag);
     }
 
+    public void addTag(String tag) {
+        addTag(new SimpleStringProperty(tag));
+    }
+
     public void removeTag(StringProperty tag) {
         for (int i = 0; i < tags.size(); i++) {
             if (this.tags.get(i).equals(tag)) {

@@ -2,73 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/ControllerType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/LessonMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalPrintExerciseMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalPrintExerciseViewerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseViewerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseViewerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/TextLessonMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/TextLessonViewerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/VideoLessonMakerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/VideoLessonViewerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/LessonMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalExerciseMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseViewer.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseViewer.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/QuizExerciseMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/QuizExerciseViewer.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/TextLessonMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/TextLessonViewer.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/VideoLessonMaker.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/VideoLessonViewer.fxml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Exercise/src/sample/controller/MainController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Data/sample/SimpleController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Data/sample/SimpleMain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Data/sample/SimpleView.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DataFX/sample/SimpleController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DataFX/sample/SimpleMain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DataFX/sample/SimpleView.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Exercise/sample/controller/MainController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/FaceDetectionMain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/FacialFeaturesDetectionMain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/controller/FaceDetectionController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/controller/FaceDetectionController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/controller/FacialFeaturesDetectionController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/style/application.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/view/FaceDetection.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/FacialExpressionRecognition/sample/view/FacialFeaturesDetection.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMakerController.java___jb_bak___" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Thesis-ITS-1/sample/Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Thesis-ITS-1/sample/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Thesis-ITS-1/sample/sample.fxml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/target/classes/com/westlyf/domain/exercise/practical/PracticalExercise.class" afterPath="$PROJECT_DIR$/RunTimeCompilation/target/classes/com/westlyf/domain/exercise/practical/PracticalExercise.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/target/classes/com/westlyf/domain/exercise/practical/PracticalPrintExercise.class" afterPath="$PROJECT_DIR$/RunTimeCompilation/target/classes/com/westlyf/domain/exercise/practical/PracticalPrintExercise.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/target/classes/com/westlyf/domain/exercise/practical/PracticalReturnExercise.class" afterPath="$PROJECT_DIR$/RunTimeCompilation/target/classes/com/westlyf/domain/exercise/practical/PracticalReturnExercise.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" afterPath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/DatabaseMain.class" afterPath="$PROJECT_DIR$/out/production/Database/DatabaseMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/ExerciseDatabase.class" afterPath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/ExerciseDatabase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/LessonDatabase.class" afterPath="$PROJECT_DIR$/out/production/Database/com/westlyf/database/LessonDatabase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/quiz/QuizItem.class" afterPath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/quiz/QuizItem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/Lesson.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/Lesson.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/TextLesson.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/TextLesson.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/VideoLesson.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/VideoLesson.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/Level.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/domain/lesson/Level.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMainController$1.class" afterPath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMainController$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMainController.class" afterPath="$PROJECT_DIR$/out/production/Lesson/sample/controller/LessonMainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/exercise.db" afterPath="$PROJECT_DIR$/resources/database/exercise.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/lesson.db" afterPath="$PROJECT_DIR$/resources/database/lesson.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/DatabaseMain.java" afterPath="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/Lesson.iml" afterPath="$PROJECT_DIR$/Lesson/Lesson.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Level.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Level.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java" afterPath="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" afterPath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -136,31 +77,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controllers.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controllers.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="89" selection-start-line="79" selection-start-column="89" selection-end-line="79" selection-end-column="89" />
+            <state vertical-scroll-proportion="0.73846155">
+              <caret line="173" column="59" selection-start-line="173" selection-start-column="59" selection-end-line="173" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5469#5470#0" expanded="true" />
-                <element signature="e#5517#5518#0" expanded="true" />
-                <element signature="e#8061#8062#0" expanded="true" />
-                <element signature="e#8113#8114#0" expanded="true" />
-                <element signature="method#setLesson#0;class#Controllers#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PracticalExerciseMakerController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PracticalExerciseMakerController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.458974">
+            <state vertical-scroll-proportion="0.0">
               <caret line="221" column="76" selection-start-line="221" selection-start-column="76" selection-end-line="221" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LessonMainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -220,7 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/PracticalExerciseMakerMain.java" />
         <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/PracticalReturnExerciseViewerMain.java" />
         <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/sample/controller/PracticalPrintExerciseViewerController.java" />
@@ -237,7 +182,6 @@
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/LessonDatabase.java" />
         <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" />
-        <option value="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java" />
         <option value="$PROJECT_DIR$/Lesson/src/LessonViewerMain.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/viewer/TextLessonViewer.fxml" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/TextLessonViewer.java" />
@@ -269,8 +213,10 @@
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseMaker.fxml" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseMakerController.java" />
         <option value="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" />
-        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Level.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" />
       </list>
     </option>
   </component>
@@ -319,8 +265,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -339,8 +283,200 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="westlyf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="westlyf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS-1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="westlyf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -396,7 +532,7 @@
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\resources\haarcascades" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Lesson_ControllersSampleMain">
+  <component name="RunManager" selected="Application.Lesson_LessonMain">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -1089,13 +1225,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/util/LessonUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2025641">
-          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/Lessonmain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.115384616">
@@ -1107,7 +1236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28955224">
           <caret line="7" column="76" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1121,19 +1249,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.571795">
-          <caret line="111" column="59" selection-start-line="111" selection-start-column="59" selection-end-line="111" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/sample/controller/VideoLessonMakerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5792079">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1165,7 +1284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1193,7 +1311,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5555556">
           <caret line="10" column="247" selection-start-line="10" selection-start-column="244" selection-end-line="10" selection-end-column="247" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1204,11 +1321,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4794872">
           <caret line="79" column="55" selection-start-line="79" selection-start-column="55" selection-end-line="79" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1534#1535#0" expanded="false" />
-            <element signature="e#1568#1569#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1216,9 +1328,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.63846153">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1226,7 +1335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1237,11 +1345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3025641">
           <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1866#1867#0" expanded="false" />
-            <element signature="e#1901#1902#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1249,7 +1352,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.77557755">
           <caret line="116" column="5" selection-start-line="18" selection-start-column="4" selection-end-line="116" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1257,7 +1359,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5553539">
           <caret line="18" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1268,7 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.8545455">
           <caret line="6" column="272" selection-start-line="6" selection-start-column="272" selection-end-line="6" selection-end-column="272" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1279,7 +1379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1290,7 +1389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10149254">
           <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1301,10 +1399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.78205127">
           <caret line="187" column="55" selection-start-line="156" selection-start-column="8" selection-end-line="187" selection-end-column="55" />
-          <folding>
-            <element signature="method#clearOutput#0;class#PracticalReturnExerciseViewerController#0" expanded="false" />
-            <element signature="method#submit#0;class#PracticalReturnExerciseViewerController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1312,7 +1406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="7.0153847">
           <caret line="192" column="58" selection-start-line="192" selection-start-column="58" selection-end-line="192" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1320,7 +1413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6388059">
           <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1331,7 +1423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1339,11 +1430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21538462">
           <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#clearOutput#0;class#PracticalReturnExerciseViewerController#0" expanded="false" />
-            <element signature="method#submit#0;class#PracticalReturnExerciseViewerController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1359,7 +1445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1370,7 +1455,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.7761194">
           <caret line="7" column="265" selection-start-line="7" selection-start-column="265" selection-end-line="7" selection-end-column="265" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1381,7 +1465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1389,7 +1472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3552239">
           <caret line="7" column="269" selection-start-line="7" selection-start-column="269" selection-end-line="7" selection-end-column="269" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1400,7 +1482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3044776">
           <caret line="6" column="270" selection-start-line="6" selection-start-column="244" selection-end-line="6" selection-end-column="270" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1411,7 +1492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,9 +1500,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6539#6540#0" expanded="true" />
-            <element signature="e#6564#6565#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6539#6540#0" expanded="false" />
+            <element signature="e#6564#6565#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1447,7 +1527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3044776">
           <caret line="6" column="271" selection-start-line="6" selection-start-column="271" selection-end-line="6" selection-end-column="271" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1458,7 +1537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1466,7 +1544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3552239">
           <caret line="7" column="232" selection-start-line="7" selection-start-column="232" selection-end-line="7" selection-end-column="232" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1477,7 +1554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3552239">
           <caret line="7" column="232" selection-start-line="7" selection-start-column="232" selection-end-line="7" selection-end-column="232" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1488,7 +1564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5948718">
           <caret line="293" column="0" selection-start-line="293" selection-start-column="0" selection-end-line="293" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1496,7 +1571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30512822">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1504,9 +1578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1307693">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1514,9 +1585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08717949">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1525,7 +1593,7 @@
         <state vertical-scroll-proportion="1.0897436">
           <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1549,6 +1617,17 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/domain/lesson/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47948718">
+          <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+          <folding>
+            <element signature="e#2559#2560#0" expanded="true" />
+            <element signature="e#2612#2613#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1566,25 +1645,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java">
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="89" selection-start-line="79" selection-start-column="89" selection-end-line="79" selection-end-column="89" />
+          <caret line="221" column="76" selection-start-line="221" selection-start-column="76" selection-end-line="221" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5469#5470#0" expanded="true" />
-            <element signature="e#5517#5518#0" expanded="true" />
-            <element signature="e#8061#8062#0" expanded="true" />
-            <element signature="e#8113#8114#0" expanded="true" />
-            <element signature="method#setLesson#0;class#Controllers#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java">
+    <entry file="file://$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.458974">
-          <caret line="221" column="76" selection-start-line="221" selection-start-column="76" selection-end-line="221" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73846155">
+          <caret line="173" column="59" selection-start-line="173" selection-start-column="59" selection-end-line="173" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
