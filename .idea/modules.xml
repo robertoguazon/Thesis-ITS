@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/Lesson/Lesson.iml" filepath="$PROJECT_DIR$/Lesson/Lesson.iml" />
       <module fileurl="file://$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" filepath="$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" />
       <module fileurl="file://$PROJECT_DIR$/Thesis-ITS-1.iml" filepath="$PROJECT_DIR$/Thesis-ITS-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/User/User.iml" filepath="$PROJECT_DIR$/User/User.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserInterfaces/UserInterfaces.iml" filepath="$PROJECT_DIR$/UserInterfaces/UserInterfaces.iml" />
       <module fileurl="file://$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" filepath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" />
     </modules>

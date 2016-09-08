@@ -66,18 +66,23 @@ public class LessonMainController implements Initializable {
         subLevel_1_2.addTag("1");
         subLevel_1_2.addTag("2");
 
+
         Controllers.loadAll(); //TODO - delete and put on before start
         lessonTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<Level>>() {
             @Override
             public void changed(ObservableValue<? extends TreeItem<Level>> observable, TreeItem<Level> oldValue, TreeItem<Level> newValue) {
-                TreeItem<Level> selectedLevelItem = (TreeItem<Level>) newValue;
-                Level selectedLevel = selectedLevelItem.getValue();
-                String tags = selectedLevelItem.getValue().getTagsString();
 
-                //TODO - replace with agent this is just a test
-                ArrayList<TextLesson> textLessons = LessonDatabase.getTextLessonsUsingTagsExactly(tags);
-                Controllers.view(ControllerType.TEXT_LESSON_VIEWER,lessonAnchorPane,textLessons.get(0));
+                //TODO -fix this one must check user or agent
+                lessonAnchorPane.getChildren().clear();
+                if (true) { //TODO - put check if unlocked or not
+                    TreeItem<Level> selectedLevelItem = (TreeItem<Level>) newValue;
+                    Level selectedLevel = selectedLevelItem.getValue();
+                    String tags = selectedLevelItem.getValue().getTagsString();
 
+                    //TODO - replace with agent this is just a test
+                    ArrayList<TextLesson> textLessons = LessonDatabase.getTextLessonsUsingTagsExactly(tags);
+                    Controllers.view(ControllerType.TEXT_LESSON_VIEWER,lessonAnchorPane,textLessons.get(0));
+                }
             }
         });
 
