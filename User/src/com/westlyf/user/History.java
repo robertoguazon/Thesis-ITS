@@ -3,13 +3,16 @@ package com.westlyf.user;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.Level;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by robertoguazon on 08/09/2016.
  */
-public class History {
+public class History implements Serializable {
+    static final long serialVersionUID = 0x102;
+
 
     private HashMap<String, Event> events;
     private HashMap<String, LessonsLevel> lessonsLevels;
@@ -137,5 +140,11 @@ public class History {
 
     public int getViewCount(String lessonId) {
         return events.get(lessonId).getViews();
+    }
+
+    @Override
+    public String toString() {
+        return  "events: " + events.toString() + "\n" +
+                "lessonLevels: " + lessonsLevels.toString();
     }
 }

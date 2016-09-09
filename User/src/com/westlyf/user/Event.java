@@ -12,6 +12,8 @@ import com.westlyf.domain.lesson.VideoLesson;
  * Created by robertoguazon on 08/09/2016.
  */
 public class Event {
+    static final long serialVersionUID = 0x103;
+
 
     private final String lessonId;
 
@@ -23,7 +25,7 @@ public class Event {
     public Event(Lesson lesson, int score, int items) {
         this.lessonId = lesson.getLessonId();
         update(score,items);
-        eventTypeOf(lesson);
+        eventType = eventTypeOf(lesson);
     }
 
     public void update(int score, int items) {
@@ -70,5 +72,16 @@ public class Event {
 
     public int getViews() {
         return views;
+    }
+
+    @Override
+    public String toString() {
+        return "Event: \n" +
+                "lessonId: " + lessonId + "\n" +
+                "totalItems: " + totalItems + "\n" +
+                "totalScores: " + totalScores + "\n" +
+                "views: " + views + "\n" +
+                "eventType: " + eventType;
+
     }
 }

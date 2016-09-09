@@ -15,6 +15,7 @@ public class LessonsLevel {
     }
 
     public LessonsLevel(String levelId, String lessonId) {
+        this.levelId = levelId;
         lessonIds = new ArrayList<>();
 
         if (lessonId != null) {
@@ -41,4 +42,9 @@ public class LessonsLevel {
         return lessonIds;
     }
 
+    @Override
+    public String toString() {
+        return  "levelId: " + levelId + "\n" +
+                "lessonIds: " + lessonIds.toString();
+    }
 }
