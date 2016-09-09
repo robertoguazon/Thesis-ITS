@@ -1,5 +1,6 @@
 import com.westlyf.controller.ControllerType;
 import com.westlyf.controller.Controllers;
+import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.lesson.TextLesson;
@@ -27,14 +28,14 @@ public class ControllersSampleMain extends Application {
         //viewers
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
-        //testQuizExerciseViewer(primaryStage);
+        testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testReturnPrintExerciseViewer(primaryStage);
 
         //makers
         //testLessonMaker(primaryStage);
         //quizExerciseMaker(primaryStage);
-        practicalExerciseMaker(primaryStage);
+        //practicalExerciseMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -57,7 +58,7 @@ public class ControllersSampleMain extends Application {
 
     private void testQuizExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid1055555124842944"));
+        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExamDatabase.getExamUsingLID("lid297786924355311"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

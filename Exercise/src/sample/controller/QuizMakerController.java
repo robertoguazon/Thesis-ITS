@@ -1,11 +1,9 @@
 package sample.controller;
 
+import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
-import com.westlyf.domain.exercise.quiz.QuizExercise;
-import com.westlyf.domain.exercise.quiz.QuizFactory;
-import com.westlyf.domain.exercise.quiz.QuizItem;
-import com.westlyf.domain.exercise.quiz.QuizType;
+import com.westlyf.domain.exercise.quiz.*;
 import com.westlyf.domain.exercise.quiz.gui.ItemGUI;
 import com.westlyf.domain.exercise.quiz.gui.QuizGUI;
 import com.westlyf.utils.array.ArrayUtil;
@@ -43,6 +41,10 @@ public class QuizMakerController implements Initializable {
     @FXML private FlowPane tagFlowPane;
 
     @FXML private VBox itemsParentBox;
+
+    @FXML private ToggleGroup lessonType;
+    @FXML private RadioButton quizLessonType;
+    @FXML private RadioButton examLessonType;
 
     private ArrayList<TextField> tagTextFields;
 
@@ -235,7 +237,13 @@ public class QuizMakerController implements Initializable {
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        ExerciseDatabase.storeData(quizExercise);
+                        if (quizLessonType.isSelected() ) {
+                            ExerciseDatabase.storeData(quizExercise);
+                        } else if (examLessonType.isSelected()) {
+                            Exam exam = new Exam(quizExercise);
+                            ExamDatabase.storeData(exam);
+                        }
+
                         System.out.println("data was pushed to database");
                     }
                 });

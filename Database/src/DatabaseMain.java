@@ -1,4 +1,5 @@
 import com.westlyf.database.DatabaseConnection;
+import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.Exercise;
@@ -6,6 +7,7 @@ import com.westlyf.domain.exercise.practical.DataType;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
+import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
@@ -30,10 +32,12 @@ public class DatabaseMain {
         Connection user = DatabaseConnection.getUserConnection();
         Connection lesson = DatabaseConnection.getLessonConn();
         Connection exercise = DatabaseConnection.getExerciseConn();
+        Connection exam = DatabaseConnection.getExamConn();
 
         System.out.println("userDB: " + user);
         System.out.println("lessonDB: " + lesson);
         System.out.println("exerciseDB: " + exercise);
+        System.out.println("exam: " + exercise);
 
         testPush();
         testPull();
@@ -191,6 +195,21 @@ public class DatabaseMain {
         practicalReturnExercise.addReturnValidator(p2);
         practicalReturnExercise.makeID();
         ExerciseDatabase.storeData(practicalReturnExercise);
+
+        Exam exam = new Exam();
+        exam.setTitle("sample test exam");
+        exam.addTag("sample");
+        exam.addTag("exercise");
+        exam.addTag("exam");
+        ArrayList<String> choices2 = new ArrayList<>();
+        choices2.add("game 123");
+        choices2.add("sample test 123");
+        choices2.add("master 123");
+        ArrayList<String> validAnswers2 = new ArrayList();
+        validAnswers2.add("sample test");
+        exam.addItem(QuizType.RADIOBUTTON, "what is this?", choices2, validAnswers2);
+        exam.makeID();
+        ExamDatabase.storeData(exam);
     }
 
     private static void testPull() {
@@ -258,5 +277,20 @@ public class DatabaseMain {
         System.out.println("trying to load sample practical exercises using tags contains...");
         System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsContains("exercise"));
 
+        System.out.println();
+        System.out.println("trying to load sample exam using lid...");
+        System.out.println(ExamDatabase.getExamUsingLID("lid295074264552203"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using title...");
+        System.out.println(ExamDatabase.getExamUsingTitle("sample test exam"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using tags exactly...");
+        System.out.println(ExamDatabase.getExamsUsingTagsExactly("exam,exercise,sample,"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using tags contains...");
+        System.out.println(ExamDatabase.getExamsUsingTagsContains("exam"));
     }
 }

@@ -1,6 +1,8 @@
 package com.westlyf.controller;
 
+import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
+import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizType;
@@ -38,6 +40,10 @@ public class QuizExerciseMakerController implements Initializable {
     @FXML private FlowPane tagFlowPane;
 
     @FXML private VBox itemsParentBox;
+
+    @FXML private ToggleGroup lessonType;
+    @FXML private RadioButton quizLessonType;
+    @FXML private RadioButton examLessonType;
 
     private ArrayList<TextField> tagTextFields;
 
@@ -230,7 +236,12 @@ public class QuizExerciseMakerController implements Initializable {
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        ExerciseDatabase.storeData(quizExercise);
+                        if (quizLessonType.isSelected() ) {
+                            ExerciseDatabase.storeData(quizExercise);
+                        } else if (examLessonType.isSelected()) {
+                            Exam exam = new Exam(quizExercise);
+                            ExamDatabase.storeData(exam);
+                        }
                         System.out.println("data was pushed to database");
                     }
                 });
