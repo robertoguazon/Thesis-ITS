@@ -28,14 +28,14 @@ public class ControllersSampleMain extends Application {
         //viewers
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
-        testQuizExerciseViewer(primaryStage);
+        //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testReturnPrintExerciseViewer(primaryStage);
 
         //makers
         //testLessonMaker(primaryStage);
         //quizExerciseMaker(primaryStage);
-        //practicalExerciseMaker(primaryStage);
+        practicalExerciseMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }

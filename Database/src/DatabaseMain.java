@@ -292,5 +292,7 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample exam using tags contains...");
         System.out.println(ExamDatabase.getExamsUsingTagsContains("exam"));
+
+        System.out.println(ExerciseDatabase.getQuizExerciseUsingLID("lid494855960641737"));
     }
 }

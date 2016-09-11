@@ -46,6 +46,9 @@ public class PracticalExerciseMakerController implements Initializable {
 
     @FXML private Button createButton;
 
+    @FXML private TextArea explanationTextArea;
+    @FXML private Button clearExplanationButton;
+
     private ArrayList<StringProperty> tags;
     private PracticalPrintExercise practicalPrintExercise;
     private PracticalReturnExercise practicalReturnExercise;
@@ -70,11 +73,18 @@ public class PracticalExerciseMakerController implements Initializable {
         practicalPrintExercise.methodNameProperty().bind(methodNameTextField.textProperty());
         practicalPrintExercise.instructionsProperty().bind(instructionsTextArea.textProperty());
         practicalPrintExercise.codeProperty().bind(codeTextArea.textProperty());
+        practicalPrintExercise.explanationProperty().bind(explanationTextArea.textProperty());
 
         practicalReturnExercise.classNameProperty().bind(classNameTextField.textProperty());
         practicalReturnExercise.methodNameProperty().bind(methodNameTextField.textProperty());
         practicalReturnExercise.instructionsProperty().bind(instructionsTextArea.textProperty());
         practicalReturnExercise.codeProperty().bind(codeTextArea.textProperty());
+        practicalReturnExercise.explanationProperty().bind(explanationTextArea.textProperty());
+    }
+
+    @FXML
+    private void clearExplanation() {
+        this.explanationTextArea.clear();
     }
 
     @FXML

@@ -70,6 +70,13 @@
                                         <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" prefHeight="25.0" prefWidth="70.0" text="Clear" />
                                     </children>
                                 </HBox>
+                        <HBox layoutX="10.0" layoutY="158.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="78.0" text="Explanation" wrapText="true" />
+                              <TextArea fx:id="explanationTextArea" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="452.0" wrapText="true" />
+                              <Button fx:id="clearExplanationButton" mnemonicParsing="false" onAction="#clearExplanation" prefHeight="25.0" prefWidth="70.0" text="Clear" />
+                           </children>
+                        </HBox>
                             </children>
 
                         </VBox>

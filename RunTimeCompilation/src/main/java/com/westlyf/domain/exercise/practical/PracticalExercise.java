@@ -15,10 +15,23 @@ public abstract class PracticalExercise extends Exercise {
     protected StringProperty className = new SimpleStringProperty();
     protected StringProperty methodName = new SimpleStringProperty();
     protected String tempID;
+    protected StringProperty explanation = new SimpleStringProperty();
 
     public PracticalExercise() {
         super();
         makeTempID();
+    }
+
+    public String getExplanation() {
+        return explanation.get();
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation.set(explanation);
+    }
+
+    public StringProperty explanationProperty() {
+        return explanation;
     }
 
     public void makeTempID() {
@@ -105,6 +118,7 @@ public abstract class PracticalExercise extends Exercise {
         this.setCode(practicalExercise.getCode());
         this.setClassName(practicalExercise.getClassName());
         this.setMethodName(practicalExercise.getMethodName());
+        this.setExplanation(practicalExercise.getExplanation());
     }
 
     @Override
@@ -113,7 +127,8 @@ public abstract class PracticalExercise extends Exercise {
                 "className: " + className.get() + "\n" +
                 "methodName: " + methodName.get() + "\n" +
                 "instructions: " + instructions.get() + "\n" +
-                "code: " + code.get();
+                "code: " + code.get() + "\n" +
+                "explanation: " + explanation;
 
     }
 }

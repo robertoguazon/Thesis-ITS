@@ -54,6 +54,7 @@ public class ExerciseDatabase {
                     "returnValidators BLOB," +
                     "returnType BLOB," +
                     "parametersTypes BLOB," +
+                    "explanation TEXT," +
 
                     "practicalType BLOB NOT NULL" +
                     ")";
@@ -68,8 +69,8 @@ public class ExerciseDatabase {
                     "(?,?,?,?,?,?)",
             INSERT_PRACTICAL_EXERCISE = "INSERT INTO " +
                     "practical_exercise(lid,title,tags, totalItems,totalScore, instructions,code,className,methodName, " +
-                    "printValidator,mustMatch, returnValidators,returnType,parametersTypes, practicalType) VALUES " +
-                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?, ?)";
+                    "printValidator,mustMatch, returnValidators,returnType,parametersTypes,explanation, practicalType) VALUES " +
+                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?,?, ?)";
 
     /**
      * String statements for pulling exercises from sqlite
@@ -186,6 +187,8 @@ public class ExerciseDatabase {
         String className = practicalExercise.getClassName();
         String methodName = practicalExercise.getMethodName();
 
+        String explanation = practicalExercise.getExplanation();
+
         //practical print exercise
         String printValidator = null;
         int mustMatch = 0;
@@ -244,8 +247,9 @@ public class ExerciseDatabase {
             ps.setBytes(12,Database.serialize(returnValidatorsSerializables));
             ps.setBytes(13,Database.serialize(returnType));
             ps.setBytes(14,Database.serialize(parametersTypes));
+            ps.setString(15,explanation);
 
-            ps.setBytes(15, Database.serialize(practicalType));
+            ps.setBytes(16, Database.serialize(practicalType));
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -378,6 +382,7 @@ public class ExerciseDatabase {
                 practicalExercise.setCode(rs.getString("code"));
                 practicalExercise.setClassName(rs.getString("className"));
                 practicalExercise.setMethodName(rs.getString("methodName"));
+                practicalExercise.setExplanation(rs.getString("explanation"));
 
                 switch(practicalType) {
                     case PRINT:
@@ -553,6 +558,7 @@ public class ExerciseDatabase {
                 practicalExercise.setCode(rs.getString("code"));
                 practicalExercise.setClassName(rs.getString("className"));
                 practicalExercise.setMethodName(rs.getString("methodName"));
+                practicalExercise.setExplanation(rs.getString("explanation"));
 
                 switch(practicalType) {
                     case PRINT:
@@ -742,6 +748,8 @@ public class ExerciseDatabase {
                 practicalExercise.setCode(rs.getString("code"));
                 practicalExercise.setClassName(rs.getString("className"));
                 practicalExercise.setMethodName(rs.getString("methodName"));
+
+                practicalExercise.setExplanation("explanation");
 
                 switch(practicalType) {
                     case PRINT:

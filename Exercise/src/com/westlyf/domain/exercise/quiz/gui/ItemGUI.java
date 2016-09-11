@@ -17,12 +17,17 @@ public class ItemGUI {
     private ToggleGroup choicesToggleGroup;
     private ArrayList<TextField> answers;
     private ArrayList<TextField> choices;
+    private TextArea explanation;
 
     public ItemGUI() {
         checkBoxesChoices = new ArrayList<>();
         choicesToggleGroup = new ToggleGroup();
         answers = new ArrayList<>();
         choices = new ArrayList<>();
+    }
+
+    public void setExplanation(TextArea explanation) {
+        this.explanation = explanation;
     }
 
     //question
@@ -147,6 +152,8 @@ public class ItemGUI {
         for (TextField answer: answers) {
             quizItem.addValidAnswer(answer.getText());
         }
+
+        quizItem.setExplanation(explanation.getText());
 
         //validAnswers = correct answers
         //answers = answers by users

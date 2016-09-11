@@ -24,6 +24,7 @@ public class QuizItem implements Serializable {
     private IntegerProperty points = new SimpleIntegerProperty();
     private IntegerProperty pointsPerCorrect = new SimpleIntegerProperty(1);
     private ArrayList<String> answers = new ArrayList<>();
+    private StringProperty explanation = new SimpleStringProperty();
 
     //radio button by default
     private QuizType type = QuizType.RADIOBUTTON;
@@ -42,6 +43,7 @@ public class QuizItem implements Serializable {
         this.points.set(quizItemsSerializable.getPoints());
         this.pointsPerCorrect.set(quizItemsSerializable.getPointsPerCorrect());
         this.answers = quizItemsSerializable.getAnswers();
+        this.explanation.set(quizItemsSerializable.getExplanation());
     }
 
     public boolean isValidMaker() {
@@ -77,6 +79,18 @@ public class QuizItem implements Serializable {
                     "empty" : pointsPerCorrect.get()) + "\n" +
                 "\tanswers: " + ((answers == null || answers.isEmpty()) ? "empty" : answers.size()) + "\n" +
                 "\tpoints: " + ((points == null) ? "empty" : points.get());
+    }
+
+    public String getExplanation() {
+        return explanation.get();
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation.set(explanation);
+    }
+
+    public StringProperty explanationProperty() {
+        return explanation;
     }
 
     public String getQuestion() {
@@ -329,7 +343,8 @@ public class QuizItem implements Serializable {
                 validAnswersString +
                 answersString +
                 "\tpoints per correct: " + pointsPerCorrect.get() + "\n" +
-                "\tpoints: " + points.get() + "\n";
+                "\tpoints: " + points.get() + "\n" +
+                "\texplanation: " + explanation.get();
     }
 
 }

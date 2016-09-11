@@ -3,6 +3,8 @@ package com.westlyf.domain.exercise;
 import com.westlyf.domain.lesson.Lesson;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.io.Serializable;
 

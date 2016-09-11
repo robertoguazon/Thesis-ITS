@@ -125,7 +125,7 @@ public class QuizExerciseMakerController implements Initializable {
 
         questionTextArea.setWrapText(true);
         questionTextArea.setPrefWidth(500);
-        questionTextArea.setPrefHeight(30);
+        questionTextArea.setPrefHeight(50);
         questionTextArea.setMinWidth(500);
         HBox questionBox = new HBox();
         questionBox.getChildren().addAll(questionLabel,questionTextArea);
@@ -137,8 +137,20 @@ public class QuizExerciseMakerController implements Initializable {
 
         VBox choiceParentBox = new VBox();
 
+        Label explanationLabel = new Label("Explanation: ");
+        TextArea explanationTextArea = new TextArea();
+        itemGUI.setExplanation(explanationTextArea);
+
+        explanationTextArea.setWrapText(true);
+        explanationTextArea.setPrefWidth(500);
+        explanationTextArea.setPrefHeight(50);
+        explanationTextArea.setMinWidth(500);
+        HBox explanationBox = new HBox();
+        explanationBox.getChildren().addAll(explanationLabel,explanationTextArea);
+
+
         //add all nodes
-        itemBox.getChildren().addAll(itemHeader,questionBox,addChoiceBox,choiceParentBox,bottomLine);
+        itemBox.getChildren().addAll(itemHeader,questionBox,addChoiceBox,choiceParentBox,explanationBox,bottomLine);
         itemsParentBox.getChildren().addAll(itemBox);
 
         //add itemBox to the
