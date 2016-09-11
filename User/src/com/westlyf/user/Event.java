@@ -47,7 +47,11 @@ public class Event {
     }
 
     public double getTotalPercentage() {
-        return (double)(Math.round((totalScores/totalItems) * 100.0) / 100.0);
+        return (double) totalScores/totalItems * 100;
+    }
+
+    public boolean noItems() {
+        return totalItems == 0;
     }
 
     public EventType eventTypeOf(Lesson lesson) {

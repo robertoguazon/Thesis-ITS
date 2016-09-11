@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="Lesson" />
     <orderEntry type="module" module-name="Exercise" />
     <orderEntry type="module" module-name="RunTimeCompilation" />
+    <orderEntry type="module" module-name="Database" />
   </component>
 </module>

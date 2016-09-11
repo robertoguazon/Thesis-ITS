@@ -73,7 +73,7 @@ public class Level implements Serializable {
     }
 
     public boolean hasSubLevels() {
-        return this.subLevels != null || !this.subLevels.isEmpty();
+        return this.subLevels != null && !this.subLevels.isEmpty();
     }
 
     public String getTagsString() {
