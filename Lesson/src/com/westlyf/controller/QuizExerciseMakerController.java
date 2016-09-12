@@ -31,6 +31,7 @@ public class QuizExerciseMakerController implements Initializable {
     @FXML private Button addTagButton;
     @FXML private RadioButton radioButtonItemType;
     @FXML private RadioButton checkBoxItemType;
+    @FXML private RadioButton textFieldItemType;
     @FXML private ToggleGroup itemType;
     @FXML private Button addItemButton;
     @FXML private Button createQuizButton;
@@ -62,8 +63,10 @@ public class QuizExerciseMakerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         radioButtonItemType.setSelected(true);
         checkBoxItemType.setSelected(false);
+        textFieldItemType.setSelected(false);
         radioButtonItemType.setUserData(QuizType.RADIOBUTTON);
         checkBoxItemType.setUserData(QuizType.CHECKBOX);
+        textFieldItemType.setUserData(QuizType.TEXTFIELD);
 
         tagTextFields = new ArrayList<>();
         tags = new ArrayList<>();
@@ -181,17 +184,36 @@ public class QuizExerciseMakerController implements Initializable {
 
                 //add choice and remove button
                 HBox choiceFormatBox = new HBox();
-                if (type == QuizType.RADIOBUTTON) {
-                    radioButton.setToggleGroup(toggleGroup);
-                    radioButton.setUserData(choice);
-                    choiceFormatBox.getChildren().addAll(radioButton,choice, removeButton);
 
-                } else if (type == QuizType.CHECKBOX) {
-                    checkBox.setSelected(false);
-                    checkBox.setUserData(choice);
-                    checkBoxGroup.add(checkBox);
-                    choiceFormatBox.getChildren().addAll(checkBox,choice, removeButton);
+                switch (type) {
+                    case RADIOBUTTON:
+                        radioButton.setToggleGroup(toggleGroup);
+                        radioButton.setUserData(choice);
+                        choiceFormatBox.getChildren().addAll(radioButton,choice, removeButton);
+
+                        break;
+
+                    case CHECKBOX:
+                        checkBox.setSelected(false);
+                        checkBox.setUserData(choice);
+                        checkBoxGroup.add(checkBox);
+                        choiceFormatBox.getChildren().addAll(checkBox,choice, removeButton);
+
+                        break;
+
+                    case TEXTFIELD:
+                        checkBox.setSelected(true);
+                        checkBox.setDisable(true);
+                        checkBox.setUserData(choice);
+                        checkBoxGroup.add(checkBox);
+                        choiceFormatBox.getChildren().addAll(checkBox,choice, removeButton);
+
+                        break;
+
+                    default:
+                        break;
                 }
+
                 choiceParentBox.getChildren().add(choiceFormatBox);
 
                 //remove textfield and radiobutton or checkbox when pressed
@@ -202,13 +224,19 @@ public class QuizExerciseMakerController implements Initializable {
                         choiceFormatBox.getChildren().remove(removeButton);
 
                         //remove radio or checkboxes
-                        if (type == QuizType.RADIOBUTTON) {
-                            radioButton.setToggleGroup(null);
-                            choiceFormatBox.getChildren().remove(radioButton);
+                        switch (type) {
+                            case RADIOBUTTON:
+                                radioButton.setToggleGroup(null);
+                                choiceFormatBox.getChildren().remove(radioButton);
+                                break;
+                            case TEXTFIELD:
+                            case CHECKBOX:
+                                checkBoxGroup.remove(checkBox);
+                                choiceFormatBox.getChildren().remove(checkBox);
+                                break;
 
-                        } else if (type == QuizType.CHECKBOX) {
-                            checkBoxGroup.remove(checkBox);
-                            choiceFormatBox.getChildren().remove(checkBox);
+                            default:
+                                break;
                         }
                     }
                 });

@@ -31,7 +31,7 @@ public class QuizItemSerializable implements Serializable {
         points = quizItem.getPoints();
         pointsPerCorrect = quizItem.getPointsPerCorrect();
         type = quizItem.getType();
-        oneAnswer = quizItem.getOneAnswer();
+        //oneAnswer = quizItem.getOneAnswer(); //TODO- delete
 
         choices = quizItem.getChoices();
         validAnswers = quizItem.getValidAnswers();

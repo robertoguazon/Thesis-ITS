@@ -28,14 +28,18 @@ public class ControllersSampleMain extends Application {
         //viewers
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
-        //testQuizExerciseViewer(primaryStage);
+        testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testReturnPrintExerciseViewer(primaryStage);
 
+            //reviews
+        //testQuizExerciseReviewViewer();
+        //testPracticalExerciseReviewViewer();
+
         //makers
         //testLessonMaker(primaryStage);
-        //quizExerciseMaker(primaryStage);
-        practicalExerciseMaker(primaryStage);
+        //testQuizExerciseMaker(primaryStage);
+        //testPracticalExerciseMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -58,7 +62,12 @@ public class ControllersSampleMain extends Application {
 
     private void testQuizExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExamDatabase.getExamUsingLID("lid297786924355311"));
+        //view exam
+        //Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExamDatabase.getExamUsingLID("lid297786924355311"));
+
+        //view quiz
+        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid589434155957645"));
+
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -90,14 +99,14 @@ public class ControllersSampleMain extends Application {
         primaryStage.show();
     }
 
-    private void quizExerciseMaker(Stage primaryStage) {
+    private void testQuizExerciseMaker(Stage primaryStage) {
         Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_MAKER);
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void practicalExerciseMaker(Stage primaryStage) {
+    private void testPracticalExerciseMaker(Stage primaryStage) {
         Node node = Controllers.getNode(ControllerType.PRACTICAL_EXERCISE_MAKER);
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);

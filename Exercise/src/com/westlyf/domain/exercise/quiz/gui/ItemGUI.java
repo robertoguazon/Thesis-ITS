@@ -15,14 +15,14 @@ public class ItemGUI {
     private QuizType quizType;
     private ArrayList<CheckBox> checkBoxesChoices;
     private ToggleGroup choicesToggleGroup;
-    private ArrayList<TextField> answers;
+    private ArrayList<TextField> validAnswers;
     private ArrayList<TextField> choices;
     private TextArea explanation;
 
     public ItemGUI() {
         checkBoxesChoices = new ArrayList<>();
         choicesToggleGroup = new ToggleGroup();
-        answers = new ArrayList<>();
+        validAnswers = new ArrayList<>();
         choices = new ArrayList<>();
     }
 
@@ -50,12 +50,12 @@ public class ItemGUI {
     }
 
     //answers
-    public void setAnswers(ArrayList<TextField> answers) {
-        this.answers = answers;
+    public void setAnswers(ArrayList<TextField> validAnswers) {
+        this.validAnswers = validAnswers;
     }
 
-    public void addAnswer(TextField answer) {
-        this.answers.add(answer);
+    public void addValidAnswer(TextField answer) {
+        this.validAnswers.add(answer);
     }
 
     public void removeCheckBoxChoice(CheckBox checkBoxChoice) {
@@ -73,9 +73,10 @@ public class ItemGUI {
     public void completeItems() {
 
         clearChoices();
-        clearAnswers();
+        clearValidAnswers();
 
         switch (quizType) {
+            case TEXTFIELD:
             case CHECKBOX:
 
                 for (int i = 0; i < checkBoxesChoices.size(); i++) {
@@ -85,7 +86,7 @@ public class ItemGUI {
                     addChoice(textField);
 
                     if (checkBox.isSelected()) {
-                        addAnswer(textField);
+                        addValidAnswer(textField);
                     }
                 }
 
@@ -102,7 +103,7 @@ public class ItemGUI {
                 }
 
                 TextField textField = (TextField)choicesToggleGroup.getSelectedToggle().getUserData();
-                addAnswer(textField);
+                addValidAnswer(textField);
 
                 break;
         }
@@ -125,8 +126,8 @@ public class ItemGUI {
             System.out.println("-" + choices.get(i).getText());
         }
 
-        for (int i = 0; i < answers.size(); i++) {
-            System.out.println("Answers: " + answers.get(i).getText());
+        for (int i = 0; i < validAnswers.size(); i++) {
+            System.out.println("Answers: " + validAnswers.get(i).getText());
         }
     }
 
@@ -134,8 +135,8 @@ public class ItemGUI {
         this.choices.clear();
     }
 
-    public void clearAnswers() {
-        this.answers.clear();
+    public void clearValidAnswers() {
+        this.validAnswers.clear();
     }
 
     public QuizItem exportItem() {
@@ -149,8 +150,8 @@ public class ItemGUI {
             quizItem.addChoice(choice.getText());
         }
 
-        for (TextField answer: answers) {
-            quizItem.addValidAnswer(answer.getText());
+        for (TextField validAnswer: validAnswers) {
+            quizItem.addValidAnswer(validAnswer.getText());
         }
 
         quizItem.setExplanation(explanation.getText());

@@ -3,21 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" afterPath="$PROJECT_DIR$/Thesis-ITS-Documentation.xlsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/Exercise.class" afterPath="$PROJECT_DIR$/out/production/Exercise/com/westlyf/domain/exercise/Exercise.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/exam.db" afterPath="$PROJECT_DIR$/resources/database/exam.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/exercise.db" afterPath="$PROJECT_DIR$/resources/database/exercise.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/DatabaseMain.java" afterPath="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" afterPath="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizType.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java" afterPath="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" afterPath="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseMakerController.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseMakerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalExerciseMaker.fxml" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalExerciseMaker.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java" afterPath="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/QuizExerciseMaker.fxml" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/QuizExerciseMaker.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,42 +78,52 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="ControllersSampleMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controllers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java">
+      <file leaf-file-name="QuizExerciseViewerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseViewerController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+              <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PracticalExerciseMakerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java">
+      <file leaf-file-name="QuizExercise.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="198" column="14" selection-start-line="198" selection-start-column="14" selection-end-line="198" selection-end-column="14" />
+              <caret line="74" column="52" selection-start-line="74" selection-start-column="52" selection-end-line="74" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PracticalExercise.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java">
+      <file leaf-file-name="QuizItem.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6974359">
-              <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.34871796">
+              <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizItemSerializable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -129,16 +133,50 @@
         <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="350" column="0" selection-start-line="350" selection-start-column="0" selection-end-line="350" selection-end-column="0" />
+              <caret line="320" column="44" selection-start-line="320" selection-start-column="44" selection-end-line="320" selection-end-column="44" />
               <folding>
                 <element signature="method#storeData#1;class#ExerciseDatabase#0" expanded="false" />
-                <element signature="method#getQuizExercise#0;class#ExerciseDatabase#0" expanded="false" />
                 <element signature="method#getPracticalExercise#0;class#ExerciseDatabase#0" expanded="false" />
                 <element signature="method#getQuizExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
                 <element signature="method#getPracticalExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
                 <element signature="method#getQuizExercisesUsingTagsContains#1;class#ExerciseDatabase#0" expanded="false" />
                 <element signature="method#getPracticalExercisesUsingTagsContains#0;class#ExerciseDatabase#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+              <folding>
+                <element signature="e#1520#1521#0" expanded="true" />
+                <element signature="e#1565#1566#0" expanded="true" />
+                <element signature="e#3727#3728#0" expanded="true" />
+                <element signature="e#3763#3764#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -169,8 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseViewer.fxml" />
-        <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/sample/controller/PracticalReturnExerciseViewerController.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseViewer.fxml" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseViewerController.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/view/LessonMaker.fxml" />
@@ -211,15 +247,17 @@
         <option value="$PROJECT_DIR$/User/src/UserSampleMain.java" />
         <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java" />
         <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExerciseSerializable.java" />
-        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java" />
-        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" />
-        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseMakerController.java" />
-        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java" />
         <option value="$PROJECT_DIR$/Database/src/DatabaseMain.java" />
-        <option value="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" />
         <option value="$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java" />
         <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java" />
         <option value="$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizType.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseMakerController.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java" />
+        <option value="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" />
+        <option value="$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java" />
       </list>
     </option>
   </component>
@@ -296,150 +334,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="RunTimeCompilation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunTimeCompilation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunTimeCompilation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunTimeCompilation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunTimeCompilation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="westlyf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunTimeCompilation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="westlyf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="practical" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Lesson" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -459,32 +353,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Lesson" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="westlyf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -533,60 +401,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Thesis-ITS-1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Database" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -649,7 +463,7 @@
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\resources\haarcascades" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Database_DatabaseMain">
+  <component name="RunManager" selected="Application.Lesson_ControllersSampleMain">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -1275,10 +1089,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.340694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.340694" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1330,20 +1144,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Exercise/src/sample/controller/ExerciseViewerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3923077">
-          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseMakerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseMaker.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -1493,23 +1293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/view/QuizExerciseMaker.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.065671645">
-          <caret line="6" column="271" selection-start-line="6" selection-start-column="271" selection-end-line="6" selection-end-column="271" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseViewerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExamDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.30769232">
@@ -1556,12 +1339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9">
           <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
-          <folding>
-            <element signature="e#1673#1674#0" expanded="false" />
-            <element signature="e#1737#1738#0" expanded="false" />
-            <element signature="e#1794#1795#0" expanded="false" />
-            <element signature="e#1854#1855#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1598,7 +1375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13036303">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1618,65 +1394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.13333334">
-          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2615385">
-          <caret line="346" column="53" selection-start-line="346" selection-start-column="53" selection-end-line="346" selection-end-column="53" />
-          <folding>
-            <element signature="e#3525#3526#0" expanded="false" />
-            <element signature="e#3565#3566#0" expanded="false" />
-            <element signature="e#3619#3620#0" expanded="false" />
-            <element signature="e#3668#3669#0" expanded="false" />
-            <element signature="e#3719#3720#0" expanded="false" />
-            <element signature="e#3753#3754#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.43846154">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <element signature="e#1137#1138#0" expanded="false" />
-            <element signature="e#1171#1172#0" expanded="false" />
-            <element signature="e#1225#1226#0" expanded="false" />
-            <element signature="e#1271#1272#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="155" column="53" selection-start-line="155" selection-start-column="53" selection-end-line="155" selection-end-column="53" />
-          <folding>
-            <element signature="e#811#812#0" expanded="false" />
-            <element signature="e#857#858#0" expanded="false" />
-            <element signature="e#922#923#0" expanded="false" />
-            <element signature="e#962#963#0" expanded="false" />
-            <element signature="e#3639#3640#0" expanded="false" />
-            <element signature="e#3675#3676#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5948718">
-          <caret line="95" column="44" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Database/src/DatabaseMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6948718">
@@ -1685,21 +1402,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java">
+    <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.766667">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.6980198">
+          <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.028052805">
+          <caret line="198" column="14" selection-start-line="198" selection-start-column="14" selection-end-line="198" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.028052805">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/Exercise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.351282">
+          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/view/QuizExerciseMaker.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3090909">
+          <caret line="8" column="141" selection-start-line="8" selection-start-column="141" selection-end-line="8" selection-end-column="141" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/ItemGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
           <folding>
-            <element signature="e#2876#2877#0" expanded="false" />
-            <element signature="e#2920#2921#0" expanded="false" />
+            <element signature="e#1520#1521#0" expanded="true" />
+            <element signature="e#1565#1566#0" expanded="true" />
+            <element signature="e#3727#3728#0" expanded="true" />
+            <element signature="e#3763#3764#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/gui/QuizGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseMakerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5641026">
-          <caret line="242" column="40" selection-start-line="242" selection-start-column="40" selection-end-line="242" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.19113573">
+          <caret line="269" column="29" selection-start-line="269" selection-start-column="29" selection-end-line="269" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/TextLessonMakerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30512822">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1707,15 +1493,15 @@
     <entry file="file://$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <caret line="67" column="19" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java">
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseViewerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1723,10 +1509,9 @@
     <entry file="file://$PROJECT_DIR$/Database/src/com/westlyf/database/ExerciseDatabase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="350" column="0" selection-start-line="350" selection-start-column="0" selection-end-line="350" selection-end-column="0" />
+          <caret line="320" column="44" selection-start-line="320" selection-start-column="44" selection-end-line="320" selection-end-column="44" />
           <folding>
             <element signature="method#storeData#1;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercise#0;class#ExerciseDatabase#0" expanded="false" />
             <element signature="method#getPracticalExercise#0;class#ExerciseDatabase#0" expanded="false" />
             <element signature="method#getQuizExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
             <element signature="method#getPracticalExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
@@ -1736,18 +1521,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalExerciseMakerController.java">
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizExercise.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="14" selection-start-line="198" selection-start-column="14" selection-end-line="198" selection-end-column="14" />
+          <caret line="74" column="52" selection-start-line="74" selection-start-column="52" selection-end-line="74" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RunTimeCompilation/src/main/java/com/westlyf/domain/exercise/practical/PracticalExercise.java">
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItemSerializable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6974359">
-          <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exercise/src/com/westlyf/domain/exercise/quiz/QuizItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34871796">
+          <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
           <folding />
         </state>
       </provider>

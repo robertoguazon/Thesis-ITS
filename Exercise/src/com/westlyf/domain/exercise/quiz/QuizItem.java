@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.awt.*;
@@ -36,12 +37,32 @@ public class QuizItem implements Serializable {
 
     public QuizItem() {}
 
+    //TODO fix for identification get the type *IMPORTANT
+    //TODO use trim()
+    public boolean isCorrect() {
+        if (answers.size() != validAnswers.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < validAnswers.size(); i++) {
+            if (!answers.contains(validAnswers.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+
     public QuizItem(QuizItemSerializable quizItemsSerializable) {
         this.question.set(quizItemsSerializable.getQuestion());
-        this.choices = quizItemsSerializable.getChoices();
-        this.validAnswers = quizItemsSerializable.getValidAnswers();
         this.points.set(quizItemsSerializable.getPoints());
         this.pointsPerCorrect.set(quizItemsSerializable.getPointsPerCorrect());
+        this.type = quizItemsSerializable.getType();
+
+        this.choices = quizItemsSerializable.getChoices();
+        this.validAnswers = quizItemsSerializable.getValidAnswers();
         this.answers = quizItemsSerializable.getAnswers();
         this.explanation.set(quizItemsSerializable.getExplanation());
     }
@@ -105,11 +126,11 @@ public class QuizItem implements Serializable {
         this.question.set(question);
     }
 
+    /* TODO - delete, not sure if oneAnswer is needed - just in case
     public boolean getOneAnswer() {
         return oneAnswer.get();
     }
 
-    //B not sure if oneAnswer is needed - just in case
     public BooleanProperty oneAnswerProperty() {
         return oneAnswer;
     }
@@ -122,6 +143,7 @@ public class QuizItem implements Serializable {
             this.type = QuizType.CHECKBOX;
         }
     }
+    */
 
     //B not checked
     public boolean isCorrect(ArrayList<String> answers) {
@@ -239,8 +261,16 @@ public class QuizItem implements Serializable {
                     box.getChildren().add(choice);
 
                 }
-
                 break;
+            case TEXTFIELD:
+                TextField blankTextField = new TextField();
+                blankTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    answers.clear();
+                    answers.add(newValue);
+                });
+                box.getChildren().add(blankTextField);
+                break;
+
             default:
                 break;
         }

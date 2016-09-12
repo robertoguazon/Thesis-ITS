@@ -46,6 +46,7 @@
                                  </toggleGroup>
                               </RadioButton>
                               <RadioButton fx:id="checkBoxItemType" mnemonicParsing="false" text="CheckBoxes" toggleGroup="$itemType" />
+                              <RadioButton fx:id="textFieldItemType" layoutX="156.0" layoutY="10.0" mnemonicParsing="false" text="TextField" toggleGroup="$itemType" />
                               <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
                            </children>
                         </HBox>

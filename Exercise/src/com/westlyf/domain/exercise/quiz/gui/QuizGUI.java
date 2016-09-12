@@ -91,7 +91,7 @@ public class QuizGUI {
             quizExercise.addTag(new SimpleStringProperty(tag.getText()));
         }
 
-        //set choices and answers
+        //set choices and valid answers
         for (ItemGUI item: items) {
             quizExercise.addItem(item.exportItem());
         }
