@@ -37,20 +37,39 @@ public class QuizItem implements Serializable {
 
     public QuizItem() {}
 
-    //TODO fix for identification get the type *IMPORTANT
-    //TODO use trim()
+    //TODO check if the evaluation of answers are efficient
     public boolean isCorrect() {
-        if (answers.size() != validAnswers.size()) {
-            return false;
-        }
+        return isCorrect(this.answers);
+    }
 
-        for (int i = 0; i < validAnswers.size(); i++) {
-            if (!answers.contains(validAnswers.get(i))) {
+    //TODO - check if efficient
+    public boolean isCorrect(ArrayList<String> answers) {
+
+        switch (type) {
+            case TEXTFIELD:
+                String answer = answers.get(0).trim().toLowerCase();
+                for (int i = 0; i < validAnswers.size(); i++) {
+                    if (answer.equals(validAnswers.get(i).trim().toLowerCase())) {
+                        return true;
+                    }
+                }
                 return false;
-            }
-        }
 
-        return true;
+            case CHECKBOX:
+            case RADIOBUTTON:
+                if (answers.size() != validAnswers.size()) {
+                    return false;
+                }
+                for (int i = 0; i < validAnswers.size(); i++) {
+                    if (!answers.contains(validAnswers.get(i))) {
+                        return false;
+                    }
+                }
+                return true;
+
+            default:
+                return false;
+        }
     }
 
 
@@ -144,31 +163,6 @@ public class QuizItem implements Serializable {
         }
     }
     */
-
-    //B not checked
-    public boolean isCorrect(ArrayList<String> answers) {
-
-        points.set(0);
-        for (int i = 0; i < answers.size(); i++) {
-
-            boolean isFound = false;
-            for (int j = 0; j < validAnswers.size(); j++) {
-
-                if (answers.get(i).equals(validAnswers.get(j))) {
-                    isFound = true;
-                    break;
-                }
-            }
-
-            if (!isFound) {
-                points.set(0);
-                return false;
-            }
-        }
-
-        points.add(getPointsPerCorrect());
-        return true;
-    }
 
     public void setPointsPerCorrect (int value) {
         this.pointsPerCorrect.set(value);

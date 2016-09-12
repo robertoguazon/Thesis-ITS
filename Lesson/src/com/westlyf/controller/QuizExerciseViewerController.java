@@ -40,6 +40,8 @@ public class QuizExerciseViewerController implements Initializable {
                 if (response == ButtonType.OK) {
                     //TODO - updload to database if confirmed
                     System.out.println("sample upload confirm test");
+
+                    System.out.println("Score: " + quizExercise.evaluate() + "/" + quizExercise.getQuizItems().size());
                 }
             });
 

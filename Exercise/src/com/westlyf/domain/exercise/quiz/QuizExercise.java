@@ -174,5 +174,14 @@ public class QuizExercise extends Exercise implements Serializable {
         return clone;
     }
 
+    public int evaluate() {
+        int score = 0;
+        for (int i = 0; i < quizItems.size(); i++) {
+            if (quizItems.get(i).isCorrect()) {
+                score++;
+            }
+        }
 
+        return score;
+    }
 }
