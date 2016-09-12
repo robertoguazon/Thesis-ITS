@@ -66,7 +66,10 @@ public class ControllersSampleMain extends Application {
         //Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExamDatabase.getExamUsingLID("lid297786924355311"));
 
         //view quiz
-        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid589434155957645"));
+        //Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid589434155957645"));
+
+        /// /all types of items are included
+        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid593810487339736"));
 
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
