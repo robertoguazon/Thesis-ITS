@@ -28,9 +28,9 @@ public class ControllersSampleMain extends Application {
         //viewers
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
-        testQuizExerciseViewer(primaryStage);
+        //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
-        //testReturnPrintExerciseViewer(primaryStage);
+        testPracticalReturnExerciseViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -52,8 +52,6 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testVideoLessonViewer(Stage primaryStage) {
-
-
         Node node = Controllers.getNode(ControllerType.VIDEO_LESSON_VIEWER, LessonDatabase.getVideoLessonUsingLID("lid1275089802453708"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
@@ -79,16 +77,16 @@ public class ControllersSampleMain extends Application {
 
     private void testPracticalPrintExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingLID("lid2110480049967968"));
+        Node node = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingLID("lid496485853744536"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
-    private void testReturnPrintExerciseViewer(Stage primaryStage) {
+    private void testPracticalReturnExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingLID("lid217838487380978"));
+        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingLID("lid496485989650777"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
