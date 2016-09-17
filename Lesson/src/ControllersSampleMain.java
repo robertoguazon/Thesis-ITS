@@ -30,7 +30,7 @@ public class ControllersSampleMain extends Application {
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
-        testPracticalReturnExerciseViewer(primaryStage);
+        //testPracticalReturnExerciseViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
