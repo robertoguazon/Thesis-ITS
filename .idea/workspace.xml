@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/datafx_8_0b5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/datafx_8_0b5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/javax_inject_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/javax_inject_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/opencv_310.xml" afterPath="$PROJECT_DIR$/.idea/libraries/opencv_310.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_8_11_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_8_11_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/Database.iml" afterPath="$PROJECT_DIR$/Database/Database.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" afterPath="$PROJECT_DIR$/RunTimeCompilation/RunTimeCompilation.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" afterPath="$PROJECT_DIR$/VideoPlayer/VideoPlayer.iml" />
+    </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -71,8 +80,8 @@
       <file leaf-file-name="ControllersSampleMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25082508">
-              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+            <state vertical-scroll-proportion="-1.749175">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -306,6 +315,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Thesis-ITS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lesson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -321,10 +348,10 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="C:/Programming/programming_tools/javax/javax.inject-1.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Thesis libraries/sqlite-jdbc-3.8.11.1/sqlite-jdbc-3.8.11.1.jar!/" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="165" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="165" />
@@ -1376,14 +1403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseViewerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="118" selection-start-line="43" selection-start-column="118" selection-end-line="43" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/sample/controller/LessonMainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3897436">
@@ -1399,10 +1418,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/QuizExerciseViewerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="118" selection-start-line="43" selection-start-column="118" selection-end-line="43" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25082508">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+        <state vertical-scroll-proportion="-1.749175">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1449,7 +1476,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8.0_74</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1461,7 +1488,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>VideoPlayer</last-edited>
+          <last-edited>Database</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1473,7 +1500,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>opencv-310</last-edited>
+          <last-edited>sqlite-jdbc-3.8.11.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
