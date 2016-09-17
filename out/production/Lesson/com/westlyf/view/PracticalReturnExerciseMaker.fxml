@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalReturnExerciseMakerController">
+   <center>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="practicalReturnVBox" prefHeight="342.0" prefWidth="599.0">
+               <children>
+                  <HBox fx:id="returnTypeHBox" prefHeight="37.0" prefWidth="599.0">
+                     <children>
+                        <Label text="Return type:" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="28.0" prefWidth="599.0">
+                     <children>
+                        <Label text="Parameter types:" />
+                        <Button fx:id="addParameterButton" mnemonicParsing="false" onAction="#addParameter" prefHeight="25.0" prefWidth="106.0" text="Add parameter" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="48.0" prefWidth="599.0">
+                     <children>
+                        <FlowPane fx:id="parametersTypesFlowPane" prefHeight="48.0" prefWidth="600.0" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="addReturnValidatorButton" mnemonicParsing="false" onAction="#addReturnValidator" text="Add return validator" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <Label prefHeight="46.0" prefWidth="168.0" text="Practical Return Exercise Maker" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>

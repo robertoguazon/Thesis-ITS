@@ -23,6 +23,7 @@ public class QuizItemSerializable implements Serializable {
     private ArrayList<String> choices;
     private ArrayList<String> validAnswers;
     private ArrayList<String> answers;
+    private String explanation;
 
     public QuizItemSerializable(QuizItem quizItem) {
 
@@ -30,11 +31,20 @@ public class QuizItemSerializable implements Serializable {
         points = quizItem.getPoints();
         pointsPerCorrect = quizItem.getPointsPerCorrect();
         type = quizItem.getType();
-        oneAnswer = quizItem.getOneAnswer();
+        //oneAnswer = quizItem.getOneAnswer(); //TODO- delete
 
         choices = quizItem.getChoices();
         validAnswers = quizItem.getValidAnswers();
         answers = quizItem.getAnswers();
+        explanation = quizItem.getExplanation();
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
     }
 
     public String getQuestion() {

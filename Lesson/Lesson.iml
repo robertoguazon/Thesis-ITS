@@ -8,5 +8,8 @@
     <orderEntry type="jdk" jdkName="1.8.0_74" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Database" />
+    <orderEntry type="module" module-name="VideoPlayer" />
+    <orderEntry type="module" module-name="Exercise" />
+    <orderEntry type="module" module-name="RunTimeCompilation" />
   </component>
 </module>

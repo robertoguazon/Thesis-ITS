@@ -21,6 +21,10 @@ public class InputParameter {
         this.inputType = inputType;
     }
 
+    public InputParameter(InputParameterSerializable inputParameterSerializable) {
+        this(inputParameterSerializable.getInput(), inputParameterSerializable.getInputType());
+    }
+
     public String getInput() {
         return input.get();
     }
@@ -52,4 +56,5 @@ public class InputParameter {
         return "input: " + input.get() + "\n" +
                 "inputType: " + inputType;
     }
+
 }

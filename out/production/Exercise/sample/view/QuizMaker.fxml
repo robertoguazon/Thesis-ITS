@@ -16,6 +16,17 @@
                         <TextField fx:id="quizTitleTextField" />
                      </children>
                   </HBox>
+                  <HBox prefHeight="28.0" prefWidth="585.0">
+                     <children>
+                        <Label text="Type:" />
+                        <RadioButton fx:id="quizLessonType" mnemonicParsing="false" selected="true" text="Quiz">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="lessonType" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="examLessonType" mnemonicParsing="false" text="Exam" toggleGroup="$lessonType" />
+                     </children>
+                  </HBox>
                   <VBox fx:id="tagBox" prefHeight="49.0" prefWidth="599.0">
                      <children>
                         <Label text="Tags" />

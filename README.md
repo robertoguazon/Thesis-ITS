@@ -2,6 +2,7 @@
 
 
 libraries for each module:
+   * Agent
    * Analytics
    * Data
       * datafx-core-8.0b5.jar

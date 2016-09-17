@@ -73,7 +73,7 @@ public class Level implements Serializable {
     }
 
     public boolean hasSubLevels() {
-        return this.subLevels != null || !this.subLevels.isEmpty();
+        return this.subLevels != null && !this.subLevels.isEmpty();
     }
 
     public String getTagsString() {
@@ -100,6 +100,10 @@ public class Level implements Serializable {
     public void addTag(StringProperty tag) {
         if (this.tags == null) tags = new ArrayList<>();
         this.tags.add(tag);
+    }
+
+    public void addTag(String tag) {
+        addTag(new SimpleStringProperty(tag));
     }
 
     public void removeTag(StringProperty tag) {

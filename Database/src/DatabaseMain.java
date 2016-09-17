@@ -1,7 +1,13 @@
 import com.westlyf.database.DatabaseConnection;
+import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.Exercise;
+import com.westlyf.domain.exercise.practical.DataType;
+import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
+import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
@@ -26,10 +32,12 @@ public class DatabaseMain {
         Connection user = DatabaseConnection.getUserConnection();
         Connection lesson = DatabaseConnection.getLessonConn();
         Connection exercise = DatabaseConnection.getExerciseConn();
+        Connection exam = DatabaseConnection.getExamConn();
 
-        System.out.println(user);
-        System.out.println(lesson);
-        System.out.println(exercise);
+        System.out.println("userDB: " + user);
+        System.out.println("lessonDB: " + lesson);
+        System.out.println("exerciseDB: " + exercise);
+        System.out.println("exam: " + exercise);
 
         testPush();
         testPull();
@@ -130,6 +138,78 @@ public class DatabaseMain {
         quizExercise.addTag("101");
         quizExercise.makeID();
         ExerciseDatabase.storeData(quizExercise);
+
+        PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
+        practicalPrintExercise.setTitle("sample practical print exercise");
+        practicalPrintExercise.addTag("sample");
+        practicalPrintExercise.addTag("practical");
+        practicalPrintExercise.addTag("exercise");
+
+        practicalPrintExercise.setInstructions("just do the following: run the code to see the output of the sample.");
+        practicalPrintExercise.setCode("public class Sample {\n" +
+                "   public static void main(String[] args) {\n" +
+                "       System.out.println(\"Hello World\");\n" +
+                "   }\n" +
+                "}");
+        practicalPrintExercise.setClassName("Sample");
+        practicalPrintExercise.setMethodName("main");
+
+        practicalPrintExercise.setPrintValidator("Hello World");
+        practicalPrintExercise.setMustMatch(false);
+        practicalPrintExercise.makeID();
+        ExerciseDatabase.storeData(practicalPrintExercise);
+
+
+        //practical return exercise push
+        PracticalReturnExercise practicalReturnExercise = new PracticalReturnExercise();
+        practicalReturnExercise.setTitle("sample practical exercise");
+        practicalReturnExercise.addTag("sample");
+        practicalReturnExercise.addTag("exercise");
+        practicalReturnExercise.addTag("practical");
+
+        practicalReturnExercise.setInstructions("make a method that accepts a string variable as parameter and returns the" +
+                "last character");
+        practicalReturnExercise.setClassName("Sample");
+        practicalReturnExercise.setMethodName("run");
+
+        practicalReturnExercise.setCode(
+                "public class Sample {\n" +
+                        "   public char run(String value) {\n" +
+                        "       return value.charAt(value.length() - 1);\n" +
+                        "   }\n" +
+                        "}"
+        );
+
+        practicalReturnExercise.addParameterType(DataType.STRING);
+        practicalReturnExercise.setReturnType(DataType.CHAR);
+
+        PracticalReturnValidator p1 = new PracticalReturnValidator();
+        p1.addInput("master",DataType.STRING);
+        p1.setExpectedReturn("r");
+
+        PracticalReturnValidator p2 = new PracticalReturnValidator();
+        p2.addInput("books1",DataType.STRING);
+        p2.setExpectedReturn("1");
+
+        practicalReturnExercise.addReturnValidator(p1);
+        practicalReturnExercise.addReturnValidator(p2);
+        practicalReturnExercise.makeID();
+        ExerciseDatabase.storeData(practicalReturnExercise);
+
+        Exam exam = new Exam();
+        exam.setTitle("sample test exam");
+        exam.addTag("sample");
+        exam.addTag("exercise");
+        exam.addTag("exam");
+        ArrayList<String> choices2 = new ArrayList<>();
+        choices2.add("game 123");
+        choices2.add("sample test 123");
+        choices2.add("master 123");
+        ArrayList<String> validAnswers2 = new ArrayList();
+        validAnswers2.add("sample test");
+        exam.addItem(QuizType.RADIOBUTTON, "what is this?", choices2, validAnswers2);
+        exam.makeID();
+        ExamDatabase.storeData(exam);
     }
 
     private static void testPull() {
@@ -180,5 +260,39 @@ public class DatabaseMain {
         System.out.println();
         System.out.println("trying to load sample quiz exercises using tags contains...");
         System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsContains("sample"));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercise using lid...");
+        System.out.println(ExerciseDatabase.getPracticalExerciseUsingLID("lid2110480049967968"));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercise using title...");
+        System.out.println(ExerciseDatabase.getPracticalExerciseUsingTitle("sample practical print exercise"));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercise using tags exactly...");
+        System.out.println(ExerciseDatabase.getPracticalExercisesUsingTagsExactly("exercise,practical,sample,").get(0));
+
+        System.out.println();
+        System.out.println("trying to load sample practical exercises using tags contains...");
+        System.out.println(ExerciseDatabase.getQuizExercisesUsingTagsContains("exercise"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using lid...");
+        System.out.println(ExamDatabase.getExamUsingLID("lid295074264552203"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using title...");
+        System.out.println(ExamDatabase.getExamUsingTitle("sample test exam"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using tags exactly...");
+        System.out.println(ExamDatabase.getExamsUsingTagsExactly("exam,exercise,sample,"));
+
+        System.out.println();
+        System.out.println("trying to load sample exam using tags contains...");
+        System.out.println(ExamDatabase.getExamsUsingTagsContains("exam"));
+
+        System.out.println(ExerciseDatabase.getQuizExerciseUsingLID("lid494855960641737"));
     }
 }

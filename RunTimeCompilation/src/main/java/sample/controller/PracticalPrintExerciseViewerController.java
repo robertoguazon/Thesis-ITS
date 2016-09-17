@@ -26,6 +26,8 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML private TextArea outputTextArea;
     @FXML private Button clearOutputButton;
 
+    @FXML private Button submitButton;
+
     private PracticalPrintExercise currentExercise;
 
     @Override
@@ -65,16 +67,8 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML
     private void runCode() {
         if (currentExercise != null) {
-            try {
-                RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
-                RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
-                RuntimeUtil.compile(currentExercise);
-                outputTextArea.setText(RuntimeUtil.STRING_OUTPUT.toString());
-            } catch (Exception e) {
-                System.err.println("Error: " + e.getMessage());
-            } finally {
-                RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
-            }
+            compileCode();
+            outputTextArea.setText(RuntimeUtil.STRING_OUTPUT.toString());
         }
     }
 
@@ -92,15 +86,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML
     private void submit() {
         //TODO evaluate and get score and push to database
-       try {
-           RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
-           RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
-           RuntimeUtil.compile(currentExercise);
-       } catch (Exception e) {
-           System.err.println("Error: " + e.getMessage());
-       } finally {
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
-       }
+        compileCode();
 
         System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
         System.out.println("Correct: " + currentExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString()));
@@ -118,4 +104,15 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     }
 
+    private void compileCode() {
+        try {
+            RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
+            RuntimeUtil.compile(currentExercise);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
+        }
+    }
 }

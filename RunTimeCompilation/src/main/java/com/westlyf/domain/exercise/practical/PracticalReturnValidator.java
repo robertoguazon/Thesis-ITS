@@ -14,8 +14,20 @@ public class PracticalReturnValidator {
     protected StringProperty expectedReturn = new SimpleStringProperty();
     protected ArrayList<InputParameter> inputs = new ArrayList<>();
 
-    public PracticalReturnValidator() {
+    public PracticalReturnValidator() {}
+    public PracticalReturnValidator(String expectedReturn, ArrayList<InputParameterSerializable> inputsSerializable) {
+        ArrayList<InputParameter> inputs = new ArrayList();
 
+        for (int i = 0; i < inputsSerializable.size(); i++) {
+            inputs.add(new InputParameter(inputsSerializable.get(i)));
+        }
+
+        this.expectedReturn.set(expectedReturn);
+        this.inputs = inputs;
+    }
+
+    public PracticalReturnValidator(PracticalReturnValidatorSerializable practicalReturnValidatorSerializable) {
+        this(practicalReturnValidatorSerializable.getExpectedReturn(), practicalReturnValidatorSerializable.getInputs());
     }
 
     public void addInput(String input, DataType inputType) {
@@ -66,6 +78,10 @@ public class PracticalReturnValidator {
 
     public String getExpectedReturn() {
         return this.expectedReturn.get();
+    }
+
+    public ArrayList<InputParameter> getInputs() {
+        return this.inputs;
     }
 
 

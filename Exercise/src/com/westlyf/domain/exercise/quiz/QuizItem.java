@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.awt.*;
@@ -24,6 +25,7 @@ public class QuizItem implements Serializable {
     private IntegerProperty points = new SimpleIntegerProperty();
     private IntegerProperty pointsPerCorrect = new SimpleIntegerProperty(1);
     private ArrayList<String> answers = new ArrayList<>();
+    private StringProperty explanation = new SimpleStringProperty();
 
     //radio button by default
     private QuizType type = QuizType.RADIOBUTTON;
@@ -35,13 +37,53 @@ public class QuizItem implements Serializable {
 
     public QuizItem() {}
 
+    //TODO check if the evaluation of answers are efficient
+    public boolean isCorrect() {
+        return isCorrect(this.answers);
+    }
+
+    //TODO - check if efficient
+    public boolean isCorrect(ArrayList<String> answers) {
+
+        switch (type) {
+            case TEXTFIELD:
+                String answer = answers.get(0).trim().toLowerCase();
+                for (int i = 0; i < validAnswers.size(); i++) {
+                    if (answer.equals(validAnswers.get(i).trim().toLowerCase())) {
+                        return true;
+                    }
+                }
+                return false;
+
+            case CHECKBOX:
+            case RADIOBUTTON:
+                if (answers.size() != validAnswers.size()) {
+                    return false;
+                }
+                for (int i = 0; i < validAnswers.size(); i++) {
+                    if (!answers.contains(validAnswers.get(i))) {
+                        return false;
+                    }
+                }
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+
+
     public QuizItem(QuizItemSerializable quizItemsSerializable) {
         this.question.set(quizItemsSerializable.getQuestion());
-        this.choices = quizItemsSerializable.getChoices();
-        this.validAnswers = quizItemsSerializable.getValidAnswers();
         this.points.set(quizItemsSerializable.getPoints());
         this.pointsPerCorrect.set(quizItemsSerializable.getPointsPerCorrect());
+        this.type = quizItemsSerializable.getType();
+
+        this.choices = quizItemsSerializable.getChoices();
+        this.validAnswers = quizItemsSerializable.getValidAnswers();
         this.answers = quizItemsSerializable.getAnswers();
+        this.explanation.set(quizItemsSerializable.getExplanation());
     }
 
     public boolean isValidMaker() {
@@ -79,6 +121,18 @@ public class QuizItem implements Serializable {
                 "\tpoints: " + ((points == null) ? "empty" : points.get());
     }
 
+    public String getExplanation() {
+        return explanation.get();
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation.set(explanation);
+    }
+
+    public StringProperty explanationProperty() {
+        return explanation;
+    }
+
     public String getQuestion() {
         return question.get();
     }
@@ -91,11 +145,11 @@ public class QuizItem implements Serializable {
         this.question.set(question);
     }
 
+    /* TODO - delete, not sure if oneAnswer is needed - just in case
     public boolean getOneAnswer() {
         return oneAnswer.get();
     }
 
-    //B not sure if oneAnswer is needed - just in case
     public BooleanProperty oneAnswerProperty() {
         return oneAnswer;
     }
@@ -108,31 +162,7 @@ public class QuizItem implements Serializable {
             this.type = QuizType.CHECKBOX;
         }
     }
-
-    //B not checked
-    public boolean isCorrect(ArrayList<String> answers) {
-
-        points.set(0);
-        for (int i = 0; i < answers.size(); i++) {
-
-            boolean isFound = false;
-            for (int j = 0; j < validAnswers.size(); j++) {
-
-                if (answers.get(i).equals(validAnswers.get(j))) {
-                    isFound = true;
-                    break;
-                }
-            }
-
-            if (!isFound) {
-                points.set(0);
-                return false;
-            }
-        }
-
-        points.add(getPointsPerCorrect());
-        return true;
-    }
+    */
 
     public void setPointsPerCorrect (int value) {
         this.pointsPerCorrect.set(value);
@@ -225,8 +255,16 @@ public class QuizItem implements Serializable {
                     box.getChildren().add(choice);
 
                 }
-
                 break;
+            case TEXTFIELD:
+                TextField blankTextField = new TextField();
+                blankTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    answers.clear();
+                    answers.add(newValue);
+                });
+                box.getChildren().add(blankTextField);
+                break;
+
             default:
                 break;
         }
@@ -329,7 +367,8 @@ public class QuizItem implements Serializable {
                 validAnswersString +
                 answersString +
                 "\tpoints per correct: " + pointsPerCorrect.get() + "\n" +
-                "\tpoints: " + points.get() + "\n";
+                "\tpoints: " + points.get() + "\n" +
+                "\texplanation: " + explanation.get();
     }
 
 }

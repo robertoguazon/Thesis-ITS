@@ -19,10 +19,18 @@ import java.util.ArrayList;
  */
 public class QuizExercise extends Exercise implements Serializable {
 
-    private ArrayList<QuizItem> quizItems = new ArrayList();
+    protected ArrayList<QuizItem> quizItems = new ArrayList();
 
     public QuizExercise() {
         super();
+    }
+
+    public QuizExercise(QuizExerciseSerializable quizExerciseSerializable) {
+        super();
+        ArrayList<QuizItemSerializable> quizItemSerializables = quizExerciseSerializable.getQuizItems();
+        for (int i = 0; i < quizItemSerializables.size(); i++) {
+            quizItems.add(new QuizItem(quizItemSerializables.get(i)));
+        }
     }
 
     public boolean addItem(QuizType type, String question, ArrayList<String>choices, ArrayList<String> validAnswers) {
@@ -154,4 +162,26 @@ public class QuizExercise extends Exercise implements Serializable {
         return error + n + " errors";
     }
 
+    public void copy(QuizExercise quizExercise) {
+        super.copy(quizExercise);
+
+        this.quizItems = quizExercise.getQuizItems();
+    }
+
+    public QuizExercise clone() {
+        QuizExercise clone = new QuizExercise();
+        clone.copy(this);
+        return clone;
+    }
+
+    public int evaluate() {
+        int score = 0;
+        for (int i = 0; i < quizItems.size(); i++) {
+            if (quizItems.get(i).isCorrect()) {
+                score++;
+            }
+        }
+
+        return score;
+    }
 }

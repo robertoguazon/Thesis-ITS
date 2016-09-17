@@ -18,7 +18,8 @@ public class Database {
     public static final int
         USER = 1,
         LESSON = 2,
-        EXERCISE = 3;
+        EXERCISE = 3,
+        EXAM = 4;
 
     public static byte[] serialize(Serializable object) {
         ByteArrayOutputStream baos;
@@ -73,6 +74,8 @@ public class Database {
             case EXERCISE:
                 conn = DatabaseConnection.getExerciseConn();
                 break;
+            case EXAM:
+                conn = DatabaseConnection.getExamConn();
         }
         Statement stmt = null;
 

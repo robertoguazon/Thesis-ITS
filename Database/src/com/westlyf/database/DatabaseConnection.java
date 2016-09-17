@@ -12,14 +12,17 @@ public class DatabaseConnection {
     public static Connection lessonConn = null;
     public static Connection userConn = null;
     public static Connection exerciseConn = null;
+    public static Connection examConn = null;
 
     public static final String defaultUserPath = "jdbc:sqlite:resources/database/user.db";
     public static final String defautLessonPath = "jdbc:sqlite:resources/database/lesson.db";
     public static final String defaultExercisePath = "jdbc:sqlite:resources/database/exercise.db";
+    public static final String defaultExamPath = "jdbc:sqlite:resources/database/exam.db";
 
     public static Connection connectUser() {return connectUser(defaultUserPath);}
     public static Connection connectLesson() {return connectLesson(defautLessonPath);}
     public static Connection connectExercise() {return connectExercise(defaultExercisePath); }
+    public static Connection connectExam() {return connectExam(defaultExamPath); }
 
     private static Connection connect(String url, Connection conn) {
         try {
@@ -40,6 +43,8 @@ public class DatabaseConnection {
     }
 
     public static Connection connectExercise(String url) {return connect(url, exerciseConn); }
+
+    public static Connection connectExam(String url) {return connect(url, examConn); }
 
     public static Connection getUserConnection() {
         try {
@@ -80,5 +85,17 @@ public class DatabaseConnection {
         return exerciseConn;
     }
 
+    public static Connection getExamConn() {
+        try {
+            if (examConn != null && !examConn.isClosed()) {
+                return examConn;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        examConn = connectExam();
+        return examConn;
+    }
     //TODO
 }
