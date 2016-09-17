@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+   <children>
+      <HBox alignment="TOP_CENTER">
+         <children>
+            <Label text="Settings &amp; Preferences" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../resources/images/ic_settings_48px-128.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Default Root Container Width : " />
+            <TextField />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Default Root Container Height : " />
+            <TextField />
+         </children>
+      </HBox>
+      <Separator>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </Separator>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Background Image : " />
+            <ComboBox promptText="-image-" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Alignment Guides Color : " />
+            <ComboBox promptText="-color-" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Drop and Parent Ring Color : " />
+            <ComboBox promptText="-color-" />
+         </children>
+      </HBox>
+      <Separator>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Separator>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Theme : " />
+            <ComboBox promptText="Default Theme" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Default View Displayed in Library : " />
+            <ComboBox promptText="View as Sections" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Default Information Displayed in Hierarchy : " />
+            <ComboBox promptText="Info" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="CSS Analyser Columns Order : " />
+            <ComboBox promptText="&quot;Defaults&quot; Column First" />
+         </children>
+      </HBox>
+      <Separator />
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Recent Items : " />
+            <ComboBox promptText="15" />
+         </children>
+      </HBox>
+      <Separator />
+      <HBox alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Reset to Default Values" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
