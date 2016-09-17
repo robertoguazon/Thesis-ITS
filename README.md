@@ -1,5 +1,5 @@
 #Thesis-ITS
--Read the [Wiki](https://github.com/robertoguazon/Thesis-ITS/wiki) for the latest updates
+_Read the [Wiki](https://github.com/robertoguazon/Thesis-ITS/wiki) for the latest updates_
 
 libraries for each module:
    * Agent
