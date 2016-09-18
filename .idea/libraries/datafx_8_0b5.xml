@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="datafx-8.0b5">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/datafx-8.0b5/datafx-core-8.0b5.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/datafx-8.0b5/datafx-flow-8.0b5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/DataFX/datafx-core-8.0b5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/DataFX/datafx-flow-8.0b5.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/datafx-8.0b5/datafx-core-8.0b5-javadoc.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/datafx-8.0b5/datafx-flow-8.0b5-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/DataFX/datafx-core-8.0b5-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/DataFX/datafx-flow-8.0b5-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/datafx-8.0b5/datafx-core-8.0b5-sources.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/datafx-8.0b5/datafx-flow-8.0b5-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/DataFX/datafx-core-8.0b5-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/DataFX/datafx-flow-8.0b5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

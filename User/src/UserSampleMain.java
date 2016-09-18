@@ -2,7 +2,6 @@ import com.sun.org.apache.xerces.internal.dom.NamedNodeMapImpl;
 import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
-import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.lesson.Level;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;

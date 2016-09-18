@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="opencv-310">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/opencv-310/opencv-310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/opencv/opencv-310.jar!/" />
     </CLASSES>
     <JAVADOC />
     <NATIVE>
-      <root url="file://$PROJECT_DIR$/../Thesis libraries/opencv-310/x64" />
+      <root url="file://$PROJECT_DIR$/lib/opencv" />
     </NATIVE>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../Thesis libraries/opencv-310/opencv-310.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/opencv/opencv-310.jar!/" />
     </SOURCES>
   </library>
 </component>
