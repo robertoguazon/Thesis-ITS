@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane>
+         <children>
+            <Label text="Insert Title Here">
+               <graphic>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/apple_75x75.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" layoutY="55.0" text="Insert Subtitle Here">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </AnchorPane>
+      <HBox alignment="CENTER">
+         <children>
+            <TextArea editable="false" text="Software Information:&#10;&#10;&#10;Features:&#10;&#10;&#10;Developers:&#10;Borais, Alexavier&#10;Francisco, Yves Rupert&#10;Guazon, John Robert&#10;Mabasa, Ryan Christopher" wrapText="true" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT">
+         <children>
+            <Label text="\@Copyright 2016" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>
