@@ -1,7 +1,4 @@
-import com.westlyf.database.DatabaseConnection;
-import com.westlyf.database.ExamDatabase;
-import com.westlyf.database.ExerciseDatabase;
-import com.westlyf.database.LessonDatabase;
+import com.westlyf.database.*;
 import com.westlyf.domain.exercise.Exercise;
 import com.westlyf.domain.exercise.practical.DataType;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
@@ -29,6 +26,13 @@ public class DatabaseMain {
     }
 
     private static void test() {
+        ExerciseDatabase.createQuizExerciseTable();
+        ExerciseDatabase.createPracticalExerciseTable();
+        LessonDatabase.createTextLessonTable();
+        LessonDatabase.createVideoLessonTable();
+        ExamDatabase.createExamTable();
+        UserDatabase.createUsersDatabase();
+
         Connection user = DatabaseConnection.getUserConnection();
         Connection lesson = DatabaseConnection.getLessonConn();
         Connection exercise = DatabaseConnection.getExerciseConn();
@@ -39,6 +43,7 @@ public class DatabaseMain {
         System.out.println("exerciseDB: " + exercise);
         System.out.println("exam: " + exercise);
 
+        testUser();
         testPush();
         testPull();
 
@@ -49,6 +54,17 @@ public class DatabaseMain {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void testUser() {
+        String username = "user";
+        String password = "pass123";
+        String name = "Hello World";
+        String school = "UST";
+        int age = 18;
+        String sex = "male";
+        String yearLevel = "4th year";
+        UserDatabase.addNewProfile(1, 1, 1, username, password, name, age, sex, school, yearLevel, null);
     }
 
     private static void testPush() {
