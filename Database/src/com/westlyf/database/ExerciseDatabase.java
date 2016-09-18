@@ -1,14 +1,13 @@
 package com.westlyf.database;
 
+import com.westlyf.domain.exercise.mix.Using;
+import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.*;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizItemSerializable;
-import com.westlyf.domain.lesson.TextLesson;
-import com.westlyf.domain.lesson.VideoLesson;
 import com.westlyf.domain.util.LessonUtil;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,6 +56,22 @@ public class ExerciseDatabase {
                     "explanation TEXT," +
 
                     "practicalType BLOB NOT NULL" +
+                    ")",
+            CREATE_EXERCISE_VIDEO_PRACTICAL_TABLE = "CREATE TABLE IF NOT EXISTS video_practical_exercise(" +
+                    "lid TEXT NOT NULL UNIQUE," +
+                    "title TEXT PRIMARY KEY NOT NULL," +
+                    "tags TEXT NOT NULL," +
+
+                    "totalItems INT NOT NULL," +
+                    "totalScore INT NOT NULL," +
+
+                    "videoLessonTitle TEXT," +
+                    "videoLessonId TEXT," +
+                    "practicalExerciseTitle TEXT," +
+                    "practicalExerciseId TEXT," +
+
+                    "videoLessonUsing BLOB NOT NULL," +
+                    "practicalExerciseUsing BLOB NOT NULL" +
                     ")";
 
     /**
@@ -70,7 +85,14 @@ public class ExerciseDatabase {
             INSERT_PRACTICAL_EXERCISE = "INSERT INTO " +
                     "practical_exercise(lid,title,tags, totalItems,totalScore, instructions,code,className,methodName, " +
                     "printValidator,mustMatch, returnValidators,returnType,parametersTypes,explanation, practicalType) VALUES " +
-                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?,?, ?)";
+                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?,?, ?)",
+            INSERT_VIDEO_PRACTICAL_EXERCISE = "INSERT INTO " +
+                    "video_practical_exercise(" +
+                    "lid,title,tags, totalItems,totalScore,  " +
+                    "videoLessonTitle, videoLessonId," +
+                    "practicalExerciseTitle, practicalExerciseId," +
+                    "videoLessonUsing, practicalExerciseUsing) VALUES " +
+                    "(?,?,?,?,?, ?,?, ?,?, ?,?)";
 
     /**
      * String statements for pulling exercises from sqlite
@@ -84,7 +106,14 @@ public class ExerciseDatabase {
             GET_PRACTICAL_EXERCISE_USING_ID = "SELECT * FROM practical_exercise where lid = ?",
             GET_PRACTICAL_EXERCISE_USING_TITLE = "SELECT * FROM practical_exercise where title = ?",
             GET_PRACTICAL_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM practical_exercise WHERE tags = ?",
-            GET_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM practical_exercise WHERE tags LIKE ?";
+            GET_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM practical_exercise WHERE tags LIKE ?",
+
+            GET_VIDEO_PRACTICAL_EXERCISE_USING_ID = "SELECT * FROM video_practical_exercise where lid = ?",
+            GET_VIDEO_PRACTICAL_EXERCISE_USING_TITLE = "SELECT * FROM video_practical_exercise where title = ?",
+            GET_VIDEO_PRACTICAL_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM video_practical_exercise WHERE tags = ?",
+            GET_VIDEO_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM video_practical_exercise WHERE tags LIKE ?";
+
+
 
 
     public static int createQuizExerciseTable() {
@@ -93,6 +122,10 @@ public class ExerciseDatabase {
 
     public static int createPracticalExerciseTable() {
         return Database.createTable(Database.EXERCISE,CREATE_EXERCISE_PRACTICAL_TABLE);
+    }
+
+    public static int createVideoPracticalExerciseTable() {
+        return Database.createTable(Database.EXERCISE,CREATE_EXERCISE_VIDEO_PRACTICAL_TABLE);
     }
 
     public static int storeData(QuizExercise quizExercise) {
@@ -289,6 +322,86 @@ public class ExerciseDatabase {
         return 0;
     }
 
+    public static int storeData(VideoPracticalExercise videoPracticalExercise) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return -1;
+        }
+
+        PreparedStatement ps = null;
+        String lid = videoPracticalExercise.getLessonId();
+        String title = videoPracticalExercise.getTitle();
+        String tags = videoPracticalExercise.getTagsString();
+        int totalItems = videoPracticalExercise.getTotalItems();
+        int totalScore = videoPracticalExercise.getTotalScore();
+
+        String videoLessonTitle = videoPracticalExercise.getVideoLessonTitle();
+        String videoLessonId = videoPracticalExercise.getVideoLessonId();
+        String practicalExerciseTitle = videoPracticalExercise.getPracticalExerciseTitle();
+        String practicalExerciseId = videoPracticalExercise.getPracticalExerciseId();
+        Using videoLessonUsing = videoPracticalExercise.getVideoLessonUsing();
+        Using practicalExerciseUsing = videoPracticalExercise.getPracticalExerciseUsing();
+
+        try {
+
+            ps = exerciseConn.prepareStatement(INSERT_VIDEO_PRACTICAL_EXERCISE);
+
+            ps.setString(1,lid);
+            ps.setString(2,title);
+            ps.setString(3,tags);
+
+            ps.setInt(4,totalItems);
+            ps.setInt(5,totalScore);
+
+            ps.setString(6,videoLessonTitle);
+            ps.setString(7,videoLessonId);
+            ps.setString(8,practicalExerciseTitle);
+            ps.setString(9,practicalExerciseId);
+            ps.setBytes(10,Database.serialize(videoLessonUsing));
+            ps.setBytes(11,Database.serialize(practicalExerciseUsing));
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+
+            if (e.getErrorCode() == SQLiteError.SQLITE_ERROR) {
+                if (ps == null) {
+                    System.out.println("Video practical exercise table does not exist...Creating table...");
+                    createVideoPracticalExerciseTable();
+                }
+
+                storeData(videoPracticalExercise);
+            } else {
+                /*
+                TODO
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+                alert.show();
+                */
+                e.printStackTrace();
+            }
+
+            return e.getErrorCode();
+
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (exerciseConn != null) {
+                    exerciseConn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println(e.getErrorCode());
+            }
+        }
+
+        return 0;
+    }
+
     public static QuizExercise getQuizExercise(String param, final String STATEMENT) {
         Connection exerciseConn = DatabaseConnection.getExerciseConn();
 
@@ -441,6 +554,68 @@ public class ExerciseDatabase {
         return practicalExercise;
     }
 
+    public static VideoPracticalExercise getVideoPracticalExercise(String param, final String STATEMENT) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        VideoPracticalExercise videoPracticalExercise = null;
+        PracticalType practicalType = null;
+        try {
+            ps = exerciseConn.prepareStatement(STATEMENT);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                videoPracticalExercise = new VideoPracticalExercise();
+
+
+                videoPracticalExercise.setID(rs.getString("lid"));
+                videoPracticalExercise.setTitle(rs.getString("title"));
+                videoPracticalExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                videoPracticalExercise.setTotalItems(rs.getInt("totalItems"));
+                videoPracticalExercise.setTotalScore(rs.getInt("totalScore"));
+
+                videoPracticalExercise.setVideoLessonId(rs.getString("videoLessonId"));
+                videoPracticalExercise.setVideoLessonTitle(rs.getString("videoLessonTitle"));
+                videoPracticalExercise.setPracticalExerciseId(rs.getString("practicalExerciseId"));
+                videoPracticalExercise.setPracticalExerciseTitle(rs.getString("practicalExerciseTitle"));
+
+                videoPracticalExercise.setVideoLessonUsing((Using)Database.deserialize(rs.getBytes("videoLessonUsing")));
+                videoPracticalExercise.setPracticalExerciseUsing((Using)Database.deserialize(rs.getBytes("practicalExerciseUsing")));
+
+            } else {
+                System.err.println("No exercises match with param: " + param);
+                return null;
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return videoPracticalExercise;
+    }
 
     public static QuizExercise getQuizExerciseUsingLID(String lid) {
         return getQuizExercise(lid,GET_QUIZ_EXERCISE_USING_ID);
@@ -450,12 +625,20 @@ public class ExerciseDatabase {
         return getPracticalExercise(lid,GET_PRACTICAL_EXERCISE_USING_ID);
     }
 
+    public static VideoPracticalExercise getVideoPracticalExerciseUsingLID(String lid) {
+        return getVideoPracticalExercise(lid,GET_VIDEO_PRACTICAL_EXERCISE_USING_ID);
+    }
+
     public static QuizExercise getQuizExerciseUsingTitle(String title) {
         return getQuizExercise(title,GET_QUIZ_EXERCISE_USING_TITLE);
     }
 
     public static PracticalExercise getPracticalExerciseUsingTitle(String title) {
         return getPracticalExercise(title,GET_PRACTICAL_EXERCISE_USING_TITLE);
+    }
+
+    public static VideoPracticalExercise getVideoPracticalExerciseUsingTitle(String title) {
+        return getVideoPracticalExercise(title,GET_VIDEO_PRACTICAL_EXERCISE_USING_TITLE);
     }
 
     public static ArrayList<QuizExercise> getQuizExercisesUsingTagsExactly(String tags) {
@@ -613,6 +796,70 @@ public class ExerciseDatabase {
         }
 
         return practicalExercises;
+    }
+
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercisesUsingTagsExactly(String tags) {
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<VideoPracticalExercise> videoPracticalExercises = new ArrayList<>();
+        try {
+            ps = exerciseConn.prepareStatement(GET_VIDEO_PRACTICAL_EXERCISES_USING_TAGS_EXACTLY);
+            ps.setString(1,tags);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No exercises match with param: " + tags);
+                return null;
+            }
+
+            while (rs.next()) {
+                VideoPracticalExercise videoPracticalExercise = new VideoPracticalExercise();
+
+                videoPracticalExercise.setID(rs.getString("lid"));
+                videoPracticalExercise.setTitle(rs.getString("title"));
+                videoPracticalExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                videoPracticalExercise.setTotalItems(rs.getInt("totalItems"));
+                videoPracticalExercise.setTotalScore(rs.getInt("totalScore"));
+
+                videoPracticalExercise.setVideoLessonId(rs.getString("videoLessonId"));
+                videoPracticalExercise.setVideoLessonTitle(rs.getString("videoLessonTitle"));
+                videoPracticalExercise.setPracticalExerciseId(rs.getString("practicalExerciseId"));
+                videoPracticalExercise.setPracticalExerciseTitle(rs.getString("practicalExerciseTitle"));
+
+                videoPracticalExercise.setVideoLessonUsing((Using)Database.deserialize(rs.getBytes("videoLessonUsing")));
+                videoPracticalExercise.setPracticalExerciseUsing((Using)Database.deserialize(rs.getBytes("practicalExerciseUsing")));
+
+                videoPracticalExercises.add(videoPracticalExercise);
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return videoPracticalExercises;
     }
 
     //tags contains
@@ -829,6 +1076,98 @@ public class ExerciseDatabase {
 
     public static ArrayList<PracticalExercise> getPracticalExercisesUsingTagsContains(String ... tags) {
         return getPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercisesUsingTagsContains(ArrayList<String> tags) {
+        if (tags == null || tags.isEmpty()) return null;
+
+        Connection exerciseConn = DatabaseConnection.getExerciseConn();
+
+        if (exerciseConn == null) {
+            System.err.println("Error connecting to exercise database...");
+
+            return null;
+        }
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<VideoPracticalExercise> videoPracticalExercises = new ArrayList<>();
+        String param = "%" + tags.get(0) + "%";
+        try {
+            ps = exerciseConn.prepareStatement(GET_VIDEO_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS);
+            ps.setString(1,param);
+            rs = ps.executeQuery();
+
+            if (!rs.isBeforeFirst()) {
+                System.err.println("No video practical exercises contains with param: " + param);
+                return null;
+            }
+
+            while (rs.next()) {
+                VideoPracticalExercise videoPracticalExercise = new VideoPracticalExercise();
+
+                videoPracticalExercise.setID(rs.getString("lid"));
+                videoPracticalExercise.setTitle(rs.getString("title"));
+                videoPracticalExercise.setTags(LessonUtil.tagsToArrayListStringProperty(rs.getString("tags")));
+
+                videoPracticalExercise.setTotalItems(rs.getInt("totalItems"));
+                videoPracticalExercise.setTotalScore(rs.getInt("totalScore"));
+
+                videoPracticalExercise.setVideoLessonId(rs.getString("videoLessonId"));
+                videoPracticalExercise.setVideoLessonTitle(rs.getString("videoLessonTitle"));
+                videoPracticalExercise.setPracticalExerciseId(rs.getString("practicalExerciseId"));
+                videoPracticalExercise.setPracticalExerciseTitle(rs.getString("practicalExerciseTitle"));
+
+                videoPracticalExercise.setVideoLessonUsing((Using)Database.deserialize(rs.getBytes("videoLessonUsing")));
+                videoPracticalExercise.setPracticalExerciseUsing((Using)Database.deserialize(rs.getBytes("practicalExerciseUsing")));
+
+                videoPracticalExercises.add(videoPracticalExercise);
+            }
+
+            //check if every matches contains all the other tags
+
+            for (int i = 0; i < videoPracticalExercises.size(); i++) {
+                for (int j = 1; j < tags.size(); j++) {
+                    VideoPracticalExercise match = videoPracticalExercises.get(i);
+                    if (!match.getTagsString().contains(tags.get(j))) {
+                        videoPracticalExercises.remove(match);
+                        i--;
+                        break;
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+
+            /* TODO
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + ": " + e.getMessage());
+            alert.show();
+            */
+            e.printStackTrace();
+        } finally {
+
+            try {
+                ps.close();
+                exerciseConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return videoPracticalExercises;
+    }
+
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercisesUsingTagsContains(String tags) {
+        return getVideoPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercisesUsingPropertyTagsContains(ArrayList<StringProperty> tags) {
+        return getVideoPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
+    }
+
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercisesUsingTagsContains(String ... tags) {
+        return getVideoPracticalExercisesUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
 
 }

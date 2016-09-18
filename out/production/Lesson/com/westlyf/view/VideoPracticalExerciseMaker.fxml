@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.VideoPracticalExerciseMakerController">
+    <center>
+        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <content>
+                <VBox alignment="CENTER" prefHeight="454.0" prefWidth="628.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="628.0" spacing="10.0">
+                            <children>
+                                <Label text="Title:" />
+                                <TextField fx:id="titleTextField" />
+                            </children>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </HBox>
+                        <VBox prefHeight="84.0" prefWidth="628.0">
+                            <children>
+                                <Label text="Tags" />
+                                <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTag" text="Add Tag" />
+                                <FlowPane fx:id="tagFlowPane" prefHeight="57.0" prefWidth="628.0" />
+                            </children>
+                        </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Separator prefWidth="200.0" />
+                        <VBox>
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label text="Video Lesson Using" />
+                                    <ComboBox fx:id="videoLessonUsingComboBox" prefWidth="150.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="628.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Video Lesson Title:" />
+                                    <TextField fx:id="videoLessonTitleTextField" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="37.0" prefWidth="628.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Video Lesson Id:" />
+                                    <TextField fx:id="videoLessonIdTextField" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Label text="Practical Exercise Using" />
+                                    <ComboBox fx:id="practicalExerciseUsingComboBox" prefWidth="150.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="628.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Practical Exercise Title:" />
+                                    <TextField fx:id="practicalExerciseTitleTextField" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="37.0" prefWidth="628.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Practical Exercise Id:" />
+                                    <TextField fx:id="practicalExerciseIdTextField" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Separator prefWidth="200.0" />
+                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" text="Create">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+   <top>
+      <Label text="VideoPracticalExerciseMaker" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>

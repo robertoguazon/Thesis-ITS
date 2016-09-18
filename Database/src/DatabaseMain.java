@@ -294,5 +294,23 @@ public class DatabaseMain {
         System.out.println(ExamDatabase.getExamsUsingTagsContains("exam"));
 
         System.out.println(ExerciseDatabase.getQuizExerciseUsingLID("lid494855960641737"));
+
+        System.out.println();
+        System.out.println("trying to load sample video practical using lid...");
+        System.out.println(ExerciseDatabase.getVideoPracticalExerciseUsingLID("lid49075321933783"));
+
+        System.out.println();
+        System.out.println("trying to load sample video practical using title...");
+        System.out.println(ExerciseDatabase.getVideoPracticalExerciseUsingTitle("Sample Video Practical"));
+
+        System.out.println();
+        System.out.println("trying to load sample video practical using tags exactly...");
+        System.out.println(ExerciseDatabase.getVideoPracticalExercisesUsingTagsExactly("practical,video,"));
+
+        System.out.println();
+        System.out.println("trying to load sample video practical using tags contains...");
+        System.out.println(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains("practical"));
+
+
     }
 }

@@ -1,5 +1,7 @@
 package com.westlyf.controller;
 
+import com.westlyf.database.LessonDatabase;
+import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
@@ -10,6 +12,7 @@ import com.westlyf.domain.lesson.VideoLesson;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -39,6 +42,9 @@ public class Controllers {
     private static PracticalReturnExerciseViewerController practicalReturnExerciseViewerController;
     private static Node practicalReturnExerciseViewerNode;
 
+
+    //makers
+
     private static LessonMakerController lessonMakerController;
     private static Node lessonMakerNode;
 
@@ -48,8 +54,8 @@ public class Controllers {
     private static PracticalExerciseMakerController practicalExerciseMakerController;
     private static Node practicalExerciseMakerNode;
 
-    //makers
-
+    private static VideoPracticalExerciseMakerController videoPracticalExerciseMakerController;
+    private static Node videoPracticalExerciseMakerNode;
 
     //TODO static methods for calling different controllers
 
@@ -81,6 +87,9 @@ public class Controllers {
 
             load(ControllerType.PRACTICAL_EXERCISE_MAKER, "../view/PracticalExerciseMaker.fxml");
             System.out.println(ControllerType.PRACTICAL_EXERCISE_MAKER + " loaded");
+
+            load(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER, "../view/VideoPracticalExerciseMaker.fxml");
+            System.out.println(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER + " loaded");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,6 +136,9 @@ public class Controllers {
                 practicalExerciseMakerNode = loader.load();
                 practicalExerciseMakerController = loader.getController();
                 break;
+            case VIDEO_PRACTICAL_EXERCISE_MAKER:
+                videoPracticalExerciseMakerNode = loader.load();
+                videoPracticalExerciseMakerController = loader.getController();
 
             default:
                 break;
@@ -162,6 +174,11 @@ public class Controllers {
             case PRACTICAL_RETURN_EXERCISE_VIEWER:
                 addToPane(parent,practicalReturnExerciseViewerNode);
                 break;
+            case VIDEO_PRACTICAL_EXERCISE_VIEWER:
+                Node videoPracticalExerciseNode = getNode(controllerType, lesson);
+                addToPane(parent, videoPracticalExerciseNode);
+                //TODO
+                break;
 
             //makers
             case LESSON_MAKER:
@@ -173,6 +190,8 @@ public class Controllers {
             case PRACTICAL_EXERCISE_MAKER:
                 addToPane(parent,practicalExerciseMakerNode);
                 break;
+            case VIDEO_PRACTICAL_EXERCISE_MAKER:
+                addToPane(parent,videoPracticalExerciseMakerNode);
 
             default:
                 break;
@@ -197,6 +216,23 @@ public class Controllers {
                 return practicalPrintExerciseViewerNode;
             case PRACTICAL_RETURN_EXERCISE_VIEWER:
                 return practicalReturnExerciseViewerNode;
+            case VIDEO_PRACTICAL_EXERCISE_VIEWER:
+                VideoPracticalExercise videoPracticalExercise = (VideoPracticalExercise) lesson;
+
+                //video lesson
+                Node vlNode = Controllers.getNode(ControllerType.VIDEO_LESSON_VIEWER, videoPracticalExercise.getVideoLesson());
+
+                //practical exercise
+                PracticalExercise practicalExercise = videoPracticalExercise.getPracticalExercise();
+                Node peNode = null;
+                if (practicalExercise instanceof PracticalPrintExercise) {
+                    peNode = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, practicalExercise);
+                } else if (practicalExercise instanceof PracticalReturnExercise) {
+                    peNode = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, practicalExercise);
+                }
+
+                return combine(vlNode,peNode);
+
 
             //makers
             case LESSON_MAKER:
@@ -205,6 +241,8 @@ public class Controllers {
                 return quizExerciseMakerNode;
             case PRACTICAL_EXERCISE_MAKER:
                 return practicalExerciseMakerNode;
+            case VIDEO_PRACTICAL_EXERCISE_MAKER:
+                return videoPracticalExerciseMakerNode;
 
             default:
                 return null;
@@ -258,5 +296,13 @@ public class Controllers {
 
         region.prefWidthProperty().bind(parent.widthProperty());
         region.prefHeightProperty().bind(parent.heightProperty());
+    }
+
+    private static Node combine(Node left, Node right) {
+        BorderPane borderPane = new BorderPane();
+        SplitPane splitPane = new SplitPane();
+        borderPane.setCenter(splitPane);
+        splitPane.getItems().addAll(left,right);
+        return borderPane;
     }
 }

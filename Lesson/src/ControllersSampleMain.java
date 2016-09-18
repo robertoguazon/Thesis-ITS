@@ -31,6 +31,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
+        testVideoPracticalExerciseViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -40,6 +41,7 @@ public class ControllersSampleMain extends Application {
         //testLessonMaker(primaryStage);
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
+        //testVideoPracticalExerciseMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -109,6 +111,20 @@ public class ControllersSampleMain extends Application {
 
     private void testPracticalExerciseMaker(Stage primaryStage) {
         Node node = Controllers.getNode(ControllerType.PRACTICAL_EXERCISE_MAKER);
+        Scene scene = new Scene((Parent)node);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void testVideoPracticalExerciseMaker(Stage primaryStage) {
+        Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER);
+        Scene scene = new Scene((Parent)node);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void testVideoPracticalExerciseViewer(Stage primaryStage) {
+        Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingLID("lid51204534921811"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
