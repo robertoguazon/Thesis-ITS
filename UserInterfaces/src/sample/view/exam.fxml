@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="142.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <Label text="Insert Title Here" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Slider blockIncrement="1.0" disable="true" majorTickUnit="10.0" max="60.0" minorTickCount="10" showTickLabels="true" showTickMarks="true" />
+                  <TextArea disable="true" text="-Add Question Text here-" />
+               </children>
+            </VBox>
+            <StackPane prefHeight="150.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" text="Button" />
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" text="Button" />
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="400.0" text="Button" />
+            <Hyperlink prefHeight="50.0" prefWidth="400.0" text="Hyperlink">
+               <graphic>
+                  <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE">
+                    <points>
+                      <Double fx:value="-50.0" />
+                      <Double fx:value="40.0" />
+                      <Double fx:value="50.0" />
+                      <Double fx:value="40.0" />
+                      <Double fx:value="0.0" />
+                      <Double fx:value="-60.0" />
+                    </points>
+                  </Polygon>
+               </graphic>
+            </Hyperlink>
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="144.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="HINT">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </FlowPane>
+   </right>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Label" />
+            <Slider blockIncrement="1.0" majorTickUnit="1.0" max="25.0" minorTickCount="0" prefHeight="38.0" prefWidth="557.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
