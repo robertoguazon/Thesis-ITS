@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/controller/Controllers.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/controller/Controllers.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/Controllers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseViewer.fxml" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseViewer.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/PracticalPrintExerciseViewer.fxml" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/PracticalPrintExerciseViewer.fxml" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -338,7 +332,7 @@
       <recent name="C:\Users\robertoguazon\Documents\Codes\Java\Thesis-ITS-1\Data\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FER_SVMSampleMain">
+  <component name="RunManager" selected="Application.UserInterfaces_Main">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -857,21 +851,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="FER_SVMSampleMain" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="sample.SVMSampleMain" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="FacialExpressionRecognition" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="UserInterfaces_Main" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
@@ -917,7 +896,7 @@
       <envs />
       <method />
     </configuration>
-    <list size="18">
+    <list size="17">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="Application.RuntimeCompilation_Main" />
       <item index="2" class="java.lang.String" itemvalue="Application.RuntimeCompilation_PracticalExerciseMakerMain" />
@@ -932,10 +911,9 @@
       <item index="11" class="java.lang.String" itemvalue="Application.Database_DatabaseMain" />
       <item index="12" class="java.lang.String" itemvalue="Application.FaceDetection_FaceDetectionMain" />
       <item index="13" class="java.lang.String" itemvalue="Application.FacialFeature_FacialFeaturesDetection" />
-      <item index="14" class="java.lang.String" itemvalue="Application.FER_SVMSampleMain" />
-      <item index="15" class="java.lang.String" itemvalue="Application.UserInterfaces_Main" />
-      <item index="16" class="java.lang.String" itemvalue="Application.Data_SimpleMain" />
-      <item index="17" class="java.lang.String" itemvalue="Application.User_UserSampleMain" />
+      <item index="14" class="java.lang.String" itemvalue="Application.UserInterfaces_Main" />
+      <item index="15" class="java.lang.String" itemvalue="Application.Data_SimpleMain" />
+      <item index="16" class="java.lang.String" itemvalue="Application.User_UserSampleMain" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
