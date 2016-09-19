@@ -142,7 +142,7 @@
    <bottom>
       <HBox alignment="CENTER" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backToMenu" mnemonicParsing="false" text="Back to Menu">
+            <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#createNewProfile" text="Back to Menu">
                <font>
                   <Font size="14.0" />
                </font>

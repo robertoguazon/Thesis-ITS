@@ -44,7 +44,7 @@ public class DatabaseMain {
         System.out.println("exerciseDB: " + exercise);
         System.out.println("exam: " + exercise);
 
-        //testUser();
+        testUser();
         testPush();
         testPull();
 

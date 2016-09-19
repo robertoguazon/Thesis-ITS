@@ -1,5 +1,7 @@
 package com.westlyf.database;
 
+import sample.model.Users;
+
 import java.sql.*;
 import java.util.Calendar;
 
@@ -19,20 +21,21 @@ public class UserDatabase {
             "username TEXT NOT NULL UNIQUE, " +
             "password TEXT NOT NULL, " +
             "name TEXT NOT NULL, " +
-            "age INT NOT NULL, " +
+            "age INTEGER NOT NULL, " +
             "sex TEXT NOT NULL," +
             "school TEXT NOT NULL, " +
             "yearLevel TEXT NOT NULL, " +
             "profilePicturePath TEXT, " +
             "dateModified DATETIME NOT NULL, " +
-            "dateCreated DATETIME NOT NULL, " +
-            "FOREIGN KEY (currentLessonId) REFERENCES text_lesson(id), " +
-            "FOREIGN KEY (currentModuleId) REFERENCES Modules(id), " +
-            "FOREIGN KEY (currentExamId) REFERENCES exam(id)" +
+            "dateCreated DATETIME NOT NULL" +
+            //", " +
+            //"FOREIGN KEY (currentLessonId) REFERENCES text_lesson(id), " +
+            //"FOREIGN KEY (currentModuleId) REFERENCES Modules(id), " +
+            //"FOREIGN KEY (currentExamId) REFERENCES exam(id)" +
             ")";
     private static final String IS_USER_AVAILABLE = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-    private static final String ADD_NEW_PROFILE = "INSERT INTO Users(currentLessonId, currentModuleId, currentExamId, " +
+    private static final String ADD_NEW_PROFILE = "INSERT INTO users(currentLessonId, currentModuleId, currentExamId, " +
             "username, password, name, age, sex, school, yearLevel, profilePicturePath, dateModified, dateCreated) " +
             "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 
@@ -40,7 +43,7 @@ public class UserDatabase {
         return Database.createTable(Database.USER, UserDatabase.CREATE_USERS_TABLE);
     }
 
-    public static boolean isUserAvailable(String username, String password){
+    public static Users isUserAvailable(String username, String password){
         userConn = DatabaseConnection.getUserConnection();
         if(userConn != null){
             try {
@@ -49,14 +52,24 @@ public class UserDatabase {
                 preparedStatement.setString(2, password);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()){
-                    return true;
+                    Users user = new Users();
+                    user.setUsername(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setName(resultSet.getString("name"));
+                    user.setAge(resultSet.getInt("age"));
+                    user.setSex(resultSet.getString("sex"));
+                    user.setSchool(resultSet.getString("school"));
+                    user.setYearLevel(resultSet.getString("yearLevel"));
+                    user.setProfilePicturePath(resultSet.getString("profilePicturePath"));
+                    System.out.println("user retrieved: " + user);
+                    return user;
                 }
                 preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return false;
+        return null;
     }
 
     public static void addNewProfile(int currentLessonId, int currentModuleId, int currentExamId,
