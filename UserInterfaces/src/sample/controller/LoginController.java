@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.model.Users;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +45,8 @@ public class LoginController implements Initializable{
         Parent root;
         if (event.getSource() == loginButton){
             if (validateFields()){
-                if(UserDatabase.isUserAvailable(username.getText(), password.getText())){
+                Users user = UserDatabase.isUserAvailable(username.getText(), password.getText());
+                if(user != null){
                     stage = (Stage) loginButton.getScene().getWindow();
                     root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
                 }else {

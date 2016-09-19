@@ -9,7 +9,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox BorderPane.alignment="CENTER">
@@ -98,7 +97,7 @@
          <children>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
+                  <Hyperlink fx:id="settings" text="Settings">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -107,7 +106,7 @@
                         </ImageView>
                      </graphic>
                   </Hyperlink>
-                  <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
+                  <Hyperlink fx:id="about" text="About">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
