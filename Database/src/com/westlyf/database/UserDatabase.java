@@ -19,16 +19,17 @@ public class UserDatabase {
             "username TEXT NOT NULL UNIQUE, " +
             "password TEXT NOT NULL, " +
             "name TEXT NOT NULL, " +
-            "age INT NOT NULL, " +
+            "age INTEGER NOT NULL, " +
             "sex TEXT NOT NULL," +
             "school TEXT NOT NULL, " +
             "yearLevel TEXT NOT NULL, " +
             "profilePicturePath TEXT, " +
             "dateModified DATETIME NOT NULL, " +
-            "dateCreated DATETIME NOT NULL, " +
-            "FOREIGN KEY (currentLessonId) REFERENCES text_lesson(id), " +
-            "FOREIGN KEY (currentModuleId) REFERENCES Modules(id), " +
-            "FOREIGN KEY (currentExamId) REFERENCES exam(id)" +
+            "dateCreated DATETIME NOT NULL" +
+            //", " +
+            //"FOREIGN KEY (currentLessonId) REFERENCES text_lesson(id), " +
+            //"FOREIGN KEY (currentModuleId) REFERENCES Modules(id), " +
+            //"FOREIGN KEY (currentExamId) REFERENCES exam(id)" +
             ")";
     private static final String IS_USER_AVAILABLE = "SELECT * FROM users WHERE username = ? AND password = ?";
 
