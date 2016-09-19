@@ -302,7 +302,11 @@ public class Controllers {
         BorderPane borderPane = new BorderPane();
         SplitPane splitPane = new SplitPane();
         borderPane.setCenter(splitPane);
-        splitPane.getItems().addAll(left,right);
+
+        Pane leftPane = new Pane(left);
+        Pane rightPane = new Pane(right);
+
+        splitPane.getItems().addAll(leftPane,rightPane);
         return borderPane;
     }
 }
