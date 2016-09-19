@@ -21,7 +21,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../resources/images/apple.png" />
+                              <Image url="@../style/images/apple_gold.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -30,7 +30,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../resources/images/apple_gold.png" />
+                              <Image url="@../style/images/apple.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -39,7 +39,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../resources/images/arrow-up.png" />
+                              <Image url="@../style/images/arrow-up.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -48,7 +48,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../resources/images/arrow-down.png" />
+                              <Image url="@../style/images/arrow-down.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -63,7 +63,7 @@
          <children>
             <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../resources/images/apple_75x75.png" />
+                  <Image url="@../style/images/apple_75x75.png" />
                </image>
             </ImageView>
             <Label text="Insert Title Here" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -89,7 +89,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/images/ic_settings_48px-128.png" />
+                        <Image url="@../style/images/settings.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -98,7 +98,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/images/apple.png" />
+                        <Image url="@../style/images/info.png" />
                      </image>
                   </ImageView>
                </graphic>

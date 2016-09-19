@@ -15,7 +15,7 @@
                <graphic>
                   <ImageView pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/images/apple_75x75.png" />
+                        <Image url="@../style/images/apple_75x75.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -23,7 +23,7 @@
                   <Font size="38.0" />
                </font>
             </Label>
-            <Label layoutX="82.0" layoutY="62.0" text="Insert Subtitle Here">
+            <Label layoutX="80.0" layoutY="55.0" text="Insert Subtitle Here">
                <font>
                   <Font size="18.0" />
                </font>

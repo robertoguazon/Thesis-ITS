@@ -20,7 +20,7 @@
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/images/ic_settings_48px-128.png" />
+                        <Image url="@../style/images/settings.png" />
                      </image>
                   </ImageView>
                </graphic>

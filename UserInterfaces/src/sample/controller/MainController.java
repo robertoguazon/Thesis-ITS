@@ -32,8 +32,6 @@ public class MainController implements Initializable{
     private Hyperlink settings;
     @FXML
     private Hyperlink about;
-    @FXML
-    private Button backToMenu;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,11 +53,11 @@ public class MainController implements Initializable{
             root = FXMLLoader.load(getClass().getResource("../view/newprofile.fxml"));
         }else if (event.getSource() == importProfile){
             stage = (Stage)importProfile.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/LessonMain.fxml"));
-        }else{
-            stage = (Stage)backToMenu.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
-        }
+        }else if (event.getSource() == exportProfile){
+            stage = (Stage)exportProfile.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
+        }else {return;}
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -72,7 +70,7 @@ public class MainController implements Initializable{
             root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         }else if (event.getSource() == about){
             root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
-        }else {root = null;}
+        }else {return;}
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(settings.getScene().getWindow());

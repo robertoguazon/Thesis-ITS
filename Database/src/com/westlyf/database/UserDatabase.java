@@ -11,12 +11,11 @@ public class UserDatabase {
 
     private static Connection userConn;
 
-    private static final String CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS Users(" +
-            "userId INT AUTO_INCREMENT PRIMARY KEY NOT NULL, " +
-            "learningProfileId INT, " +
-            "currentLessonId INT, " +
-            "currentModuleId INT, " +
-            "currentExamId INT, " +
+    private static final String CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS users(" +
+            "userId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "currentModuleId INT NOT NULL, " +
+            "currentLessonId INT NOT NULL, " +
+            "currentExamId INT NOT NULL, " +
             "username TEXT NOT NULL UNIQUE, " +
             "password TEXT NOT NULL, " +
             "name TEXT NOT NULL, " +
@@ -25,19 +24,17 @@ public class UserDatabase {
             "school TEXT NOT NULL, " +
             "yearLevel TEXT NOT NULL, " +
             "profilePicturePath TEXT, " +
-            "diagnosticsGrade INT, " +
             "dateModified DATETIME NOT NULL, " +
             "dateCreated DATETIME NOT NULL, " +
-            "FOREIGN KEY (learningProfileId) REFERENCES learningProfile(id), " +
-            "FOREIGN KEY (currentLessonId) REFERENCES Lessons(id), " +
+            "FOREIGN KEY (currentLessonId) REFERENCES text_lesson(id), " +
             "FOREIGN KEY (currentModuleId) REFERENCES Modules(id), " +
-            "FOREIGN KEY (currentExamId) REFERENCES Exam(id)" +
+            "FOREIGN KEY (currentExamId) REFERENCES exam(id)" +
             ")";
-    private static final String IS_USER_AVAILABLE = "SELECT * FROM USERS WHERE username = ? AND password = ?";
+    private static final String IS_USER_AVAILABLE = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-    private static final String ADD_NEW_PROFILE = "INSERT INTO Users(learningProfileId, currentLessonId, currentModuleId, " +
-            "username, password, name, age, sex, school, yearLevel, profilePicturePath, diagnosticsGrade, dateModified, dateCreated) " +
-            "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String ADD_NEW_PROFILE = "INSERT INTO Users(currentLessonId, currentModuleId, currentExamId, " +
+            "username, password, name, age, sex, school, yearLevel, profilePicturePath, dateModified, dateCreated) " +
+            "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 
     public static int createUsersDatabase(){
         return Database.createTable(Database.USER, UserDatabase.CREATE_USERS_TABLE);
@@ -62,27 +59,24 @@ public class UserDatabase {
         return false;
     }
 
-    public static void addNewProfile(int learningProfileId, int currentLessonId, int currentModuleId,
+    public static void addNewProfile(int currentLessonId, int currentModuleId, int currentExamId,
                                      String username, String password, String name, int age, String sex,
-                                     String school, int yearLevel, String profilePicturePath, int diagnosticsGrade){
+                                     String school, String yearLevel, String profilePicturePath){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             try {
                 PreparedStatement preparedStatement = preparedStatement = userConn.prepareStatement(ADD_NEW_PROFILE);
-                preparedStatement.setInt(1, learningProfileId);
-                preparedStatement.setInt(2, currentLessonId);
-                preparedStatement.setInt(3, currentModuleId);
+                preparedStatement.setInt(1, currentLessonId);
+                preparedStatement.setInt(2, currentModuleId);
+                preparedStatement.setInt(3, currentExamId);
                 preparedStatement.setString(4, username);
                 preparedStatement.setString(5, password);
                 preparedStatement.setString(6, name);
                 preparedStatement.setInt(7, age);
                 preparedStatement.setString(8, sex);
                 preparedStatement.setString(9, school);
-                preparedStatement.setInt(10, yearLevel);
+                preparedStatement.setString(10, yearLevel);
                 preparedStatement.setString(11, profilePicturePath);
-                preparedStatement.setInt(12, diagnosticsGrade);
-                preparedStatement.setDate(13, (Date) Calendar.getInstance().getTime());;
-                preparedStatement.setDate(14, (Date) Calendar.getInstance().getTime());
                 preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
