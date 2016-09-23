@@ -9,6 +9,8 @@ import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -303,10 +305,18 @@ public class Controllers {
         SplitPane splitPane = new SplitPane();
         borderPane.setCenter(splitPane);
 
-        Pane leftPane = new Pane(left);
-        Pane rightPane = new Pane(right);
+        Pane leftPaneContainer = new Pane(left);
+        Pane rightPaneContainer = new Pane(right);
 
-        splitPane.getItems().addAll(leftPane,rightPane);
+        if (left instanceof Pane && right instanceof Pane) {
+            Pane leftPane = (Pane) left;
+            Pane rightPane = (Pane) right;
+
+            leftPane.prefWidthProperty().bind(leftPaneContainer.widthProperty());
+            leftPane.prefHeightProperty().bind(leftPaneContainer.heightProperty());
+        }
+
+        splitPane.getItems().addAll(leftPaneContainer,rightPaneContainer);
         return borderPane;
     }
 }

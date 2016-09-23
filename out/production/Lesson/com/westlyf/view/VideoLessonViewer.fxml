@@ -10,10 +10,15 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.VideoLessonViewerController">
     <center>
-        <MediaView fx:id="videoLessonMediaView" BorderPane.alignment="CENTER">
-            <viewport>
-                <Rectangle2D />
-            </viewport></MediaView>
+      <Pane fx:id="screenPane">
+         <children>
+              <MediaView fx:id="videoLessonMediaView" BorderPane.alignment="CENTER">
+                  <viewport>
+                      <Rectangle2D />
+                  </viewport>
+            </MediaView>
+         </children>
+      </Pane>
     </center>
     <bottom>
         <HBox alignment="CENTER" prefHeight="92.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">

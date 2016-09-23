@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaException;
@@ -32,6 +33,8 @@ public class VideoLessonViewerController implements Initializable {
     @FXML private Label timeLabel;
     @FXML private Slider volumeSlider;
     @FXML private Button playButton;
+
+    @FXML private Pane screenPane;
 
     private Media media;
     private MediaPlayer player;
@@ -78,6 +81,9 @@ public class VideoLessonViewerController implements Initializable {
         volumeSlider.setMinWidth(30);
         volumeSlider.setPrefWidth(70);
         volumeSlider.setMaxWidth(Region.USE_PREF_SIZE);
+
+        videoLessonMediaView.fitHeightProperty().bind(screenPane.heightProperty());
+        videoLessonMediaView.fitWidthProperty().bind(screenPane.widthProperty());
     }
 
     @FXML

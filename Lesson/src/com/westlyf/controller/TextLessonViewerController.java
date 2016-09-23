@@ -4,7 +4,7 @@ import com.westlyf.domain.lesson.TextLesson;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +15,8 @@ import java.util.ResourceBundle;
 public class TextLessonViewerController implements Initializable {
 
     @FXML private Label textLessonLabel;
-    @FXML private TextArea textLessonTextArea;
+    @FXML private WebView textLessonWebView;
+    //@FXML private TextArea textLessonTextArea; //!got changed because of htmleditor
 
     private TextLesson textLesson;
 
@@ -27,7 +28,8 @@ public class TextLessonViewerController implements Initializable {
     public void setTextLesson(TextLesson textLesson) {
         this.textLesson = textLesson;
         textLessonLabel.setText(textLesson.getTitle());
-        textLessonTextArea.setText(textLesson.getText());
+        //textLessonTextArea.setText(textLesson.getText()); //!got changed because of htmleditor
+        textLessonWebView.getEngine().loadContent(textLesson.getText());
     }
 
     public TextLesson getTextLesson() {

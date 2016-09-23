@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -43,6 +44,9 @@ public class LessonMakerController implements Initializable {
     private BorderPane root;
 
     public static Stage stage;
+
+    private TextLessonMakerController textLessonMakerController; //for getting html content
+    private VideoLessonMakerController videoLessonMakerController; //not used
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -105,10 +109,10 @@ public class LessonMakerController implements Initializable {
                 e.printStackTrace();
             }
 
-            TextLessonMakerController controller = loader.getController();
+            textLessonMakerController = loader.getController();
 
             textLesson.titleProperty().bind(titleTextField.textProperty());
-            controller.bindTextLesson(textLesson.textProperty());
+            //textLessonMakerController.bindTextLesson(textLesson.textProperty()); //!got changed because of htmleditor
 
             lesson = textLesson;
 
@@ -145,6 +149,9 @@ public class LessonMakerController implements Initializable {
         if (lesson instanceof TextLesson) {
             TextLesson textLesson = ((TextLesson)lesson).clone();
             textLesson.makeID();
+
+            //!got changed because of htmleditor
+            textLesson.setText(textLessonMakerController.getHtml());
 
             if (textLesson!= null && textLesson.isValid()) {
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, textLesson.toString());

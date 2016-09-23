@@ -26,12 +26,12 @@ public class ControllersSampleMain extends Application {
         Controllers.loadAll();
 
         //viewers
-        //testTextLessonViewer(primaryStage);
+        testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
-        testVideoPracticalExerciseViewer(primaryStage);
+        //testVideoPracticalExerciseViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -47,7 +47,7 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testTextLessonViewer(Stage primaryStage) {
-        Node node = Controllers.getNode(ControllerType.TEXT_LESSON_VIEWER, LessonDatabase.getTextLessonUsingLID("lid627925056887413"));
+        Node node = Controllers.getNode(ControllerType.TEXT_LESSON_VIEWER, LessonDatabase.getTextLessonUsingLID("lid525810847783767"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -124,7 +124,7 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testVideoPracticalExerciseViewer(Stage primaryStage) {
-        Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingLID("lid51204534921811"));
+        Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingTitle("New Sample Test Video"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

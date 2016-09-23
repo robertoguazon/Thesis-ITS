@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.web.HTMLEditor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +15,8 @@ import java.util.ResourceBundle;
  */
 public class TextLessonMakerController implements Initializable {
 
-    @FXML private TextArea lessonTextArea;
+    //@FXML private TextArea lessonTextArea; //!got changed because of htmleditor
+    @FXML private HTMLEditor textLessonHtmlEditor;
     @FXML private Button clearButton;
 
     @Override
@@ -24,11 +26,20 @@ public class TextLessonMakerController implements Initializable {
 
     @FXML
     private void clear() {
-        lessonTextArea.clear();
+
+        //lessonTextArea.clear(); //!got changed because of htmleditor
+        textLessonHtmlEditor.setHtmlText("");
     }
 
+    /*!got changed because of htmleditor
     public void bindTextLesson(StringProperty text) {
+
         text.bind(lessonTextArea.textProperty());
+    }
+    */
+
+    public String getHtml() {
+        return textLessonHtmlEditor.getHtmlText();
     }
 
 }

@@ -63,8 +63,8 @@ public class LessonMainController implements Initializable {
         subLevel_1_1.addTag("test");
         subLevel_1_1.addTag("sample");
 
-        subLevel_1_2.addTag("1");
-        subLevel_1_2.addTag("2");
+        subLevel_1_2.addTag("asdad");
+        subLevel_1_2.addTag("asdad");
 
 
         Controllers.loadAll(); //TODO - delete and put on before start

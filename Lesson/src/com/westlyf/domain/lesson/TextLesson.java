@@ -29,18 +29,20 @@ public class TextLesson extends Lesson implements Serializable {
     }
 
     public String toString() {
-        return super.toString() + "\nText: " + text.get();
+        return super.toString() + "\nText: " + text.get().length();
     }
 
     @Override
     public String check() {
         return super.check() + "\n" +
-                "text: " + ((text == null || text.get().equals("")) ? "empty" : text.get());
+                "text: " + ((text == null || text.get().equals("")
+                    || text.get().equals(
+                        "<html dir=\"ltr\"><head></head><body contenteditable=\"true\"></body></html>")) ? "empty" : text.get());
     }
 
     public boolean isValid() {
         if (!super.isValid()) return false;
-        if (text == null || text.get().equals("")) return false;
+        if (text == null || text.get().equals("") || text.get().equals("<html dir=\"ltr\"><head></head><body contenteditable=\"true\"></body></html>")) return false;
 
         return true;
     }
