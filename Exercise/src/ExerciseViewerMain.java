@@ -27,7 +27,7 @@ public class ExerciseViewerMain extends Application {
             ExerciseViewerController controller = loader.getController();
 
             //sample tests load
-            controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid724313411498252"));
+            controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid111773327582864"));
             //controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid724133762778948"));
             //controller.setQuiz(ExerciseDatabase.getQuizExerciseUsingLID("lid632146417557684"));
 

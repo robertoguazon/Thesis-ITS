@@ -1,5 +1,7 @@
 package com.westlyf.database;
 
+import sample.model.Users;
+
 import java.sql.*;
 import java.util.Calendar;
 
@@ -41,7 +43,7 @@ public class UserDatabase {
         return Database.createTable(Database.USER, UserDatabase.CREATE_USERS_TABLE);
     }
 
-    public static boolean isUserAvailable(String username, String password){
+    public static Users isUserAvailable(String username, String password){
         userConn = DatabaseConnection.getUserConnection();
         if(userConn != null){
             try {
@@ -50,14 +52,24 @@ public class UserDatabase {
                 preparedStatement.setString(2, password);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()){
-                    return true;
+                    Users user = new Users();
+                    user.setUsername(resultSet.getString("username"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setName(resultSet.getString("name"));
+                    user.setAge(resultSet.getInt("age"));
+                    user.setSex(resultSet.getString("sex"));
+                    user.setSchool(resultSet.getString("school"));
+                    user.setYearLevel(resultSet.getString("yearLevel"));
+                    user.setProfilePicturePath(resultSet.getString("profilePicturePath"));
+                    System.out.println("user retrieved: " + user);
+                    return user;
                 }
                 preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return false;
+        return null;
     }
 
     public static void addNewProfile(int currentLessonId, int currentModuleId, int currentExamId,
@@ -79,6 +91,7 @@ public class UserDatabase {
                 preparedStatement.setString(10, yearLevel);
                 preparedStatement.setString(11, profilePicturePath);
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
 
             } catch (SQLException e) {
                 e.printStackTrace();

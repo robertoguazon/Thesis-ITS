@@ -44,7 +44,7 @@
                         </ImageView>
                      </graphic>
                   </Hyperlink>
-                  <Hyperlink fx:id="exportProfile" text="Export Profile">
+                  <Hyperlink fx:id="exportProfile" onAction="#handleChangeSceneAction" text="Export Profile">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>

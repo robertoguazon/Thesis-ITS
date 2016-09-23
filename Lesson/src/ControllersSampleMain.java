@@ -124,7 +124,11 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testVideoPracticalExerciseViewer(Stage primaryStage) {
+<<<<<<< HEAD
         Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingTitle("New Sample Test Video"));
+=======
+        Node node = null;//Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingLID("lid51204534921811"));
+>>>>>>> edd9ee210d15d55c1238287bb77f5bb266526d46
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

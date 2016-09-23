@@ -28,6 +28,7 @@ public class DatabaseMain {
     private static void test() {
         ExerciseDatabase.createQuizExerciseTable();
         ExerciseDatabase.createPracticalExerciseTable();
+        ExerciseDatabase.createVideoPracticalExerciseTable();
         LessonDatabase.createTextLessonTable();
         LessonDatabase.createVideoLessonTable();
         ExamDatabase.createExamTable();

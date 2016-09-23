@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 11/06/2016.
  */
-public class MainController implements Initializable {
+public class VideoMainController implements Initializable {
 
     @FXML private MediaView videoLessonMediaView;
     @FXML private Slider timeSlider;

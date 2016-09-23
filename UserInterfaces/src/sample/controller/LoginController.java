@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.westlyf.agent.Agent;
 import com.westlyf.database.DatabaseConnection;
 import com.westlyf.database.UserDatabase;
 import javafx.event.ActionEvent;
@@ -11,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.model.Users;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,15 +47,19 @@ public class LoginController implements Initializable{
         Parent root;
         if (event.getSource() == loginButton){
             if (validateFields()){
-                if(UserDatabase.isUserAvailable(username.getText(), password.getText())){
+                Users user = UserDatabase.isUserAvailable(username.getText(), password.getText());
+                if(user != null){
+                    Agent.setLoggedUser(user);
                     stage = (Stage) loginButton.getScene().getWindow();
                     root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
                 }else {
                     errorMessage.setText("Invalid Credentials.");
+                    errorMessage.setTextFill(Color.RED);
                     return;
                 }
             }else {
                 errorMessage.setText("Please fill out all fields.");
+                errorMessage.setTextFill(Color.RED);
                 return;
             }
 
@@ -65,11 +72,9 @@ public class LoginController implements Initializable{
     }
 
     public boolean validateFields(){
-        if (username.getText().isEmpty()){
-            /*Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Validate Fields");
-            alert.setContentText("Please enter a username.");
-            alert.showAndWait();*/
+        String usernameText = username.getText().trim();
+        String passwordText = password.getText().trim();
+        if (usernameText.isEmpty() && passwordText.isEmpty()){
             return false;
         }
         return true;
