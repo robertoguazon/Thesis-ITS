@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.model.Users;
 
@@ -51,10 +52,12 @@ public class LoginController implements Initializable{
                     root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
                 }else {
                     errorMessage.setText("Invalid Credentials.");
+                    errorMessage.setTextFill(Color.RED);
                     return;
                 }
             }else {
                 errorMessage.setText("Please fill out all fields.");
+                errorMessage.setTextFill(Color.RED);
                 return;
             }
 
@@ -67,11 +70,9 @@ public class LoginController implements Initializable{
     }
 
     public boolean validateFields(){
-        if (username.getText().isEmpty()){
-            /*Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Validate Fields");
-            alert.setContentText("Please enter a username.");
-            alert.showAndWait();*/
+        String usernameText = username.getText().trim();
+        String passwordText = password.getText().trim();
+        if (usernameText.isEmpty() && passwordText.isEmpty()){
             return false;
         }
         return true;

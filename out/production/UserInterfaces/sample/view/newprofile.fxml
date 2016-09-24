@@ -22,6 +22,7 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -29,57 +30,52 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Username">
+                        <Label text="Username" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="usernameText" promptText="user" GridPane.columnIndex="1">
+                        <TextField fx:id="usernameText" promptText="user" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label text="Password" GridPane.rowIndex="1">
+                        <Label text="Password" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Confirm Password" GridPane.rowIndex="2">
+                        <Label text="Confirm Password" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="passwordText" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <PasswordField fx:id="passwordText" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </PasswordField>
-                        <PasswordField fx:id="confirmPasswordText" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <PasswordField fx:id="confirmPasswordText" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </PasswordField>
-                        <Label text="Age" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="Age" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="ageText" prefHeight="30.0" prefWidth="50.0" promptText="18" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <TextField fx:id="ageText" prefHeight="30.0" prefWidth="50.0" promptText="18" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label text="Name" GridPane.rowIndex="3">
+                        <Label text="Name" GridPane.rowIndex="4">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="nameText" promptText="Hello World" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </PasswordField>
-                        <RadioButton fx:id="sexText" mnemonicParsing="false" text="Male" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                        <RadioButton fx:id="sexText" mnemonicParsing="false" text="Male" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -87,27 +83,33 @@
                               <ToggleGroup fx:id="genderGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="sexText" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                        <RadioButton fx:id="sexText" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </RadioButton>
-                        <Label text="School" GridPane.rowIndex="4">
+                        <Label text="School" GridPane.rowIndex="5">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="schoolText" promptText="University of Santo Tomas" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+                        <TextField fx:id="schoolText" promptText="University of Santo Tomas" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label text="Year Level" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Label text="Year Level" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="115.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <ComboBox prefHeight="25.0" prefWidth="115.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="498.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" />
+                        <TextField fx:id="nameText" promptText="John" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
                      </children>
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -135,7 +137,7 @@
             </Label>
          </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets left="15.0" right="15.0" top="15.0" />
          </padding>
       </HBox>
    </top>
