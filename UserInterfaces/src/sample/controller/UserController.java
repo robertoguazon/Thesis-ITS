@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.westlyf.agent.Agent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.model.Users;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +34,10 @@ public class UserController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Users loggedUser = Agent.getLoggedUser();
+        if (loggedUser != null){
+            user.setText(loggedUser.getName());
+        }
     }
 
     @FXML
@@ -49,6 +54,7 @@ public class UserController implements Initializable{
             stage = (Stage)challenge.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/challenges.fxml"));
         }else if (event.getSource() == logout){
+            logout();
             stage = (Stage)logout.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/loadprofile.fxml"));
         }else {return;}
@@ -74,6 +80,6 @@ public class UserController implements Initializable{
     }
 
     private void logout(){
-        //unset user
+        Agent.removeLoggedUser();
     }
 }

@@ -12,7 +12,6 @@ public class UserDatabase {
     //TODO - put all methods for storing and getting data from and into the database
 
     private static Connection userConn;
-    private static Users user;
 
     private static final String CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS users(" +
             "userId INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -92,14 +91,11 @@ public class UserDatabase {
                 preparedStatement.setString(10, yearLevel);
                 preparedStatement.setString(11, profilePicturePath);
                 preparedStatement.executeUpdate();
+                preparedStatement.close();
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static Users getUser(){
-        return (user != null)?user:null;
     }
 }

@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.westlyf.agent.Agent;
 import com.westlyf.database.DatabaseConnection;
 import com.westlyf.database.UserDatabase;
 import javafx.event.ActionEvent;
@@ -48,6 +49,7 @@ public class LoginController implements Initializable{
             if (validateFields()){
                 Users user = UserDatabase.isUserAvailable(username.getText(), password.getText());
                 if(user != null){
+                    Agent.setLoggedUser(user);
                     stage = (Stage) loginButton.getScene().getWindow();
                     root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
                 }else {
