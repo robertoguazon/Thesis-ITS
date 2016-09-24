@@ -15,9 +15,9 @@ public class UserDatabase {
 
     private static final String CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS users(" +
             "userId INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "currentModuleId TEXT NOT NULL, " +
-            "currentLessonId TEXT, " +
-            "currentExamId TEXT, " +
+            "currentModuleId INT NOT NULL, " +
+            "currentLessonId INT NOT NULL, " +
+            "currentExamId INT NOT NULL, " +
             "username TEXT NOT NULL UNIQUE, " +
             "password TEXT NOT NULL, " +
             "name TEXT NOT NULL, " +
@@ -35,7 +35,7 @@ public class UserDatabase {
             ")";
     private static final String IS_USER_AVAILABLE = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-    private static final String ADD_NEW_PROFILE = "INSERT INTO Users(currentModuleId, currentLessonId, currentExamId, " +
+    private static final String ADD_NEW_PROFILE = "INSERT INTO Users(currentLessonId, currentModuleId, currentExamId, " +
             "username, password, name, age, sex, school, yearLevel, profilePicturePath, dateModified, dateCreated) " +
             "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 
@@ -53,9 +53,6 @@ public class UserDatabase {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()){
                     Users user = new Users();
-                    user.setCurrentModuleId(resultSet.getString("currentModuleId"));
-                    user.setCurrentLessonId(resultSet.getString("currentLessonId"));
-                    user.setCurrentExamId(resultSet.getString("currentExamId"));
                     user.setUsername(resultSet.getString("username"));
                     user.setPassword(resultSet.getString("password"));
                     user.setName(resultSet.getString("name"));
@@ -75,16 +72,16 @@ public class UserDatabase {
         return null;
     }
 
-    public static void addNewProfile(String currentModuleId, String currentLessonId, String currentExamId,
+    public static void addNewProfile(int currentLessonId, int currentModuleId, int currentExamId,
                                      String username, String password, String name, int age, String sex,
                                      String school, String yearLevel, String profilePicturePath){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             try {
                 PreparedStatement preparedStatement = preparedStatement = userConn.prepareStatement(ADD_NEW_PROFILE);
-                preparedStatement.setString(1, currentModuleId);
-                preparedStatement.setString(2, currentLessonId);
-                preparedStatement.setString(3, currentExamId);
+                preparedStatement.setInt(1, currentLessonId);
+                preparedStatement.setInt(2, currentModuleId);
+                preparedStatement.setInt(3, currentExamId);
                 preparedStatement.setString(4, username);
                 preparedStatement.setString(5, password);
                 preparedStatement.setString(6, name);

@@ -13,9 +13,6 @@ public class Users {
     private String school;
     private String yearLevel;
     private String profilePicturePath;
-    private String currentModuleId;
-    private String currentLessonId;
-    private String currentExamId;
 
     public String getUsername() {
         return username;
@@ -79,29 +76,5 @@ public class Users {
 
     public void setProfilePicturePath(String profilePicturePath) {
         this.profilePicturePath = profilePicturePath;
-    }
-
-    public String getCurrentModuleId() {
-        return currentModuleId;
-    }
-
-    public void setCurrentModuleId(String currentModuleId) {
-        this.currentModuleId = currentModuleId;
-    }
-
-    public String getCurrentLessonId() {
-        return currentLessonId;
-    }
-
-    public void setCurrentLessonId(String currentLessonId) {
-        this.currentLessonId = currentLessonId;
-    }
-
-    public String getCurrentExamId() {
-        return currentExamId;
-    }
-
-    public void setCurrentExamId(String currentExamId) {
-        this.currentExamId = currentExamId;
     }
 }

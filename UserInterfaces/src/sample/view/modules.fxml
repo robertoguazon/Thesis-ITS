@@ -7,11 +7,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ModulesController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox>
          <children>
-            <Label text="Modules" textAlignment="CENTER">
+            <Label text="Insert Title Here" textAlignment="CENTER">
                <font>
                   <Font size="40.0" />
                </font>
@@ -21,101 +22,44 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <FlowPane alignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
+      <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0">
          <children>
-            <Button fx:id="module1" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" text="Basic Syntax">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Basic Syntax">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/basic%20syntax.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
-            <Button fx:id="module2" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" prefHeight="134.0" prefWidth="120.0" text="Data Types">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Basic Data Types">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../style/images/basic%20data%20types.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
-            <Button fx:id="module3" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" text="Variables">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Variables">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/variable.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
-            <Button fx:id="module4" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" prefHeight="134.0" prefWidth="120.0" text="Basic Operators">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Basic Operators">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/basic%20operators.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
-            <Button fx:id="module5" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" text="Conditionals">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Conditionals">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/conditional.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
-            <Button fx:id="module6" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" text="Loops">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Loops">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/loop.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
-            <Button fx:id="module7" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#openModule" text="Methods">
+            <Button contentDisplay="TOP" mnemonicParsing="false" text="Methods">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/methods.png" />
-                     </image></ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
             </Button>
          </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
       </FlowPane>
-      <HBox alignment="CENTER">
-         <children>
-            <Hyperlink fx:id="backToMenu" onAction="#openModule" text="Back to Menu">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Hyperlink>
-         </children>
-      </HBox>
    </children>
 </VBox>

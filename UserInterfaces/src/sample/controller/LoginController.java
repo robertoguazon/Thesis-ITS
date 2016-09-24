@@ -18,7 +18,6 @@ import sample.model.Users;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.ResourceBundle;
 
 /**
@@ -26,17 +25,20 @@ import java.util.ResourceBundle;
  */
 public class LoginController implements Initializable{
 
-    @FXML private Label errorMessage;
-    @FXML private TextField username;
-    @FXML private TextField password;
-    @FXML private Button loginButton;
-    @FXML private Button backToMenu;
-
-    private static Connection userConn;
+    @FXML
+    private Label errorMessage;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button backToMenu;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userConn = DatabaseConnection.getUserConnection();
+        DatabaseConnection.getUserConnection();
     }
 
     @FXML
@@ -47,20 +49,17 @@ public class LoginController implements Initializable{
             if (validateFields()){
                 Users user = UserDatabase.isUserAvailable(username.getText(), password.getText());
                 if(user != null){
-                    if (userConn != null){
-                        Agent.setLoggedUser(user);
-                        stage = (Stage) loginButton.getScene().getWindow();
-                        root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-                    }else {
-                        setErrorMessage("Unable to Connect to User Database.");
-                        return;
-                    }
+                    Agent.setLoggedUser(user);
+                    stage = (Stage) loginButton.getScene().getWindow();
+                    root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
                 }else {
-                    setErrorMessage("Invalid Username or Password.");
+                    errorMessage.setText("Invalid Credentials.");
+                    errorMessage.setTextFill(Color.RED);
                     return;
                 }
             }else {
-                setErrorMessage("Please fill out all fields.");
+                errorMessage.setText("Please fill out all fields.");
+                errorMessage.setTextFill(Color.RED);
                 return;
             }
 
@@ -75,14 +74,9 @@ public class LoginController implements Initializable{
     public boolean validateFields(){
         String usernameText = username.getText().trim();
         String passwordText = password.getText().trim();
-        if (usernameText.isEmpty() || passwordText.isEmpty()){
+        if (usernameText.isEmpty() && passwordText.isEmpty()){
             return false;
         }
         return true;
-    }
-
-    public void setErrorMessage(String message){
-        errorMessage.setText(message);
-        errorMessage.setTextFill(Color.RED);
     }
 }
