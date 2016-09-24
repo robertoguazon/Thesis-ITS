@@ -76,6 +76,4 @@ public class MainController implements Initializable{
         stage.initOwner(settings.getScene().getWindow());
         stage.showAndWait();
     }
-
-
 }
