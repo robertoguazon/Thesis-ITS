@@ -25,6 +25,8 @@ public class QuizItemSerializable implements Serializable {
     private ArrayList<String> answers;
     private String explanation;
 
+    private String hint;
+
     public QuizItemSerializable(QuizItem quizItem) {
 
         question = quizItem.getQuestion();
@@ -37,6 +39,7 @@ public class QuizItemSerializable implements Serializable {
         validAnswers = quizItem.getValidAnswers();
         answers = quizItem.getAnswers();
         explanation = quizItem.getExplanation();
+        hint = quizItem.getHint();
     }
 
     public String getExplanation() {
@@ -75,4 +78,11 @@ public class QuizItemSerializable implements Serializable {
         return answers;
     }
 
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
 }

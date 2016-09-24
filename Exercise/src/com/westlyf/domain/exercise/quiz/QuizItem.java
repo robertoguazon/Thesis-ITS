@@ -5,6 +5,7 @@ import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -27,6 +28,8 @@ public class QuizItem implements Serializable {
     private ArrayList<String> answers = new ArrayList<>();
     private StringProperty explanation = new SimpleStringProperty();
 
+    private StringProperty hint = new SimpleStringProperty();
+
     //radio button by default
     private QuizType type = QuizType.RADIOBUTTON;
 
@@ -36,6 +39,18 @@ public class QuizItem implements Serializable {
     private BooleanProperty oneAnswer = new SimpleBooleanProperty(true);
 
     public QuizItem() {}
+
+    public String getHint() {
+        return hint.get();
+    }
+
+    public StringProperty hintProperty() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint.set(hint);
+    }
 
     //TODO check if the evaluation of answers are efficient
     public boolean isCorrect() {
@@ -84,6 +99,7 @@ public class QuizItem implements Serializable {
         this.validAnswers = quizItemsSerializable.getValidAnswers();
         this.answers = quizItemsSerializable.getAnswers();
         this.explanation.set(quizItemsSerializable.getExplanation());
+        this.hint.set(quizItemsSerializable.getHint());
     }
 
     public boolean isValidMaker() {
@@ -368,7 +384,51 @@ public class QuizItem implements Serializable {
                 answersString +
                 "\tpoints per correct: " + pointsPerCorrect.get() + "\n" +
                 "\tpoints: " + points.get() + "\n" +
-                "\texplanation: " + explanation.get();
+                "\texplanation: " + explanation.get() + "\n" +
+                "\thint: " + hint.get();
     }
 
+    public VBox getExamChoicesOnlyBox() {
+        return getExamChoicesOnlyBox(0,0,false);
+    }
+
+    public VBox getExamChoicesOnlyBox(float prefWidth, float prefHeight) {
+        return getExamChoicesOnlyBox(prefWidth,prefHeight,true);
+    }
+
+    public VBox getExamChoicesOnlyBox(float prefWidth, float prefHeight, boolean setPref) {
+        VBox box = new VBox();
+
+        ArrayList<RadioButton> buttons = getChoicesRadioButtons();
+
+        for (int i = 0; i < buttons.size(); i++) {
+            RadioButton radioButton = buttons.get(i);
+            String choice = (String) radioButton.getUserData();
+            if (answers.contains(choice)) {
+                radioButton.setSelected(true);
+            }
+
+            if (setPref) {
+                radioButton.setPrefWidth(prefWidth);
+                radioButton.setPrefHeight(prefHeight);
+            }
+        }
+
+        ToggleGroup choicesToggleGroup = getToggleGroup(buttons);
+
+        choicesToggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                answers.clear();
+                answers.add((String)newValue.getUserData());
+            }
+
+        });
+
+        for (int i = 0; i < buttons.size(); i++) {
+            box.getChildren().add(buttons.get(i));
+        }
+
+        return box;
+    }
 }
