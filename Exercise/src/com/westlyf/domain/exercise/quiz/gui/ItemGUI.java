@@ -18,6 +18,7 @@ public class ItemGUI {
     private ArrayList<TextField> validAnswers;
     private ArrayList<TextField> choices;
     private TextArea explanation;
+    private TextArea hint;
 
     public ItemGUI() {
         checkBoxesChoices = new ArrayList<>();
@@ -29,6 +30,8 @@ public class ItemGUI {
     public void setExplanation(TextArea explanation) {
         this.explanation = explanation;
     }
+
+    public void setHint(TextArea hint) {this.hint = hint;}
 
     //question
     public void setQuestion(TextArea question) {
@@ -155,6 +158,7 @@ public class ItemGUI {
         }
 
         quizItem.setExplanation(explanation.getText());
+        quizItem.setHint(hint.getText());
 
         //validAnswers = correct answers
         //answers = answers by users

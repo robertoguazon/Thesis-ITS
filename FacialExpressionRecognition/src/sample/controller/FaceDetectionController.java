@@ -42,11 +42,16 @@ public class FaceDetectionController implements Initializable {
     private CascadeClassifier faceCascade;
     private int absoluteFaceSize;
 
+    private CascadeClassifier eyeCascade;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.capture = new VideoCapture();
         this.faceCascade = new CascadeClassifier();
         this.absoluteFaceSize = 0;
+
+        eyeCascade = new CascadeClassifier();
+        eyeCascade.load("resources/haarcascades/haarcascade_eye.xml");
     }
 
     @FXML
@@ -118,9 +123,17 @@ public class FaceDetectionController implements Initializable {
         this.faceCascade.detectMultiScale(grayFrame, faces, 1.1,2,0 | Objdetect.CASCADE_SCALE_IMAGE,
                 new Size(this.absoluteFaceSize,this.absoluteFaceSize), new Size());
 
-        Rect[] facesArray = faces.toArray();
-        for (int i = 0; i < facesArray.length; i++) {
-            Imgproc.rectangle(frame, facesArray[i].tl(),facesArray[i].br(),new Scalar(0,255,0),3);
+        Mat face = grayFrame;
+        MatOfRect eyes = new MatOfRect();
+        eyeCascade.detectMultiScale(face,eyes,1.1,2,0 | Objdetect.CASCADE_SCALE_IMAGE, new Size(30,30),new Size());
+        Rect[] eyesArray = faces.toArray();
+
+        if (eyesArray.length > 0) {
+
+            Rect[] facesArray = faces.toArray();
+            for (int i = 0; i < facesArray.length; i++) {
+                Imgproc.rectangle(frame, facesArray[i].tl(),facesArray[i].br(),new Scalar(0,255,0),3);
+            }
         }
     }
 

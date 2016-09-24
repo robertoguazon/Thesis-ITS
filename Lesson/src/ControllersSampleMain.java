@@ -3,6 +3,7 @@ import com.westlyf.controller.Controllers;
 import com.westlyf.database.ExamDatabase;
 import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
+import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
 import javafx.application.Application;
@@ -26,12 +27,13 @@ public class ControllersSampleMain extends Application {
         Controllers.loadAll();
 
         //viewers
-        testTextLessonViewer(primaryStage);
+        //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
+        testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -42,6 +44,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
+        //testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -130,4 +133,19 @@ public class ControllersSampleMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    private void testExamChoicesOnlyMaker(Stage primaryStage) {
+        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_MAKER);
+        Scene scene = new Scene((Parent)node);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    private void testExamChoicesOnlyViewer(Stage primaryStage) {
+        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingLID("lid604628136295095"));
+        Scene scene = new Scene((Parent)node);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
 }
