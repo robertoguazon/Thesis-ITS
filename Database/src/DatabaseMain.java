@@ -45,8 +45,8 @@ public class DatabaseMain {
         System.out.println("exam: " + exercise);
 
         testUser();
-        testPush();
-        testPull();
+        //testPush();
+        //testPull();
 
         try {
             user.close();
@@ -65,7 +65,7 @@ public class DatabaseMain {
         int age = 18;
         String sex = "male";
         String yearLevel = "4th year";
-        UserDatabase.addNewProfile(1, 1, 1, username, password, name, age, sex, school, yearLevel, null);
+        UserDatabase.addNewProfile("module1", null, null, username, password, name, age, sex, school, yearLevel, null);
     }
 
     private static void testPush() {

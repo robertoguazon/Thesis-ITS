@@ -46,7 +46,7 @@ public class UserController implements Initializable{
         Parent root;
         if (event.getSource() == learn){
             stage = (Stage)learn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/LessonMain.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../view/modules.fxml"));
         }else if (event.getSource() == exam){
             stage = (Stage)exam.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/exam.fxml"));

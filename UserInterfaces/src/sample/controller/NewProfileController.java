@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 
@@ -34,10 +35,11 @@ public class NewProfileController implements Initializable{
     @FXML private Button backToMenu;
     @FXML private Button createNewProfile;
 
+    private static Connection userConn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DatabaseConnection.getUserConnection();
+        userConn = DatabaseConnection.getUserConnection();
     }
 
     @FXML
@@ -58,29 +60,18 @@ public class NewProfileController implements Initializable{
                     int ageNum = Integer.parseInt(age);
                     if (isAge(ageNum)){
                         if (confirmPassword(password, confirmPassword)){
-                            UserDatabase.addNewProfile(1, 1, 1, username, password, name, ageNum, sex, school, yearLevel, null);
-                            stage = (Stage)backToMenu.getScene().getWindow();
-                            root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
-                        }else {
-                            errorMessage.setText("Password is not the same.");
-                            errorMessage.setTextFill(Color.RED);
-                            return;
-                        }
-                    }else {
-                        errorMessage.setText("Age must not be below 14.");
-                        errorMessage.setTextFill(Color.RED);
-                        return;
-                    }
-                }else {
-                    //errorMessage.setText("Invalid input.");
-                    errorMessage.setTextFill(Color.RED);
-                    return;
-                }
-            }else {
-                errorMessage.setText("Please fill out all the fields.");
-                errorMessage.setTextFill(Color.RED);
-                return;
-            }
+                            if (userConn != null){
+                                UserDatabase.addNewProfile("module1", null, null, username, password, name, ageNum, sex, school, yearLevel, null);
+                                stage = (Stage)backToMenu.getScene().getWindow();
+                                root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
+                            }else {
+                                setErrorMessage("Unable to Connect to User Database.");
+                                return;
+                            }
+                        }else {return;}
+                    }else {return;}
+                }else {return;}
+            }else {return;}
         }else if (event.getSource() == backToMenu){
             stage = (Stage)backToMenu.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
@@ -91,6 +82,7 @@ public class NewProfileController implements Initializable{
 
     public boolean isFieldEmpty(String username, String password, String confirmPassword,
                                 String name, String age, String sex, String school, String yearLevel){
+        int b = 0;
         username = username.trim();
         password = password.trim();
         confirmPassword = confirmPassword.trim();
@@ -98,11 +90,21 @@ public class NewProfileController implements Initializable{
         sex = sex.trim();
         school = school.trim();
         yearLevel = yearLevel.trim();
-        if (!username.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && !age.isEmpty() &&
-                !name.isEmpty() && !sex.isEmpty() && !school.isEmpty() && !yearLevel.isEmpty()){
+        if(username.isEmpty()){usernameText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(password.isEmpty()){passwordText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(confirmPassword.isEmpty()){confirmPasswordText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(name.isEmpty()){nameText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(age.isEmpty()){ageText.setStyle("-fx-text-box-border: orange;"); b++;}
+        //if(!sex.isEmpty()){sexText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(school.isEmpty()){schoolText.setStyle("-fx-text-box-border: orange;"); b++;}
+        //if(!yearLevel.isEmpty()){yearLevelText.setStyle("-fx-text-box-border: orange;"); b++;}
+
+        if (b == 0){
             return true;
+        }else {
+            setErrorMessage("Please fill out all the fields.");
+            return false;
         }
-        return false;
     }
 
     public boolean isFieldMatch(String username, String password, String confirmPassword,
@@ -149,18 +151,20 @@ public class NewProfileController implements Initializable{
             text = text + "year level, ";
             b++;
         }
-        if (b > 0){
+        if (b == 0){
+            return true;
+        }else {
             text = text.substring(0, text.length()-2);
-            errorMessage.setText(text + ".");
+            setErrorMessage(text + ".");
             return false;
         }
-        return true;
     }
 
     public boolean isAge(int age){
         if (age >= 14) {
             return true;
         }
+        setErrorMessage("Age must not be below 14.");
         ageText.setStyle("-fx-text-box-border: red;");
         return false;
     }
@@ -169,8 +173,14 @@ public class NewProfileController implements Initializable{
         if (password.equals(confirmPassword)) {
             return true;
         }
+        setErrorMessage("Password is not the same.");
         passwordText.setStyle("-fx-text-box-border: red;");
         confirmPasswordText.setStyle("-fx-text-box-border: red;");
         return false;
+    }
+
+    public void setErrorMessage(String message){
+        errorMessage.setText(message);
+        errorMessage.setTextFill(Color.RED);
     }
 }
