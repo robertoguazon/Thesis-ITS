@@ -168,6 +168,95 @@ public class Controllers {
         }
     }
 
+    /**
+     * method for disposing all controllers. Must be called before exiting the program.
+     */
+    public static void disposeAll() {
+        //dispose viewers
+        dispose(ControllerType.TEXT_LESSON_VIEWER);
+        dispose(ControllerType.VIDEO_LESSON_VIEWER);
+        dispose(ControllerType.QUIZ_EXERCISE_VIEWER);
+        dispose(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER);
+        dispose(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER);
+        dispose(ControllerType.EXAM_CHOICES_ONLY_VIEWER);
+
+        //dispose makers
+        dispose(ControllerType.LESSON_MAKER);
+        dispose(ControllerType.QUIZ_EXERCISE_MAKER);
+        dispose(ControllerType.PRACTICAL_EXERCISE_MAKER);
+        dispose(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER);
+        dispose(ControllerType.EXAM_CHOICES_ONLY_MAKER);
+    }
+
+    /**
+     * Method for selecting which controller to dispose. useful when you want to dispose a specific controller.
+     * @param controllerType
+     */
+    public static void dispose(ControllerType controllerType) {
+        switch (controllerType) {
+            //viewers
+            case TEXT_LESSON_VIEWER:
+                if (textLessonViewerController instanceof Disposable) {
+                    ((Disposable)textLessonViewerController).dispose();
+                }
+                break;
+            case VIDEO_LESSON_VIEWER:
+                if (videoLessonViewerController instanceof Disposable) {
+                    ((Disposable)videoLessonViewerController).dispose();
+                }
+                break;
+            case QUIZ_EXERCISE_VIEWER:
+                if (quizExerciseViewerController instanceof Disposable) {
+                    ((Disposable)quizExerciseViewerController).dispose();
+                }
+                break;
+            case PRACTICAL_PRINT_EXERCISE_VIEWER:
+                if (practicalPrintExerciseViewerController instanceof Disposable) {
+                    ((Disposable)practicalPrintExerciseViewerController).dispose();
+                }
+                break;
+            case PRACTICAL_RETURN_EXERCISE_VIEWER:
+                if (practicalReturnExerciseViewerController instanceof Disposable) {
+                    ((Disposable)practicalReturnExerciseViewerController).dispose();
+                }
+                break;
+            case EXAM_CHOICES_ONLY_VIEWER:
+                if (examChoicesOnlyViewerController instanceof Disposable) {
+                    ((Disposable)examChoicesOnlyViewerController).dispose();
+                }
+                break;
+
+            //makers
+            case LESSON_MAKER:
+                if (lessonMakerController instanceof Disposable) {
+                    ((Disposable)lessonMakerController).dispose();
+                }
+                break;
+            case QUIZ_EXERCISE_MAKER:
+                if (quizExerciseMakerController instanceof Disposable) {
+                    ((Disposable)quizExerciseMakerController).dispose();
+                }
+                break;
+            case PRACTICAL_EXERCISE_MAKER:
+                if (practicalExerciseMakerController instanceof Disposable) {
+                    ((Disposable)practicalExerciseMakerController).dispose();
+                }
+                break;
+            case VIDEO_PRACTICAL_EXERCISE_MAKER:
+                if (videoPracticalExerciseMakerController instanceof Disposable) {
+                    ((Disposable)videoPracticalExerciseMakerController).dispose();
+                }
+                break;
+            case EXAM_CHOICES_ONLY_MAKER:
+                if (examChoicesOnlyMakerController instanceof Disposable) {
+                    ((Disposable)examChoicesOnlyMakerController).dispose();
+                }
+
+            default:
+                break;
+        }
+    }
+
     public static void view(ControllerType controllerType, Pane parent) {
         view(controllerType,parent,null);
     }

@@ -14,11 +14,13 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by robertoguazon on 24/09/2016.
  */
-public class ExamChoicesOnlyViewerController implements Initializable {
+public class ExamChoicesOnlyViewerController implements Initializable, Disposable {
 
     @FXML private Label examTitleLabel;
     @FXML private Slider timeLeftSlider;
@@ -43,12 +45,26 @@ public class ExamChoicesOnlyViewerController implements Initializable {
     private IntegerProperty currentItem = new SimpleIntegerProperty(1);
     private int itemsSize = 0;
 
+    private Timer timer;
+
+    private long delay = 6000 * 60 * 60;
+
     //TODO time tracker and format to display slider
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         timeLeftSlider.setMin(0);
         timeLeftSlider.setMax(60);
+
+        timer = new Timer();
+        timer.schedule(
+                new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        stopExam();
+                    }
+                }, delay);
     }
 
     public void setExam(Exam exam) {
@@ -74,7 +90,7 @@ public class ExamChoicesOnlyViewerController implements Initializable {
         hintTextArea.setText(quizItem.getHint());
 
         choicesVBox.getChildren().add(quizItem.getExamChoicesOnlyBox(buttonPrefWidth,buttonPrefHeight));
-        setHintVisible(true);
+        setHintVisible(false);
     }
 
     @FXML private void slideLeft() {
@@ -99,10 +115,24 @@ public class ExamChoicesOnlyViewerController implements Initializable {
 
     @FXML private void stopExam() {
         //TODO - stop?
+        stopTimer();
+        System.out.println("Stopped Exam -test");
     }
 
     //TODO evaluate after submit
     @FXML private void submitExam() {
         System.out.println(exam.evaluate()); //TODO - catch score and record
     }
+
+    @Override
+    public void dispose() {
+        stopTimer();
+    }
+
+    private void stopTimer() {
+        timer.cancel();
+        timer.purge();
+    }
+
+    //TODO -dispose resources
 }

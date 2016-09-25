@@ -148,4 +148,9 @@ public class ControllersSampleMain extends Application {
         primaryStage.show();
     }
 
+    @Override
+    public void stop() {
+        Controllers.disposeAll();
+    }
+
 }
