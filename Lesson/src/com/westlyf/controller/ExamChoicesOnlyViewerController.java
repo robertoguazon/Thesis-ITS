@@ -3,10 +3,7 @@ package com.westlyf.controller;
 import com.westlyf.database.ExamDatabase;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizItem;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,25 +43,41 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     private int itemsSize = 0;
 
     private Timer timer;
+    private Timer minutesTimer;
 
-    private long delay = 6000 * 60 * 60;
+    private DoubleProperty minutes = new SimpleDoubleProperty();
+
+    private long delay = 60_000 * 60 * 60; //60_000 (seconds in delta time) * 60 (to minutes) * 60 (to hour)
 
     //TODO time tracker and format to display slider
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         timeLeftSlider.setMin(0);
-        timeLeftSlider.setMax(60);
+        timeLeftSlider.setMax(delay / 60_000.0f / 60.0f); //minutes slider
 
         timer = new Timer();
         timer.schedule(
                 new TimerTask() {
-
                     @Override
                     public void run() {
                         stopExam();
                     }
                 }, delay);
+
+        minutesTimer = new Timer();
+        minutesTimer.schedule(
+                new TimerTask() {
+                    int seconds = 0;
+                    @Override
+                    public void run() {
+                        seconds++;
+                        minutes.set(seconds / 60.0f);
+                    }
+                },0,1000
+        );
+
+        timeLeftSlider.valueProperty().bind(minutes);
     }
 
     public void setExam(Exam exam) {
@@ -132,6 +145,9 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     private void stopTimer() {
         timer.cancel();
         timer.purge();
+
+        minutesTimer.cancel();
+        minutesTimer.purge();
     }
 
     //TODO -dispose resources

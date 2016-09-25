@@ -23,7 +23,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="timeLeftSlider" blockIncrement="1.0" disable="true" majorTickUnit="10.0" max="60.0" minorTickCount="10" prefHeight="38.0" prefWidth="588.0" showTickLabels="true" showTickMarks="true" />
+                  <Slider fx:id="timeLeftSlider" blockIncrement="1.0" majorTickUnit="10.0" max="60.0" minorTickCount="10" prefHeight="38.0" prefWidth="588.0" showTickLabels="true" showTickMarks="true" />
                </children>
             </HBox>
             <HBox alignment="CENTER" BorderPane.alignment="CENTER">
