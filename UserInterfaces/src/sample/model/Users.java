@@ -104,4 +104,18 @@ public class Users {
     public void setCurrentExamId(String currentExamId) {
         this.currentExamId = currentExamId;
     }
+
+    public String toString(){
+        return "username: " + getUsername() + "\n" +
+                "password: " + getPassword() + "\n" +
+                "name: " + getName() + "\n" +
+                "age: " + getAge() + "\n" +
+                "sex: " + getSex() + "\n" +
+                "school: " + getSchool() + "\n" +
+                "year level: " + getYearLevel() + "\n" +
+                "profile picture path: " + getProfilePicturePath() + "\n" +
+                "current lesson: " + getCurrentLessonId() + "\n" +
+                "current module: " + getCurrentModuleId() + "\n" +
+                "current exam: " + getCurrentExamId() + "\n";
+    }
 }

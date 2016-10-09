@@ -17,9 +17,9 @@
                   <GridPane hgap="10.0" vgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="145.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="73.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="144.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -75,19 +75,23 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <RadioButton fx:id="sexText" mnemonicParsing="false" text="Male" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="genderGroup" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="sexText" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </RadioButton>
+                        <HBox alignment="CENTER" spacing="30.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                           <children>
+                              <RadioButton fx:id="maleButton" mnemonicParsing="false" text="Male" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="genderGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="femaleButton" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" GridPane.columnIndex="3" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </HBox>
                         <Label text="School" GridPane.rowIndex="5">
                            <font>
                               <Font size="16.0" />
@@ -103,7 +107,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="115.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="yearLevelComboBox" prefHeight="25.0" prefWidth="155.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                         <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="498.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" />
                         <TextField fx:id="nameText" promptText="John" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                            <font>
@@ -144,12 +148,12 @@
    <bottom>
       <HBox alignment="CENTER" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#createNewProfile" text="Back to Menu">
+            <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back to Menu">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="createNewProfile" mnemonicParsing="false" onAction="#createNewProfile" text="Create Profile">
+            <Button fx:id="createNewProfile" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Create Profile">
                <font>
                   <Font size="14.0" />
                </font>

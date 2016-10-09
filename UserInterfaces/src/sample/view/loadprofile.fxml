@@ -81,7 +81,7 @@
                   </GridPane>
                </children>
             </HBox>
-            <Button fx:id="backToMenu" cancelButton="true" mnemonicParsing="false" onAction="#login" text="Back to Menu" wrapText="true">
+            <Button fx:id="backToMenu" cancelButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back to Menu" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
@@ -105,7 +105,7 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="loginButton" contentDisplay="TOP" defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="356.0" prefWidth="116.0" text="GO">
+            <Button fx:id="loginButton" contentDisplay="TOP" defaultButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="356.0" prefWidth="116.0" text="GO">
                <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>

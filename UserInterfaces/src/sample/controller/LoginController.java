@@ -40,36 +40,39 @@ public class LoginController implements Initializable{
     }
 
     @FXML
-    public void login(ActionEvent event) throws IOException {
+    public void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
         Parent root;
         if (event.getSource() == loginButton){
-            if (validateFields()){
-                Users user = UserDatabase.isUserAvailable(username.getText(), password.getText());
-                if(user != null){
-                    if (userConn != null){
-                        Agent.setLoggedUser(user);
-                        stage = (Stage) loginButton.getScene().getWindow();
-                        root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-                    }else {
-                        setErrorMessage("Unable to Connect to User Database.");
-                        return;
-                    }
-                }else {
-                    setErrorMessage("Invalid Username or Password.");
-                    return;
-                }
-            }else {
-                setErrorMessage("Please fill out all fields.");
-                return;
-            }
-
+            if (login()){
+                stage = (Stage) loginButton.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
+            }else {return;}
         }else if (event.getSource() == backToMenu){
             stage = (Stage) backToMenu.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
         }else {return;}
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public boolean login(){
+        if (validateFields()){
+            Users user = UserDatabase.isUserAvailable(username.getText(), password.getText());
+            if(user != null){
+                if (userConn != null){
+                    new Agent(user);
+                    return true;
+                }else {
+                    setErrorMessage("Unable to Connect to User Database.");
+                }
+            }else {
+                setErrorMessage("Invalid Username or Password.");
+            }
+        }else {
+            setErrorMessage("Please fill out all fields.");
+        }
+        return false;
     }
 
     public boolean validateFields(){

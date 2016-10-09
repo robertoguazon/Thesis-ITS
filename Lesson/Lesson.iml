@@ -11,5 +11,7 @@
     <orderEntry type="module" module-name="Exercise" />
     <orderEntry type="module" module-name="RunTimeCompilation" />
     <orderEntry type="module" module-name="VideoPlayer" />
+    <orderEntry type="module" module-name="Agent" />
+    <orderEntry type="module" module-name="UserInterfaces" />
   </component>
 </module>

@@ -2,6 +2,8 @@ package sample.controller;
 
 import com.westlyf.database.DatabaseConnection;
 import com.westlyf.database.UserDatabase;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,10 @@ import java.util.ResourceBundle;
  */
 public class NewProfileController implements Initializable{
 
+    ObservableList<String> yearLevelList = FXCollections
+            .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
+                    "Collage 1st Year", "Collage 2nd Year", "Collage 3rd Year", "Collage 4th Year");
+
     @FXML private Label errorMessage;
     @FXML private TextField usernameText;
     @FXML private PasswordField passwordText;
@@ -30,8 +36,9 @@ public class NewProfileController implements Initializable{
     @FXML private TextField nameText;
     @FXML private TextField schoolText;
     @FXML private TextField ageText;
-    @FXML private RadioButton sexText;
-    @FXML private ComboBox yearLevelText;
+    @FXML private RadioButton maleButton;
+    @FXML private RadioButton femaleButton;
+    @FXML private ComboBox yearLevelComboBox;
     @FXML private Button backToMenu;
     @FXML private Button createNewProfile;
 
@@ -40,37 +47,19 @@ public class NewProfileController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userConn = DatabaseConnection.getUserConnection();
+
+        yearLevelComboBox.setValue("HS 1st Year");
+        yearLevelComboBox.setItems(yearLevelList);
     }
 
     @FXML
-    public void createNewProfile(ActionEvent event) throws IOException {
+    public void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
         Parent root;
         if (event.getSource() == createNewProfile){
-            String username = usernameText.getText();
-            String password = passwordText.getText();
-            String confirmPassword = confirmPasswordText.getText();
-            String name = nameText.getText();
-            String age = ageText.getText();
-            String sex = sexText.getText();
-            String school = schoolText.getText();
-            String yearLevel = "4th year";
-            if (isFieldEmpty(username, password, confirmPassword, name, age, sex, school, yearLevel)){
-                if (isFieldMatch(username, password, confirmPassword, name, age, sex, school, yearLevel)){
-                    int ageNum = Integer.parseInt(age);
-                    if (isAge(ageNum)){
-                        if (confirmPassword(password, confirmPassword)){
-                            if (userConn != null){
-                                UserDatabase.addNewProfile("module1", null, null, username, password, name, ageNum, sex, school, yearLevel, null);
-                                stage = (Stage)backToMenu.getScene().getWindow();
-                                root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
-                            }else {
-                                setErrorMessage("Unable to Connect to User Database.");
-                                return;
-                            }
-                        }else {return;}
-                    }else {return;}
-                }else {return;}
+            if (createNewProfile()){
+                stage = (Stage)backToMenu.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
             }else {return;}
         }else if (event.getSource() == backToMenu){
             stage = (Stage)backToMenu.getScene().getWindow();
@@ -80,24 +69,77 @@ public class NewProfileController implements Initializable{
         stage.show();
     }
 
+    public boolean createNewProfile(){
+        String username = usernameText.getText();
+        String password = passwordText.getText();
+        String confirmPassword = confirmPasswordText.getText();
+        String name = nameText.getText();
+        String age = ageText.getText();
+        String sex = getSex();
+        String school = schoolText.getText();
+        String yearLevel = yearLevelComboBox.getValue().toString();
+        System.out.println(yearLevel);
+        String currentModule = "module1";
+        String currentLesson = "lesson1";
+        String currentExam = null;
+        String profilePicturePath = null;
+        if (isFieldEmpty(username, password, confirmPassword, name, age, sex, school)){
+            if (isFieldMatch(username, password, confirmPassword, name, age, sex, school, yearLevel)){
+                int ageNum = Integer.parseInt(age);
+                if (isAge(ageNum)){
+                    if (confirmPassword(password, confirmPassword)){
+                        if (userConn != null){
+                            UserDatabase.addNewProfile(currentModule, currentLesson, currentExam, username, password,
+                                    name, ageNum, sex, school, yearLevel, profilePicturePath);
+                            return true;
+                        }else {
+                            setErrorMessage("Unable to Connect to User Database.");
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public String getSex(){
+        String sex = "";
+        if (maleButton.isSelected()){
+            sex = "Male";
+        }else if (femaleButton.isSelected()){
+            sex = "Female";
+        }
+        return sex;
+    }
+
     public boolean isFieldEmpty(String username, String password, String confirmPassword,
-                                String name, String age, String sex, String school, String yearLevel){
+                                String name, String age, String sex, String school){
         int b = 0;
         username = username.trim();
         password = password.trim();
         confirmPassword = confirmPassword.trim();
         name = name.trim();
-        sex = sex.trim();
         school = school.trim();
-        yearLevel = yearLevel.trim();
         if(username.isEmpty()){usernameText.setStyle("-fx-text-box-border: orange;"); b++;}
+        else{usernameText.setStyle("");}
         if(password.isEmpty()){passwordText.setStyle("-fx-text-box-border: orange;"); b++;}
+        else{passwordText.setStyle("");}
         if(confirmPassword.isEmpty()){confirmPasswordText.setStyle("-fx-text-box-border: orange;"); b++;}
+        else{confirmPasswordText.setStyle("");}
         if(name.isEmpty()){nameText.setStyle("-fx-text-box-border: orange;"); b++;}
+        else{nameText.setStyle("");}
         if(age.isEmpty()){ageText.setStyle("-fx-text-box-border: orange;"); b++;}
-        //if(!sex.isEmpty()){sexText.setStyle("-fx-text-box-border: orange;"); b++;}
+        else{ageText.setStyle("");}
+        if(sex.isEmpty()){
+            maleButton.setStyle("-fx-text-fill: orange;");
+            femaleButton.setStyle("-fx-text-fill: orange;");
+            b++;
+        }else{
+            maleButton.setStyle("");
+            femaleButton.setStyle("");
+        }
         if(school.isEmpty()){schoolText.setStyle("-fx-text-box-border: orange;"); b++;}
-        //if(!yearLevel.isEmpty()){yearLevelText.setStyle("-fx-text-box-border: orange;"); b++;}
+        else {schoolText.setStyle("");}
 
         if (b == 0){
             return true;
@@ -111,46 +153,41 @@ public class NewProfileController implements Initializable{
                                 String name, String age, String sex, String school, String yearLevel){
         int b = 0;
         String text = "Invalid ";
-        if (!username.matches("[a-zA-Z0-9\\s]*")) {
+        if (!username.matches("[a-zA-Z0-9]*")) {
             usernameText.setStyle("-fx-text-box-border: red;");
             text = text + "username, ";
             b++;
-        }
+        }else{usernameText.setStyle("");}
         if (!password.matches("[a-zA-Z0-9]*")){
             passwordText.setStyle("-fx-text-box-border: red;");
             text = text + "password, ";
             b++;
-        }
+        }else{passwordText.setStyle("");}
         if (!confirmPassword.matches("[a-zA-Z0-9]*")){
             confirmPasswordText.setStyle("-fx-text-box-border: red;");
             text = text + "confirm password, ";
             b++;
-        }
-        if (!name.matches("[a-zA-Z]*")){
+        }else{confirmPasswordText.setStyle("");}
+        if (!name.matches("[a-zA-Z\\s]*")){
             nameText.setStyle("-fx-text-box-border: red;");
             text = text + "name, ";
             b++;
-        }
+        }else{nameText.setStyle("");}
         if (!age.matches("[0-9]{2}")){
             ageText.setStyle("-fx-text-box-border: red;");
             text = text + "age, ";
             b++;
-        }
-        if (!sex.matches("[a-zA-Z]*")){
-            sexText.setStyle("-fx-text-box-border: red;");
-            text = text + "sex, ";
-            b++;
-        }
-        if (!school.matches("[a-zA-Z]*")){
+        }else{ageText.setStyle("");}
+        if (!school.matches("[a-zA-Z\\s]*")){
             schoolText.setStyle("-fx-text-box-border: red;");
             text = text + "school, ";
             b++;
-        }
+        }else{schoolText.setStyle("");}
         if (!yearLevel.matches("[a-zA-Z0-9\\s]*")){
-            //yearLevelText.setStyle("-fx-text-box-border: red;");
+            //yearLevelComboBox.setStyle("-fx-text-box-border: red;");
             text = text + "year level, ";
             b++;
-        }
+        }//else{yearLevel.setStyle("");}
         if (b == 0){
             return true;
         }else {

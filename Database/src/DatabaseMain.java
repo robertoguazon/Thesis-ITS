@@ -58,6 +58,9 @@ public class DatabaseMain {
     }
 
     private static void testUser() {
+        String currentModule = "module1";
+        String currentLesson = "lesson1";
+        String currentExam = null;
         String username = "user";
         String password = "pass123";
         String name = "Hello World";
@@ -65,7 +68,9 @@ public class DatabaseMain {
         int age = 18;
         String sex = "male";
         String yearLevel = "4th year";
-        UserDatabase.addNewProfile("module1", null, null, username, password, name, age, sex, school, yearLevel, null);
+        String profilePicturePath = null;
+        UserDatabase.addNewProfile(currentModule, currentLesson, currentExam,
+                username, password, name, age, sex, school, yearLevel, profilePicturePath);
     }
 
     private static void testPush() {

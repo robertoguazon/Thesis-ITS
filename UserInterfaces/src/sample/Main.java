@@ -2,6 +2,7 @@ package sample;/**
  * Created by Yves on 8/31/2016.
  */
 
+import com.westlyf.agent.Agent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,6 +36,7 @@ public class Main extends Application {
     private void closeProgram(){
         Boolean answer = ConfirmBox.display("Confirm Exit", "Are you sure you want to exit?");
         if (answer){
+            Agent.removeLoggedUser();
             window.close();
         }
     }
