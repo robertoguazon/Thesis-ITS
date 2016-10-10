@@ -32,7 +32,6 @@ public class ModulesController implements Initializable{
     @FXML private Button module7;
     @FXML private Hyperlink backToMenu;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /*
@@ -84,27 +83,27 @@ public class ModulesController implements Initializable{
             root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
             stage = (Stage)backToMenu.getScene().getWindow();
         }else {
-            TextLesson lesson;
             if (event.getSource() == module1) {
                 Agent.setCurrentModule("module1");
-                lesson = openModule("module1");
+                openModule("module1");
             } else if (event.getSource() == module2) {
-                lesson = openModule("module2");
+                openModule("module2");
             } else if (event.getSource() == module3) {
-                lesson = openModule("module3");
+                openModule("module3");
             } else if (event.getSource() == module4) {
-                lesson = openModule("module4");
+                openModule("module4");
             } else if (event.getSource() == module5) {
-                lesson = openModule("module5");
+                openModule("module5");
             } else if (event.getSource() == module6) {
-                lesson = openModule("module6");
+                openModule("module6");
             } else if (event.getSource() == module7) {
-                lesson = openModule("module7");
+                openModule("module7");
             } else {return;}
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/TextLessonViewer.fxml"));
             Node node = loader.load();
             TextLessonViewerController textLessonViewerController = loader.getController();
-            textLessonViewerController.setTextLesson(lesson);
+            textLessonViewerController.setTextLesson(Agent.getLesson());
+            textLessonViewerController.setExerciseButton(Agent.getCurrentLesson());
             root = (Parent) node;
             stage = (Stage) module1.getScene().getWindow();
         }
@@ -112,15 +111,14 @@ public class ModulesController implements Initializable{
         stage.show();
     }
 
-    public TextLesson openModule(String module){
-        TextLesson lesson;
+    public void openModule(String module){
         if (Agent.getLoggedUser().getCurrentModuleId().equals(module)) {
-            lesson = Agent.getLesson(module, Agent.getLoggedUser().getCurrentLessonId());
+            Agent.getLesson(module, Agent.getLoggedUser().getCurrentLessonId());
         }else {
-            lesson = Agent.getLesson(module, "lesson1");
+            Agent.getLesson(module, "lesson0");
         }
         Agent.setCurrentModule(module);
-        System.out.println("\nRetrieved Lesson:\n" + lesson);
-        return lesson;
+        Agent.setCurrentLesson(Agent.getLesson().getTagsString());
+        System.out.println("\nRetrieved Lesson:\n" + Agent.getLesson());
     }
 }

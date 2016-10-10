@@ -1,7 +1,12 @@
 package com.westlyf.agent;
 
+import com.westlyf.database.ExerciseDatabase;
 import com.westlyf.database.LessonDatabase;
+import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
+import com.westlyf.domain.exercise.practical.PracticalExercise;
+import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.lesson.TextLesson;
+import com.westlyf.domain.lesson.VideoLesson;
 import sample.model.Users;
 
 import java.util.ArrayList;
@@ -16,10 +21,11 @@ public class Agent {
     private static String currentLesson;
     private static String currentExam;
     private static TextLesson lesson;
-    private static ArrayList<TextLesson> textLessons;
+    private static VideoPracticalExercise exercise;
     private static ArrayList<TextLesson> lessonsInModule = new ArrayList<TextLesson>();
-    private static ArrayList<String> moduleList = new ArrayList<String>();
-    private static ArrayList<String> lessonList = new ArrayList<String>();
+    private static ArrayList<TextLesson> textLessons = new ArrayList<TextLesson>();
+    private static ArrayList<VideoPracticalExercise> videoPracticalExercises = new ArrayList<VideoPracticalExercise>();
+    private static ArrayList<Exam> exams = new ArrayList<Exam>();
 
     public Agent(Users user) {
         setLoggedUser(user);
@@ -37,33 +43,26 @@ public class Agent {
     }
 
     public static void loadAvailableLessons(){
-        String m = "module1";
-        String l = "lesson1";
+        String m;
         int i = 1;
-        int j = 0;
-        while (!getCurrentModule().equals(m)) {
-            getModuleList().add("module" + i++);
-            m = "module" + i;
-        }
-        setTextLessons(LessonDatabase.getTextLessonsUsingTagsContains(moduleList));
         do {
-            j++;
-            getLessonList().add(l = "lesson" + j);
-        }while (!getCurrentLesson().equals(l));
-        getModuleList().add(m = "module" + i);
-        for (int k=0; k<getLessonList().size(); k++){
-            String temp = getLessonList().get(k);
-            getTextLessons().addAll(LessonDatabase.getTextLessonsUsingTagsContains(temp, "module"+i));
-        }
-        //System.out.println("Contents of textLessons: \n");
-        //getTextLessons().forEach((a)->System.out.println("\n" + a));
-        //System.out.println("Contents of moduleList: " + getModuleList());
-        //System.out.println("Contents of lessonList: " + getLessonList());
-        //System.out.println("Contents of lessonList: " + getLesson("module1", "lesson5"));
+            m = "module" + i++;
+            getTextLessons().addAll(LessonDatabase.getTextLessonsUsingTagsContains(m));
+        }while (!getCurrentModule().equals(m));
+        System.out.println("\nContents of textLessons: ");
+        getTextLessons().forEach((a)->System.out.println(a));
     }
 
     public static void loadAvailableExercises(){
-
+        String m;
+        int i = 1;
+        //do {
+            m = "module" + i++;
+            System.out.println(m);
+            getVideoPracticalExercises().addAll(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains(m));
+        //}while (!getCurrentModule().equals(m));
+        System.out.println("\nContents of videoPracticalExercises: ");
+        getVideoPracticalExercises().forEach((a)->System.out.println(a));
     }
 
     public static void loadAvailableExams(){
@@ -76,22 +75,32 @@ public class Agent {
 
     public static void removeLoggedUser(){
         setLoggedUser(null);
-        setTextLessons(null);
         setCurrentModule(null);
         setCurrentLesson(null);
         setCurrentExam(null);
         setLesson(null);
+        getTextLessons().clear();
     }
 
-    public static TextLesson getLesson(String module, String lesson){
+    public static void getLesson(String module, String lesson){
         TextLesson match = null;
         for (int i = 0; i < getTextLessons().size(); i++) {
             match = getTextLessons().get(i);
             if (match.getTagsString().contains(module) && match.getTagsString().contains(lesson)){
                 setLesson(match);
-                return match;
             }
-        }return null;
+        }
+    }
+
+    public static void getExercise(String module, String lesson){
+        VideoPracticalExercise match = null;
+        for (int i = 0; i < getVideoPracticalExercises().size(); i++) {
+            match = getVideoPracticalExercises().get(i);
+            if (match.getTagsString().contains(module) && match.getTagsString().contains(lesson)){
+                setExercise(match);
+            }
+        }
+        System.out.println("\nContent of exercise:\n" + getExercise());
     }
 
     public static ArrayList<TextLesson> getLessonsInModule(String currentModule) {
@@ -101,8 +110,8 @@ public class Agent {
                 getLessonsInModule().add(match);
             }
         }
-        System.out.println("Contents of lessons in module:");
-        getLessonsInModule().forEach((a)->System.out.println(a));
+        //System.out.println("Contents of lessons in module:");
+        //getLessonsInModule().forEach((a)->System.out.println(a));
         return getLessonsInModule();
     }
 
@@ -151,6 +160,14 @@ public class Agent {
         Agent.lesson = lesson;
     }
 
+    public static VideoPracticalExercise getExercise() {
+        return exercise;
+    }
+
+    public static void setExercise(VideoPracticalExercise exercise) {
+        Agent.exercise = exercise;
+    }
+
     public static ArrayList<TextLesson> getTextLessons() {
         return textLessons;
     }
@@ -167,19 +184,12 @@ public class Agent {
         Agent.lessonsInModule = lessonsInModule;
     }
 
-    public static ArrayList<String> getModuleList() {
-        return moduleList;
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercises() {
+        return videoPracticalExercises;
     }
 
-    public static void setModuleList(ArrayList<String> moduleList) {
-        Agent.moduleList = moduleList;
+    public static void setVideoPracticalExercises(ArrayList<VideoPracticalExercise> videoPracticalExercises) {
+        Agent.videoPracticalExercises = videoPracticalExercises;
     }
 
-    public static ArrayList<String> getLessonList() {
-        return lessonList;
-    }
-
-    public static void setLessonList(ArrayList<String> lessonList) {
-        Agent.lessonList = lessonList;
-    }
 }

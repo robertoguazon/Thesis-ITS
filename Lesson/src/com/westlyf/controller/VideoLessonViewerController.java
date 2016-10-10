@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class VideoLessonViewerController implements Initializable {
+public class VideoLessonViewerController implements Initializable, Disposable {
 
     @FXML private Label videoLessonLabel;
     @FXML private MediaView videoLessonMediaView;
@@ -198,4 +198,8 @@ public class VideoLessonViewerController implements Initializable {
         });
     }
 
+    @Override
+    public void dispose() {
+        player.dispose();
+    }
 }

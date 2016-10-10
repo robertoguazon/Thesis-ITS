@@ -5,9 +5,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalReturnExerciseViewerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalReturnExerciseViewerController">
     <top>
-        <VBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Practical Return Exercise" />
                 <Label fx:id="titleLabel" />
@@ -17,22 +17,25 @@
     <center>
         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <content>
-                <VBox prefHeight="433.0" prefWidth="598.0">
+                <VBox>
                     <children>
-                        <HBox alignment="CENTER" prefHeight="131.0" prefWidth="598.0">
+                        <HBox alignment="CENTER">
                             <children>
-                                <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
+                                <TextArea fx:id="instructionsTextArea" editable="false" wrapText="true" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="598.0">
+                        <HBox alignment="CENTER_LEFT">
                             <children>
                                 <Label text="Code" />
                             </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                         </HBox>
-                        <HBox prefHeight="132.0" prefWidth="598.0">
+                        <HBox>
                             <children>
-                                <TextArea fx:id="codeTextArea" prefHeight="120.0" prefWidth="520.0" wrapText="true" HBox.hgrow="ALWAYS" />
-                                <VBox alignment="CENTER" prefHeight="132.0" prefWidth="78.0">
+                                <TextArea fx:id="codeTextArea" wrapText="true" HBox.hgrow="ALWAYS" />
+                                <VBox alignment="CENTER">
                                     <children>
                                         <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" text="Clear">
                                             <VBox.margin>
@@ -43,29 +46,41 @@
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                                 </VBox>
                             </children>
                         </HBox>
-                        <HBox prefHeight="66.0" prefWidth="598.0">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <children>
                                 <Label text="Sample Input" />
                                 <Button fx:id="executeSampleInputButton" mnemonicParsing="false" onAction="#executeSampleInput" text="Execute" />
                             </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                         </HBox>
                         <HBox prefHeight="71.0" prefWidth="598.0">
                             <children>
-                                <FlowPane fx:id="sampleInputFlowPane" prefHeight="41.0" prefWidth="564.0" HBox.hgrow="ALWAYS" />
+                                <FlowPane fx:id="sampleInputFlowPane" HBox.hgrow="ALWAYS" />
                             </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="598.0">
+                        <HBox alignment="CENTER_LEFT">
                             <children>
                                 <Label text="Output" />
                             </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                         </HBox>
-                        <HBox prefHeight="117.0" prefWidth="598.0">
+                        <HBox>
                             <children>
-                                <TextArea fx:id="outputTextArea" editable="false" prefHeight="61.0" prefWidth="520.0" wrapText="true" HBox.hgrow="ALWAYS" />
-                                <VBox alignment="CENTER" prefHeight="117.0" prefWidth="78.0">
+                                <TextArea fx:id="outputTextArea" editable="false" wrapText="true" HBox.hgrow="ALWAYS" />
+                                <VBox alignment="CENTER">
                                     <children>
                                         <Button fx:id="clearOutputButton" mnemonicParsing="false" onAction="#clearOutput" text="Clear">
                                             <VBox.margin>
@@ -73,12 +88,10 @@
                                             </VBox.margin>
                                         </Button>
                                     </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                                 </VBox>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                            <children>
-                                <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" text="Submit" />
                             </children>
                         </HBox>
                     </children>
@@ -86,4 +99,14 @@
             </content>
         </ScrollPane>
     </center>
+   <bottom>
+            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                <children>
+                    <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" text="Submit" />
+                </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+            </HBox>
+   </bottom>
 </BorderPane>
