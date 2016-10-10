@@ -117,6 +117,4 @@ public class PracticalReturnExerciseViewerController implements Initializable {
             return false;
         }
     }
-
-
 }

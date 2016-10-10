@@ -225,6 +225,11 @@ public class Controllers {
                     ((Disposable)examChoicesOnlyViewerController).dispose();
                 }
                 break;
+            case VIDEO_PRACTICAL_EXERCISE_VIEWER:
+                if (videoLessonViewerController instanceof Disposable) {
+                    ((Disposable)videoLessonViewerController).dispose();
+                }
+                break;
 
             //makers
             case LESSON_MAKER:
