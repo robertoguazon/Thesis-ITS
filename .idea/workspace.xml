@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Agent/com/westlyf/agent/Agent.class" afterPath="$PROJECT_DIR$/out/production/Agent/com/westlyf/agent/Agent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/ControllersSampleMain.class" afterPath="$PROJECT_DIR$/out/production/Lesson/ControllersSampleMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/controller/TextLessonViewerController.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/controller/TextLessonViewerController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/controller/VideoLessonViewerController.class" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/controller/VideoLessonViewerController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UserInterfaces/sample/controller/ModulesController.class" afterPath="$PROJECT_DIR$/out/production/UserInterfaces/sample/controller/ModulesController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/exercise.db" afterPath="$PROJECT_DIR$/resources/database/exercise.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/lesson.db" afterPath="$PROJECT_DIR$/resources/database/lesson.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database/user.db" afterPath="$PROJECT_DIR$/resources/database/user.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Agent/Agent.iml" afterPath="$PROJECT_DIR$/Agent/Agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Agent/src/com/westlyf/agent/Agent.java" afterPath="$PROJECT_DIR$/Agent/src/com/westlyf/agent/Agent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" afterPath="$PROJECT_DIR$/Lesson/src/ControllersSampleMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/TextLessonViewerController.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/TextLessonViewerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/VideoLessonViewerController.java" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/controller/VideoLessonViewerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseViewer.fxml" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalPrintExerciseViewer.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseViewer.fxml" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/PracticalReturnExerciseViewer.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/TextLessonViewer.fxml" afterPath="$PROJECT_DIR$/Lesson/src/com/westlyf/view/TextLessonViewer.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserInterfaces/src/sample/controller/ModulesController.java" afterPath="$PROJECT_DIR$/UserInterfaces/src/sample/controller/ModulesController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/PracticalPrintExerciseViewer.fxml" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/PracticalPrintExerciseViewer.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/PracticalReturnExerciseViewer.fxml" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/PracticalReturnExerciseViewer.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/TextLessonViewer.fxml" afterPath="$PROJECT_DIR$/out/production/Lesson/com/westlyf/view/TextLessonViewer.fxml" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -97,8 +75,6 @@
               <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
               <folding>
                 <element signature="docComment;class#Agent#0" expanded="false" />
-                <element signature="e#916#928#0" expanded="true" />
-                <element signature="e#1108#1114#0" expanded="true" />
                 <element signature="method#Agent#0;class#Agent#0" expanded="false" />
                 <element signature="method#loadAvailableLessons#0;class#Agent#0" expanded="false" />
                 <element signature="method#loadAvailableExercises#0;class#Agent#0" expanded="false" />
@@ -154,7 +130,7 @@
       <file leaf-file-name="PracticalReturnExerciseMakerController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseMakerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2141058">
+            <state vertical-scroll-proportion="0.3274559">
               <caret line="126" column="29" selection-start-line="126" selection-start-column="29" selection-end-line="126" selection-end-column="29" />
               <folding />
             </state>
@@ -586,8 +562,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1242,12 +1218,10 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35173503" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
@@ -1255,7 +1229,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1264,8 +1237,11 @@
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35173503" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1434,10 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.044386424">
           <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding>
-            <element signature="e#786#787#0" expanded="false" />
-            <element signature="e#826#827#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1503,7 +1475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.82245433">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1518,7 +1489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19843341">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1526,7 +1496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31070495">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1549,12 +1518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84334207">
           <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
-          <folding>
-            <element signature="method#setPracticalExerciseUsing#0;class#VideoPracticalExercise#0" expanded="false" />
-            <element signature="method#copy#0;class#VideoPracticalExercise#0" expanded="false" />
-            <element signature="method#clone#0;class#VideoPracticalExercise#0" expanded="false" />
-            <element signature="method#toString#0;class#VideoPracticalExercise#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1562,25 +1525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.0678852">
           <caret line="256" column="28" selection-start-line="256" selection-start-column="28" selection-end-line="256" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;class#LessonDatabase#0" expanded="false" />
-            <element signature="docComment;field#CREATE_TEXT_LESSON_TABLE#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="docComment;field#INSERT_TEXT_LESSON#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="docComment;field#GET_TEXT_LESSON_USING_LID#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#createTextLessonTable#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#createVideoLessonTable#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#storeData#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#storeData#1;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getTextLessonUsingTitle#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getVideoLessonUsingLID#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getTextLessonsUsingTagsExactly#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getVideoLessonsUsingTagsExactly#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getTextLessonsUsingTagsContains#1;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getVideoLessonsUsingTagsContains#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getVideoLessonsUsingPropertyTagsContains#0;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getVideoLessonsUsingTagsContains#1;class#LessonDatabase#0" expanded="false" />
-            <element signature="method#getVideoLessonsUsingTagsContains#2;class#LessonDatabase#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1634,7 +1578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7754569">
           <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1642,38 +1585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.6579635">
           <caret line="956" column="0" selection-start-line="956" selection-start-column="0" selection-end-line="956" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="docComment;field#CREATE_EXERCISE_QUIZ_TABLE#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="docComment;field#INSERT_QUIZ_EXERCISE#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="docComment;field#GET_QUIZ_EXERCISE_USING_ID#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#createQuizExerciseTable#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#createPracticalExerciseTable#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#createVideoPracticalExerciseTable#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#storeData#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#storeData#1;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#storeData#2;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercise#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExerciseUsingLID#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getPracticalExerciseUsingLID#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getVideoPracticalExerciseUsingLID#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExerciseUsingTitle#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getPracticalExerciseUsingTitle#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getPracticalExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getVideoPracticalExercisesUsingTagsExactly#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercisesUsingTagsContains#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercisesUsingPropertyTagsContains#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercisesUsingTagsContains#1;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getQuizExercisesUsingTagsContains#2;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getPracticalExercisesUsingTagsContains#1;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getPracticalExercisesUsingPropertyTagsContains#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getPracticalExercisesUsingTagsContains#2;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getVideoPracticalExercisesUsingTagsContains#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getVideoPracticalExercisesUsingTagsContains#1;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getVideoPracticalExercisesUsingPropertyTagsContains#0;class#ExerciseDatabase#0" expanded="false" />
-            <element signature="method#getVideoPracticalExercisesUsingTagsContains#2;class#ExerciseDatabase#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1731,8 +1642,6 @@
           <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
           <folding>
             <element signature="docComment;class#Agent#0" expanded="false" />
-            <element signature="e#916#928#0" expanded="true" />
-            <element signature="e#1108#1114#0" expanded="true" />
             <element signature="method#Agent#0;class#Agent#0" expanded="false" />
             <element signature="method#loadAvailableLessons#0;class#Agent#0" expanded="false" />
             <element signature="method#loadAvailableExercises#0;class#Agent#0" expanded="false" />
@@ -1808,7 +1717,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lesson/src/com/westlyf/controller/PracticalReturnExerciseMakerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2141058">
+        <state vertical-scroll-proportion="0.3274559">
           <caret line="126" column="29" selection-start-line="126" selection-start-column="29" selection-end-line="126" selection-end-column="29" />
           <folding />
         </state>
