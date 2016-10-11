@@ -200,6 +200,8 @@ public class VideoLessonViewerController implements Initializable, Disposable {
 
     @Override
     public void dispose() {
-        player.dispose();
+        if (player != null) {
+            player.dispose();
+        }
     }
 }
