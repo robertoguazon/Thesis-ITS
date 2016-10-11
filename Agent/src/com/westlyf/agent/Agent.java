@@ -58,7 +58,6 @@ public class Agent {
         int i = 1;
         //do {
             m = "module" + i++;
-            System.out.println(m);
             getVideoPracticalExercises().addAll(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains(m));
         //}while (!getCurrentModule().equals(m));
         System.out.println("\nContents of videoPracticalExercises: ");

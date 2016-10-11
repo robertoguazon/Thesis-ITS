@@ -179,10 +179,16 @@ public class TextLessonViewerController implements Initializable {
     private static Node combine(Node left, Node right) {
         BorderPane borderPane = new BorderPane();
         SplitPane splitPane = new SplitPane();
+        //splitPane.setPrefWidth(1120);
+        //splitPane.setPrefHeight(560);
         borderPane.setCenter(splitPane);
 
         Pane leftPaneContainer = new Pane(left);
+        leftPaneContainer.setMinWidth(600);
+        leftPaneContainer.setMinHeight(480);
         Pane rightPaneContainer = new Pane(right);
+        rightPaneContainer.setMinWidth(520);
+        rightPaneContainer.setMinHeight(480);
 
         if (left instanceof Pane && right instanceof Pane) {
             Pane leftPane = (Pane) left;
@@ -190,6 +196,8 @@ public class TextLessonViewerController implements Initializable {
 
             leftPane.prefWidthProperty().bind(leftPaneContainer.widthProperty());
             leftPane.prefHeightProperty().bind(leftPaneContainer.heightProperty());
+            rightPane.prefWidthProperty().bind(rightPaneContainer.widthProperty());
+            rightPane.prefHeightProperty().bind(rightPaneContainer.heightProperty());
         }
 
         splitPane.getItems().addAll(leftPaneContainer,rightPaneContainer);
