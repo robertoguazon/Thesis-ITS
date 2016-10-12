@@ -32,7 +32,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
-        //testVideoPracticalExerciseViewer(primaryStage);
+        testVideoPracticalExerciseViewer(primaryStage);
         //testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
@@ -42,7 +42,7 @@ public class ControllersSampleMain extends Application {
         //makers
         //testLessonMaker(primaryStage);
         //testQuizExerciseMaker(primaryStage);
-        testPracticalExerciseMaker(primaryStage);
+        //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
         //testExamChoicesOnlyMaker(primaryStage);
 
@@ -128,7 +128,7 @@ public class ControllersSampleMain extends Application {
 
     private void testVideoPracticalExerciseViewer(Stage primaryStage) {
         Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER,
-                ExerciseDatabase.getVideoPracticalExerciseUsingTitle("New Sample Test Video"));
+                ExerciseDatabase.getVideoPracticalExerciseUsingTitle("Basic Syntax"));
         //Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingLID("lid51204534921811"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);

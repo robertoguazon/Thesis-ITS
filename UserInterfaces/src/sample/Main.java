@@ -34,7 +34,7 @@ public class Main extends Application {
     }
 
     private void closeProgram(){
-        Boolean answer = ConfirmBox.display("Confirm Exit", "Are you sure you want to exit?");
+        Boolean answer = ConfirmBox.display("Confirm Exit", "Exit Application?", "Are you sure you want to exit?");
         if (answer){
             Agent.removeLoggedUser();
             window.close();

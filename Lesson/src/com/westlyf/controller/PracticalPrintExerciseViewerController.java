@@ -28,8 +28,14 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML private Button clearOutputButton;
 
     @FXML private Button submitButton;
+    @FXML private Label responseText;
 
     private PracticalPrintExercise practicalPrintExercise;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //submitButton.setDisable(true);
+    }
 
     public void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
         this.practicalPrintExercise = practicalPrintExercise;
@@ -46,11 +52,6 @@ public class PracticalPrintExerciseViewerController implements Initializable {
         return practicalPrintExercise;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     @FXML
     private void clearCode() {
         this.codeTextArea.clear();
@@ -61,6 +62,11 @@ public class PracticalPrintExerciseViewerController implements Initializable {
         if (practicalPrintExercise != null) {
             compileCode();
             outputTextArea.setText(RuntimeUtil.STRING_OUTPUT.toString());
+            if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())){
+                responseText.setText("Correct!");
+            }else {
+                responseText.setText("Incorrect Output");
+            }
         }
     }
 
@@ -86,6 +92,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     private void compileCode() {
         try {
+            System.out.println("try: ");
             RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
             RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
             RuntimeUtil.compile(practicalPrintExercise);

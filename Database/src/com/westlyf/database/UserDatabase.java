@@ -39,6 +39,10 @@ public class UserDatabase {
             "username, password, name, age, sex, school, yearLevel, profilePicturePath, dateModified, dateCreated) " +
             "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 
+    private static final String UPDATE_USER = "UPDATE Users SET currentModuleId=?, currentLessonId=?, currentExamId=?, " +
+            "username=?, password=?, name=?, age=?, sex=?, school=?, yearLevel=?, profilePicturePath=?, " +
+            "dateModified=CURRENT_TIMESTAMP WHERE userId=?";
+
     public static int createUsersDatabase(){
         return Database.createTable(Database.USER, UserDatabase.CREATE_USERS_TABLE);
     }
@@ -53,6 +57,7 @@ public class UserDatabase {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()){
                     Users user = new Users();
+                    user.setUserId(resultSet.getInt("userId"));
                     user.setCurrentModuleId(resultSet.getString("currentModuleId"));
                     user.setCurrentLessonId(resultSet.getString("currentLessonId"));
                     user.setCurrentExamId(resultSet.getString("currentExamId"));
@@ -96,6 +101,33 @@ public class UserDatabase {
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void updateUser(int userId, String currentModuleId, String currentLessonId, String currentExamId,
+                                  String username, String password, String name, int age, String sex,
+                                  String school, String yearLevel, String profilePicturePath){
+        userConn = DatabaseConnection.getUserConnection();
+        if (userConn != null){
+            try {
+                PreparedStatement preparedStatement = preparedStatement = userConn.prepareStatement(UPDATE_USER);
+                preparedStatement.setString(1, currentModuleId);
+                preparedStatement.setString(2, currentLessonId);
+                preparedStatement.setString(3, currentExamId);
+                preparedStatement.setString(4, username);
+                preparedStatement.setString(5, password);
+                preparedStatement.setString(6, name);
+                preparedStatement.setInt(7, age);
+                preparedStatement.setString(8, sex);
+                preparedStatement.setString(9, school);
+                preparedStatement.setString(10, yearLevel);
+                preparedStatement.setString(11, profilePicturePath);
+                preparedStatement.setInt(12, userId);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

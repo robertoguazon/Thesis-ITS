@@ -134,12 +134,17 @@ public class TextLessonViewerController implements Initializable {
 
         stage.setOnCloseRequest(e -> {
             e.consume();
-            closeProgram();
+            closeExercise();
         });
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(exercise.getScene().getWindow());
         stage.showAndWait();
+    }
+
+    private void openExercise() throws IOException {
+        String[] lessonTags = Agent.getLesson().getTagsString().split(",");
+        Agent.loadExercise(lessonTags[0], lessonTags[1]);
     }
 
     private Node loadVideoLessonNode() throws IOException {
@@ -171,12 +176,7 @@ public class TextLessonViewerController implements Initializable {
         return peNode;
     }
 
-    private void openExercise() throws IOException {
-        String[] lessonTags = Agent.getLesson().getTagsString().split(",");
-        Agent.getExercise(lessonTags[0], lessonTags[1]);
-    }
-
-    private static Node combine(Node left, Node right) {
+    private Node combine(Node left, Node right) {
         BorderPane borderPane = new BorderPane();
         SplitPane splitPane = new SplitPane();
         //splitPane.setPrefWidth(1120);
@@ -184,10 +184,10 @@ public class TextLessonViewerController implements Initializable {
         borderPane.setCenter(splitPane);
 
         Pane leftPaneContainer = new Pane(left);
-        leftPaneContainer.setMinWidth(600);
+        leftPaneContainer.setMinWidth(560);
         leftPaneContainer.setMinHeight(480);
         Pane rightPaneContainer = new Pane(right);
-        rightPaneContainer.setMinWidth(520);
+        rightPaneContainer.setMinWidth(560);
         rightPaneContainer.setMinHeight(480);
 
         if (left instanceof Pane && right instanceof Pane) {
@@ -204,9 +204,10 @@ public class TextLessonViewerController implements Initializable {
         return borderPane;
     }
 
-    private void closeProgram(){
+    private void closeExercise(){
 
-        Boolean answer = ConfirmBox.display("Confirm Exit", "Are you sure you want to close the exercise?");
+        Boolean answer = ConfirmBox.display("Confirm Exit",
+                "Are you sure you want to close the exercise?", "All changes will not be saved.");
         if (answer){
             if (vlc instanceof Disposable){
                 ((Disposable)vlc).dispose();
