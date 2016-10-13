@@ -34,10 +34,27 @@ public class ModulesController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
-        System.out.println(backToMenu.getScene());
-        if (Agent.getLoggedUser() == null){
+        if (Agent.getLoggedUser() != null){
+            switch (Agent.getLoggedUser().getCurrentModuleId()){
+                case "module1":
+                    module2.setDisable(true);
+                case "module2":
+                    module3.setDisable(true);
+                case "module3":
+                    module4.setDisable(true);
+                case "module4":
+                    module5.setDisable(true);
+                case "module5":
+                    module6.setDisable(true);
+                case "module6":
+                    module7.setDisable(true);
+                    break;
+                default:
+                    break;
+            }
+        }/*else {
             try {
+                System.out.println(backToMenu.getScene());
                 Stage stage = (Stage) backToMenu.getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 Pane root = fxmlLoader.load(getClass().getResource("../view/loadprofile.fxml").openStream());
@@ -49,30 +66,7 @@ public class ModulesController implements Initializable{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else {
-            if (DatabaseConnection.getUserConnection() != null){
-        */
-                switch (Agent.getLoggedUser().getCurrentModuleId()){
-                    case "module1":
-                        module2.setDisable(true);
-                    case "module2":
-                        module3.setDisable(true);
-                    case "module3":
-                        module4.setDisable(true);
-                    case "module4":
-                        module5.setDisable(true);
-                    case "module5":
-                        module6.setDisable(true);
-                    case "module6":
-                        module7.setDisable(true);
-                        break;
-                    default:
-                        break;
-                }
-        /*
-            }
-        }
-        */
+        }*/
     }
 
     @FXML
@@ -84,7 +78,6 @@ public class ModulesController implements Initializable{
             stage = (Stage)backToMenu.getScene().getWindow();
         }else {
             if (event.getSource() == module1) {
-                Agent.setCurrentModule("module1");
                 openModule("module1");
             } else if (event.getSource() == module2) {
                 openModule("module2");
@@ -113,12 +106,11 @@ public class ModulesController implements Initializable{
 
     public void openModule(String module){
         if (Agent.getLoggedUser().getCurrentModuleId().equals(module)) {
-            Agent.getLesson(module, Agent.getLoggedUser().getCurrentLessonId());
+            Agent.loadLesson(module, Agent.getLoggedUser().getCurrentLessonId());
         }else {
-            Agent.getLesson(module, "lesson0");
+            Agent.loadLesson(module, "lesson0");
         }
         Agent.setCurrentModule(module);
         Agent.setCurrentLesson(Agent.getLesson().getTagsString());
-        System.out.println("\nRetrieved Lesson:\n" + Agent.getLesson());
     }
 }

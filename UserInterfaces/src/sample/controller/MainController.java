@@ -1,15 +1,11 @@
 package sample.controller;
 
-import com.westlyf.database.ExerciseDatabase;
-import com.westlyf.database.LessonDatabase;
-import com.westlyf.database.UserDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,10 +31,7 @@ public class MainController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        UserDatabase.createUsersDatabase();
-        ExerciseDatabase.createQuizExerciseTable();
-        LessonDatabase.createTextLessonTable();
-        LessonDatabase.createVideoLessonTable();
+
     }
 
     @FXML

@@ -1,11 +1,18 @@
 import com.westlyf.database.*;
+
 import com.westlyf.domain.exercise.Exercise;
 import com.westlyf.domain.exercise.practical.*;
+
+import com.westlyf.domain.exercise.practical.DataType;
+import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
+import com.westlyf.user.Users;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -29,7 +36,9 @@ public class DatabaseMain {
         LessonDatabase.createTextLessonTable();
         LessonDatabase.createVideoLessonTable();
         ExamDatabase.createExamTable();
-        UserDatabase.createUsersDatabase();
+        UserDatabase.createUsersTable();
+        UserDatabase.createUserExercisesTable();
+        UserDatabase.createExamGradesTable();
 
         Connection user = DatabaseConnection.getUserConnection();
         Connection lesson = DatabaseConnection.getLessonConn();
@@ -40,6 +49,9 @@ public class DatabaseMain {
         System.out.println("lessonDB: " + lesson);
         System.out.println("exerciseDB: " + exercise);
         System.out.println("exam: " + exercise);
+
+
+        testExamGrades();
 
         //testUser();
         //testPush();
@@ -60,6 +72,13 @@ public class DatabaseMain {
         System.out.println(pe.getCGroup());
     }
 
+    private static void testExamGrades(){
+        int userId = 1;
+        String exam_title = "module3";
+        int grade = 85;
+        UserDatabase.addExamGrade(userId, exam_title, grade);
+    }
+
     private static void testUser() {
         String currentModule = "module1";
         String currentLesson = "lesson1";
@@ -72,8 +91,9 @@ public class DatabaseMain {
         String sex = "male";
         String yearLevel = "4th year";
         String profilePicturePath = null;
-        UserDatabase.addNewProfile(currentModule, currentLesson, currentExam,
-                username, password, name, age, sex, school, yearLevel, profilePicturePath);
+        UserDatabase.addUser(
+                encapsulateUser(currentModule, currentLesson, currentExam,
+                        username, password, name, age, sex, school, yearLevel, profilePicturePath));
     }
 
     private static void testPush() {
@@ -337,5 +357,23 @@ public class DatabaseMain {
         System.out.println(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains("practical"));
 
 
+    }
+
+    public static Users encapsulateUser(String currentModuleId, String currentLessonId, String currentExamId,
+                                 String username, String password, String name, int age, String sex,
+                                 String school, String yearLevel, String profilePicturePath){
+        Users user = new Users();
+        user.setCurrentModuleId(currentModuleId);
+        user.setCurrentLessonId(currentLessonId);
+        user.setCurrentExamId(currentExamId);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setName(name);
+        user.setAge(age);
+        user.setSex(sex);
+        user.setSchool(school);
+        user.setYearLevel(yearLevel);
+        user.setProfilePicturePath(profilePicturePath);
+        return user;
     }
 }

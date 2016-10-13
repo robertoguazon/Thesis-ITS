@@ -83,7 +83,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleNewWindowAction" prefHeight="300.0" prefWidth="144.0" text="Grades">
+                  <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Grades">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>

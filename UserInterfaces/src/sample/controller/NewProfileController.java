@@ -1,7 +1,7 @@
 package sample.controller;
 
-import com.westlyf.database.DatabaseConnection;
-import com.westlyf.database.UserDatabase;
+import com.westlyf.agent.Agent;
+import com.westlyf.user.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.ResourceBundle;
 
 
@@ -42,12 +41,8 @@ public class NewProfileController implements Initializable{
     @FXML private Button backToMenu;
     @FXML private Button createNewProfile;
 
-    private static Connection userConn;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userConn = DatabaseConnection.getUserConnection();
-
         yearLevelComboBox.setValue("HS 1st Year");
         yearLevelComboBox.setItems(yearLevelList);
     }
@@ -88,13 +83,9 @@ public class NewProfileController implements Initializable{
                 int ageNum = Integer.parseInt(age);
                 if (isAge(ageNum)){
                     if (confirmPassword(password, confirmPassword)){
-                        if (userConn != null){
-                            UserDatabase.addNewProfile(currentModule, currentLesson, currentExam, username, password,
-                                    name, ageNum, sex, school, yearLevel, profilePicturePath);
+                            Agent.addUser(encapsulateUser(currentModule, currentLesson, currentExam, username, password,
+                                    name, ageNum, sex, school, yearLevel, profilePicturePath));
                             return true;
-                        }else {
-                            setErrorMessage("Unable to Connect to User Database.");
-                        }
                     }
                 }
             }
@@ -214,6 +205,24 @@ public class NewProfileController implements Initializable{
         passwordText.setStyle("-fx-text-box-border: red;");
         confirmPasswordText.setStyle("-fx-text-box-border: red;");
         return false;
+    }
+
+    public Users encapsulateUser(String currentModuleId, String currentLessonId, String currentExamId,
+                                 String username, String password, String name, int age, String sex,
+                                 String school, String yearLevel, String profilePicturePath){
+        Users user = new Users();
+        user.setCurrentModuleId(currentModuleId);
+        user.setCurrentLessonId(currentLessonId);
+        user.setCurrentExamId(currentExamId);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setName(name);
+        user.setAge(age);
+        user.setSex(sex);
+        user.setSchool(school);
+        user.setYearLevel(yearLevel);
+        user.setProfilePicturePath(profilePicturePath);
+        return user;
     }
 
     public void setErrorMessage(String message){
