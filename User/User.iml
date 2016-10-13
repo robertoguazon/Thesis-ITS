@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Database" />
     <orderEntry type="module" module-name="Lesson" />
+    <orderEntry type="module" module-name="Exercise" />
+    <orderEntry type="module" module-name="RunTimeCompilation" />
   </component>
 </module>

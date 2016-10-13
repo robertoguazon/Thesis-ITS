@@ -1,9 +1,11 @@
 package com.westlyf.database;
 
-import sample.model.Users;
+import com.westlyf.user.ExamGrade;
+import com.westlyf.user.UserExercise;
+import com.westlyf.user.Users;
 
 import java.sql.*;
-import java.util.Calendar;
+import java.util.ArrayList;
 
 /**
  * Created by robertoguazon on 10/08/2016.
@@ -28,30 +30,60 @@ public class UserDatabase {
             "profilePicturePath TEXT, " +
             "dateModified DATETIME NOT NULL, " +
             "dateCreated DATETIME NOT NULL" +
-            //", " +
-            //"FOREIGN KEY (currentLessonId) REFERENCES text_lesson(id), " +
-            //"FOREIGN KEY (currentModuleId) REFERENCES Modules(id), " +
-            //"FOREIGN KEY (currentExamId) REFERENCES exam(id)" +
             ")";
-    private static final String IS_USER_AVAILABLE = "SELECT * FROM users WHERE username = ? AND password = ?";
+    private static final String CREATE_USER_EXERCISES_TABLE = "CREATE TABLE IF NOT EXISTS user_exercises(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "userId INTEGER NOT NULL, " +
+            "exercise_title TEXT NOT NULL, " +
+            "code TEXT NOT NULL, " +
+            "dateModified DATETIME NOT NULL, " +
+            "dateCreated DATETIME NOT NULL" +
+            ")";
+    private static final String CREATE_EXAM_GRADES_TABLE = " CREATE TABLE IF NOT EXISTS exam_grades(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "userId INTEGER NOT NULL, " +
+            "exam_title TEXT NOT NULL, " +
+            "grade INTEGER NOT NULL, " +
+            "dateModified DATETIME NOT NULL, " +
+            "dateCreated DATETIME NOT NULL" +
+            ")";
 
-    private static final String ADD_NEW_PROFILE = "INSERT INTO Users(currentModuleId, currentLessonId, currentExamId, " +
+    private static final String ADD_USER = "INSERT INTO users(currentModuleId, currentLessonId, currentExamId, " +
             "username, password, name, age, sex, school, yearLevel, profilePicturePath, dateModified, dateCreated) " +
             "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+    private static final String ADD_USER_EXERCISE = "INSERT INTO user_exercise(userId, exercise_title, code, " +
+            "dateModified, dateCreated) values(?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+    private static final String ADD_EXAM_GRADE = "INSERT INTO exam_grades(userId, exam_title, grade, dateModified, dateCreated) " +
+            "values(?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 
-    private static final String UPDATE_USER = "UPDATE Users SET currentModuleId=?, currentLessonId=?, currentExamId=?, " +
+    private static final String UPDATE_USER = "UPDATE users SET currentModuleId=?, currentLessonId=?, currentExamId=?, " +
             "username=?, password=?, name=?, age=?, sex=?, school=?, yearLevel=?, profilePicturePath=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE userId=?";
+    private static final String UPDATE_USER_EXERCISE = "UPDATE user_exercise SET userId=?, exercise_title=?, code=?, " +
+            "dateModified=CURRENT_TIMESTAMP WHERE id=?";
+    private static final String UPDATE_EXAM_GRADE = "UPDATE exam_grade SET userId=?, exam_title=?, grade=?, " +
+            "dateModified=CURRENT_TIMESTAMP WHERE id=?";
 
-    public static int createUsersDatabase(){
-        return Database.createTable(Database.USER, UserDatabase.CREATE_USERS_TABLE);
+    private static final String GET_USER_USING_CREDENTIALS = "SELECT * FROM users WHERE username = ? AND password = ?";
+    private static final String GET_USER_EXERCISES_USING_USER_ID = "SELECT * FROM user_exercises WHERE userId=?";
+    private static final String GET_EXAM_GRADES_USING_USER_ID = "SELECT * FROM exam_grades WHERE userId=?";
+
+    public static int createUsersTable(){
+        return Database.createTable(Database.USER, CREATE_USERS_TABLE);
     }
 
-    public static Users isUserAvailable(String username, String password){
+    public static int createUserExercisesTable(){ return Database.createTable(Database.USER, CREATE_USER_EXERCISES_TABLE); }
+
+    public static int createExamGradesTable(){
+        return Database.createTable(Database.USER, CREATE_EXAM_GRADES_TABLE);
+    }
+
+    public static Users getUserUsingCredentials(String username, String password){
         userConn = DatabaseConnection.getUserConnection();
         if(userConn != null){
+            PreparedStatement preparedStatement = null;
             try {
-                PreparedStatement preparedStatement = userConn.prepareStatement(IS_USER_AVAILABLE);
+                preparedStatement = userConn.prepareStatement(GET_USER_USING_CREDENTIALS);
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -72,65 +104,252 @@ public class UserDatabase {
                     System.out.println("user retrieved: " + user);
                     return user;
                 }
-                preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null;
     }
 
-    public static void addNewProfile(String currentModuleId, String currentLessonId, String currentExamId,
-                                     String username, String password, String name, int age, String sex,
-                                     String school, String yearLevel, String profilePicturePath){
+    public static void addUser(Users user){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
+            PreparedStatement preparedStatement = null;
             try {
-                PreparedStatement preparedStatement = preparedStatement = userConn.prepareStatement(ADD_NEW_PROFILE);
-                preparedStatement.setString(1, currentModuleId);
-                preparedStatement.setString(2, currentLessonId);
-                preparedStatement.setString(3, currentExamId);
-                preparedStatement.setString(4, username);
-                preparedStatement.setString(5, password);
-                preparedStatement.setString(6, name);
-                preparedStatement.setInt(7, age);
-                preparedStatement.setString(8, sex);
-                preparedStatement.setString(9, school);
-                preparedStatement.setString(10, yearLevel);
-                preparedStatement.setString(11, profilePicturePath);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
-
+                preparedStatement = userConn.prepareStatement(ADD_USER);
+                preparedStatement.setString(1, user.getCurrentModuleId());
+                preparedStatement.setString(2, user.getCurrentLessonId());
+                preparedStatement.setString(3, user.getCurrentExamId());
+                preparedStatement.setString(4, user.getUsername());
+                preparedStatement.setString(5, user.getPassword());
+                preparedStatement.setString(6, user.getName());
+                preparedStatement.setInt(7, user.getAge());
+                preparedStatement.setString(8, user.getSex());
+                preparedStatement.setString(9, user.getSchool());
+                preparedStatement.setString(10, user.getYearLevel());
+                preparedStatement.setString(11, user.getProfilePicturePath());
+                if (preparedStatement.executeUpdate() > 0) {
+                    System.out.println("Successful Insert: user");
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public static void updateUser(int userId, String currentModuleId, String currentLessonId, String currentExamId,
-                                  String username, String password, String name, int age, String sex,
-                                  String school, String yearLevel, String profilePicturePath){
+    public static void addUserExercise(int userId, String exercise_title, String code){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
+            PreparedStatement preparedStatement = null;
             try {
-                PreparedStatement preparedStatement = preparedStatement = userConn.prepareStatement(UPDATE_USER);
-                preparedStatement.setString(1, currentModuleId);
-                preparedStatement.setString(2, currentLessonId);
-                preparedStatement.setString(3, currentExamId);
-                preparedStatement.setString(4, username);
-                preparedStatement.setString(5, password);
-                preparedStatement.setString(6, name);
-                preparedStatement.setInt(7, age);
-                preparedStatement.setString(8, sex);
-                preparedStatement.setString(9, school);
-                preparedStatement.setString(10, yearLevel);
-                preparedStatement.setString(11, profilePicturePath);
-                preparedStatement.setInt(12, userId);
-                preparedStatement.executeUpdate();
-                preparedStatement.close();
+                preparedStatement = userConn.prepareStatement(ADD_USER_EXERCISE);
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setString(2, exercise_title);
+                preparedStatement.setString(3, code);
+                if (preparedStatement.executeUpdate() > 0) {
+                    System.out.println("Successful Insert: user_exercise");
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
+    }
+
+    public static void addExamGrade(int userId, String exam_title, int grade){
+        userConn = DatabaseConnection.getUserConnection();
+        if (userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(ADD_EXAM_GRADE);
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setString(2, exam_title);
+                preparedStatement.setInt(3, grade);
+                if (preparedStatement.executeUpdate() > 0) {
+                    System.out.println("Successful Insert: exam_grade");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void updateUser(Users user){
+        userConn = DatabaseConnection.getUserConnection();
+        if (userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(UPDATE_USER);
+                preparedStatement.setString(1, user.getCurrentModuleId());
+                preparedStatement.setString(2, user.getCurrentLessonId());
+                preparedStatement.setString(3, user.getCurrentExamId());
+                preparedStatement.setString(4, user.getUsername());
+                preparedStatement.setString(5, user.getPassword());
+                preparedStatement.setString(6, user.getName());
+                preparedStatement.setInt(7, user.getAge());
+                preparedStatement.setString(8, user.getSex());
+                preparedStatement.setString(9, user.getSchool());
+                preparedStatement.setString(10, user.getYearLevel());
+                preparedStatement.setString(11, user.getProfilePicturePath());
+                preparedStatement.setInt(12, user.getUserId());
+                if (preparedStatement.executeUpdate() > 0){
+                    System.out.println("Successful Update: user");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void updateUserExercise(int id, int userId, String exercise_title, String code){
+        userConn = DatabaseConnection.getUserConnection();
+        if (userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(UPDATE_USER_EXERCISE);
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setString(2, exercise_title);
+                preparedStatement.setString(3, code);
+                preparedStatement.setInt(4, id);
+                if (preparedStatement.executeUpdate() > 0){
+                    System.out.println("Successful Update: user_exercise");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void updateExamGrade(int id, int userId, String exam_title, int grade){
+        userConn = DatabaseConnection.getUserConnection();
+        if (userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(UPDATE_EXAM_GRADE);
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setString(2, exam_title);
+                preparedStatement.setInt(3, grade);
+                preparedStatement.setInt(4, id);
+                if (preparedStatement.executeUpdate() > 0){
+                    System.out.println("Successful Update: exam_grade");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static ArrayList<UserExercise> getUserExercisesUsingUserId(int userId){
+        userConn = DatabaseConnection.getUserConnection();
+        if(userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(GET_USER_EXERCISES_USING_USER_ID);
+                preparedStatement.setInt(1, userId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ArrayList<UserExercise> userExercises = new ArrayList<>();
+                while (resultSet.next()){
+                    UserExercise userExercise = new UserExercise();
+                    userExercise.setId(resultSet.getInt("id"));
+                    userExercise.setUserId(resultSet.getInt("userId"));
+                    userExercise.setExercise_title(resultSet.getString("exercise_title"));
+                    userExercise.setCode(resultSet.getString("code"));
+                    userExercises.add(userExercise);
+                }
+                System.out.println("Retrieved User Exercises:\n" + userExercises);
+                return userExercises;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<ExamGrade> getExamGradesUsingUserId(int userId){
+        userConn = DatabaseConnection.getUserConnection();
+        if(userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(GET_EXAM_GRADES_USING_USER_ID);
+                preparedStatement.setInt(1, userId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ArrayList<ExamGrade> examGrades = new ArrayList<>();
+                while (resultSet.next()){
+                    ExamGrade examGrade = new ExamGrade();
+                    examGrade.setId(resultSet.getInt("id"));
+                    examGrade.setUserId(resultSet.getInt("userId"));
+                    examGrade.setExam_title(resultSet.getString("exam_title"));
+                    examGrade.setGrade(resultSet.getInt("grade"));
+                    examGrades.add(examGrade);
+                }
+                System.out.println("Retrieved Exam Grades:\n" + examGrades);
+                return examGrades;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 }

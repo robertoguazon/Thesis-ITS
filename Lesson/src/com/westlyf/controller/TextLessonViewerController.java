@@ -158,15 +158,16 @@ public class TextLessonViewerController implements Initializable {
     }
 
     private Node loadPracticalExerciseNode() throws IOException {
+        PracticalExercise practicalExercise = Agent.getExercise().getPracticalExercise();
         FXMLLoader loader = new FXMLLoader();
         Node peNode;
-        if (Agent.getExercise().getPracticalExercise() instanceof PracticalPrintExercise){
+        if (practicalExercise instanceof PracticalPrintExercise){
             loader.setLocation(getClass().getResource("../view/PracticalPrintExerciseViewer.fxml"));
             peNode = loader.load();
             ppec = loader.getController();
             //System.out.println(Agent.getExercise().getPracticalExercise());
             ppec.setPracticalPrintExercise((PracticalPrintExercise) Agent.getExercise().getPracticalExercise());
-        }else if (Agent.getExercise().getPracticalExercise() instanceof PracticalReturnExercise){
+        }else if (practicalExercise instanceof PracticalReturnExercise){
             loader.setLocation(getClass().getResource("../view/PracticalReturnExerciseViewer.fxml"));
             peNode = loader.load();
             prec = loader.getController();

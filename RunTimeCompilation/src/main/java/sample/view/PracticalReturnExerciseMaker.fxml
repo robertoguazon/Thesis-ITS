@@ -13,7 +13,7 @@
                <children>
                   <HBox fx:id="returnTypeHBox" prefHeight="37.0" prefWidth="599.0">
                      <children>
-                        <Label text="Return type:" />
+                        <Label text="Return loadType:" />
                      </children>
                   </HBox>
                   <HBox prefHeight="28.0" prefWidth="599.0">

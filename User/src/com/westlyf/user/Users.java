@@ -1,4 +1,4 @@
-package sample.model;
+package com.westlyf.user;
 
 /**
  * Created by Yves on 9/19/2016.
