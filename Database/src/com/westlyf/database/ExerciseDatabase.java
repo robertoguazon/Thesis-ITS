@@ -55,7 +55,8 @@ public class ExerciseDatabase {
                     "parametersTypes BLOB," +
                     "explanation TEXT," +
 
-                    "practicalType BLOB NOT NULL" +
+                    "practicalType BLOB NOT NULL," +
+                    "cGroup BLOB" +
                     ")",
             CREATE_EXERCISE_VIDEO_PRACTICAL_TABLE = "CREATE TABLE IF NOT EXISTS video_practical_exercise(" +
                     "lid TEXT NOT NULL UNIQUE," +
@@ -84,8 +85,8 @@ public class ExerciseDatabase {
                     "(?,?,?,?,?,?)",
             INSERT_PRACTICAL_EXERCISE = "INSERT INTO " +
                     "practical_exercise(lid,title,tags, totalItems,totalScore, instructions,code,className,methodName, " +
-                    "printValidator,mustMatch, returnValidators,returnType,parametersTypes,explanation, practicalType) VALUES " +
-                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?,?, ?)",
+                    "printValidator,mustMatch, returnValidators,returnType,parametersTypes,explanation, practicalType, cGroup) VALUES " +
+                    "(?,?,?, ?,?, ?,?,?,?, ?,?, ?,?,?,?, ?,?)",
             INSERT_VIDEO_PRACTICAL_EXERCISE = "INSERT INTO " +
                     "video_practical_exercise(" +
                     "lid,title,tags, totalItems,totalScore,  " +
@@ -234,6 +235,8 @@ public class ExerciseDatabase {
         PracticalType practicalType =
                 (practicalExercise instanceof PracticalPrintExercise) ? PracticalType.PRINT : PracticalType.RETURN;
 
+        CGroup cGroup = practicalExercise.getCGroup();
+
         switch (practicalType) {
             case PRINT:
                 PracticalPrintExercise practicalPrintExercise = (PracticalPrintExercise) practicalExercise;
@@ -283,6 +286,7 @@ public class ExerciseDatabase {
             ps.setString(15,explanation);
 
             ps.setBytes(16, Database.serialize(practicalType));
+            ps.setBytes(17, Database.serialize(new CGroupSerializable(cGroup)));
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -496,6 +500,7 @@ public class ExerciseDatabase {
                 practicalExercise.setClassName(rs.getString("className"));
                 practicalExercise.setMethodName(rs.getString("methodName"));
                 practicalExercise.setExplanation(rs.getString("explanation"));
+                practicalExercise.setCGroup(new CGroup((CGroupSerializable) Database.deserialize(rs.getBytes("cGroup"))));
 
                 switch(practicalType) {
                     case PRINT:

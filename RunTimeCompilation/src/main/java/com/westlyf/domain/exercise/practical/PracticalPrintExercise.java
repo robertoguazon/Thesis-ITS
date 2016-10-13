@@ -77,7 +77,7 @@ public class PracticalPrintExercise extends PracticalExercise {
     public boolean evaluate(String output) {
         if (mustMatch.get()) {
             output = output.trim();
-            return (printValidator.equals(output));
+            return (printValidator.get().equals(output));
         } else {
             String checker = printValidator.get().toLowerCase();
             String toBeChecked = output.toLowerCase();

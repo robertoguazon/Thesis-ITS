@@ -79,9 +79,12 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     private void submit() {
         //TODO evaluate and get score and push to database
         compileCode();
-
+        if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())) {
+            if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
+                System.out.println("Correct: true");
+            } else System.out.println("Correct: false, no cheating");
+        } else System.out.println("Correct: false");
         System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
-        System.out.println("Correct: " + practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString()));
     }
 
     private void compileCode() {

@@ -77,6 +77,13 @@
                               <Button fx:id="clearExplanationButton" mnemonicParsing="false" onAction="#clearExplanation" prefHeight="25.0" prefWidth="70.0" text="Clear" />
                            </children>
                         </HBox>
+                        <VBox prefHeight="84.0" prefWidth="628.0">
+                           <children>
+                              <Label text="Code Checkers / Requirements (CGroup)" />
+                              <Button fx:id="addCStringButton" mnemonicParsing="false" onAction="#addCString" text="Add code checker (CString)" />
+                              <VBox fx:id="cGroupVBox" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </VBox>
                             </children>
 
                         </VBox>

@@ -1,9 +1,6 @@
 import com.westlyf.database.*;
 import com.westlyf.domain.exercise.Exercise;
-import com.westlyf.domain.exercise.practical.DataType;
-import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
-import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
-import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
+import com.westlyf.domain.exercise.practical.*;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
@@ -44,9 +41,10 @@ public class DatabaseMain {
         System.out.println("exerciseDB: " + exercise);
         System.out.println("exam: " + exercise);
 
-        testUser();
+        //testUser();
         //testPush();
         //testPull();
+        testCGroup();
 
         try {
             user.close();
@@ -55,6 +53,11 @@ public class DatabaseMain {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void testCGroup() {
+        PracticalExercise pe = ExerciseDatabase.getPracticalExerciseUsingLID("lid1513096105856044");
+        System.out.println(pe.getCGroup());
     }
 
     private static void testUser() {

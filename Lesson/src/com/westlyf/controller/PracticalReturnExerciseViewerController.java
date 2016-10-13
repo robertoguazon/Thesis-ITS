@@ -101,7 +101,9 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     private void submit() {
         //TODO - fix
         if (compileCode()) {
-            System.out.println("Correct: true");
+            if (practicalReturnExercise.checkCGroup(codeTextArea.textProperty())) {
+                System.out.println("Correct: true");
+            } else System.out.println("Correct: false, no cheating");
         } else {
             System.out.println("Correct: false");
         }

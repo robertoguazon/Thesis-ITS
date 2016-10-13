@@ -1,9 +1,7 @@
 package com.westlyf.controller;
 
 import com.westlyf.database.ExerciseDatabase;
-import com.westlyf.domain.exercise.practical.PracticalExercise;
-import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
-import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
+import com.westlyf.domain.exercise.practical.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -11,9 +9,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -49,6 +50,11 @@ public class PracticalExerciseMakerController implements Initializable {
     @FXML private TextArea explanationTextArea;
     @FXML private Button clearExplanationButton;
 
+    //code checkerse
+    @FXML private Button addCStringButton;
+    @FXML private VBox cGroupVBox;
+    private CGroup cGroup;
+
     private ArrayList<StringProperty> tags;
     private PracticalPrintExercise practicalPrintExercise;
     private PracticalReturnExercise practicalReturnExercise;
@@ -68,6 +74,8 @@ public class PracticalExerciseMakerController implements Initializable {
         practicalPrintExercise = new PracticalPrintExercise();
         practicalReturnExercise = new PracticalReturnExercise();
 
+        cGroup = new CGroup();
+
         //binds
         practicalPrintExercise.classNameProperty().bind(classNameTextField.textProperty());
         practicalPrintExercise.methodNameProperty().bind(methodNameTextField.textProperty());
@@ -80,6 +88,58 @@ public class PracticalExerciseMakerController implements Initializable {
         practicalReturnExercise.instructionsProperty().bind(instructionsTextArea.textProperty());
         practicalReturnExercise.codeProperty().bind(codeTextArea.textProperty());
         practicalReturnExercise.explanationProperty().bind(explanationTextArea.textProperty());
+    }
+
+    @FXML
+    private void addCString() {
+        VBox cStringVBox  = new VBox();
+        Separator separator = new Separator();
+        separator.setOrientation(Orientation.HORIZONTAL);
+        //to be put in cStringVBox;
+        HBox cStringHBox = new HBox();
+        TextField cStringField = new TextField();
+        Button removeCStringButton = new Button("Remove cString");
+        Button addEquivalentButton = new Button("Add equivalent");
+        cStringHBox.getChildren().addAll(cStringField,removeCStringButton);
+
+        StringProperty orig = new SimpleStringProperty();
+        orig.bind(cStringField.textProperty());
+        CString cString = new CString(orig);
+
+        addEquivalentButton.setOnAction(event -> {
+            TextField eTextField = new TextField();
+            Button xButton = new Button("x");
+            StringProperty equivalent = new SimpleStringProperty();
+            equivalent.bind(eTextField.textProperty());
+            cString.addEquivalent(equivalent);
+
+            HBox eHBox = new HBox();
+            eHBox.getChildren().addAll(eTextField,xButton);
+            cStringVBox.getChildren().add(eHBox);
+
+            xButton.setOnAction(event2 -> {
+                cString.removeEquivalents(equivalent);
+                cStringVBox.requestFocus();
+                cStringVBox.getChildren().removeAll(eHBox);
+            });
+        });
+
+
+        removeCStringButton.setOnAction(event -> {
+            cGroupVBox.getChildren().remove(cStringVBox);
+            cGroupVBox.requestFocus();
+            cGroup.removeCString(cString);
+        });
+
+
+        cGroup.addCString(cString);
+
+        //practicalExercise.setCGroup(cGroup);
+
+        cStringVBox.getChildren().addAll(separator,cStringHBox,addEquivalentButton);
+        cGroupVBox.getChildren().add(cStringVBox);
+
+        System.out.println("CGroup size: " + cGroup.getSize());
     }
 
     @FXML
@@ -143,6 +203,7 @@ public class PracticalExerciseMakerController implements Initializable {
             controller.bindMustMatch(practicalPrintExercise.mustMatchProperty());
 
              practicalExercise = practicalPrintExercise;
+             practicalExercise.setCGroup(cGroup);
 
             methodNameTextField.setText("main");
             if (!methodNameTextField.isDisabled()) {
@@ -165,6 +226,7 @@ public class PracticalExerciseMakerController implements Initializable {
             //TODO controller bind
 
             practicalExercise = practicalReturnExercise;
+            practicalExercise.setCGroup(cGroup);
 
             if (methodNameTextField.isDisabled()) {
                 methodNameTextField.setDisable(false);
@@ -197,6 +259,7 @@ public class PracticalExerciseMakerController implements Initializable {
         //TODO
 
         //test
+        System.out.println(practicalExercise.getCGroup());
 
         if (practicalExercise instanceof PracticalPrintExercise) {
             PracticalPrintExercise practicalPrintExercise = ((PracticalPrintExercise)practicalExercise).clone();

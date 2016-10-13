@@ -17,9 +17,12 @@ public abstract class PracticalExercise extends Exercise {
     protected String tempID;
     protected StringProperty explanation = new SimpleStringProperty();
 
+    protected CGroup cGroup;
+
     public PracticalExercise() {
         super();
         makeTempID();
+        cGroup = new CGroup();
     }
 
     public String getExplanation() {
@@ -119,6 +122,7 @@ public abstract class PracticalExercise extends Exercise {
         this.setClassName(practicalExercise.getClassName());
         this.setMethodName(practicalExercise.getMethodName());
         this.setExplanation(practicalExercise.getExplanation());
+        this.setCGroup(practicalExercise.getCGroup());
     }
 
     @Override
@@ -128,7 +132,38 @@ public abstract class PracticalExercise extends Exercise {
                 "methodName: " + methodName.get() + "\n" +
                 "instructions: " + instructions.get() + "\n" +
                 "code: " + code.get() + "\n" +
-                "explanation: " + explanation;
+                "explanation: " + explanation + "\n" +
+                "cGroup: " + cGroup.toString();
+    }
 
+    public void setCGroup(CGroup cGroup) {
+        this.cGroup = cGroup;
+    }
+
+    public CGroup getCGroup() {
+        return cGroup;
+    }
+
+    public void addCString(CString cString) {
+        if (cGroup == null) {
+            cGroup = new CGroup();
+        }
+        this.cGroup.addCString(cString);
+    }
+
+    public void removeCString(CString cString) {
+        this.cGroup.removeCString(cString);
+    }
+
+    public void clearCGroup() {
+        this.cGroup.clearAll();
+    }
+
+    public int getCGroupSize() {
+        return cGroup.getSize();
+    }
+
+    public boolean checkCGroup(StringProperty codeText) {
+        return cGroup.check(codeText);
     }
 }

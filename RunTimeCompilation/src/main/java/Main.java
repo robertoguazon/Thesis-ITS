@@ -1,4 +1,5 @@
 import com.westlyf.utils.RuntimeUtil;
+import com.westlyf.utils.StringUtil;
 import net.openhft.compiler.CachedCompiler;
 import net.openhft.compiler.CompilerUtils;
 
@@ -11,9 +12,10 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
 
 
-        test1(); //-check
-        test2(); //-check
-        test3(); //-check
+        //test1(); //-check
+        //test2(); //-check
+        //test3(); //-check
+        test4(); //-check regex whitespace
     }
 
     private static void test1() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
@@ -67,5 +69,12 @@ public class Main {
         RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
         System.out.println(output);
         System.out.println(output);
+    }
+
+    private static void test4() {
+        String test = "System.out.println(\" this is a sample check \");";
+        String test2 = "System.out.println(4 + 6);";
+        System.out.println("Before: " + test + ", After: " + StringUtil.removeWhiteSpaces(test));
+        System.out.println("Before: " + test2 + ", After: " + StringUtil.removeWhiteSpaces(test2));
     }
 }
