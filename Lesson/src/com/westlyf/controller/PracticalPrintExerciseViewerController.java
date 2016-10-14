@@ -61,9 +61,14 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     private void runCode() {
         if (practicalPrintExercise != null) {
             compileCode();
-            outputTextArea.setText(RuntimeUtil.STRING_OUTPUT.toString());
+            if ( RuntimeUtil.STRING_OUTPUT.toString().isEmpty()) {
+                outputError("use System.out.println() to output something");
+            }
+            outputStream(RuntimeUtil.STRING_OUTPUT.toString());
             if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())){
-                responseText.setText("Correct!");
+                if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
+                    responseText.setText("Correct");
+                } else responseText.setText("Incorrect: Cheating");
             }else {
                 responseText.setText("Incorrect Output");
             }
@@ -104,5 +109,17 @@ public class PracticalPrintExerciseViewerController implements Initializable {
         } finally {
             RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
         }
+    }
+
+    private void outputStream(String string) {
+        outputTextArea.appendText(string);
+    }
+
+    private void outputLine(String string) {
+        outputTextArea.appendText(string + "\n");
+    }
+
+    private void outputError(String string) {
+        outputTextArea.appendText("Error: " + string + "\n");
     }
 }
