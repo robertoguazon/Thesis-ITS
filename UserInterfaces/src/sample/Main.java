@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.model.ConfirmBox;
+import sample.model.FileUtil;
 
 import java.io.IOException;
 
@@ -29,7 +30,9 @@ public class Main extends Application {
             event.consume();
             closeProgram();
         });
-        window.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getStylePath());
+        window.setScene(scene);
         window.show();
     }
 
@@ -39,5 +42,10 @@ public class Main extends Application {
             Agent.removeLoggedUser();
             window.close();
         }
+    }
+
+    private String getStylePath(){
+        FileUtil fileUtil = new FileUtil();
+        return fileUtil.readFile();
     }
 }

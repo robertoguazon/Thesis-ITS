@@ -34,7 +34,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //submitButton.setDisable(true);
+        submitButton.setDisable(true);
     }
 
     public void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
@@ -61,9 +61,9 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     private void runCode() {
         if (practicalPrintExercise != null) {
             compileCode();
-            if ( RuntimeUtil.STRING_OUTPUT.toString().isEmpty()) {
+            /*if ( RuntimeUtil.STRING_OUTPUT.toString().isEmpty()) {
                 outputError("use System.out.println() to output something");
-            }
+            }*/
             outputStream(RuntimeUtil.STRING_OUTPUT.toString());
             if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())){
                 if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
@@ -72,6 +72,10 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             }else {
                 responseText.setText("Incorrect Output");
             }
+
+            System.out.println("code: " + codeTextArea.textProperty());
+            System.out.println("ccheck: " + practicalPrintExercise.getCGroup());
+            System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
         }
     }
 
@@ -90,12 +94,6 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     private void submit() {
         //TODO evaluate and get score and push to database
         compileCode();
-        if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())) {
-            if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
-                System.out.println("Correct: true");
-            } else System.out.println("Correct: false, no cheating");
-        } else System.out.println("Correct: false");
-        System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
     }
 
     private void compileCode() {

@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -28,6 +29,7 @@ public class NewProfileController implements Initializable{
             .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
                     "Collage 1st Year", "Collage 2nd Year", "Collage 3rd Year", "Collage 4th Year");
 
+    @FXML private BorderPane pane;
     @FXML private Label errorMessage;
     @FXML private TextField usernameText;
     @FXML private PasswordField passwordText;
@@ -43,6 +45,7 @@ public class NewProfileController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        pane.getStyleClass().add("background");
         yearLevelComboBox.setValue("HS 1st Year");
         yearLevelComboBox.setItems(yearLevelList);
     }
@@ -60,7 +63,9 @@ public class NewProfileController implements Initializable{
             stage = (Stage)backToMenu.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
         }else {return;}
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.show();
     }
 

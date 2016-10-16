@@ -21,14 +21,14 @@ public class TextLessonMakerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        textLessonHtmlEditor.setHtmlText("<html><head></head><body style='background-color: #FAFAFA;' contenteditable=\"false\"></body></html>");
     }
 
     @FXML
     private void clear() {
 
         //lessonTextArea.clear(); //!got changed because of htmleditor
-        textLessonHtmlEditor.setHtmlText("");
+        textLessonHtmlEditor.setHtmlText("<html><head></head><body style='background-color: #FAFAFA;' contenteditable=\"false\"></body></html>");
     }
 
     /*!got changed because of htmleditor

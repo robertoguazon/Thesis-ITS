@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
  */
 public class LoginController implements Initializable{
 
+    @FXML private BorderPane pane;
     @FXML private Label errorMessage;
     @FXML private TextField username;
     @FXML private TextField password;
@@ -31,7 +33,7 @@ public class LoginController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        pane.getStyleClass().add("background");
     }
 
     @FXML
@@ -47,7 +49,9 @@ public class LoginController implements Initializable{
             stage = (Stage) backToMenu.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
         }else {return;}
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.show();
     }
 

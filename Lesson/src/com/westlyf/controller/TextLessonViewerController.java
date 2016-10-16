@@ -5,8 +5,6 @@ import com.westlyf.domain.exercise.practical.PracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import com.westlyf.domain.lesson.TextLesson;
-import com.westlyf.domain.lesson.VideoLesson;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,16 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -40,59 +31,45 @@ import java.util.ResourceBundle;
 public class TextLessonViewerController implements Initializable {
 
     Stage stage;
+    @FXML private BorderPane pane;
     @FXML private Label textLessonLabel;
     @FXML private WebView textLessonWebView;
-    @FXML private VBox lessonsVBox;
-    @FXML private VBox webviewVBox;
     @FXML private Button back;
-    @FXML private Button exercise;
-    @FXML private Hyperlink[] lesson;
-    //@FXML private TextArea textLessonTextArea; //!got changed because of htmleditor
-    VideoLessonViewerController vlc;
-    PracticalPrintExerciseViewerController ppec;
-    PracticalReturnExerciseViewerController prec;
+    @FXML private Button exerciseButton;
+    @FXML private ListView lessonsListView;
+
+    private ArrayList<TextLesson> lessonsInModule;
+    private VideoLessonViewerController vlc;
+    private PracticalPrintExerciseViewerController ppec;
+    private PracticalReturnExerciseViewerController prec;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (Agent.getLoggedUser() != null) {
-            ArrayList<TextLesson> lessonsInModule = Agent.getLessonsInModule(Agent.getCurrentModule());
-            lesson = new Hyperlink[lessonsInModule.size()];
-            for (int i = 0; i < lesson.length; i++) {
-                lesson[i] = new Hyperlink();
-                lesson[i].setText(i==0?"Introduction":"Lesson" + i);
-                lesson[i].setFont(Font.font("System", FontWeight.NORMAL, 16));
-                final int finalI = i;
-                lesson[i].setOnAction(event -> {
-                    setTextLesson(lessonsInModule.get(finalI));
-                    setExerciseButton("lesson" + finalI);
-                });
-                if (Agent.getLoggedUser().getCurrentModuleId().compareTo(Agent.getCurrentModule()) == 0) {
-                    if (Agent.getLoggedUser().getCurrentLessonId().compareTo("lesson" + i) < 0) {
-                        lesson[i].setDisable(true);
-                    }
-                }
+            lessonsInModule = Agent.getLessonsInModule(Agent.getCurrentModule());
+            for (int i = 0; i < lessonsInModule.size(); i++) {
+                lessonsListView.getItems().add("Lesson " + i);
             }
-            lessonsVBox.getChildren().addAll(lesson);
+            lessonsListView.setOnMouseClicked(event -> openLesson());
         }
     }
 
     public void setExerciseButton(String string){
-        if (!string.contains("lesson0")) {
-            if (!webviewVBox.getChildren().contains(exercise)) {
-                exercise = new Button("Exercise");
-                exercise.setOnAction(event -> {
-                    try {
-                        handleNewWindowAction(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                webviewVBox.getChildren().add(exercise);
-            }
+        if (!string.contains("0")) {
+            exerciseButton.setText("Exercise");
+            exerciseButton.setOnAction(event -> {
+                try {
+                    handleNewWindowAction(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }else {
-            if (webviewVBox.getChildren().contains(exercise)){
-                webviewVBox.getChildren().remove(exercise);
-            }
+            exerciseButton.setText("Next Lesson");
+            exerciseButton.setOnAction(event -> {
+                setTextLesson(lessonsInModule.get(1));
+                setExerciseButton("1");
+            });
         }
     }
 
@@ -104,7 +81,6 @@ public class TextLessonViewerController implements Initializable {
             st=st.replace("contenteditable=\"true\"", "contenteditable=\"false\"");
         }
         textLessonWebView.getEngine().loadContent(st);
-        //textLessonTextArea.setText(textLesson.getText()); //!got changed because of htmleditor
     }
 
     @FXML
@@ -117,14 +93,16 @@ public class TextLessonViewerController implements Initializable {
             root = FXMLLoader.load(getClass().getResource("../../../sample/view/modules.fxml"));
         }
         else {return;}
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.show();
     }
 
     private void handleNewWindowAction(ActionEvent event) throws IOException {
         stage = new Stage();
         Parent root;
-        if (event.getSource() == exercise){
+        if (event.getSource() == exerciseButton){
             openExercise();
             Node vlNode = loadVideoLessonNode();
             Node peNode = loadPracticalExerciseNode();
@@ -138,8 +116,15 @@ public class TextLessonViewerController implements Initializable {
         });
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(exercise.getScene().getWindow());
+        stage.initOwner(exerciseButton.getScene().getWindow());
         stage.showAndWait();
+    }
+
+    private void openLesson(){
+        String str = lessonsListView.getSelectionModel().getSelectedItem().toString();
+        int i = Integer.parseInt(String.valueOf(str.charAt(str.length()-1)));
+        setTextLesson(lessonsInModule.get(i));
+        setExerciseButton(str);
     }
 
     private void openExercise() throws IOException {

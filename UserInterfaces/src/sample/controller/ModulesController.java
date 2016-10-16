@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
  */
 public class ModulesController implements Initializable{
 
+    @FXML private VBox pane;
     @FXML private Button module1;
     @FXML private Button module2;
     @FXML private Button module3;
@@ -34,6 +36,7 @@ public class ModulesController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        pane.getStyleClass().add("background");
         if (Agent.getLoggedUser() != null){
             switch (Agent.getLoggedUser().getCurrentModuleId()){
                 case "module1":
@@ -100,7 +103,9 @@ public class ModulesController implements Initializable{
             root = (Parent) node;
             stage = (Stage) module1.getScene().getWindow();
         }
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.show();
     }
 

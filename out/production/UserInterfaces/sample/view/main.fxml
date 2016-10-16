@@ -11,7 +11,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
    <center>
       <HBox alignment="CENTER">
          <children>
@@ -66,12 +66,12 @@
                   <Image url="@../style/images/apple_75x75.png" />
                </image>
             </ImageView>
-            <Label text="Insert Title Here" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Label fx:id="title" text="Insert Title Here" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label text="Insert Subtitle Here" textAlignment="CENTER" textFill="#000000b1">
+            <Label fx:id="subtitle" text="Insert Subtitle Here" textAlignment="CENTER" textFill="#000000b1">
                <font>
                   <Font size="16.0" />
                </font>

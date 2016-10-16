@@ -9,7 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,6 +58,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        startBrowser();
         timeLeftSlider.setMin(0);
         timeLeftSlider.setMax(delay / 60_000.0f / 60.0f); //minutes slider
 
@@ -78,6 +84,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         );
 
         timeLeftSlider.valueProperty().bind(minutes);
+        startBackground();
     }
 
     public void setExam(Exam exam) {
@@ -101,6 +108,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
         questionTextArea.setText(quizItem.getQuestion());
         hintTextArea.setText(quizItem.getHint());
+        System.out.println(hintTextArea.getText());
 
         choicesVBox.getChildren().add(quizItem.getExamChoicesOnlyBox(buttonPrefWidth,buttonPrefHeight));
         setHintVisible(false);
@@ -122,7 +130,8 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         setQuizItem();
     }
 
-    private void setHintVisible(boolean visible) {
+    public void setHintVisible(boolean visible) {
+        System.out.println("setvisible: " + visible);
         hintTextArea.setVisible(visible);
     }
 
@@ -150,5 +159,20 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         minutesTimer.purge();
     }
 
+    private void startBrowser(){
+        try {
+            Runtime rt = Runtime.getRuntime();
+            String url = "http://localhost/emotion-detection/emotion.html";
+            rt.exec( "rundll32 url.dll,FileProtocolHandler " + url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void startBackground(){
+        BackgroundProcess background = new BackgroundProcess();
+        background.setDaemon(true);
+        background.start();
+    }
     //TODO -dispose resources
 }

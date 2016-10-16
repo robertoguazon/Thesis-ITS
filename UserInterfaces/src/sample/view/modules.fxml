@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ModulesController">
+<VBox fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ModulesController">
    <children>
       <HBox>
          <children>
@@ -28,7 +28,8 @@
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../style/images/basic%20syntax.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </graphic>
                <font>
                   <Font size="14.0" />
@@ -39,62 +40,68 @@
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>
                         <Image url="@../style/images/basic%20data%20types.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="module3" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Variables">
-               <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/variable.png" />
-                     </image></ImageView>
-               </graphic>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="module4" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="134.0" prefWidth="120.0" text="Basic Operators">
+            <Button fx:id="module3" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="134.0" prefWidth="120.0" text="Basic Operators">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../style/images/basic%20operators.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="module5" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Conditionals">
+            <Button fx:id="module4" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Conditionals">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../style/images/conditional.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="module6" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Loops">
+            <Button fx:id="module5" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Loops">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../style/images/loop.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </graphic>
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="module7" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Methods">
+            <Button fx:id="module6" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Methods">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../style/images/methods.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="module7" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Object &amp; Class">
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/variable.png" />
+                     </image>
+                  </ImageView>
                </graphic>
                <font>
                   <Font size="14.0" />
