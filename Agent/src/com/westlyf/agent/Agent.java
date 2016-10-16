@@ -277,7 +277,9 @@ public class Agent {
     }
 
     public static void setExams(ArrayList<Exam> exams) {
-        Agent.exams = exams;
+        if (exams != null) {
+            Agent.exams = exams;
+        }
     }
 
     public static ArrayList<ExamGrade> getExamGrades() {

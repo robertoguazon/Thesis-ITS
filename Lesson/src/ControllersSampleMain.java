@@ -33,7 +33,7 @@ public class ControllersSampleMain extends Application {
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
-        //testExamChoicesOnlyViewer(primaryStage);
+        testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -44,7 +44,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
-        testExamChoicesOnlyMaker(primaryStage);
+        //testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -72,7 +72,7 @@ public class ControllersSampleMain extends Application {
         //Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid589434155957645"));
 
         /// /all types of items are included
-        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid593810487339736"));
+        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid1710104421235870"));
 
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
@@ -143,7 +143,7 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testExamChoicesOnlyViewer(Stage primaryStage) {
-        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingLID("lid604628136295095"));
+        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingLID("lid1710245584279162"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

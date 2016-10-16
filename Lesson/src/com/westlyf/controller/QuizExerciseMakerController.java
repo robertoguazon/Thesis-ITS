@@ -159,7 +159,7 @@ public class QuizExerciseMakerController implements Initializable {
         //add itemBox to the
 
         //add listeners
-        //add textfields for choices
+        //add TextAreas for choices
         QuizType type = (QuizType)itemType.getSelectedToggle().getUserData();
         itemGUI.setQuizType(type);
 
@@ -175,7 +175,8 @@ public class QuizExerciseMakerController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
-                TextField choice = new TextField();
+                TextArea choice = new TextArea();
+                choice.setWrapText(true);
                 Button removeButton = new Button("x");
                 removeButton.setFocusTraversable(false);
 
@@ -202,6 +203,7 @@ public class QuizExerciseMakerController implements Initializable {
                         break;
 
                     case TEXTFIELD:
+                    case TEXTAREA:
                         checkBox.setSelected(true);
                         checkBox.setDisable(true);
                         checkBox.setUserData(choice);
@@ -230,7 +232,7 @@ public class QuizExerciseMakerController implements Initializable {
                                 choiceFormatBox.getChildren().remove(radioButton);
                                 break;
                             case TEXTFIELD:
-                            case CHECKBOX:
+                            case CHECKBOX: // not used
                                 checkBoxGroup.remove(checkBox);
                                 choiceFormatBox.getChildren().remove(checkBox);
                                 break;
@@ -292,6 +294,7 @@ public class QuizExerciseMakerController implements Initializable {
             }
         } catch (Exception e) {
             Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            e.printStackTrace();
             error.setTitle("ERROR");
             error.show();
         }

@@ -188,7 +188,8 @@ public class ExamChoicesOnlyMakerController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
-                TextField choice = new TextField();
+                TextArea choice = new TextArea();
+                choice.setWrapText(true);
                 Button removeButton = new Button("x");
                 removeButton.setFocusTraversable(false);
 
@@ -215,6 +216,7 @@ public class ExamChoicesOnlyMakerController implements Initializable {
                         break;
 
                     case TEXTFIELD:
+                    case TEXTAREA:
                         checkBox.setSelected(true);
                         checkBox.setDisable(true);
                         checkBox.setUserData(choice);

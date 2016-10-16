@@ -438,6 +438,7 @@ public class Controllers {
 
             leftPane.prefWidthProperty().bind(leftPaneContainer.widthProperty());
             leftPane.prefHeightProperty().bind(leftPaneContainer.heightProperty());
+
         }
 
         splitPane.getItems().addAll(leftPaneContainer,rightPaneContainer);

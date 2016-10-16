@@ -15,8 +15,8 @@ public class ItemGUI {
     private QuizType quizType;
     private ArrayList<CheckBox> checkBoxesChoices;
     private ToggleGroup choicesToggleGroup;
-    private ArrayList<TextField> validAnswers;
-    private ArrayList<TextField> choices;
+    private ArrayList<TextArea> validAnswers;
+    private ArrayList<TextArea> choices;
     private TextArea explanation;
     private TextArea hint;
 
@@ -31,7 +31,11 @@ public class ItemGUI {
         this.explanation = explanation;
     }
 
-    public void setHint(TextArea hint) {this.hint = hint;}
+    public void setHint(TextArea hint) {
+        if (hint != null) {
+            this.hint = hint;
+        }
+    }
 
     //question
     public void setQuestion(TextArea question) {
@@ -53,11 +57,11 @@ public class ItemGUI {
     }
 
     //answers
-    public void setAnswers(ArrayList<TextField> validAnswers) {
+    public void setAnswers(ArrayList<TextArea> validAnswers) {
         this.validAnswers = validAnswers;
     }
 
-    public void addValidAnswer(TextField answer) {
+    public void addValidAnswer(TextArea answer) {
         this.validAnswers.add(answer);
     }
 
@@ -84,12 +88,12 @@ public class ItemGUI {
 
                 for (int i = 0; i < checkBoxesChoices.size(); i++) {
                     CheckBox checkBox = checkBoxesChoices.get(i);
-                    TextField textField = (TextField) checkBox.getUserData();
+                    TextArea choice = (TextArea) checkBox.getUserData();
 
-                    addChoice(textField);
+                    addChoice(choice);
 
                     if (checkBox.isSelected()) {
-                        addValidAnswer(textField);
+                        addValidAnswer(choice);
                     }
                 }
 
@@ -101,22 +105,22 @@ public class ItemGUI {
                 for (int i = 0; i < n; i++) {
                     Toggle toggle = choicesToggleGroup.getToggles().get(i);
 
-                    TextField textField = (TextField)toggle.getUserData();
-                    addChoice(textField);
+                    TextArea textArea = (TextArea)toggle.getUserData();
+                    addChoice(textArea);
                 }
 
-                TextField textField = (TextField)choicesToggleGroup.getSelectedToggle().getUserData();
-                addValidAnswer(textField);
+                TextArea textArea = (TextArea)choicesToggleGroup.getSelectedToggle().getUserData();
+                addValidAnswer(textArea);
 
                 break;
         }
     }
 
-    public void setChoices(ArrayList<TextField> choices) {
+    public void setChoices(ArrayList<TextArea> choices) {
         this.choices = choices;
     }
 
-    public void addChoice(TextField choice) {
+    public void addChoice(TextArea choice) {
         this.choices.add(choice);
     }
 
@@ -149,16 +153,18 @@ public class ItemGUI {
         quizItem.setQuestion(question.getText());
         quizItem.setType(quizType);
 
-        for (TextField choice: choices) {
+        for (TextInputControl choice: choices) {
             quizItem.addChoice(choice.getText());
         }
 
-        for (TextField validAnswer: validAnswers) {
+        for (TextInputControl validAnswer: validAnswers) {
             quizItem.addValidAnswer(validAnswer.getText());
         }
 
         quizItem.setExplanation(explanation.getText());
-        quizItem.setHint(hint.getText());
+        if (hint != null) {
+            quizItem.setHint(hint.getText());
+        }
 
         //validAnswers = correct answers
         //answers = answers by users
