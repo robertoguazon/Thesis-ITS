@@ -11,7 +11,7 @@
    <children>
       <HBox>
          <children>
-            <Label text="Modules" textAlignment="CENTER">
+            <Label fx:id="title" text="Modules" textAlignment="CENTER">
                <font>
                   <Font size="40.0" />
                </font>

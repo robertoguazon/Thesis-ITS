@@ -127,7 +127,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" text="Create New Profile" textAlignment="CENTER">
+            <Label fx:id="title" alignment="CENTER" text="Create New Profile" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>

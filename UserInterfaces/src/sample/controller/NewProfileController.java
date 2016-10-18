@@ -30,6 +30,7 @@ public class NewProfileController implements Initializable{
                     "Collage 1st Year", "Collage 2nd Year", "Collage 3rd Year", "Collage 4th Year");
 
     @FXML private BorderPane pane;
+    @FXML private Label title;
     @FXML private Label errorMessage;
     @FXML private TextField usernameText;
     @FXML private PasswordField passwordText;
@@ -45,7 +46,7 @@ public class NewProfileController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pane.getStyleClass().add("background");
+        title.getStyleClass().add("label-header");
         yearLevelComboBox.setValue("HS 1st Year");
         yearLevelComboBox.setItems(yearLevelList);
     }
