@@ -21,7 +21,6 @@ public class Agent {
     private static Users loggedUser;
     private static String currentModule;
     private static String currentLesson;
-    private static String currentExam;
     private static boolean isExerciseCleared;
 
     private static UserExercise userExercise;
@@ -37,13 +36,12 @@ public class Agent {
     private static ArrayList<Exam> exams = new ArrayList<Exam>();
     private static ArrayList<ExamGrade> examGrades = new ArrayList<ExamGrade>();
 
-    private static final String fer = "http://localhost/emotion-detection/emotion.html";
+    private static final String fer = "http://localhost/emotion-detection/";
 
     public Agent(Users user) {
         setLoggedUser(user);
         setCurrentModule(getLoggedUser().getCurrentModuleId());
         setCurrentLesson(getLoggedUser().getCurrentLessonId());
-        setCurrentExam(getLoggedUser().getCurrentExamId());
         loadAll();
     }
 
@@ -80,7 +78,7 @@ public class Agent {
                 getVideoPracticalExercises().addAll(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains(s));
                 break;
             case EXAM:
-                setExams(ExamDatabase.getExamsUsingTagsContains(getCurrentExam()));
+                setExams(ExamDatabase.getExamsUsingTagsContains(getLoggedUser().getCurrentExamId()));
                 break;
             case USER_EXERCISE:
                 getUserExercises().addAll(UserDatabase.getUserExercisesUsingUserId(getLoggedUser().getUserId()));
@@ -124,7 +122,6 @@ public class Agent {
             setLoggedUser(null);
             setCurrentModule(null);
             setCurrentLesson(null);
-            setCurrentExam(null);
             setLesson(null);
             setExercise(null);
             setExam(null);
@@ -160,13 +157,13 @@ public class Agent {
     }
 
     public static void loadExam(){
-        if (getCurrentExam().contains("module")){
+        if (!getLoggedUser().getCurrentExamId().contains("exam")){
             setExam(getExams().get((int) (Math.random() * getExams().size())));
             Agent.getLoggedUser().setCurrentExamId(getExam().getTagsString());
         }else {
             for (int i = 0; i < getExams().size(); i++){
                 Exam match = getExams().get(i);
-                if (getCurrentExam().contains(match.getTagsString())){
+                if (getLoggedUser().getCurrentExamId().contains(match.getTagsString())){
                     setExam(match);
                 }
             }
@@ -195,7 +192,7 @@ public class Agent {
         UserExercise match = null;
         for (int i = 0; i < getUserExercises().size(); i++){
             match = getUserExercises().get(i);
-            if (match.getExercise_title().equals(practicalExercise.getTitle())){
+            if (practicalExercise.getTitle().equals(match.getExercise_title())){
                 setUserExercise(match);
                 return true;
             }
@@ -285,14 +282,6 @@ public class Agent {
 
     public static void setCurrentLesson(String currentLesson) {
         Agent.currentLesson = currentLesson;
-    }
-
-    public static String getCurrentExam() {
-        return currentExam;
-    }
-
-    public static void setCurrentExam(String currentExam) {
-        Agent.currentExam = currentExam;
     }
 
     public static UserExercise getUserExercise() {

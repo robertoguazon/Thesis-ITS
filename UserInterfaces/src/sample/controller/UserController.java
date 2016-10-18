@@ -46,7 +46,10 @@ public class UserController implements Initializable{
         Users loggedUser = Agent.getLoggedUser();
         if (loggedUser != null){
             user.setText(loggedUser.getName());
-            if (loggedUser.getCurrentExamId() == loggedUser.getCurrentModuleId()){
+            //System.out.println(loggedUser.getCurrentModuleId().equals(loggedUser.getCurrentExamId()));
+            //System.out.println(!loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId()));
+            if (loggedUser.getCurrentExamId() == null ||
+                    !loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId())){
                 exam.setDisable(true);
             }
             if (loggedUser.getCurrentExamId() == null || loggedUser.getCurrentModuleId().equals("module1")) {

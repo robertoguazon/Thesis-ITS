@@ -1,6 +1,7 @@
 package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
+import com.westlyf.agent.LoadType;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
@@ -54,7 +55,7 @@ public class TextLessonViewerController implements Initializable {
             lesson = new Hyperlink[lessonsInModule.size()];
             for (int i = 0; i < lesson.length; i++) {
                 lesson[i] = new Hyperlink();
-                lesson[i].setText(i==0?"Introduction":"Lesson" + i);
+                lesson[i].setText(i==0?"Introduction":"Lesson " + i);
                 lesson[i].setFont(Font.font("System", FontWeight.NORMAL, 16));
                 final int finalI = i;
                 lesson[i].setOnAction(event -> openLesson(finalI));
@@ -79,10 +80,10 @@ public class TextLessonViewerController implements Initializable {
                 }
             });
         }else {
-            final int finalI = ++i;
+            final int finalI = i;
             exerciseButton.setText("Next Lesson");
             exerciseButton.setOnAction(event -> {
-                unlockLesson(finalI);
+                unlock(finalI);
                 setTextLesson(lessonsInModule.get(finalI));
                 setExerciseButton(finalI);
             });
@@ -93,8 +94,6 @@ public class TextLessonViewerController implements Initializable {
         Agent.setLesson(textLesson);
         String[] lessonTags = textLesson.getTagsString().split(",");
         Agent.setCurrentLesson(lessonTags[0]);
-        System.out.println(lessonTags[0]);
-        System.out.println(lessonTags[1]);
         textLessonLabel.setText(textLesson.getTitle());
         String st = textLesson.getText();
         if(st.contains("contenteditable=\"true\"")){
@@ -104,8 +103,6 @@ public class TextLessonViewerController implements Initializable {
     }
 
     public void openExercise() throws IOException {
-        System.out.println(Agent.getCurrentModule());
-        System.out.println(Agent.getCurrentLesson());
         Agent.loadExercise(Agent.getCurrentModule(), Agent.getCurrentLesson());
     }
 
@@ -114,9 +111,32 @@ public class TextLessonViewerController implements Initializable {
         setExerciseButton(i);
     }
 
-    public void unlockLesson(int i){
-        lesson[i].setDisable(false);
-        Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
+    public void unlock(int i){
+        if (i < lesson.length-1) {
+            i++;
+            lesson[i].setDisable(false);
+            Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
+        }else {
+            Agent.getLoggedUser().setCurrentExamId(Agent.getCurrentModule());
+            Boolean answer = ConfirmBox.display("Take Exam",
+                    "Congratulations!\nYou have completed the entire module.\n" +
+                            "You are now ready to take the exam.",
+                    "Do you wish to go back to the main menu to take the exam?");
+            if (answer){
+                try {
+                    Agent.load(LoadType.EXAM);
+                    Agent.clearLessonsInModule();
+                    Parent root = FXMLLoader.load(getClass().getResource("../../../sample/view/user.fxml"));
+                    stage = (Stage)back.getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @FXML
@@ -223,9 +243,9 @@ public class TextLessonViewerController implements Initializable {
             if (vlc instanceof Disposable) {
                 String currentLesson = Agent.getCurrentLesson();
                 int i = Integer.parseInt(String.valueOf(currentLesson.charAt(currentLesson.length() - 1)));
-                unlockLesson(++i);
                 Agent.setIsExerciseCleared(false);
                 disposeExercise();
+                unlock(i);
             }
         }else {
             Boolean answer = ConfirmBox.display("Confirm Exit",
