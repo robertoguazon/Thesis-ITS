@@ -33,7 +33,7 @@ public class ControllersSampleMain extends Application {
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
-        testExamChoicesOnlyViewer(primaryStage);
+        //testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -44,7 +44,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
-        //testExamChoicesOnlyMaker(primaryStage);
+        testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }

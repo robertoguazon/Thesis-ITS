@@ -1,5 +1,6 @@
 package com.westlyf.controller;
 
+import com.westlyf.agent.Agent;
 import com.westlyf.domain.exercise.practical.DataType;
 import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
@@ -14,6 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +28,11 @@ import java.util.ResourceBundle;
  */
 public class PracticalReturnExerciseViewerController implements Initializable {
 
-    @FXML
-    private Label titleLabel;
+    @FXML private VBox codePane;
+    @FXML private HBox statusPane;
+
+    @FXML private Label titleLabel;
+    @FXML private Label statusLabel;
     @FXML private TextArea instructionsTextArea;
 
     @FXML private TextArea codeTextArea;
@@ -38,9 +46,11 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     @FXML private Button clearOutputButton;
 
     @FXML private Button submitButton;
+    @FXML private Label responseText;
 
     private PracticalReturnExercise practicalReturnExercise;
     private StringProperty[] parametersArray;
+    private String initialCode;
 
     public void setPracticalReturnExercise(PracticalReturnExercise practicalReturnExercise) {
         this.practicalReturnExercise = practicalReturnExercise;
@@ -48,7 +58,8 @@ public class PracticalReturnExerciseViewerController implements Initializable {
         titleLabel.setText(practicalReturnExercise.getTitle());
         instructionsTextArea.setText(practicalReturnExercise.getInstructions());
 
-        codeTextArea.setText(practicalReturnExercise.getCode());
+        initialCode = practicalReturnExercise.getCode();
+        codeTextArea.setText(initialCode);
         practicalReturnExercise.codeProperty().bind(codeTextArea.textProperty());
 
         int parametersSize = practicalReturnExercise.getParametersSize();
@@ -69,11 +80,13 @@ public class PracticalReturnExerciseViewerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        codePane.toFront();
+        submitButton.setDisable(true);
     }
 
     @FXML
     private void clearCode() {
-        this.codeTextArea.clear();
+        this.codeTextArea.setText(initialCode);
     }
 
     @FXML
@@ -81,11 +94,33 @@ public class PracticalReturnExerciseViewerController implements Initializable {
         clearOutput();
         if (practicalReturnExercise != null) {
             try {
-                outputTextArea.setText(RuntimeUtil.compile(practicalReturnExercise, DataTypeUtil.toString(parametersArray)));
+                outputTextArea.setText(RuntimeUtil.compile(practicalReturnExercise, DataTypeUtil.toString(parametersArray)));        if (compileCode()) {
+                    if (practicalReturnExercise.checkCGroup(codeTextArea.textProperty())) {
+                        responseText.setText("Correct!");
+                        responseText.getParent().setStyle("-fx-background-color: #00C853");
+                        statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
+                        statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
+                        statusPane.toFront();
+                        codeTextArea.setEditable(false);
+                        clearCodeButton.setDisable(true);
+                        executeSampleInputButton.setDisable(true);
+                        clearOutputButton.setDisable(true);
+                        submitButton.setDisable(false);
+                    } else {
+                        responseText.setText(practicalReturnExercise.getExplanation());
+                        responseText.getParent().setStyle("-fx-background-color: #F44336");
+                    }
+                } else {
+                    System.out.println("Correct: false");
+                }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
         }
+
+        System.out.println("code: " + codeTextArea.textProperty());
+        System.out.println("ccheck: " + practicalReturnExercise.getCGroup());
+        System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
     }
 
     @FXML
@@ -100,13 +135,14 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     @FXML
     private void submit() {
         //TODO - fix
-        if (compileCode()) {
-            if (practicalReturnExercise.checkCGroup(codeTextArea.textProperty())) {
-                System.out.println("Correct: true");
-            } else System.out.println("Correct: false, no cheating");
-        } else {
-            System.out.println("Correct: false");
+        if (Agent.containsPracticalExercise(practicalReturnExercise)){
+            Agent.updateUserExercise(practicalReturnExercise);
+        }else {
+            Agent.addUserExercise(practicalReturnExercise);
         }
+        Agent.setIsExerciseCleared(true);
+        Stage stage = (Stage) submitButton.getScene().getWindow();
+        stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     private boolean compileCode() {

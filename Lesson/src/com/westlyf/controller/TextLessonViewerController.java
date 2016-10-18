@@ -15,6 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,11 +35,12 @@ public class TextLessonViewerController implements Initializable {
 
     Stage stage;
     @FXML private BorderPane pane;
+    @FXML private VBox lessonsVBox;
     @FXML private Label textLessonLabel;
     @FXML private WebView textLessonWebView;
     @FXML private Button back;
     @FXML private Button exerciseButton;
-    @FXML private ListView lessonsListView;
+    @FXML private Hyperlink[] lesson;
 
     private ArrayList<TextLesson> lessonsInModule;
     private VideoLessonViewerController vlc;
@@ -47,15 +51,25 @@ public class TextLessonViewerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (Agent.getLoggedUser() != null) {
             lessonsInModule = Agent.getLessonsInModule(Agent.getCurrentModule());
-            for (int i = 0; i < lessonsInModule.size(); i++) {
-                lessonsListView.getItems().add("Lesson " + i);
+            lesson = new Hyperlink[lessonsInModule.size()];
+            for (int i = 0; i < lesson.length; i++) {
+                lesson[i] = new Hyperlink();
+                lesson[i].setText(i==0?"Introduction":"Lesson" + i);
+                lesson[i].setFont(Font.font("System", FontWeight.NORMAL, 16));
+                final int finalI = i;
+                lesson[i].setOnAction(event -> openLesson(finalI));
+                if (Agent.getLoggedUser().getCurrentModuleId().compareTo(Agent.getCurrentModule()) == 0) {
+                    if (Agent.getLoggedUser().getCurrentLessonId().compareTo("lesson" + finalI) < 0) {
+                        lesson[finalI].setDisable(true);
+                    }
+                }
             }
-            lessonsListView.setOnMouseClicked(event -> openLesson());
+            lessonsVBox.getChildren().addAll(lesson);
         }
     }
 
-    public void setExerciseButton(String string){
-        if (!string.contains("0")) {
+    public void setExerciseButton(int i){
+        if (i != 0) {
             exerciseButton.setText("Exercise");
             exerciseButton.setOnAction(event -> {
                 try {
@@ -65,22 +79,44 @@ public class TextLessonViewerController implements Initializable {
                 }
             });
         }else {
+            final int finalI = ++i;
             exerciseButton.setText("Next Lesson");
             exerciseButton.setOnAction(event -> {
-                setTextLesson(lessonsInModule.get(1));
-                setExerciseButton("1");
+                unlockLesson(finalI);
+                setTextLesson(lessonsInModule.get(finalI));
+                setExerciseButton(finalI);
             });
         }
     }
 
     public void setTextLesson(TextLesson textLesson) {
         Agent.setLesson(textLesson);
+        String[] lessonTags = textLesson.getTagsString().split(",");
+        Agent.setCurrentLesson(lessonTags[0]);
+        System.out.println(lessonTags[0]);
+        System.out.println(lessonTags[1]);
         textLessonLabel.setText(textLesson.getTitle());
         String st = textLesson.getText();
         if(st.contains("contenteditable=\"true\"")){
             st=st.replace("contenteditable=\"true\"", "contenteditable=\"false\"");
         }
         textLessonWebView.getEngine().loadContent(st);
+    }
+
+    public void openExercise() throws IOException {
+        System.out.println(Agent.getCurrentModule());
+        System.out.println(Agent.getCurrentLesson());
+        Agent.loadExercise(Agent.getCurrentModule(), Agent.getCurrentLesson());
+    }
+
+    public void openLesson(int i){
+        setTextLesson(lessonsInModule.get(i));
+        setExerciseButton(i);
+    }
+
+    public void unlockLesson(int i){
+        lesson[i].setDisable(false);
+        Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
     }
 
     @FXML
@@ -106,30 +142,19 @@ public class TextLessonViewerController implements Initializable {
             openExercise();
             Node vlNode = loadVideoLessonNode();
             Node peNode = loadPracticalExerciseNode();
-            Node node = combine(vlNode, peNode);
-            root = (Parent)node;
+            root = (Parent)combine(vlNode, peNode);
         }else {return;}
 
         stage.setOnCloseRequest(e -> {
             e.consume();
             closeExercise();
         });
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(exerciseButton.getScene().getWindow());
         stage.showAndWait();
-    }
-
-    private void openLesson(){
-        String str = lessonsListView.getSelectionModel().getSelectedItem().toString();
-        int i = Integer.parseInt(String.valueOf(str.charAt(str.length()-1)));
-        setTextLesson(lessonsInModule.get(i));
-        setExerciseButton(str);
-    }
-
-    private void openExercise() throws IOException {
-        String[] lessonTags = Agent.getLesson().getTagsString().split(",");
-        Agent.loadExercise(lessonTags[0], lessonTags[1]);
     }
 
     private Node loadVideoLessonNode() throws IOException {
@@ -144,6 +169,9 @@ public class TextLessonViewerController implements Initializable {
 
     private Node loadPracticalExerciseNode() throws IOException {
         PracticalExercise practicalExercise = Agent.getExercise().getPracticalExercise();
+        if (Agent.containsPracticalExercise(practicalExercise)){
+            practicalExercise.setCode(Agent.getUserExercise().getCode());
+        }
         FXMLLoader loader = new FXMLLoader();
         Node peNode;
         if (practicalExercise instanceof PracticalPrintExercise){
@@ -151,13 +179,13 @@ public class TextLessonViewerController implements Initializable {
             peNode = loader.load();
             ppec = loader.getController();
             //System.out.println(Agent.getExercise().getPracticalExercise());
-            ppec.setPracticalPrintExercise((PracticalPrintExercise) Agent.getExercise().getPracticalExercise());
+            ppec.setPracticalPrintExercise((PracticalPrintExercise) practicalExercise);
         }else if (practicalExercise instanceof PracticalReturnExercise){
             loader.setLocation(getClass().getResource("../view/PracticalReturnExerciseViewer.fxml"));
             peNode = loader.load();
             prec = loader.getController();
             //System.out.println(Agent.getExercise().getPracticalExercise());
-            prec.setPracticalReturnExercise((PracticalReturnExercise) Agent.getExercise().getPracticalExercise());
+            prec.setPracticalReturnExercise((PracticalReturnExercise) practicalExercise);
         }else {return null;}
         return peNode;
     }
@@ -191,17 +219,27 @@ public class TextLessonViewerController implements Initializable {
     }
 
     private void closeExercise(){
-
-        Boolean answer = ConfirmBox.display("Confirm Exit",
-                "Are you sure you want to close the exercise?", "All changes will not be saved.");
-        if (answer){
-            if (vlc instanceof Disposable){
-                ((Disposable)vlc).dispose();
-                System.out.println("disposed");
-                stage.close();
-            }else {
-                System.out.println("not disposed");
+        if (Agent.isCleared()){
+            if (vlc instanceof Disposable) {
+                String currentLesson = Agent.getCurrentLesson();
+                int i = Integer.parseInt(String.valueOf(currentLesson.charAt(currentLesson.length() - 1)));
+                unlockLesson(++i);
+                Agent.setIsExerciseCleared(false);
+                disposeExercise();
+            }
+        }else {
+            Boolean answer = ConfirmBox.display("Confirm Exit",
+                    "Are you sure you want to close the exercise?", "All changes will not be saved.");
+            if (answer) {
+                if (vlc instanceof Disposable) {
+                    disposeExercise();
+                }
             }
         }
+    }
+
+    public void disposeExercise(){
+        vlc.dispose();
+        stage.close();
     }
 }

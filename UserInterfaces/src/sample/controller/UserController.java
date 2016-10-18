@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 public class UserController implements Initializable{
 
     @FXML private BorderPane pane;
+    @FXML private Label title;
     @FXML private Label user;
     @FXML private Button learn;
     @FXML private Button exam;
@@ -40,7 +41,8 @@ public class UserController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pane.getStyleClass().add("background");
+        //pane.getStyleClass().add("background");
+        title.getStyleClass().add("label-header");
         Users loggedUser = Agent.getLoggedUser();
         if (loggedUser != null){
             user.setText(loggedUser.getName());
@@ -108,21 +110,28 @@ public class UserController implements Initializable{
         }else if (event.getSource() == about){
             root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
         }else {return;}
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(settings.getScene().getWindow());
         stage.showAndWait();
     }
 
     private Node openExam() throws IOException {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/ExamChoicesOnlyViewer.fxml"));
-        //Node node = loader.load();
-        //ExamChoicesOnlyViewerController examChoicesOnlyViewerController = loader.getController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/ExamChoicesOnlyViewer.fxml"));
+        Node node = loader.load();
+        ExamChoicesOnlyViewerController examChoicesOnlyViewerController = loader.getController();
         Agent.loadExam();
-        //examChoicesOnlyViewerController.setExam(Agent.getExam());
-        BackgroundProcess background = new BackgroundProcess();
-        Node node = background.loadController();
+        examChoicesOnlyViewerController.setExam(Agent.getExam());
+        loadFER(examChoicesOnlyViewerController);
         return node;
+    }
+
+    private void loadFER(ExamChoicesOnlyViewerController examChoicesOnlyViewerController){
+        BackgroundProcess.setExamChoicesOnlyViewerController(examChoicesOnlyViewerController);
+        Agent.startBrowser();
+        Agent.startBackground();
     }
 
     private void logout(){

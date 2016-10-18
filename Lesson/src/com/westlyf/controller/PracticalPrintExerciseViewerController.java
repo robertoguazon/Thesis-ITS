@@ -1,5 +1,6 @@
 package com.westlyf.controller;
 
+import com.westlyf.agent.Agent;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.utils.RuntimeUtil;
 import javafx.fxml.FXML;
@@ -7,6 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,8 +21,11 @@ import java.util.ResourceBundle;
  */
 public class PracticalPrintExerciseViewerController implements Initializable {
 
-    @FXML
-    private Label titleLabel;
+    @FXML private VBox codePane;
+    @FXML private HBox statusPane;
+
+    @FXML private Label titleLabel;
+    @FXML private Label statusLabel;
     @FXML private TextArea instructionsTextArea;
 
     @FXML private TextArea codeTextArea;
@@ -31,9 +39,11 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML private Label responseText;
 
     private PracticalPrintExercise practicalPrintExercise;
+    private String initialCode;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        codePane.toFront();
         submitButton.setDisable(true);
     }
 
@@ -43,9 +53,9 @@ public class PracticalPrintExerciseViewerController implements Initializable {
         titleLabel.setText(practicalPrintExercise.getTitle());
         instructionsTextArea.setText(practicalPrintExercise.getInstructions());
 
-        codeTextArea.setText(practicalPrintExercise.getCode());
+        initialCode = practicalPrintExercise.getCode();
+        codeTextArea.setText(initialCode);
         practicalPrintExercise.codeProperty().bind(codeTextArea.textProperty());
-
     }
 
     public PracticalPrintExercise getPracticalPrintExercise() {
@@ -54,7 +64,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     @FXML
     private void clearCode() {
-        this.codeTextArea.clear();
+        this.codeTextArea.setText(initialCode);
     }
 
     @FXML
@@ -67,10 +77,20 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             outputStream(RuntimeUtil.STRING_OUTPUT.toString());
             if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())){
                 if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
-                    responseText.setText("Correct");
-                } else responseText.setText("Incorrect: Cheating");
-            }else {
-                responseText.setText("Incorrect Output");
+                    responseText.setText("Correct!");
+                    responseText.getParent().setStyle("-fx-background-color: #00C853");
+                    statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
+                    statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
+                    statusPane.toFront();
+                    codeTextArea.setEditable(false);
+                    clearCodeButton.setDisable(true);
+                    runCodeButton.setDisable(true);
+                    clearOutputButton.setDisable(true);
+                    submitButton.setDisable(false);
+                }
+            } else {
+                responseText.setText(practicalPrintExercise.getExplanation());
+                responseText.getParent().setStyle("-fx-background-color: #F44336");
             }
 
             System.out.println("code: " + codeTextArea.textProperty());
@@ -92,13 +112,18 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     @FXML
     private void submit() {
-        //TODO evaluate and get score and push to database
-        compileCode();
+        if (Agent.containsPracticalExercise(practicalPrintExercise)){
+            Agent.updateUserExercise(practicalPrintExercise);
+        }else {
+            Agent.addUserExercise(practicalPrintExercise);
+        }
+        Agent.setIsExerciseCleared(true);
+        Stage stage = (Stage) submitButton.getScene().getWindow();
+        stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     private void compileCode() {
         try {
-            System.out.println("try: ");
             RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
             RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
             RuntimeUtil.compile(practicalPrintExercise);

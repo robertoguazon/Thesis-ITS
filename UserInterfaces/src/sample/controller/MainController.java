@@ -31,7 +31,6 @@ public class MainController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pane.getStyleClass().add("background");
         title.getStyleClass().add("label-header");
         subtitle.getStyleClass().add("label-bright");
     }
@@ -68,7 +67,9 @@ public class MainController implements Initializable{
         }else if (event.getSource() == about){
             root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
         }else {return;}
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(settings.getScene().getWindow());
         stage.showAndWait();

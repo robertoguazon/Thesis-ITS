@@ -15,7 +15,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label text="Insert Title Here" textAlignment="CENTER">
+                  <Label fx:id="title" text="Insert Title Here" textAlignment="CENTER">
                      <font>
                         <Font size="40.0" />
                      </font>

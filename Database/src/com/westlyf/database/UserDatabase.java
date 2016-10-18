@@ -51,7 +51,7 @@ public class UserDatabase {
     private static final String ADD_USER = "INSERT INTO users(currentModuleId, currentLessonId, currentExamId, " +
             "username, password, name, age, sex, school, yearLevel, profilePicturePath, dateModified, dateCreated) " +
             "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
-    private static final String ADD_USER_EXERCISE = "INSERT INTO user_exercise(userId, exercise_title, code, " +
+    private static final String ADD_USER_EXERCISE = "INSERT INTO user_exercises(userId, exercise_title, code, " +
             "dateModified, dateCreated) values(?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
     private static final String ADD_EXAM_GRADE = "INSERT INTO exam_grades(userId, exam_title, grade, dateModified, dateCreated) " +
             "values(?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
@@ -59,7 +59,7 @@ public class UserDatabase {
     private static final String UPDATE_USER = "UPDATE users SET currentModuleId=?, currentLessonId=?, currentExamId=?, " +
             "username=?, password=?, name=?, age=?, sex=?, school=?, yearLevel=?, profilePicturePath=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE userId=?";
-    private static final String UPDATE_USER_EXERCISE = "UPDATE user_exercise SET userId=?, exercise_title=?, code=?, " +
+    private static final String UPDATE_USER_EXERCISE = "UPDATE user_exercises SET userId=?, exercise_title=?, code=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE id=?";
     private static final String UPDATE_EXAM_GRADE = "UPDATE exam_grade SET userId=?, exam_title=?, grade=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE id=?";

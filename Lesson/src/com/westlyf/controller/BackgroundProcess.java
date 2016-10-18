@@ -32,9 +32,9 @@ public class BackgroundProcess extends Thread{
                 }
                 System.out.println(fer);
                 if (fer.equals("Anxious")){
-                    examChoicesOnlyViewerController.setHintVisible(true);
+                    getExamChoicesOnlyViewerController().setHintVisible(true);
                 }else {
-                    examChoicesOnlyViewerController.setHintVisible(false);
+                    getExamChoicesOnlyViewerController().setHintVisible(false);
                 }
                 Thread.sleep( 5000 );
             }
@@ -47,11 +47,19 @@ public class BackgroundProcess extends Thread{
         }
     }
 
-    public Node loadController() throws IOException {
+    /*public Node loadController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ExamChoicesOnlyViewer.fxml"));
         Node node = loader.load();
         examChoicesOnlyViewerController = loader.getController();
         examChoicesOnlyViewerController.setExam(Agent.getExam());
         return node;
+    }*/
+
+    public static void setExamChoicesOnlyViewerController(ExamChoicesOnlyViewerController examChoicesOnlyViewerController) {
+        BackgroundProcess.examChoicesOnlyViewerController = examChoicesOnlyViewerController;
+    }
+
+    public static ExamChoicesOnlyViewerController getExamChoicesOnlyViewerController() {
+        return examChoicesOnlyViewerController;
     }
 }

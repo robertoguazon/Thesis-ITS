@@ -58,7 +58,6 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        startBrowser();
         timeLeftSlider.setMin(0);
         timeLeftSlider.setMax(delay / 60_000.0f / 60.0f); //minutes slider
 
@@ -84,7 +83,6 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         );
 
         timeLeftSlider.valueProperty().bind(minutes);
-        startBackground();
     }
 
     public void setExam(Exam exam) {
@@ -157,22 +155,6 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
         minutesTimer.cancel();
         minutesTimer.purge();
-    }
-
-    private void startBrowser(){
-        try {
-            Runtime rt = Runtime.getRuntime();
-            String url = "http://localhost/emotion-detection/emotion.html";
-            rt.exec( "rundll32 url.dll,FileProtocolHandler " + url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void startBackground(){
-        BackgroundProcess background = new BackgroundProcess();
-        background.setDaemon(true);
-        background.start();
     }
     //TODO -dispose resources
 }
