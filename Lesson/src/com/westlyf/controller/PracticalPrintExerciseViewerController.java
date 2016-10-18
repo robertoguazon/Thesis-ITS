@@ -2,6 +2,7 @@ package com.westlyf.controller;
 
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.utils.RuntimeUtil;
+import com.westlyf.utils.StringUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -64,18 +65,29 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             /*if ( RuntimeUtil.STRING_OUTPUT.toString().isEmpty()) {
                 outputError("use System.out.println() to output something");
             }*/
-            outputStream(RuntimeUtil.STRING_OUTPUT.toString());
-            if (practicalPrintExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString())){
+            outputStream(RuntimeUtil.CONSOLE_OUTPUT.toString());
+
+            String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
+            errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
+
+            if (!errorString.isEmpty()) {
+                outputError(errorString); //output errors
+                responseText.setText("Error: Compilation");
+                return;
+            }
+
+            if (practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString())){
                 if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
                     responseText.setText("Correct");
                 } else responseText.setText("Incorrect: Cheating");
             }else {
-                responseText.setText("Incorrect Output");
+                responseText.setText("Incorrect: Wrong Output");
             }
 
             System.out.println("code: " + codeTextArea.textProperty());
             System.out.println("ccheck: " + practicalPrintExercise.getCGroup());
-            System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
+            System.out.println("output: " + RuntimeUtil.CONSOLE_OUTPUT.toString());
+            System.out.println("err: " + errorString);
         }
     }
 
@@ -84,7 +96,8 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
         try {
             this.outputTextArea.clear();
-            RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -99,13 +112,17 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     private void compileCode() {
         try {
             System.out.println("try: ");
-            RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
-            RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
+
             RuntimeUtil.compile(practicalPrintExercise);
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         } finally {
             RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STREAM);
         }
     }
 

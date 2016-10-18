@@ -17,12 +17,23 @@ import java.util.ArrayList;
  */
 public class RuntimeUtil {
     public static final PrintStream CONSOLE_STREAM = System.out;
-    public static final ByteArrayOutputStream STRING_OUTPUT = new ByteArrayOutputStream();
-    public static final PrintStream STRING_STREAM = new PrintStream(STRING_OUTPUT);
+    public static final ByteArrayOutputStream CONSOLE_OUTPUT = new ByteArrayOutputStream();
+    public static final PrintStream CONSOLE_STRING_STREAM = new PrintStream(CONSOLE_OUTPUT);
+
+    public static final PrintStream CONSOLE_ERR_STREAM = System.err;
+    public static final ByteArrayOutputStream CONSOLE_ERR_OUTPUT = new ByteArrayOutputStream();
+    public static final PrintStream CONSOLE_ERR_STRING_STREAM = new PrintStream(CONSOLE_ERR_OUTPUT);
+
+    public static final String LOGGER_SLF4J = "SLF4J"; //name of logger, to remove the output in err stream
 
     public static void setOutStream(final PrintStream stream) {
         System.out.flush();
         System.setOut(stream);
+    }
+
+    public static void setErrStream(final PrintStream stream) {
+        System.err.flush();
+        System.setErr(stream);
     }
 
     public static void compile(PracticalPrintExercise practicalPrintExercise) throws Exception {

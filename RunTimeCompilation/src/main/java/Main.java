@@ -60,11 +60,11 @@ public class Main {
 
     private static void test3() {
         System.out.println("test3");
-        RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
+        RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
         System.out.println("6 + 9 * 3 = " + (6 + 9 * 3));
         System.out.println("what is your answer?");
         System.out.println("badooop case");
-        String output = RuntimeUtil.STRING_OUTPUT.toString();
+        String output = RuntimeUtil.CONSOLE_OUTPUT.toString();
 
         RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
         System.out.println(output);

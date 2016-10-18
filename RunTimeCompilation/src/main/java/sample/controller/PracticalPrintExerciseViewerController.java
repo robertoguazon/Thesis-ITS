@@ -68,7 +68,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     private void runCode() {
         if (currentExercise != null) {
             compileCode();
-            outputTextArea.setText(RuntimeUtil.STRING_OUTPUT.toString());
+            outputTextArea.setText(RuntimeUtil.CONSOLE_OUTPUT.toString());
         }
     }
 
@@ -77,7 +77,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
         try {
             this.outputTextArea.clear();
-            RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -88,8 +88,8 @@ public class PracticalPrintExerciseViewerController implements Initializable {
         //TODO evaluate and get score and push to database
         compileCode();
 
-        System.out.println("output: " + RuntimeUtil.STRING_OUTPUT.toString());
-        System.out.println("Correct: " + currentExercise.evaluate(RuntimeUtil.STRING_OUTPUT.toString()));
+        System.out.println("output: " + RuntimeUtil.CONSOLE_OUTPUT.toString());
+        System.out.println("Correct: " + currentExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString()));
     }
 
     public void view(PracticalPrintExercise practicalPrintExercise) {
@@ -106,8 +106,8 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     private void compileCode() {
         try {
-            RuntimeUtil.setOutStream(RuntimeUtil.STRING_STREAM);
-            RuntimeUtil.reset(RuntimeUtil.STRING_OUTPUT);
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
             RuntimeUtil.compile(currentExercise);
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());

@@ -70,9 +70,8 @@ public class CString {
     * */
     public boolean check(StringProperty codeText) {
         String codeTextString = StringUtil.removeWhiteSpaces(codeText.get());
-
         for (StringProperty cString : equivalents) {
-            if (codeTextString.contains(cString.get())) {
+            if (codeTextString.contains(StringUtil.removeWhiteSpaces(cString.get()))) {
                 return true;
             }
         }
