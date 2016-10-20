@@ -3,6 +3,7 @@ package com.westlyf.database;
 import com.westlyf.user.ExamGrade;
 import com.westlyf.user.UserExercise;
 import com.westlyf.user.Users;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -72,7 +73,9 @@ public class UserDatabase {
         return Database.createTable(Database.USER, CREATE_USERS_TABLE);
     }
 
-    public static int createUserExercisesTable(){ return Database.createTable(Database.USER, CREATE_USER_EXERCISES_TABLE); }
+    public static int createUserExercisesTable(){
+        return Database.createTable(Database.USER, CREATE_USER_EXERCISES_TABLE);
+    }
 
     public static int createExamGradesTable(){
         return Database.createTable(Database.USER, CREATE_EXAM_GRADES_TABLE);
@@ -105,6 +108,8 @@ public class UserDatabase {
                     return user;
                 }
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -118,7 +123,7 @@ public class UserDatabase {
         return null;
     }
 
-    public static void addUser(Users user){
+    public static int addUser(Users user){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             PreparedStatement preparedStatement = null;
@@ -135,10 +140,14 @@ public class UserDatabase {
                 preparedStatement.setString(9, user.getSchool());
                 preparedStatement.setString(10, user.getYearLevel());
                 preparedStatement.setString(11, user.getProfilePicturePath());
-                if (preparedStatement.executeUpdate() > 0) {
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
                     System.out.println("Successful Insert: user");
-                }
+                    return update;
+                }else return update;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -148,22 +157,26 @@ public class UserDatabase {
                     e.printStackTrace();
                 }
             }
-        }
+        }return -1;
     }
 
-    public static void addUserExercise(int userId, String exercise_title, String code){
+    public static int addUserExercise(UserExercise userExercise){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = userConn.prepareStatement(ADD_USER_EXERCISE);
-                preparedStatement.setInt(1, userId);
-                preparedStatement.setString(2, exercise_title);
-                preparedStatement.setString(3, code);
-                if (preparedStatement.executeUpdate() > 0) {
+                preparedStatement.setInt(1, userExercise.getUserId());
+                preparedStatement.setString(2, userExercise.getExercise_title());
+                preparedStatement.setString(3, userExercise.getCode());
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
                     System.out.println("Successful Insert: user_exercise");
-                }
+                    return update;
+                }else return update;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -173,22 +186,26 @@ public class UserDatabase {
                     e.printStackTrace();
                 }
             }
-        }
+        }return -1;
     }
 
-    public static void addExamGrade(int userId, String exam_title, int grade){
+    public static int addExamGrade(ExamGrade examGrade){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = userConn.prepareStatement(ADD_EXAM_GRADE);
-                preparedStatement.setInt(1, userId);
-                preparedStatement.setString(2, exam_title);
-                preparedStatement.setInt(3, grade);
-                if (preparedStatement.executeUpdate() > 0) {
+                preparedStatement.setInt(1, examGrade.getUserId());
+                preparedStatement.setString(2, examGrade.getExam_title());
+                preparedStatement.setInt(3, examGrade.getGrade());
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
                     System.out.println("Successful Insert: exam_grade");
-                }
+                    return update;
+                }else return update;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -198,10 +215,10 @@ public class UserDatabase {
                     e.printStackTrace();
                 }
             }
-        }
+        }return -1;
     }
 
-    public static void updateUser(Users user){
+    public static int updateUser(Users user){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             PreparedStatement preparedStatement = null;
@@ -219,10 +236,14 @@ public class UserDatabase {
                 preparedStatement.setString(10, user.getYearLevel());
                 preparedStatement.setString(11, user.getProfilePicturePath());
                 preparedStatement.setInt(12, user.getUserId());
-                if (preparedStatement.executeUpdate() > 0){
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
                     System.out.println("Successful Update: user");
-                }
+                    return update;
+                }else return update;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -232,23 +253,27 @@ public class UserDatabase {
                     e.printStackTrace();
                 }
             }
-        }
+        }return -1;
     }
 
-    public static void updateUserExercise(int id, int userId, String exercise_title, String code){
+    public static int updateUserExercise(UserExercise userExercise){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = userConn.prepareStatement(UPDATE_USER_EXERCISE);
-                preparedStatement.setInt(1, userId);
-                preparedStatement.setString(2, exercise_title);
-                preparedStatement.setString(3, code);
-                preparedStatement.setInt(4, id);
-                if (preparedStatement.executeUpdate() > 0){
+                preparedStatement.setInt(1, userExercise.getUserId());
+                preparedStatement.setString(2, userExercise.getExercise_title());
+                preparedStatement.setString(3, userExercise.getCode());
+                preparedStatement.setInt(4, userExercise.getId());
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
                     System.out.println("Successful Update: user_exercise");
-                }
+                    return update;
+                }else return update;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -258,23 +283,27 @@ public class UserDatabase {
                     e.printStackTrace();
                 }
             }
-        }
+        }return -1;
     }
 
-    public static void updateExamGrade(int id, int userId, String exam_title, int grade){
+    public static int updateExamGrade(ExamGrade examGrade){
         userConn = DatabaseConnection.getUserConnection();
         if (userConn != null){
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = userConn.prepareStatement(UPDATE_EXAM_GRADE);
-                preparedStatement.setInt(1, userId);
-                preparedStatement.setString(2, exam_title);
-                preparedStatement.setInt(3, grade);
-                preparedStatement.setInt(4, id);
-                if (preparedStatement.executeUpdate() > 0){
+                preparedStatement.setInt(1, examGrade.getUserId());
+                preparedStatement.setString(2, examGrade.getExam_title());
+                preparedStatement.setInt(3, examGrade.getGrade());
+                preparedStatement.setInt(4, examGrade.getId());
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
                     System.out.println("Successful Update: exam_grade");
-                }
+                    return update;
+                }else {return update;}
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -284,7 +313,7 @@ public class UserDatabase {
                     e.printStackTrace();
                 }
             }
-        }
+        }return -1;
     }
 
     public static ArrayList<UserExercise> getUserExercisesUsingUserId(int userId){
@@ -307,6 +336,8 @@ public class UserDatabase {
                 System.out.println("Retrieved User Exercises:\n" + userExercises);
                 return userExercises;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {
@@ -340,6 +371,8 @@ public class UserDatabase {
                 System.out.println("Retrieved Exam Grades:\n" + examGrades);
                 return examGrades;
             } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
                 e.printStackTrace();
             } finally {
                 try {

@@ -23,11 +23,11 @@ public class Agent {
     private static String currentLesson;
     private static boolean isExerciseCleared;
 
-    private static UserExercise userExercise;
-    private static TextLesson lesson;
-    private static VideoPracticalExercise exercise;
-    private static Exam exam;
-    private static ExamGrade examGrade;
+    private static UserExercise userExercise = new UserExercise();
+    private static TextLesson lesson = new TextLesson();
+    private static VideoPracticalExercise exercise = new VideoPracticalExercise();
+    private static Exam exam = new Exam();
+    private static ExamGrade examGrade = new ExamGrade();
 
     private static ArrayList<UserExercise> userExercises = new ArrayList<UserExercise>();
     private static ArrayList<TextLesson> lessonsInModule = new ArrayList<TextLesson>();
@@ -118,19 +118,20 @@ public class Agent {
 
     public static void removeLoggedUser(){
         if (getLoggedUser() != null) {
-            updateUser();
-            setLoggedUser(null);
-            setCurrentModule(null);
-            setCurrentLesson(null);
-            setLesson(null);
-            setExercise(null);
-            setExam(null);
-            getLessonsInModule().clear();
-            getTextLessons().clear();
-            getVideoPracticalExercises().clear();
-            getExams().clear();
-            getUserExercises().clear();
-            getExamGrades().clear();
+            if (updateUser() > 0) {
+                setLoggedUser(null);
+                setCurrentModule(null);
+                setCurrentLesson(null);
+                setLesson(null);
+                setExercise(null);
+                setExam(null);
+                getLessonsInModule().clear();
+                getTextLessons().clear();
+                getVideoPracticalExercises().clear();
+                getExams().clear();
+                getUserExercises().clear();
+                getExamGrades().clear();
+            }else {return;}
         }
     }
 
@@ -220,35 +221,42 @@ public class Agent {
         return UserDatabase.getUserUsingCredentials(username, password);
     }
 
-    public static void addUser(Users user){
-        UserDatabase.addUser(user);
+    public static int addUser(Users user){
+        return UserDatabase.addUser(user);
     }
 
-    public static void addUserExercise(PracticalExercise practicalExercise){
-        UserDatabase.addUserExercise(getLoggedUser().getUserId(), practicalExercise.getTitle(), practicalExercise.getCode());
+    public static int addUserExercise(PracticalExercise practicalExercise){
+        getUserExercise().setUserId(getLoggedUser().getUserId());
+        getUserExercise().setExercise_title(practicalExercise.getTitle());
+        getUserExercise().setCode(practicalExercise.getCode());
         getUserExercises().add(getUserExercise());
+        return UserDatabase.addUserExercise(getUserExercise());
     }
 
-    public static void addExamGrade(String exam_title, int grade){
-        UserDatabase.addExamGrade(getLoggedUser().getUserId(), exam_title, grade);
+    public static int addExamGrade(String exam_title, int grade){
+        getExamGrade().setUserId(getLoggedUser().getUserId());
+        getExamGrade().setExam_title(exam_title);
+        getExamGrade().setGrade(grade);
         getExamGrades().add(getExamGrade());
+        return UserDatabase.addExamGrade(getExamGrade());
     }
 
-    public static void updateUser(){
-        UserDatabase.updateUser(getLoggedUser());
+    public static int updateUser(){
+        return UserDatabase.updateUser(getLoggedUser());
     }
 
-    public static void updateUserExercise(PracticalExercise practicalExercise){
-        UserDatabase.updateUserExercise(getUserExercise().getId(), getLoggedUser().getUserId(),
-                practicalExercise.getTitle(), practicalExercise.getCode());
+    public static int updateUserExercise(PracticalExercise practicalExercise){
         int i = getUserExercises().indexOf(getUserExercise());
         getUserExercises().get(i).setCode(practicalExercise.getCode());
+        setUserExercise(getUserExercises().get(i));
+        return UserDatabase.updateUserExercise(getUserExercise());
     }
 
-    public static void updateExamGrade(int id, String exam_title, int grade){
-        UserDatabase.updateExamGrade(id, getLoggedUser().getUserId(), exam_title, grade);
+    public static int updateExamGrade(Exam exam){
         int i = getExamGrades().indexOf(getExamGrade());
-        getExamGrades().get(i).setGrade(grade);
+        getExamGrades().get(i).setGrade(exam.getTotalScore());
+        setExamGrade(getExamGrades().get(i));
+        return UserDatabase.updateExamGrade(getExamGrade());
     }
 
     //setters and getters

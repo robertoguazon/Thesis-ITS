@@ -1,6 +1,7 @@
 package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
+import com.westlyf.agent.LoadType;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.utils.RuntimeUtil;
 import com.westlyf.utils.StringUtil;
@@ -71,6 +72,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML
     private void runCode() {
         if (practicalPrintExercise != null) {
+            clearOutput();
             compileCode();
             /*if ( RuntimeUtil.STRING_OUTPUT.toString().isEmpty()) {
                 outputError("use System.out.println() to output something");
@@ -83,16 +85,13 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             if (!errorString.isEmpty()) {
                 outputError(errorString); //output errors
                 responseText.setText("Error: Compilation");
+                responseText.getParent().setStyle("-fx-background-color: #F44336");
                 return;
             }
 
-            if (practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString())){
-                if(practicalPrintExercise.checkCGroup(codeTextArea.textProperty())){
+            if (practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString())) {
+                if (practicalPrintExercise.checkCGroup(codeTextArea.textProperty())) {
                     responseText.setText("Correct");
-                } else responseText.setText("Incorrect: Cheating");
-            }else {
-                responseText.setText("Incorrect: Wrong Output");
-                    responseText.setText("Correct!");
                     responseText.getParent().setStyle("-fx-background-color: #00C853");
                     statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
                     statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
@@ -102,11 +101,16 @@ public class PracticalPrintExerciseViewerController implements Initializable {
                     runCodeButton.setDisable(true);
                     clearOutputButton.setDisable(true);
                     submitButton.setDisable(false);
+                } else {
+                    responseText.setText(practicalPrintExercise.getExplanation());
+                    responseText.getParent().setStyle("-fx-background-color: #F44336");
                 }
             } else {
-
-            responseText.setText(practicalPrintExercise.getExplanation());
-            responseText.getParent().setStyle("-fx-background-color: #F44336");
+                responseText.setText(practicalPrintExercise.getExplanation());
+                responseText.getParent().setStyle("-fx-background-color: #F44336");
+            }
+        }else {
+            System.out.println("practicalPrintExercise is null");
         }
     }
 
@@ -126,18 +130,20 @@ public class PracticalPrintExerciseViewerController implements Initializable {
     @FXML
     private void submit() {
         if (Agent.containsPracticalExercise(practicalPrintExercise)){
-            Agent.updateUserExercise(practicalPrintExercise);
+            if (Agent.updateUserExercise(practicalPrintExercise) < 0){
+                return;
+            }
         }else {
-            Agent.addUserExercise(practicalPrintExercise);
+            if (Agent.addUserExercise(practicalPrintExercise) < 0) {
+                Agent.setIsExerciseCleared(true);
+            }else {return;}
         }
-        Agent.setIsExerciseCleared(true);
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     private void compileCode() {
         try {
-            System.out.println("try: ");
             RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
             RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
             RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
