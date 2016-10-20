@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.model.AlertBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +58,10 @@ public class NewProfileController implements Initializable{
         Parent root;
         if (event.getSource() == createNewProfile){
             if (createNewProfile()){
-                stage = (Stage)backToMenu.getScene().getWindow();
+                AlertBox.display("Successful Insert",
+                        "You have been successfully registered as one of the users.",
+                        "Going back to the start menu...");
+                stage = (Stage)createNewProfile.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
             }else {return;}
         }else if (event.getSource() == backToMenu){
@@ -79,9 +83,8 @@ public class NewProfileController implements Initializable{
         String sex = getSex();
         String school = schoolText.getText();
         String yearLevel = yearLevelComboBox.getValue().toString();
-        System.out.println(yearLevel);
         String currentModule = "module1";
-        String currentLesson = "lesson1";
+        String currentLesson = "lesson0";
         String currentExam = null;
         String profilePicturePath = null;
         if (isFieldEmpty(username, password, confirmPassword, name, age, sex, school)){
@@ -89,9 +92,10 @@ public class NewProfileController implements Initializable{
                 int ageNum = Integer.parseInt(age);
                 if (isAge(ageNum)){
                     if (confirmPassword(password, confirmPassword)){
-                            Agent.addUser(encapsulateUser(currentModule, currentLesson, currentExam, username, password,
-                                    name, ageNum, sex, school, yearLevel, profilePicturePath));
-                            return true;
+                            if (Agent.addUser(encapsulateUser(currentModule, currentLesson, currentExam, username, password,
+                                    name, ageNum, sex, school, yearLevel, profilePicturePath)) > 0) {
+                                return true;
+                            }
                     }
                 }
             }
@@ -149,35 +153,36 @@ public class NewProfileController implements Initializable{
     public boolean isFieldMatch(String username, String password, String confirmPassword,
                                 String name, String age, String sex, String school, String yearLevel){
         int b = 0;
-        String text = "Invalid ";
-        if (!username.matches("[a-zA-Z0-9]*")) {
+        String regex = "[a-zA-Z0-9]{4,}";
+        String text = "Invalid: ";
+        if (!username.matches(regex)) {
             usernameText.setStyle("-fx-text-box-border: red;");
-            text = text + "username, ";
+            text = text + "username(must be atleast 4 characters long), ";
             b++;
         }else{usernameText.setStyle("");}
-        if (!password.matches("[a-zA-Z0-9]*")){
+        if (!password.matches(regex)){
             passwordText.setStyle("-fx-text-box-border: red;");
-            text = text + "password, ";
+            text = text + "password(must be atleast 4 characters long), ";
             b++;
         }else{passwordText.setStyle("");}
-        if (!confirmPassword.matches("[a-zA-Z0-9]*")){
+        if (!confirmPassword.matches(regex)){
             confirmPasswordText.setStyle("-fx-text-box-border: red;");
-            text = text + "confirm password, ";
+            text = text + "confirm password(must be atleast 4 characters long), ";
             b++;
         }else{confirmPasswordText.setStyle("");}
         if (!name.matches("[a-zA-Z\\s]*")){
             nameText.setStyle("-fx-text-box-border: red;");
-            text = text + "name, ";
+            text = text + "name(must not contain numbers), ";
             b++;
         }else{nameText.setStyle("");}
         if (!age.matches("[0-9]{2}")){
             ageText.setStyle("-fx-text-box-border: red;");
-            text = text + "age, ";
+            text = text + "age(numbers only and maximum of 2 digits), ";
             b++;
         }else{ageText.setStyle("");}
         if (!school.matches("[a-zA-Z\\s]*")){
             schoolText.setStyle("-fx-text-box-border: red;");
-            text = text + "school, ";
+            text = text + "school(must not contain numbers), ";
             b++;
         }else{schoolText.setStyle("");}
         if (!yearLevel.matches("[a-zA-Z0-9\\s]*")){
@@ -207,7 +212,7 @@ public class NewProfileController implements Initializable{
         if (password.equals(confirmPassword)) {
             return true;
         }
-        setErrorMessage("Password is not the same.");
+        setErrorMessage("Password and Confirm Password are not the same.");
         passwordText.setStyle("-fx-text-box-border: red;");
         confirmPasswordText.setStyle("-fx-text-box-border: red;");
         return false;

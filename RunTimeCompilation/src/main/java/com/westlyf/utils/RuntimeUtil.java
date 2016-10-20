@@ -39,8 +39,17 @@ public class RuntimeUtil {
     public static void compile(PracticalPrintExercise practicalPrintExercise) throws Exception {
         practicalPrintExercise.makeTempID();
         String className = "com.westlyf.sample." + practicalPrintExercise.getTempID() + "." + practicalPrintExercise.getClassName();
-        String javaCode =
-                "package com.westlyf.sample." + practicalPrintExercise.getTempID() + ";\n"  + practicalPrintExercise.getCode();
+        String javaCode = null;
+        String trimCode = StringUtil.removeWhiteSpaces(practicalPrintExercise.getCode());
+        int indexOf = trimCode.indexOf("class");
+        String substring = trimCode.substring(indexOf-6, indexOf);
+        if (!substring.equals("public")){
+             javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
+                            ";\npublic "  + practicalPrintExercise.getCode();
+        }else {
+            javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
+                            ";\n" + practicalPrintExercise.getCode();
+        }
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
         Object obj = aClass.newInstance();

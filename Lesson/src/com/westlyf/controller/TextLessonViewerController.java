@@ -22,6 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.model.AlertBox;
 import sample.model.ConfirmBox;
 
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class TextLessonViewerController implements Initializable {
                 }
             });
         }else {
-            final int finalI = i;
+            final int finalI = ++i;
             exerciseButton.setText("Next Lesson");
             exerciseButton.setOnAction(event -> {
                 unlock(finalI);
@@ -92,8 +93,11 @@ public class TextLessonViewerController implements Initializable {
 
     public void setTextLesson(TextLesson textLesson) {
         Agent.setLesson(textLesson);
-        String[] lessonTags = textLesson.getTagsString().split(",");
-        Agent.setCurrentLesson(lessonTags[0]);
+        String textLessonTags = textLesson.getTagsString();
+        int indexOf = textLessonTags.indexOf("lesson");
+        String lessonTag = textLessonTags.substring(indexOf, indexOf+7);
+        Agent.setCurrentLesson(lessonTag);
+        System.out.println(lessonTag);
         textLessonLabel.setText(textLesson.getTitle());
         String st = textLesson.getText();
         if(st.contains("contenteditable=\"true\"")){
@@ -112,8 +116,7 @@ public class TextLessonViewerController implements Initializable {
     }
 
     public void unlock(int i){
-        if (i < lesson.length-1) {
-            i++;
+        if (i < lesson.length) {
             lesson[i].setDisable(false);
             Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
         }else {
@@ -245,7 +248,8 @@ public class TextLessonViewerController implements Initializable {
                 int i = Integer.parseInt(String.valueOf(currentLesson.charAt(currentLesson.length() - 1)));
                 Agent.setIsExerciseCleared(false);
                 disposeExercise();
-                unlock(i);
+                unlock(++i);
+                AlertBox.display("Unlocked", "Unlocked new lesson " + i, "Click \"ok\" to close this alert box.");
             }
         }else {
             Boolean answer = ConfirmBox.display("Confirm Exit",

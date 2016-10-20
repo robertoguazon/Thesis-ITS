@@ -20,6 +20,21 @@ public class ConfirmBox {
     private static Boolean answer;
 
     public static Boolean display(String title, String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+            answer = true;
+        } else {
+            // ... user chose CANCEL or closed the dialog
+            answer = false;
+        }
+
+        return answer;
         /*
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -60,19 +75,5 @@ public class ConfirmBox {
 
         return answer;
         */
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(message);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-            answer = true;
-        } else {
-            // ... user chose CANCEL or closed the dialog
-            answer = false;
-        }
-        return answer;
     }
 }

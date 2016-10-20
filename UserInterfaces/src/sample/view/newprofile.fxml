@@ -12,8 +12,9 @@
    <center>
       <HBox alignment="CENTER">
          <children>
-            <VBox alignment="CENTER">
+            <VBox alignment="TOP_CENTER">
                <children>
+                  <Label fx:id="errorMessage" prefHeight="60.0" prefWidth="520.0" wrapText="true" />
                   <GridPane hgap="10.0" vgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -22,7 +23,6 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="144.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,52 +30,37 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Username" GridPane.rowIndex="1">
+                        <Label text="Username">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="usernameText" promptText="user" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="usernameText" promptText="user" GridPane.columnIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label text="Password" GridPane.rowIndex="2">
+                        <Label text="Password" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label text="Confirm Password" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="passwordText" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <PasswordField fx:id="passwordText" promptText="pass123" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </PasswordField>
-                        <PasswordField fx:id="confirmPasswordText" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="Confirm Password" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="confirmPasswordText" promptText="pass123" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </PasswordField>
-                        <Label text="Age" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="ageText" prefHeight="30.0" prefWidth="50.0" promptText="18" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        <Label text="Name" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER" spacing="30.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" spacing="30.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647">
                            <children>
                               <RadioButton fx:id="maleButton" mnemonicParsing="false" text="Male" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                  <font>
@@ -92,31 +77,45 @@
                               </RadioButton>
                            </children>
                         </HBox>
-                        <Label text="School" GridPane.rowIndex="5">
+                        <Label text="Age" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="schoolText" promptText="University of Santo Tomas" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
+                        <TextField fx:id="ageText" prefHeight="30.0" prefWidth="50.0" promptText="14" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label text="Year Level" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Label text="Year Level" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="yearLevelComboBox" prefHeight="25.0" prefWidth="155.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="498.0" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" />
-                        <TextField fx:id="nameText" promptText="John" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                        <ComboBox fx:id="yearLevelComboBox" prefHeight="25.0" prefWidth="155.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label text="Name" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameText" promptText="John" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label text="School" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="schoolText" promptText="University of Santo Tomas" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        <Insets />
                      </VBox.margin>
                   </GridPane>
                </children>
@@ -125,14 +124,14 @@
       </HBox>
    </center>
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="title" alignment="CENTER" text="Create New Profile" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../style/images/create%20new%20profile.png" />
                      </image>
@@ -141,26 +140,26 @@
             </Label>
          </children>
          <padding>
-            <Insets left="15.0" right="15.0" top="15.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
    </top>
    <bottom>
       <HBox alignment="CENTER" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back to Menu">
+            <Button fx:id="backToMenu" cancelButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back to Menu">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="createNewProfile" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Create Profile">
+            <Button fx:id="createNewProfile" defaultButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Create Profile">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
          </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
          </padding>
       </HBox>
    </bottom>
