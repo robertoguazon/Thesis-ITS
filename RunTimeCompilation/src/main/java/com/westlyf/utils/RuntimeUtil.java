@@ -48,8 +48,9 @@ public class RuntimeUtil {
             System.out.println(indexOf);
             substring = trimCode.substring(indexOf - 6, indexOf);
         }
+        System.out.println("SubString: " + substring);
         if (!substring.equals("public")){
-            System.out.println("public");
+            System.out.println("no public");
              javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
                             ";\npublic "  + practicalPrintExercise.getCode();
         }else {
