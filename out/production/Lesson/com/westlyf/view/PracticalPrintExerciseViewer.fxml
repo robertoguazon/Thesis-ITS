@@ -8,9 +8,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalPrintExerciseViewerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalPrintExerciseViewerController">
     <top>
-        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Practical Print Exercise" />
                 <Label fx:id="titleLabel" />
@@ -20,7 +20,7 @@
     <center>
         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <content>
-                <VBox>
+                <VBox styleClass="body">
                     <children>
                   <StackPane>
                      <children>
@@ -107,7 +107,7 @@
         </ScrollPane>
     </center>
    <bottom>
-            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" styleClass="footer" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

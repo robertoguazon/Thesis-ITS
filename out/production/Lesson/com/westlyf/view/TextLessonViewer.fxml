@@ -7,9 +7,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.TextLessonViewerController">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.TextLessonViewerController">
    <center>
-      <VBox alignment="TOP_CENTER" spacing="10.0">
+      <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="body">
          <children>
             <WebView fx:id="textLessonWebView" prefHeight="500.0" prefWidth="490.0" BorderPane.alignment="CENTER" />
             <Button fx:id="exerciseButton" mnemonicParsing="false" text="Exercise">
@@ -24,7 +24,7 @@
       </VBox>
    </center>
    <left>
-      <VBox alignment="TOP_CENTER" layoutX="1.0" spacing="10.0">
+      <VBox alignment="TOP_CENTER" layoutX="1.0" spacing="10.0" styleClass="footer">
          <children>
             <VBox fx:id="lessonsVBox" />
             <Region VBox.vgrow="ALWAYS" />
@@ -40,9 +40,9 @@
       </VBox>
    </left>
    <top>
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" styleClass="header">
          <children>
-            <Label fx:id="textLessonLabel" BorderPane.alignment="CENTER">
+            <Label fx:id="textLessonLabel" styleClass="label-header" BorderPane.alignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
