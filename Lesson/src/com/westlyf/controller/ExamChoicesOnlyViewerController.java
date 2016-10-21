@@ -60,9 +60,9 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     private Timer timer;
     private Timer minutesTimer;
 
-    private DoubleProperty minutes = new SimpleDoubleProperty();
+    private DoubleProperty minutesProperty = new SimpleDoubleProperty();
 
-    private long delay = 60_000 * 60 * 15; //60_000 (seconds in delta time) * 60 (to minutes) * 60 (to hour)
+    private long delayMinute = 1_000 * 60; //60_000 (seconds in delta time) * 60 (to minutes) * 60 (to hour)
     private static final double passingGrade = 0.6;
     private int rawGrade;
     private int totalItems;
@@ -74,19 +74,21 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     public void initialize(URL location, ResourceBundle resources) {
         setHintButtonDisable(true);
         setHintTextAreaVisible(false);
-        setTimer();
+        setTimer(15);
     }
 
-    public void setTimer(){
+    public void setTimer(int minutes){
+        long delay = delayMinute * minutes;
+
         timeLeftSlider.setMin(0);
-        timeLeftSlider.setMax(delay / 60_000.0f / 60.0f); //minutes slider
+        timeLeftSlider.setMax(delay / 1_000.0f / 60.0f); //minutes slider
 
         timer = new Timer();
         timer.schedule(
                 new TimerTask() {
                     @Override
                     public void run() {
-                        stopExam();
+                        submitExam();
                     }
                 }, delay);
 
@@ -97,12 +99,12 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
                     @Override
                     public void run() {
                         seconds++;
-                        minutes.set(seconds / 60.0f);
+                        minutesProperty.set(seconds / 60.0f);
                     }
                 },0,1000
         );
 
-        timeLeftSlider.valueProperty().bind(minutes);
+        timeLeftSlider.valueProperty().bind(minutesProperty);
     }
 
     public void setExam(Exam exam) {
@@ -185,6 +187,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
     //TODO evaluate after submit
     @FXML private void submitExam() {
+        System.out.println("Exam submitted");
         stopExam();
         rawGrade = exam.evaluate();
         totalItems = exam.getQuizItems().size();

@@ -33,7 +33,7 @@ public class ControllersSampleMain extends Application {
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
-        //testExamChoicesOnlyViewer(primaryStage);
+        testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
         //testQuizExerciseReviewViewer();
@@ -42,7 +42,7 @@ public class ControllersSampleMain extends Application {
         //makers
         //testLessonMaker(primaryStage);
         //testQuizExerciseMaker(primaryStage);
-        testPracticalExerciseMaker(primaryStage);
+        //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
         //testExamChoicesOnlyMaker(primaryStage);
 
@@ -143,7 +143,7 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testExamChoicesOnlyViewer(Stage primaryStage) {
-        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingLID("lid1710245584279162"));
+        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingLID("lid7824281890242"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
