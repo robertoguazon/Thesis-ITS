@@ -44,9 +44,11 @@ public class UserDatabase {
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "userId INTEGER NOT NULL, " +
             "exam_title TEXT NOT NULL, " +
-            "grade INTEGER NOT NULL, " +
-            "dateModified DATETIME NOT NULL, " +
-            "dateCreated DATETIME NOT NULL" +
+            "raw_grade INTEGER NOT NULL, " +
+            "totalItems INTEGER NOT NULL, " +
+            "percent_grade INTEGER NOT NULL, " +
+            "status TEXT NOT NULL, " +
+            "dateTaken DATETIME NOT NULL" +
             ")";
 
     private static final String ADD_USER = "INSERT INTO users(currentModuleId, currentLessonId, currentExamId, " +
@@ -54,16 +56,16 @@ public class UserDatabase {
             "values(?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
     private static final String ADD_USER_EXERCISE = "INSERT INTO user_exercises(userId, exercise_title, code, " +
             "dateModified, dateCreated) values(?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
-    private static final String ADD_EXAM_GRADE = "INSERT INTO exam_grades(userId, exam_title, grade, dateModified, dateCreated) " +
-            "values(?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+    private static final String ADD_EXAM_GRADE = "INSERT INTO exam_grades(userId, exam_title, raw_grade, totalItems, " +
+            "percent_grade, status, dateTaken) values(?,?,?,?,?,?,CURRENT_TIMESTAMP)";
 
     private static final String UPDATE_USER = "UPDATE users SET currentModuleId=?, currentLessonId=?, currentExamId=?, " +
             "username=?, password=?, name=?, age=?, sex=?, school=?, yearLevel=?, profilePicturePath=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE userId=?";
     private static final String UPDATE_USER_EXERCISE = "UPDATE user_exercises SET userId=?, exercise_title=?, code=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE id=?";
-    private static final String UPDATE_EXAM_GRADE = "UPDATE exam_grade SET userId=?, exam_title=?, grade=?, " +
-            "dateModified=CURRENT_TIMESTAMP WHERE id=?";
+    private static final String UPDATE_EXAM_GRADE = "UPDATE exam_grades SET userId=?, exam_title=?, raw_grade=?, " +
+            "percent_grade=?, totalItems=?, status=?, dateTaken=CURRENT_TIMESTAMP WHERE id=?";
 
     private static final String GET_USER_USING_CREDENTIALS = "SELECT * FROM users WHERE username = ? AND password = ?";
     private static final String GET_USER_EXERCISES_USING_USER_ID = "SELECT * FROM user_exercises WHERE userId=?";
@@ -104,7 +106,7 @@ public class UserDatabase {
                     user.setSchool(resultSet.getString("school"));
                     user.setYearLevel(resultSet.getString("yearLevel"));
                     user.setProfilePicturePath(resultSet.getString("profilePicturePath"));
-                    System.out.println("user retrieved: " + user);
+                    System.out.println("user retrieved: \n" + user);
                     return user;
                 }
             } catch (SQLException e) {
@@ -197,7 +199,10 @@ public class UserDatabase {
                 preparedStatement = userConn.prepareStatement(ADD_EXAM_GRADE);
                 preparedStatement.setInt(1, examGrade.getUserId());
                 preparedStatement.setString(2, examGrade.getExam_title());
-                preparedStatement.setInt(3, examGrade.getGrade());
+                preparedStatement.setInt(3, examGrade.getRawGrade());
+                preparedStatement.setInt(4, examGrade.getTotalItems());
+                preparedStatement.setInt(5, examGrade.getPercentGrade());
+                preparedStatement.setString(6, examGrade.getStatus());
                 int update = preparedStatement.executeUpdate();
                 if (update > 0){
                     System.out.println("Successful Insert: exam_grade");
@@ -294,8 +299,11 @@ public class UserDatabase {
                 preparedStatement = userConn.prepareStatement(UPDATE_EXAM_GRADE);
                 preparedStatement.setInt(1, examGrade.getUserId());
                 preparedStatement.setString(2, examGrade.getExam_title());
-                preparedStatement.setInt(3, examGrade.getGrade());
-                preparedStatement.setInt(4, examGrade.getId());
+                preparedStatement.setInt(3, examGrade.getRawGrade());
+                preparedStatement.setInt(4, examGrade.getTotalItems());
+                preparedStatement.setInt(5, examGrade.getPercentGrade());
+                preparedStatement.setString(6, examGrade.getStatus());
+                preparedStatement.setInt(7, examGrade.getId());
                 int update = preparedStatement.executeUpdate();
                 if (update > 0){
                     System.out.println("Successful Update: exam_grade");
@@ -333,7 +341,7 @@ public class UserDatabase {
                     userExercise.setCode(resultSet.getString("code"));
                     userExercises.add(userExercise);
                 }
-                System.out.println("Retrieved User Exercises:\n" + userExercises);
+                //System.out.println("Retrieved User Exercises:\n" + userExercises);
                 return userExercises;
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
@@ -365,10 +373,14 @@ public class UserDatabase {
                     examGrade.setId(resultSet.getInt("id"));
                     examGrade.setUserId(resultSet.getInt("userId"));
                     examGrade.setExam_title(resultSet.getString("exam_title"));
-                    examGrade.setGrade(resultSet.getInt("grade"));
+                    examGrade.setRawGrade(resultSet.getInt("raw_grade"));
+                    examGrade.setTotalItems(resultSet.getInt("totalItems"));
+                    examGrade.setPercentGrade(resultSet.getInt("percent_grade"));
+                    examGrade.setStatus(resultSet.getString("status"));
+                    //examGrade.setDateTaken(resultSet.getDate("dateTaken"));
                     examGrades.add(examGrade);
                 }
-                System.out.println("Retrieved Exam Grades:\n" + examGrades);
+                //System.out.println("Retrieved Exam Grades:\n" + examGrades);
                 return examGrades;
             } catch (SQLException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());

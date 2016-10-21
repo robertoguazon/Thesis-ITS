@@ -52,7 +52,8 @@ public class UserController implements Initializable{
                     !loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId())){
                 exam.setDisable(true);
             }
-            if (loggedUser.getCurrentExamId() == null || loggedUser.getCurrentModuleId().equals("module1")) {
+            //if (loggedUser.getCurrentExamId() == null || loggedUser.getCurrentModuleId().equals("module1")) {
+            if (Agent.getExamGrades().isEmpty()){
                 grades.setDisable(true);
             }
             challenge.setDisable(true);
@@ -127,7 +128,7 @@ public class UserController implements Initializable{
         ExamChoicesOnlyViewerController examChoicesOnlyViewerController = loader.getController();
         Agent.loadExam();
         examChoicesOnlyViewerController.setExam(Agent.getExam());
-        loadFER(examChoicesOnlyViewerController);
+        //loadFER(examChoicesOnlyViewerController);
         return node;
     }
 
@@ -144,7 +145,7 @@ public class UserController implements Initializable{
     private boolean confirmTakeExam(){
         return ConfirmBox.display("Are you sure you want to take the exam?", "Exam Description: ",
                         "Topic: " + Agent.getCurrentModule() + "\n\n" +
-                        "Length: This exam has a time limit of 1 hour.\n\n" +
+                        "Length: This exam has a time limit of 15mins.\n\n" +
                         "Timer Setting: This exam will save and submit automatically \n" +
                         "\tupon time expiry.\n\n" +
                         "Submit Exam: Saves and submits all answers.\n" +

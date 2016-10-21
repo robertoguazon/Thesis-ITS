@@ -45,6 +45,10 @@ public class Agent {
         loadAll();
     }
 
+    public static void initializeProgram(){
+
+    }
+
     public static void loadAll(){
         String s = "module";
         int i = 1;
@@ -201,6 +205,18 @@ public class Agent {
         return false;
     }
 
+    public static boolean containsExamGrade(Exam exam){
+        ExamGrade match = null;
+        for (int i = 0; i < getExamGrades().size(); i++){
+            match = getExamGrades().get(i);
+            if (exam.getTitle().equals(match.getExam_title())){
+                setExamGrade(match);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void startBrowser(){
         try {
             Runtime rt = Runtime.getRuntime();
@@ -225,18 +241,19 @@ public class Agent {
         return UserDatabase.addUser(user);
     }
 
-    public static int addUserExercise(PracticalExercise practicalExercise){
-        getUserExercise().setUserId(getLoggedUser().getUserId());
-        getUserExercise().setExercise_title(practicalExercise.getTitle());
-        getUserExercise().setCode(practicalExercise.getCode());
-        getUserExercises().add(getUserExercise());
-        return UserDatabase.addUserExercise(getUserExercise());
+    public static int addUserExercise(UserExercise userExercise){
+        setUserExercise(userExercise);
+        getUserExercises().add(userExercise);
+        return UserDatabase.addUserExercise(userExercise);
     }
 
-    public static int addExamGrade(String exam_title, int grade){
+    public static int addExamGrade(String exam_title, int grade, int totalItems, int percentGrade, String status){
         getExamGrade().setUserId(getLoggedUser().getUserId());
         getExamGrade().setExam_title(exam_title);
-        getExamGrade().setGrade(grade);
+        getExamGrade().setRawGrade(grade);
+        getExamGrade().setTotalItems(totalItems);
+        getExamGrade().setStatus(status);
+        getExamGrade().setPercentGrade(percentGrade);
         getExamGrades().add(getExamGrade());
         return UserDatabase.addExamGrade(getExamGrade());
     }
@@ -245,16 +262,18 @@ public class Agent {
         return UserDatabase.updateUser(getLoggedUser());
     }
 
-    public static int updateUserExercise(PracticalExercise practicalExercise){
+    public static int updateUserExercise(String code){
         int i = getUserExercises().indexOf(getUserExercise());
-        getUserExercises().get(i).setCode(practicalExercise.getCode());
+        getUserExercises().get(i).setCode(code);
         setUserExercise(getUserExercises().get(i));
         return UserDatabase.updateUserExercise(getUserExercise());
     }
 
-    public static int updateExamGrade(Exam exam){
+    public static int updateExamGrade(int grade, String status, int percentGrade){
         int i = getExamGrades().indexOf(getExamGrade());
-        getExamGrades().get(i).setGrade(exam.getTotalScore());
+        getExamGrades().get(i).setRawGrade(grade);
+        getExamGrades().get(i).setStatus(status);
+        getExamGrades().get(i).setPercentGrade(percentGrade);
         setExamGrade(getExamGrades().get(i));
         return UserDatabase.updateExamGrade(getExamGrade());
     }

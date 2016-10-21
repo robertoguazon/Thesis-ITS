@@ -3,6 +3,8 @@ package com.westlyf.controller;
 import com.westlyf.agent.Agent;
 import com.westlyf.agent.LoadType;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
+import com.westlyf.user.UserExercise;
+import com.westlyf.user.Users;
 import com.westlyf.utils.RuntimeUtil;
 import com.westlyf.utils.StringUtil;
 import javafx.fxml.FXML;
@@ -129,14 +131,20 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     @FXML
     private void submit() {
-        if (Agent.containsPracticalExercise(practicalPrintExercise)){
-            if (Agent.updateUserExercise(practicalPrintExercise) < 0){
-                return;
+        Users loggedUser = Agent.getLoggedUser();
+        if (loggedUser != null) {
+            if (Agent.containsPracticalExercise(practicalPrintExercise)) {
+                if (Agent.updateUserExercise(practicalPrintExercise.getCode()) < 0) {
+                    return;
+                }
+            } else {
+                if (Agent.addUserExercise(new UserExercise(loggedUser.getUserId(),
+                        practicalPrintExercise.getTitle(), practicalPrintExercise.getCode())) < 0) {
+                    Agent.setIsExerciseCleared(true);
+                } else {
+                    return;
+                }
             }
-        }else {
-            if (Agent.addUserExercise(practicalPrintExercise) < 0) {
-                Agent.setIsExerciseCleared(true);
-            }else {return;}
         }
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));

@@ -10,11 +10,13 @@ public class UserExercise {
     private String exercise_title;
     private String code;
 
-    public String toString(){
-        return "id: " + getId() + "\n" +
-                "userId: " + getUserId() + "\n" +
-                "exercise_title: " + getExercise_title() + "\n" +
-                "code: " + getCode();
+    public UserExercise() {
+    }
+
+    public UserExercise(int userId, String exercise_title, String code) {
+        this.userId = userId;
+        this.exercise_title = exercise_title;
+        this.code = code;
     }
 
     public int getId() {
@@ -47,5 +49,12 @@ public class UserExercise {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String toString(){
+        return "id: " + getId() + "\n" +
+                "userId: " + getUserId() + "\n" +
+                "exercise_title: " + getExercise_title() + "\n" +
+                "code: " + getCode();
     }
 }

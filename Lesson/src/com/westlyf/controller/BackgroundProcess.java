@@ -32,9 +32,9 @@ public class BackgroundProcess extends Thread{
                 }
                 System.out.println(fer);
                 if (fer.equals("Anxious")){
-                    getExamChoicesOnlyViewerController().setHintVisible(true);
+                    getExamChoicesOnlyViewerController().setHintButtonDisable(false);
                 }else {
-                    getExamChoicesOnlyViewerController().setHintVisible(false);
+                    getExamChoicesOnlyViewerController().setHintButtonDisable(true);
                 }
                 Thread.sleep( 5000 );
             }

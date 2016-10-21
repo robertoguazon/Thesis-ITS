@@ -221,18 +221,8 @@ public class NewProfileController implements Initializable{
     public Users encapsulateUser(String currentModuleId, String currentLessonId, String currentExamId,
                                  String username, String password, String name, int age, String sex,
                                  String school, String yearLevel, String profilePicturePath){
-        Users user = new Users();
-        user.setCurrentModuleId(currentModuleId);
-        user.setCurrentLessonId(currentLessonId);
-        user.setCurrentExamId(currentExamId);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setName(name);
-        user.setAge(age);
-        user.setSex(sex);
-        user.setSchool(school);
-        user.setYearLevel(yearLevel);
-        user.setProfilePicturePath(profilePicturePath);
+        Users user = new Users(username, password, name, age, sex, school, yearLevel,
+                profilePicturePath, currentModuleId, currentLessonId, currentExamId);
         return user;
     }
 

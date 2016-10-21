@@ -1,6 +1,5 @@
 import com.westlyf.database.*;
 
-import com.westlyf.domain.exercise.Exercise;
 import com.westlyf.domain.exercise.practical.*;
 
 import com.westlyf.domain.exercise.practical.DataType;
@@ -12,6 +11,7 @@ import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizType;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
+import com.westlyf.user.ExamGrade;
 import com.westlyf.user.Users;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -51,12 +51,12 @@ public class DatabaseMain {
         System.out.println("exam: " + exercise);
 
 
-        testExamGrades();
+        //testExamGrades();
 
         //testUser();
         //testPush();
         //testPull();
-        testCGroup();
+        //testCGroup();
 
         try {
             user.close();
@@ -76,7 +76,9 @@ public class DatabaseMain {
         int userId = 1;
         String exam_title = "module3";
         int grade = 85;
-        UserDatabase.addExamGrade(userId, exam_title, grade);
+        int totalItems = 100;
+        String status = "passed";
+        UserDatabase.addExamGrade(encapsulateExamGrades(userId, exam_title, grade, totalItems, status));
     }
 
     private static void testUser() {
@@ -375,5 +377,15 @@ public class DatabaseMain {
         user.setYearLevel(yearLevel);
         user.setProfilePicturePath(profilePicturePath);
         return user;
+    }
+
+    public static ExamGrade encapsulateExamGrades(int userId, String exam_title, int grade, int totalItems, String status){
+        ExamGrade examGrade = new ExamGrade();
+        examGrade.setUserId(userId);
+        examGrade.setExam_title(exam_title);
+        examGrade.setRawGrade(grade);
+        examGrade.setTotalItems(totalItems);
+        examGrade.setStatus(status);
+        return examGrade;
     }
 }

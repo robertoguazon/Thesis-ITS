@@ -13,5 +13,6 @@
     <orderEntry type="module" module-name="Agent" />
     <orderEntry type="module" module-name="UserInterfaces" />
     <orderEntry type="module" module-name="Exercise" />
+    <orderEntry type="module" module-name="User" />
   </component>
 </module>

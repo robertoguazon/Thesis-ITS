@@ -4,11 +4,15 @@ import com.westlyf.utils.array.ArrayUtil;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.*;
+import javafx.scene.text.Font;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -86,8 +90,6 @@ public class QuizItem implements Serializable {
                 return false;
         }
     }
-
-
 
     public QuizItem(QuizItemSerializable quizItemsSerializable) {
         this.question.set(quizItemsSerializable.getQuestion());
@@ -311,13 +313,18 @@ public class QuizItem implements Serializable {
 
     public ArrayList<RadioButton> getChoicesRadioButtons() {
         ArrayList<RadioButton> choicesArrayList = new ArrayList<>();
-        ArrayList<String> randomizedChoices = ArrayUtil.randomizeArrayList(this.choices);
+        ArrayList<String> randomizedChoices = this.choices;
+        //ArrayList<String> randomizedChoices = ArrayUtil.randomizeArrayList(this.choices);
         for (int i = 0; i < randomizedChoices.size(); i++) {
             RadioButton choice = new RadioButton();
             choice.setText(randomizedChoices.get(i));
             choice.setUserData(randomizedChoices.get(i));
             choice.setVisible(true);
             choice.setSelected(false);
+            choice.setWrapText(true);
+            choice.setAlignment(Pos.BASELINE_CENTER);
+            choice.setTextAlignment(TextAlignment.JUSTIFY);
+            choice.setFont(Font.font("System", FontWeight.NORMAL, 12));
 
             choicesArrayList.add(choice);
         }
@@ -388,16 +395,17 @@ public class QuizItem implements Serializable {
                 "\thint: " + hint.get();
     }
 
-    public VBox getExamChoicesOnlyBox() {
+    public HBox getExamChoicesOnlyBox() {
         return getExamChoicesOnlyBox(0,0,false);
     }
 
-    public VBox getExamChoicesOnlyBox(float prefWidth, float prefHeight) {
+    public HBox getExamChoicesOnlyBox(float prefWidth, float prefHeight) {
         return getExamChoicesOnlyBox(prefWidth,prefHeight,true);
     }
 
-    public VBox getExamChoicesOnlyBox(float prefWidth, float prefHeight, boolean setPref) {
-        VBox box = new VBox();
+    public HBox getExamChoicesOnlyBox(float prefWidth, float prefHeight, boolean setPref) {
+        HBox box = new HBox();
+        box.setSpacing(8);
 
         ArrayList<RadioButton> buttons = getChoicesRadioButtons();
 

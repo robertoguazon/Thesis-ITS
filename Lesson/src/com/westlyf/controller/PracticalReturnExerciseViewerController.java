@@ -4,6 +4,8 @@ import com.westlyf.agent.Agent;
 import com.westlyf.domain.exercise.practical.DataType;
 import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import com.westlyf.domain.exercise.practical.PracticalReturnValidator;
+import com.westlyf.user.UserExercise;
+import com.westlyf.user.Users;
 import com.westlyf.utils.DataTypeUtil;
 import com.westlyf.utils.RuntimeUtil;
 import javafx.beans.property.SimpleStringProperty;
@@ -135,12 +137,21 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     @FXML
     private void submit() {
         //TODO - fix
-        if (Agent.containsPracticalExercise(practicalReturnExercise)){
-            Agent.updateUserExercise(practicalReturnExercise);
-        }else {
-            Agent.addUserExercise(practicalReturnExercise);
+        Users loggedUser = Agent.getLoggedUser();
+        if (loggedUser != null) {
+            if (Agent.containsPracticalExercise(practicalReturnExercise)) {
+                if (Agent.updateUserExercise(practicalReturnExercise.getCode()) < 0) {
+                    return;
+                }
+            } else {
+                if (Agent.addUserExercise(new UserExercise(loggedUser.getUserId(),
+                        practicalReturnExercise.getTitle(), practicalReturnExercise.getCode())) < 0) {
+                    Agent.setIsExerciseCleared(true);
+                } else {
+                    return;
+                }
+            }
         }
-        Agent.setIsExerciseCleared(true);
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
     }

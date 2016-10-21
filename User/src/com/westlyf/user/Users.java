@@ -18,6 +18,26 @@ public class Users {
     private String currentLessonId;
     private String currentExamId;
 
+    public Users() {
+    }
+
+    public Users(String username, String password,
+                 String name, int age, String sex, String school,
+                 String yearLevel, String profilePicturePath,
+                 String currentModuleId, String currentLessonId, String currentExamId) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.school = school;
+        this.yearLevel = yearLevel;
+        this.profilePicturePath = profilePicturePath;
+        this.currentModuleId = currentModuleId;
+        this.currentLessonId = currentLessonId;
+        this.currentExamId = currentExamId;
+    }
+
     public int getUserId() {
         return userId;
     }

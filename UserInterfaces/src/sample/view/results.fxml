@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ResultController">
+   <top>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="back" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/arrow-left.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="titleLabel" text="Title" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="gradeLabel" text="Grade:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox>
+         <children>
+            <TableView fx:id="tableView" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="pointsColumn" prefWidth="50.0" text="Points" />
+                <TableColumn fx:id="choicesColumn" prefWidth="200.0" sortable="false" text="Choices" />
+                  <TableColumn fx:id="correctAnswerColumn" prefWidth="200.0" sortable="false" text="Correct Answer" />
+                  <TableColumn fx:id="userAnswerColumn" prefWidth="200.0" sortable="false" text="Your Answer" />
+              </columns>
+            </TableView>
+            <Label text="Double click an item to show the question and explanation" />
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox spacing="5.0">
+         <children>
+            <Label contentDisplay="BOTTOM" text="Question:">
+               <graphic>
+                  <TextArea fx:id="questionTextArea" editable="false" prefHeight="200.0" prefWidth="150.0" wrapText="true" />
+               </graphic>
+            </Label>
+            <Label contentDisplay="BOTTOM" text="Explanation:">
+               <graphic>
+                  <TextArea fx:id="explanationTextArea" editable="false" prefHeight="200.0" prefWidth="150.0" wrapText="true" />
+               </graphic>
+            </Label>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
