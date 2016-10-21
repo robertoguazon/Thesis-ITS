@@ -5,7 +5,7 @@ package com.westlyf.utils;
  */
 public class StringUtil {
 
-    public static final String REGEX_REMOVE_WHITESPACE = "\\s+(?=((\\\\[\\\\\"]|[^\\\\\"])*\"(\\\\[\\\\\"]|[^\\\\\"])*\")*(\\\\[\\\\\"]|[^\\\\\"])*$)";
+    public static final String REGEX_REMOVE_WHITESPACE = "(\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\")|(\\s+)";
 
     public static String removeWhiteSpaces(String string) {
         return string.replaceAll(REGEX_REMOVE_WHITESPACE,"");

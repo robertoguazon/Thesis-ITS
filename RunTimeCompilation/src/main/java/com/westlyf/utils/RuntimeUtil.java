@@ -41,20 +41,15 @@ public class RuntimeUtil {
         String className = "com.westlyf.sample." + practicalPrintExercise.getTempID() + "." + practicalPrintExercise.getClassName();
         String javaCode = null;
         String trimCode = StringUtil.removeWhiteSpaces(practicalPrintExercise.getCode());
-        System.out.println(trimCode);
         int indexOf = trimCode.indexOf("class");
         String substring = "";
         if (indexOf-6 >= 0) {
-            System.out.println(indexOf);
             substring = trimCode.substring(indexOf - 6, indexOf);
         }
-        System.out.println("SubString: " + substring);
         if (!substring.equals("public")){
-            System.out.println("no public");
              javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
                             ";\npublic "  + practicalPrintExercise.getCode();
         }else {
-            System.out.println(substring);
             javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
                             ";\n" + practicalPrintExercise.getCode();
         }
