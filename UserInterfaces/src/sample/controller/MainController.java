@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,41 +21,31 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable{
 
-    @FXML private BorderPane pane;
-    @FXML private Label title;
-    @FXML private Label subtitle;
     @FXML private Hyperlink loadProfile;
     @FXML private Hyperlink newProfile;
-    @FXML private Hyperlink importProfile;
-    @FXML private Hyperlink exportProfile;
     @FXML private Hyperlink settings;
     @FXML private Hyperlink about;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        title.getStyleClass().add("label-header");
-        subtitle.getStyleClass().add("label-bright");
+
     }
 
     @FXML
     private void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
+        Scene scene;
         Parent root;
         if (event.getSource() == loadProfile){
-            stage = (Stage)loadProfile.getScene().getWindow();
+            scene = loadProfile.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/loadprofile.fxml"));
         }else if (event.getSource() == newProfile){
-            stage = (Stage)newProfile.getScene().getWindow();
+            scene = newProfile.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/newprofile.fxml"));
-        }else if (event.getSource() == importProfile){
-            stage = (Stage)importProfile.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
-        }else if (event.getSource() == exportProfile){
-            stage = (Stage)exportProfile.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
         }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -61,14 +53,16 @@ public class MainController implements Initializable{
     @FXML
     private void handleNewWindowAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
+        Scene scene;
         Parent root;
         if (event.getSource() == settings){
+            scene = settings.getScene();
             root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         }else if (event.getSource() == about){
+            scene = about.getScene();
             root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
         }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(settings.getScene().getWindow());

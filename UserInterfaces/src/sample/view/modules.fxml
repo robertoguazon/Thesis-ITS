@@ -7,11 +7,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ModulesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ModulesController">
    <children>
-      <HBox>
+      <HBox styleClass="header">
          <children>
-            <Label fx:id="title" text="Modules" textAlignment="CENTER">
+            <Label fx:id="title" styleClass="label-header" text="Modules" textAlignment="CENTER">
                <font>
                   <Font size="40.0" />
                </font>
@@ -20,8 +20,11 @@
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
       </HBox>
-      <FlowPane alignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
+      <FlowPane alignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" styleClass="body" vgap="20.0">
          <children>
             <Button fx:id="module1" contentDisplay="TOP" minWidth="120.0" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Basic Syntax">
                <graphic>
@@ -115,7 +118,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </FlowPane>
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" styleClass="footer">
          <children>
             <Hyperlink fx:id="backToMenu" onAction="#handleChangeSceneAction" text="Back to Menu">
                <font>

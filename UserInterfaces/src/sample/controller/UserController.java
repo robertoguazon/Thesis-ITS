@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.model.ConfirmBox;
@@ -28,8 +29,6 @@ import java.util.ResourceBundle;
  */
 public class UserController implements Initializable{
 
-    @FXML private BorderPane pane;
-    @FXML private Label title;
     @FXML private Label user;
     @FXML private Button learn;
     @FXML private Button exam;
@@ -41,66 +40,50 @@ public class UserController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //pane.getStyleClass().add("background");
-        title.getStyleClass().add("label-header");
         Users loggedUser = Agent.getLoggedUser();
         if (loggedUser != null){
             user.setText(loggedUser.getName());
-            //System.out.println(loggedUser.getCurrentModuleId().equals(loggedUser.getCurrentExamId()));
-            //System.out.println(!loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId()));
             if (loggedUser.getCurrentExamId() == null ||
                     !loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId())){
                 exam.setDisable(true);
             }
-            //if (loggedUser.getCurrentExamId() == null || loggedUser.getCurrentModuleId().equals("module1")) {
             if (Agent.getExamGrades().isEmpty()){
                 grades.setDisable(true);
             }
             challenge.setDisable(true);
-
-        }/*else {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/loadprofile.fxml"));
-                Parent root = fxmlLoader.load();
-                LoginController loginController = fxmlLoader.getController();
-
-                loginController.setErrorMessage("Session Timed Out.");
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();//(Stage) logout.getScene().getWindow();
-                System.out.println(logout.getScene());
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
+        }
     }
 
     @FXML
     private void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
+        Scene scene;
         Parent root;
         if (event.getSource() == learn){
-            stage = (Stage)learn.getScene().getWindow();
+            scene = learn.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/modules.fxml"));
         }else if (event.getSource() == exam){
             if (confirmTakeExam()) {
-                stage = (Stage) exam.getScene().getWindow();
+                scene = exam.getScene();
+                stage = (Stage)scene.getWindow();
                 root = (Parent)openExam();
             }else {return;}
         }else if (event.getSource() == grades){
-            stage = (Stage)grades.getScene().getWindow();
+            scene = grades.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/grades.fxml"));
         }else if (event.getSource() == challenge){
-            stage = (Stage)challenge.getScene().getWindow();
+            scene = challenge.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/challenges.fxml"));
         }else if (event.getSource() == logout){
             logout();
-            stage = (Stage)logout.getScene().getWindow();
+            scene = logout.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/loadprofile.fxml"));
         }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -108,14 +91,16 @@ public class UserController implements Initializable{
     @FXML
     private void handleNewWindowAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
+        Scene scene;
         Parent root;
         if (event.getSource() == settings){
+            scene = settings.getScene();
             root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         }else if (event.getSource() == about){
+            scene = about.getScene();
             root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
         }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(settings.getScene().getWindow());

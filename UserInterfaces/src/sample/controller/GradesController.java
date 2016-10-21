@@ -51,12 +51,14 @@ public class GradesController implements Initializable{
     @FXML
     private void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
+        Scene scene;
         Parent root;
         if (event.getSource() == backToMenu){
-            stage = (Stage) backToMenu.getScene().getWindow();
+            scene = backToMenu.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
         }else {return;}
-        Scene scene = new Scene(root);
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
     }

@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
  */
 public class ModulesController implements Initializable{
 
-    @FXML private VBox pane;
     @FXML private Label title;
     @FXML private Button module1;
     @FXML private Button module2;
@@ -57,30 +56,18 @@ public class ModulesController implements Initializable{
                 default:
                     break;
             }
-        }/*else {
-            try {
-                System.out.println(backToMenu.getScene());
-                Stage stage = (Stage) backToMenu.getScene().getWindow();
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Pane root = fxmlLoader.load(getClass().getResource("../view/loadprofile.fxml").openStream());
-                LoginController loginController = fxmlLoader.getController();
-                loginController.setErrorMessage("Session Timed Out.");
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
+        }
     }
 
     @FXML
     public void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
+        Scene scene;
         Parent root;
         if (event.getSource() == backToMenu){
+            scene = backToMenu.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-            stage = (Stage)backToMenu.getScene().getWindow();
         }else {
             if (event.getSource() == module1) {
                 openModule("module1");
@@ -97,11 +84,11 @@ public class ModulesController implements Initializable{
             } else if (event.getSource() == module7) {
                 openModule("module7");
             } else {return;}
+            scene = module1.getScene();
+            stage = (Stage)scene.getWindow();
             root = (Parent) loadTextLessonNode();
-            stage = (Stage) module1.getScene().getWindow();
         }
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
     }

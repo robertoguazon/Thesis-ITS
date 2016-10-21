@@ -1,0 +1,32 @@
+.background{
+    -fx-background-color: #000000;
+}
+
+.header{
+    -fx-background-color: #303030;
+}
+
+.body{
+    -fx-background-color: #424242;
+}
+
+.footer{
+    -fx-background-color: #212121;
+}
+
+.label{
+    -fx-opacity: 0.54;
+    -fx-text-fill: #FFFFFF;
+}
+
+.label-header{
+    -fx-font-size: 32px;
+    -fx-opacity: 0.87;
+    -fx-text-fill: #FFFFFF;
+}
+
+.label-subheader{
+    -fx-font-size: 16px;
+    -fx-opacity: 0.54;
+    -fx-text-fill: #FFFFFF;
+}

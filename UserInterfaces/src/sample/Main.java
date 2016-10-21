@@ -7,7 +7,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import sample.model.ConfirmBox;
 import sample.model.FileUtil;
 
@@ -24,28 +26,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("view/main.fxml"));
-        window.setTitle("Hello World");
-        window.setOnCloseRequest(event -> {
-            event.consume();
-            closeProgram();
-        });
+        Parent root = FXMLLoader.load(getClass().getResource("view/splash.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getStylePath());
+        window.setTitle("Free Apples");
+        window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
     }
 
-    private void closeProgram(){
-        Boolean answer = ConfirmBox.display("Confirm Exit", "Exit Application?", "Are you sure you want to exit?");
-        if (answer){
-            Agent.removeLoggedUser();
-            window.close();
-        }
-    }
-
-    private String getStylePath(){
-        FileUtil fileUtil = new FileUtil();
-        return fileUtil.readFile();
-    }
 }
