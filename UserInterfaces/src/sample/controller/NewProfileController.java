@@ -30,8 +30,6 @@ public class NewProfileController implements Initializable{
             .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
                     "Collage 1st Year", "Collage 2nd Year", "Collage 3rd Year", "Collage 4th Year");
 
-    @FXML private BorderPane pane;
-    @FXML private Label title;
     @FXML private Label errorMessage;
     @FXML private TextField usernameText;
     @FXML private PasswordField passwordText;
@@ -47,7 +45,6 @@ public class NewProfileController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        title.getStyleClass().add("label-header");
         yearLevelComboBox.setValue("HS 1st Year");
         yearLevelComboBox.setItems(yearLevelList);
     }
@@ -55,21 +52,23 @@ public class NewProfileController implements Initializable{
     @FXML
     public void handleChangeSceneAction(ActionEvent event) throws IOException {
         Stage stage;
+        Scene scene;
         Parent root;
         if (event.getSource() == createNewProfile){
             if (createNewProfile()){
                 AlertBox.display("Successful Insert",
                         "You have been successfully registered as one of the users.",
                         "Going back to the start menu...");
-                stage = (Stage)createNewProfile.getScene().getWindow();
+                scene = backToMenu.getScene();
+                stage = (Stage)scene.getWindow();
                 root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
             }else {return;}
         }else if (event.getSource() == backToMenu){
-            stage = (Stage)backToMenu.getScene().getWindow();
+            scene = backToMenu.getScene();
+            stage = (Stage)scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
         }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
     }

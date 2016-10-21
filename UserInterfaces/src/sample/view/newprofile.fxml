@@ -8,9 +8,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewProfileController">
    <center>
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" styleClass="body">
          <children>
             <VBox alignment="TOP_CENTER">
                <children>
@@ -124,9 +124,9 @@
       </HBox>
    </center>
    <top>
-      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="title" alignment="CENTER" text="Create New Profile" textAlignment="CENTER">
+            <Label alignment="CENTER" text="Create New Profile" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -145,7 +145,7 @@
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="CENTER" spacing="50.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" spacing="50.0" styleClass="footer" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="backToMenu" cancelButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back to Menu">
                <font>

@@ -9,144 +9,129 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UserController">
    <top>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="108.0" prefWidth="640.0" styleClass="header">
          <children>
-            <HBox alignment="CENTER">
+            <Label styleClass="label-header" text="Free Apples" textAlignment="CENTER">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/images/create%20new%20profile.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label fx:id="title" text="Insert Title Here" textAlignment="CENTER">
+                  <Label fx:id="user" styleClass="label-subheader" text="Welcome User!">
                      <font>
-                        <Font size="40.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
-                  <Region HBox.hgrow="ALWAYS" />
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/create%20new%20profile.png" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Label fx:id="user" styleClass="label-bright" text="Welcome User!">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="logout" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="33.0" prefWidth="100.0" text="Logout">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="33.0" prefWidth="100.0" text="Logout">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
-            </HBox>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
-      </VBox>
+      </HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="326.0" prefWidth="640.0" spacing="15.0" styleClass="body">
          <children>
-            <HBox alignment="CENTER" spacing="15.0">
-               <children>
-                  <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Learn">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/kendy_side_100x200.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Exam">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/kendy_side_100x200_black&amp;white.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Grades">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/old_lady_100x200.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Challenge">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/old_lady_100x200_black&amp;white.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
+            <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Learn">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/kendy_side_100x200.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Exam">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/kendy_side_100x200_black&amp;white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Grades">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/old_lady_100x200.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" text="Challenge">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/old_lady_100x200_black&amp;white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
-         <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-         </padding>
-      </VBox>
-   </center>
-   <bottom>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER" spacing="10.0">
-               <children>
-                  <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/settings.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Hyperlink>
-                  <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/info.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Hyperlink>
-               </children>
-            </HBox>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
-      </VBox>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0" spacing="10.0" styleClass="footer">
+         <children>
+            <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/settings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Hyperlink>
+            <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/info.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Hyperlink>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
    </bottom>
 </BorderPane>

@@ -1,3 +1,32 @@
-.root{
+.background{
+    -fx-background-color: #E0E0E0;
+}
+
+.header{
+    -fx-background-color: #FAFAFA;
+}
+
+.body{
+    -fx-background-color: #FFFFFF;
+}
+
+.footer{
     -fx-background-color: #F5F5F5;
+}
+
+.label-subheader{
+    -fx-opacity: 0.54;
+    -fx-text-fill: #000000;
+}
+
+.label-header{
+    -fx-font-size: 32px;
+    -fx-opacity: 0.87;
+    -fx-text-fill: #000000;
+}
+
+.label-subheader{
+    -fx-font-size: 16px;
+    -fx-opacity: 0.54;
+    -fx-text-fill: #000000;
 }
