@@ -97,7 +97,7 @@ public abstract class PracticalExercise extends Exercise {
         if (!super.isValid()) return false;
 
         if (instructions == null || instructions.isEmpty().get()) return false;
-        if (code == null || code.isEmpty().get()) return false;
+        //if (code == null || code.isEmpty().get()) return false;
         if (className == null || className.isEmpty().get()) return false;
         if (methodName == null || methodName.isEmpty().get()) return false;
 

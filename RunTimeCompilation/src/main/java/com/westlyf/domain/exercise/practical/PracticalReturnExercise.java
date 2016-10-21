@@ -69,6 +69,7 @@ public class PracticalReturnExercise extends PracticalExercise {
     public boolean isValid() {
         if (!super.isValid()) return false;
         if (returnValidators == null) return false;
+        if (code == null || code.isEmpty().get()) return false;
         for (int i = 0; i < returnValidators.size(); i++) {
             if (!returnValidators.get(i).isValid()) return false;
         }
