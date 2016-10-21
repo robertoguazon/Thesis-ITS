@@ -81,6 +81,8 @@ public class PracticalPrintExercise extends PracticalExercise {
         } else {
             String checker = printValidator.get().toLowerCase();
             String toBeChecked = output.toLowerCase();
+
+            System.out.println("contains: " + toBeChecked.equals(checker)); //TODO -delete
             if (toBeChecked.contains(checker)) return true;
             else return false;
         }
