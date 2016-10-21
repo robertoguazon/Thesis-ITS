@@ -40,7 +40,7 @@ public class RuntimeUtil {
         practicalPrintExercise.makeTempID();
         String className = "com.westlyf.sample." + practicalPrintExercise.getTempID() + "." + practicalPrintExercise.getClassName();
         String javaCode = null;
-        
+
         String trimCode = StringUtil.removeWhiteSpaces(practicalPrintExercise.getCode());
 
         int indexOf = trimCode.indexOf("class");
