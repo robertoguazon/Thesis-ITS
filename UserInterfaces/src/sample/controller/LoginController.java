@@ -21,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.model.LoginTask;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,22 +47,47 @@ public class LoginController implements Initializable{
 
     @FXML
     public void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Pane root;
+        final Stage stage;
+        final Scene scene;
+        final Pane root;
         if (event.getSource() == loginButton){
-            if (login()){
-                scene = loginButton.getScene();
-                stage = (Stage) scene.getWindow();
-                root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-                stage.setHeight(root.getPrefHeight() + 40);
-                stage.setWidth(root.getPrefWidth() + 16);
-            }else {return;}
+            LoginTask loginTask = new LoginTask(username,password,errorMessage);
+            progressBar.progressProperty().bind(loginTask.progressProperty());
+            Thread loginThread = new Thread(loginTask);
+            loginThread.start();
+            loginTask.setOnSucceeded((stateEvent) -> {
+                if ((boolean)loginTask.getValue()) {
+                    try {
+                        goToHome();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else return;
+            });
+
         }else if (event.getSource() == backToMenu){
-            scene = backToMenu.getScene();
-            stage = (Stage) scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
+            goBack();
         }else {return;}
+    }
+
+    public void goBack() throws IOException {
+        Scene scene = backToMenu.getScene();
+        Stage stage = (Stage) scene.getWindow();
+        Pane root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
+        goTo(scene,root,stage);
+    }
+
+    public void goToHome() throws IOException {
+        Scene scene = loginButton.getScene();
+        Stage stage = (Stage) scene.getWindow();
+        Pane root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
+        stage.setHeight(root.getPrefHeight() + 40);
+        stage.setWidth(root.getPrefWidth() + 16);
+
+        goTo(scene,root,stage);
+    }
+
+    public void goTo(Scene scene, Pane root, Stage stage) {
         scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
@@ -74,7 +100,10 @@ public class LoginController implements Initializable{
                 return new Task<Boolean>() {
                     @Override
                     protected Boolean call() throws Exception {
-                        return null;
+
+
+
+                     return true;
                     }
                 };
             }
@@ -91,6 +120,7 @@ public class LoginController implements Initializable{
         });
         backgroundThread.start();
     }
+<<<<<<< HEAD
 
     public boolean login() throws IOException {
         if (validateFields()){
@@ -123,4 +153,6 @@ public class LoginController implements Initializable{
         }
         return true;
     }
+=======
+>>>>>>> 1acba8d8c695d25aee6242f1cd2a0bcf3fd58386
 }

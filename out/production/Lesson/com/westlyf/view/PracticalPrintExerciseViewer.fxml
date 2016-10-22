@@ -10,6 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalPrintExerciseViewerController">
     <top>
+<<<<<<< HEAD
       <HBox>
          <children>
               <VBox alignment="CENTER" spacing="5.0" styleClass="header" BorderPane.alignment="CENTER">
@@ -25,13 +26,27 @@
                   </HBox>
          </children>
       </HBox>
+=======
+        <VBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Practical Print Exercise" />
+                <Label fx:id="titleLabel" />
+            </children>
+        </VBox>
+>>>>>>> 1acba8d8c695d25aee6242f1cd2a0bcf3fd58386
     </top>
     <center>
         <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <content>
+<<<<<<< HEAD
             <StackPane>
                <children>
                   <HBox fx:id="statusPane" alignment="CENTER">
+=======
+                <VBox styleClass="body">
+                    <children>
+                  <StackPane>
+>>>>>>> 1acba8d8c695d25aee6242f1cd2a0bcf3fd58386
                      <children>
                         <Label fx:id="statusLabel" textAlignment="CENTER">
                            <font>
