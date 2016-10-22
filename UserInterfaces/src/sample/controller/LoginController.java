@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.westlyf.agent.Agent;
 import com.westlyf.user.Users;
 import javafx.concurrent.Service;
@@ -40,7 +41,7 @@ public class LoginController implements Initializable{
     @FXML private Button backToMenu;
     @FXML private ProgressBar progressBar;
 
-    private Service<Void> backgroundThread;
+    private Service<Boolean> backgroundThread;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,28 +54,30 @@ public class LoginController implements Initializable{
         Scene scene;
         Pane root;
         if (event.getSource() == loginButton){
-            //doBackgroundProcess();
-            login();
+            if (login()){
+                scene = loginButton.getScene();
+                stage = (Stage) scene.getWindow();
+                root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
+                stage.setHeight(root.getPrefHeight() + 40);
+                stage.setWidth(root.getPrefWidth() + 16);
+            }else {return;}
         }else if (event.getSource() == backToMenu){
             scene = backToMenu.getScene();
             stage = (Stage) scene.getWindow();
             root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
-            scene.setRoot(root);
-            stage.setScene(scene);
-            stage.setHeight(root.getPrefHeight()+40);
-            stage.setWidth(root.getPrefWidth()+16);
-            stage.show();
         }else {return;}
+        scene.setRoot(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void doBackgroundProcess(){
-        backgroundThread = new Service<Void>() {
+        backgroundThread = new Service<Boolean>() {
             @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {
+            protected Task<Boolean> createTask() {
+                return new Task<Boolean>() {
                     @Override
-                    protected Void call() throws Exception {
-                        login();
+                    protected Boolean call() throws Exception {
                         return null;
                     }
                 };
@@ -86,25 +89,14 @@ public class LoginController implements Initializable{
             @Override
             public void handle(WorkerStateEvent event) {
                 progressBar.progressProperty().unbind();
+                progressBar.setProgress(1);
+                backgroundThread.getValue();
             }
         });
         backgroundThread.start();
     }
 
-    public void login() throws IOException {
-        if (checkCredentials()) {
-            Scene scene = loginButton.getScene();
-            Stage stage = (Stage) scene.getWindow();
-            Pane root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-            scene.setRoot(root);
-            stage.setScene(scene);
-            stage.setHeight(root.getPrefHeight()+40);
-            stage.setWidth(root.getPrefWidth()+16);
-            stage.show();
-        }else {return;}
-    }
-
-    public boolean checkCredentials(){
+    public boolean login() throws IOException {
         if (validateFields()){
             Users user = Agent.getUserUsingCredentials(username.getText(), password.getText());
             if(user != null){
@@ -130,6 +122,6 @@ public class LoginController implements Initializable{
 
     public void setErrorMessage(String message){
         errorMessage.setText(message);
-        errorMessage.setTextFill(Color.RED);
+        errorMessage.setTextFill(Color.web("#b4120f"));
     }
 }
