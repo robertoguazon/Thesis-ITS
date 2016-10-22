@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import sample.model.ConfirmBox;
 import sample.model.FileUtil;
@@ -71,9 +72,10 @@ public class SplashController implements Initializable{
                             Scene scene = new Scene(root);
                             scene.getStylesheets().add(getStylePath());
                             window = new Stage();
+                            window.setResizable(false);
                             window.setTitle("Free Apples");
                             window.setOnCloseRequest(e -> {
-                                event.consume();
+                                e.consume();
                                 closeProgram();
                             });
                             window.setScene(scene);

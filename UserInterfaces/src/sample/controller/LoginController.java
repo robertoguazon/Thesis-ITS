@@ -14,10 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -39,7 +36,7 @@ public class LoginController implements Initializable{
     @FXML private TextField username;
     @FXML private TextField password;
     @FXML private Button loginButton;
-    @FXML private Button backToMenu;
+    @FXML private Hyperlink backToMenu;
     @FXML private ProgressBar progressBar;
 
     private Service<Boolean> backgroundThread;
@@ -85,8 +82,6 @@ public class LoginController implements Initializable{
         Scene scene = loginButton.getScene();
         Stage stage = (Stage) scene.getWindow();
         Pane root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-        stage.setHeight(root.getPrefHeight() + 40);
-        stage.setWidth(root.getPrefWidth() + 16);
 
         goTo(scene,root,stage);
     }
@@ -95,33 +90,5 @@ public class LoginController implements Initializable{
         scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void doBackgroundProcess(){
-        backgroundThread = new Service<Boolean>() {
-            @Override
-            protected Task<Boolean> createTask() {
-                return new Task<Boolean>() {
-                    @Override
-                    protected Boolean call() throws Exception {
-
-
-
-                     return true;
-                    }
-                };
-            }
-        };
-        //progressBar = new ProgressBar(0);
-        progressBar.progressProperty().bind(backgroundThread.progressProperty());
-        backgroundThread.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                progressBar.progressProperty().unbind();
-                progressBar.setProgress(1);
-                backgroundThread.getValue();
-            }
-        });
-        backgroundThread.start();
     }
 }

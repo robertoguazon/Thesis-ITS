@@ -34,7 +34,7 @@ public class LoginTask extends Task {
 
         updateMessage("Login: validating fields...");
         updateProgress(20,MAX);
-        if (validateFields()){
+        if (validateUsername() != null && validatePassword() != null){
 
             updateMessage("Login: checking user credentials...");
             updateProgress(80,MAX);
@@ -44,27 +44,56 @@ public class LoginTask extends Task {
                 updateProgress(100,MAX);
                 return true;
             }else {
-                Platform.runLater(() -> {setErrorMessage("Invalid Username or Password.");});
+                Platform.runLater(() -> {
+                    setErrorMessage("Invalid Username or Password.");
+                    setErrorStyle(username);
+                    setErrorStyle(password);
+                });
             }
         }else {
-            Platform.runLater(() -> {setErrorMessage("Please fill out all fields.");});
+            if (validateUsername() == null){
+                Platform.runLater(() -> {
+                    setErrorMessage("Please fill out all fields.");
+                    setErrorStyle(username);
+                });
+            }else {Platform.runLater(() -> {clearStyle(username);});}
+            if (validatePassword() == null){
+                Platform.runLater(() -> {
+                    setErrorMessage("Please fill out all fields.");
+                    setErrorStyle(password);
+                });
+            }else {Platform.runLater(() -> {clearStyle(password);});}
         }
         updateProgress(100,MAX);
         return false;
 
     }
 
-    public boolean validateFields(){
+    public String validateUsername(){
         String usernameText = username.getText().trim();
-        String passwordText = password.getText().trim();
-        if (usernameText.isEmpty() || passwordText.isEmpty()){
-            return false;
+        if (usernameText.isEmpty()){
+            return null;
         }
-        return true;
+        return usernameText;
+    }
+
+    public String validatePassword(){
+        String passwordText = password.getText().trim();
+        if (passwordText.isEmpty()){
+            return null;
+        }else {password.setStyle("");}
+        return passwordText;
     }
 
     public void setErrorMessage(String message){
         errorMessage.setText(message);
-        errorMessage.setTextFill(Color.web("#b4120f"));
+        errorMessage.setTextFill(Color.web("#FF8A80"));
+    }
+    public void setErrorStyle(TextField field){
+        field.setStyle("-fx-background-color: #FFAB91;");
+    }
+
+    public void clearStyle(TextField field){
+        field.setStyle("");
     }
 }

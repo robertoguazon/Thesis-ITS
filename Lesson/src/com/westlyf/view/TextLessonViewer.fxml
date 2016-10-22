@@ -26,7 +26,10 @@
    <left>
       <VBox alignment="TOP_CENTER" layoutX="1.0" spacing="10.0" styleClass="footer">
          <children>
-            <VBox fx:id="lessonsVBox" />
+            <VBox fx:id="lessonsVBox">
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding></VBox>
             <Region VBox.vgrow="ALWAYS" />
             <Button fx:id="back" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="33.0" prefWidth="83.0" text="Back">
                <font>

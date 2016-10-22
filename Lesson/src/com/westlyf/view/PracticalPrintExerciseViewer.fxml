@@ -10,99 +10,76 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalPrintExerciseViewerController">
     <top>
-        <VBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
-            <children>
-                <Label text="Practical Print Exercise" />
-                <Label fx:id="titleLabel" />
-            </children>
-        </VBox>
+      <HBox>
+         <children>
+              <VBox alignment="CENTER" prefWidth="100.0" spacing="5.0" styleClass="header" BorderPane.alignment="CENTER">
+                  <children>
+                      <Label text="Practical Print Exercise" textAlignment="CENTER" wrapText="true" />
+                      <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
+                  </children>
+              </VBox>
+                  <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                      <children>
+                          <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="90.0" wrapText="true" HBox.hgrow="ALWAYS" />
+                      </children>
+                  </HBox>
+         </children>
+      </HBox>
     </top>
     <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
             <content>
-                <VBox styleClass="body">
-                    <children>
-                  <StackPane>
+            <StackPane>
+               <children>
+                  <HBox fx:id="statusPane" alignment="CENTER">
                      <children>
-                        <VBox fx:id="codePane">
+                        <Label fx:id="statusLabel" textAlignment="CENTER">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </HBox>
+                  <VBox fx:id="codePane" styleClass="body">
+                     <children>
+                        <VBox VBox.vgrow="ALWAYS">
                            <children>
-                                    <HBox alignment="CENTER">
-                                        <children>
-                                            <TextArea fx:id="instructionsTextArea" editable="false" wrapText="true" HBox.hgrow="ALWAYS" />
-                                        </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT">
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
                                         <children>
                                             <Label text="Code" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                              <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" text="Reset Code" />
+                                              <Button fx:id="runCodeButton" mnemonicParsing="false" onAction="#runCode" text="Run" />
                                         </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                     </HBox>
-                                    <HBox alignment="CENTER">
-                                        <children>
-                                            <TextArea fx:id="codeTextArea" wrapText="true" HBox.hgrow="ALWAYS" />
-                                            <VBox alignment="CENTER">
-                                                <children>
-                                                    <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" text="Clear">
-                                                        <VBox.margin>
-                                                            <Insets top="10.0" />
-                                                        </VBox.margin>
-                                                    </Button>
-                                                    <Button fx:id="runCodeButton" mnemonicParsing="false" onAction="#runCode" text="Run">
-                                                        <VBox.margin>
-                                                            <Insets top="10.0" />
-                                                        </VBox.margin>
-                                                    </Button>
-                                                </children>
-                                                <HBox.margin>
-                                                    <Insets />
-                                                </HBox.margin>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                            </VBox>
-                                        </children>
-                                    </HBox>
+                                      <TextArea fx:id="codeTextArea" prefHeight="220.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
                                     <HBox alignment="CENTER_LEFT">
                                         <children>
                                             <Label text="Output" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                              <Button fx:id="clearOutputButton" mnemonicParsing="false" onAction="#clearOutput" text="Clear" />
                                         </children>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                     </HBox>
-                                    <HBox>
-                                        <children>
-                                            <TextArea fx:id="outputTextArea" editable="false" wrapText="true" HBox.hgrow="ALWAYS" />
-                                            <VBox alignment="CENTER" spacing="10.0">
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
-                                       <children>
-                                                    <Button fx:id="clearOutputButton" mnemonicParsing="false" onAction="#clearOutput" text="Clear" />
-                                       </children>
-                                            </VBox>
-                                        </children>
-                                    </HBox>
+                                      <TextArea fx:id="outputTextArea" editable="false" prefHeight="120.0" styleClass="console" wrapText="true" HBox.hgrow="ALWAYS" />
                            </children>
                         </VBox>
-                        <HBox fx:id="statusPane" alignment="CENTER">
-                           <children>
-                              <Label fx:id="statusLabel" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="22.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <StackPane.margin>
-                              <Insets />
-                           </StackPane.margin>
-                        </HBox>
                      </children>
-                  </StackPane>
-                    </children>
-                </VBox>
+                  </VBox>
+               </children>
+            </StackPane>
             </content>
         </ScrollPane>
     </center>

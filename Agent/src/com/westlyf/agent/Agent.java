@@ -269,11 +269,12 @@ public class Agent {
         return UserDatabase.updateUserExercise(getUserExercise());
     }
 
-    public static int updateExamGrade(int grade, String status, int percentGrade){
+    public static int updateExamGrade(int grade, int totalItems, int percentGrade, String status){
         int i = getExamGrades().indexOf(getExamGrade());
         getExamGrades().get(i).setRawGrade(grade);
-        getExamGrades().get(i).setStatus(status);
+        getExamGrades().get(i).setTotalItems(totalItems);
         getExamGrades().get(i).setPercentGrade(percentGrade);
+        getExamGrades().get(i).setStatus(status);
         setExamGrade(getExamGrades().get(i));
         return UserDatabase.updateExamGrade(getExamGrade());
     }

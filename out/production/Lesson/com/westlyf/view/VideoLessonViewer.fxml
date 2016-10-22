@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.VideoLessonViewerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.VideoLessonViewerController">
     <center>
-      <Pane fx:id="screenPane">
+      <Pane fx:id="screenPane" styleClass="body">
          <children>
               <MediaView fx:id="videoLessonMediaView" BorderPane.alignment="CENTER">
                   <viewport>
@@ -21,7 +21,7 @@
       </Pane>
     </center>
     <bottom>
-        <HBox alignment="CENTER" prefHeight="92.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="92.0" prefWidth="600.0" spacing="10.0" styleClass="footer" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" text="Play" />
                 <Label text="Time: ">
@@ -41,6 +41,10 @@
         </HBox>
     </bottom>
    <top>
-      <Label fx:id="videoLessonLabel" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" styleClass="header">
+         <children>
+            <Label fx:id="videoLessonLabel" styleClass="label-header" BorderPane.alignment="CENTER" />
+         </children>
+      </HBox>
    </top>
 </BorderPane>

@@ -30,3 +30,134 @@
     -fx-opacity: 0.54;
     -fx-text-fill: #FFFFFF;
 }
+
+.button{
+    -fx-background-color: #212121;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-text-fill: #FFFFFF;
+    -fx-opacity: 0.8;
+}
+
+.button:hover{
+    -fx-background-color: #607D8B;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:default{
+    -fx-background-color: #42A5F5;
+    -fx-text-fill: #FAFAFA;
+}
+
+.button:default:hover{
+    -fx-background-color: #1976D2;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:disabled{
+    -fx-opacity: 0.32;
+}
+
+.button1{
+    -fx-background-color: #40C4FF;
+    -fx-text-fill: #212121;
+}
+
+.button2{
+    -fx-background-color: #69F0AE;
+    -fx-text-fill: #212121;
+}
+
+.button3{
+    -fx-background-color: #FFF59D;
+    -fx-text-fill: #212121;
+}
+
+.button4{
+    -fx-background-color: #FF6E40;
+    -fx-text-fill: #212121;
+}
+
+.hyperlink{
+    -fx-text-fill: #B3E5FC;
+}
+
+.hyperlink:hover{
+    -fx-background-color: #303030;
+    -fx-text-fill: #03A9F4;
+}
+
+.hyperlink:visited{
+    -fx-text-fill: #00B0FF;
+}
+
+.toggle-button{
+    -fx-background-color: #212121;
+    -fx-text-fill: #FAFAFA;
+}
+
+.toggle-button:hover{
+    -fx-background-color: #303030;
+    -fx-text-fill: #FFFFFF;
+}
+
+.toggle-button:selected{
+    -fx-background-color: #42A5F5;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-field{
+    -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);
+}
+
+.text-area{
+    -fx-box-border: none;
+}
+
+.console{
+    -fx-text-fill: #FFFFFF;
+    -fx-box-border: transparent;
+}
+
+.console .content{
+    -fx-background-color: #000000;
+}
+
+
+
+.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 80%)
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
