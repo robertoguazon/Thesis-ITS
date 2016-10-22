@@ -67,6 +67,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     private int rawGrade;
     private int totalItems;
     private int percentGrade;
+    private String status;
 
     //TODO time tracker and format to display slider
 
@@ -198,13 +199,16 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         String currentModule = Agent.getLoggedUser().getCurrentModuleId();
         int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
         String module = "module" + ++moduleNo;
-        String title, message, status;
+        String title, message;
         if (percentGrade >= totalItems * passingGrade) {
             status = "Passed";
             title = "Congratulations! You have passed the exam.";
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
+            if (Agent.getLoggedUser() != null){
+                saveRecords(module);
+            }
         }else {
             status = "Failed";
             title = "Your grade didn't reach the passing score of " +
@@ -212,7 +216,16 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
+            if (Agent.getLoggedUser() != null){
+                saveRecords(module);
+            }
         }
+
+        AlertBox.display("Exam Finished", title, message);
+        handleChangeSceneAction();
+    }
+
+    public void saveRecords(String module){
         if (Agent.containsExamGrade(exam)) {
             percentGrade = (int) (Math.ceil(Agent.getExamGrade().getPercentGrade() + percentGrade) / 2);
             if (Agent.updateExamGrade(rawGrade, status, percentGrade) < 0){
@@ -226,11 +239,9 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
                 //uncomment these two after inserting module2 lessons and exercises and test if it is working
                 //Agent.load(LoadType.LESSON, module);
                 //Agent.load(LoadType.EXERCISE);
-                Agent.updateUser();
+                //Agent.updateUser();
             }else {return;}
         }
-        AlertBox.display("Exam Finished", title, message);
-        handleChangeSceneAction();
     }
 
     public void handleChangeSceneAction(){
@@ -239,6 +250,11 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/user.fxml"));
             root = loader.load();
+//            ResultController resultController = loader.getController();
+//            resultController.setExam(exam);
+//            resultController.setRawGrade(rawGrade);
+//            resultController.setTotalItems(totalItems);
+//            resultController.setPercentGrade(percentGrade);
             stage = (Stage)submitExamButton.getScene().getWindow();
             Scene scene = new Scene(root);
             scene.getStylesheets().addAll(pane.getScene().getStylesheets());

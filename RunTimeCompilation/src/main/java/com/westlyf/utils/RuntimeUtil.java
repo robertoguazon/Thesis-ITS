@@ -40,22 +40,23 @@ public class RuntimeUtil {
         practicalPrintExercise.makeTempID();
         String className = "com.westlyf.sample." + practicalPrintExercise.getTempID() + "." + practicalPrintExercise.getClassName();
         String javaCode = null;
-        String trimCode = StringUtil.removeWhiteSpaces(practicalPrintExercise.getCode());
-        System.out.println(trimCode);
+        String code = practicalPrintExercise.getCode();
+        if (code.contains("\\")){
+            code = code.replace("\\", "");
+        }
+        String trimCode = StringUtil.removeWhiteSpaces(code);
+        //System.out.println(trimCode);
         int indexOf = trimCode.indexOf("class");
         String substring = "";
         if (indexOf-6 >= 0) {
-            System.out.println(indexOf);
             substring = trimCode.substring(indexOf - 6, indexOf);
         }
         if (!substring.equals("public")){
-            System.out.println("public");
-             javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
-                            ";\npublic "  + practicalPrintExercise.getCode();
-        }else {
-            System.out.println(substring);
             javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
-                            ";\n" + practicalPrintExercise.getCode();
+                            "; public "  + practicalPrintExercise.getCode();
+        }else {
+            javaCode = "package com.westlyf.sample." + practicalPrintExercise.getTempID() +
+                            "; " + practicalPrintExercise.getCode();
         }
 
         Class aClass = CompilerUtils.CACHED_COMPILER.loadFromJava(className, javaCode);
