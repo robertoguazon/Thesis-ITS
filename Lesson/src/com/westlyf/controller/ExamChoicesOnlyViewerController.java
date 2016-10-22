@@ -228,19 +228,22 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     public void saveRecords(String module){
         if (Agent.containsExamGrade(exam)) {
             percentGrade = (int) (Math.ceil(Agent.getExamGrade().getPercentGrade() + percentGrade) / 2);
-            if (Agent.updateExamGrade(rawGrade, status, percentGrade) < 0){
+            if (Agent.updateExamGrade(rawGrade, totalItems, percentGrade, status) < 0){
                 return;
             }
         }else {
-            if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) > 0) {
-                Agent.getLoggedUser().setCurrentModuleId(module);
-                Agent.getLoggedUser().setCurrentLessonId("lesson0");
-                Agent.getLoggedUser().setCurrentExamId(null);
-                Agent.load(LoadType.LESSON, module);
-                Agent.load(LoadType.EXERCISE);
-                Agent.updateUser();
-            }else {return;}
+            if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
+                return;
+            }
         }
+        Agent.getLoggedUser().setCurrentModuleId(module);
+        Agent.getLoggedUser().setCurrentLessonId("lesson0");
+        Agent.getLoggedUser().setCurrentExamId(null);
+        Agent.load(LoadType.LESSON, module);
+        Agent.print(LoadType.LESSON);
+        Agent.load(LoadType.EXERCISE, module);
+        Agent.print(LoadType.EXERCISE);
+        Agent.updateUser();
     }
 
     public void handleChangeSceneAction(){

@@ -119,6 +119,7 @@ public class TextLessonViewerController implements Initializable {
         if (i < lesson.length) {
             lesson[i].setDisable(false);
             Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
+            AlertBox.display("Unlocked", "Unlocked new lesson " + i, "Click \"ok\" to close this alert box.");
         }else {
             Agent.getLoggedUser().setCurrentExamId(Agent.getCurrentModule());
             Boolean answer = ConfirmBox.display("Take Exam",
@@ -249,7 +250,6 @@ public class TextLessonViewerController implements Initializable {
                 Agent.setIsExerciseCleared(false);
                 disposeExercise();
                 unlock(++i);
-                AlertBox.display("Unlocked", "Unlocked new lesson " + i, "Click \"ok\" to close this alert box.");
             }
         }else {
             Boolean answer = ConfirmBox.display("Confirm Exit",
