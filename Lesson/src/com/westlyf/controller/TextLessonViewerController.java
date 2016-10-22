@@ -221,11 +221,11 @@ public class TextLessonViewerController implements Initializable {
         borderPane.setCenter(splitPane);
 
         Pane leftPaneContainer = new Pane(left);
-        leftPaneContainer.setMinWidth(560);
-        leftPaneContainer.setMinHeight(480);
+        leftPaneContainer.setMinWidth(600);
+        leftPaneContainer.setMinHeight(600);
         Pane rightPaneContainer = new Pane(right);
-        rightPaneContainer.setMinWidth(560);
-        rightPaneContainer.setMinHeight(480);
+        rightPaneContainer.setMinWidth(600);
+        rightPaneContainer.setMinHeight(600);
 
         if (left instanceof Pane && right instanceof Pane) {
             Pane leftPane = (Pane) left;

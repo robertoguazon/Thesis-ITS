@@ -11,96 +11,91 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="footer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
    <center>
-      <HBox alignment="CENTER" styleClass="body">
+      <HBox alignment="CENTER">
          <children>
-            <VBox alignment="CENTER_LEFT" spacing="10.0">
+            <VBox alignment="CENTER" styleClass="body" BorderPane.alignment="CENTER">
                <children>
-                  <Hyperlink fx:id="loadProfile" onAction="#handleChangeSceneAction" text="Load Profile">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <VBox alignment="CENTER" spacing="10.0" styleClass="body">
+                     <children>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../style/images/apple_gold.png" />
+                              <Image url="@../style/images/apple_75x75.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Hyperlink>
-                  <Hyperlink fx:id="newProfile" onAction="#handleChangeSceneAction" text="New Profile">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../style/images/apple.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Hyperlink>
+                        <Label styleClass="label-header" text="Free Apples" textAlignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="label-subheader" text="Version 1.0" textAlignment="CENTER" textFill="#000000b1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Region VBox.vgrow="ALWAYS" />
+                        <Hyperlink fx:id="loadProfile" onAction="#handleChangeSceneAction" text="Load Profile">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../style/images/apple_gold.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink fx:id="newProfile" onAction="#handleChangeSceneAction" text="New Profile">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../style/images/apple.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Hyperlink>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="65.0" right="68.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="207.0" spacing="10.0" styleClass="header" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../style/images/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Hyperlink>
+                        <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../style/images/info.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
             </VBox>
          </children>
       </HBox>
    </center>
    <top>
-      <VBox alignment="CENTER" styleClass="header">
-         <children>
-            <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/images/apple_75x75.png" />
-               </image>
-            </ImageView>
-            <Label styleClass="label-header" text="Free Apples" textAlignment="CENTER" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-            <Label styleClass="label-subheader" text="Version 1.0" textAlignment="CENTER" textFill="#000000b1">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
+      <HBox alignment="TOP_RIGHT" />
    </top>
-   <bottom>
-      <HBox alignment="CENTER" spacing="10.0" styleClass="footer" BorderPane.alignment="CENTER">
-         <children>
-            <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/settings.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Hyperlink>
-            <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
-               <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/info.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Hyperlink>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
-   </bottom>
 </BorderPane>

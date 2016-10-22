@@ -30,3 +30,75 @@
     -fx-opacity: 0.54;
     -fx-text-fill: #FFFFFF;
 }
+
+.button{
+    -fx-background-color: #212121;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-text-fill: #FFFFFF;
+    -fx-opacity: 0.8;
+}
+
+.button:default{
+    -fx-background-color: #42A5F5;
+    -fx-text-fill: #FAFAFA;
+}
+
+.button:default:hover{
+    -fx-background-color: #1976D2;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:hover{
+    -fx-background-color: #303030;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:disabled{
+    -fx-opacity: 0.54;
+}
+
+.button1{
+    -fx-background-color: #40C4FF;
+    -fx-text-fill: #212121;
+}
+
+.button2{
+    -fx-background-color: #69F0AE;
+    -fx-text-fill: #212121;
+}
+
+.button3{
+    -fx-background-color: #FFFF00;
+    -fx-text-fill: #212121;
+}
+
+.button4{
+    -fx-background-color: #FF6E40;
+    -fx-text-fill: #212121;
+}
+
+.hyperlink{
+    -fx-text-fill: #B3E5FC;
+}
+
+.hyperlink:hover{
+    -fx-background-color: #303030;
+    -fx-text-fill: #03A9F4;
+}
+
+.hyperlink:visited{
+    -fx-text-fill: #00B0FF;
+}
+
+.text-field{
+    -fx-effect: innershadow(one-pass-box, gray, 5, 0.3, 1, 1);
+}
+
+.console{
+    -fx-text-fill: #FFFFFF;
+}
+
+.console .content{
+    -fx-background-color: #000000;
+}

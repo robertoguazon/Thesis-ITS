@@ -236,10 +236,9 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
                 Agent.getLoggedUser().setCurrentModuleId(module);
                 Agent.getLoggedUser().setCurrentLessonId("lesson0");
                 Agent.getLoggedUser().setCurrentExamId(null);
-                //uncomment these two after inserting module2 lessons and exercises and test if it is working
-                //Agent.load(LoadType.LESSON, module);
-                //Agent.load(LoadType.EXERCISE);
-                //Agent.updateUser();
+                Agent.load(LoadType.LESSON, module);
+                Agent.load(LoadType.EXERCISE);
+                Agent.updateUser();
             }else {return;}
         }
     }

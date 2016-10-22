@@ -14,10 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -34,11 +31,10 @@ import java.util.ResourceBundle;
  */
 public class LoginController implements Initializable{
 
-    @FXML private Label errorMessage;
     @FXML private TextField username;
     @FXML private TextField password;
     @FXML private Button loginButton;
-    @FXML private Button backToMenu;
+    @FXML private Hyperlink backToMenu;
     @FXML private ProgressBar progressBar;
 
     private Service<Boolean> backgroundThread;
@@ -103,10 +99,9 @@ public class LoginController implements Initializable{
                 new Agent(user);
                 return true;
             }else {
-                setErrorMessage("Invalid Username or Password.");
+                username.setStyle("-fx-background-color: #FFAB91;");
+                password.setStyle("-fx-background-color: #FFAB91;");
             }
-        }else {
-            setErrorMessage("Please fill out all fields.");
         }
         return false;
     }
@@ -114,14 +109,18 @@ public class LoginController implements Initializable{
     public boolean validateFields(){
         String usernameText = username.getText().trim();
         String passwordText = password.getText().trim();
-        if (usernameText.isEmpty() || passwordText.isEmpty()){
+        int count = 0;
+        if (usernameText.isEmpty()){
+            username.setStyle("-fx-background-color: #FFE0B2;");
+            count++;
+        }else {username.setStyle("");}
+        if (passwordText.isEmpty()){
+            password.setStyle("-fx-background-color: #FFE0B2;");
+            count++;
+        }else {password.setStyle("");}
+        if (count > 0){
             return false;
         }
         return true;
-    }
-
-    public void setErrorMessage(String message){
-        errorMessage.setText(message);
-        errorMessage.setTextFill(Color.web("#b4120f"));
     }
 }
