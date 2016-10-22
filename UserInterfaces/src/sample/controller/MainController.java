@@ -53,14 +53,14 @@ public class MainController implements Initializable{
     @FXML
     private void handleNewWindowAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        Scene scene;
-        Parent root;
+        Scene scene = null;
+        Parent root = null;
         if (event.getSource() == settings){
-            scene = settings.getScene();
-            root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
+//            scene = settings.getScene();
+//            root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         }else if (event.getSource() == about){
-            scene = about.getScene();
-            root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
+//            scene = about.getScene();
+//            root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
         }else {return;}
         scene.setRoot(root);
         stage.setScene(scene);
