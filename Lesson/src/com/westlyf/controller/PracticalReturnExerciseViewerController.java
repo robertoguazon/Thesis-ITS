@@ -96,8 +96,12 @@ public class PracticalReturnExerciseViewerController implements Initializable {
         clearOutput();
         if (practicalReturnExercise != null) {
             try {
-                outputTextArea.setText(RuntimeUtil.compile(practicalReturnExercise, DataTypeUtil.toString(parametersArray)));        if (compileCode()) {
-                    if (practicalReturnExercise.checkCGroup(codeTextArea.textProperty())) {
+                outputTextArea.setText(RuntimeUtil.compile(practicalReturnExercise, DataTypeUtil.toString(parametersArray)));
+                if (compileCode()) {
+
+                    // -1 means no error; returns index of CString
+                    int errorCStringIndex = practicalReturnExercise.checkCGroup(codeTextArea.textProperty());
+                    if (errorCStringIndex == -1) {
                         responseText.setText("Correct!");
                         responseText.getParent().setStyle("-fx-background-color: #00C853");
                         statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
@@ -109,7 +113,8 @@ public class PracticalReturnExerciseViewerController implements Initializable {
                         clearOutputButton.setDisable(true);
                         submitButton.setDisable(false);
                     } else {
-                        responseText.setText(practicalReturnExercise.getExplanation());
+                        //responseText.setText(practicalReturnExercise.getExplanation());
+                        responseText.setText(practicalReturnExercise.getCStringTip(errorCStringIndex));
                         responseText.getParent().setStyle("-fx-background-color: #F44336");
                     }
                 } else {

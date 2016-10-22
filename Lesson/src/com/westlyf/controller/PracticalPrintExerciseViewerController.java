@@ -92,7 +92,10 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             }
 
             if (practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString())) {
-                if (practicalPrintExercise.checkCGroup(codeTextArea.textProperty())) {
+
+                // -1 means no error; returns index of CString
+                int errorCStringIndex = practicalPrintExercise.checkCGroup(codeTextArea.textProperty());
+                if (errorCStringIndex == -1) {
                     responseText.setText("Correct");
                     responseText.getParent().setStyle("-fx-background-color: #00C853");
                     statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
@@ -104,7 +107,8 @@ public class PracticalPrintExerciseViewerController implements Initializable {
                     clearOutputButton.setDisable(true);
                     submitButton.setDisable(false);
                 } else {
-                    responseText.setText(practicalPrintExercise.getExplanation());
+                    //responseText.setText(practicalPrintExercise.getExplanation());
+                    responseText.setText(practicalPrintExercise.getCStringTip(errorCStringIndex));
                     responseText.getParent().setStyle("-fx-background-color: #F44336");
                 }
             } else {

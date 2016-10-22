@@ -96,6 +96,14 @@ public class PracticalExerciseMakerController implements Initializable {
         Separator separator = new Separator();
         separator.setOrientation(Orientation.HORIZONTAL);
         //to be put in cStringVBox;
+
+        Label cStringLabel = new Label("CSTRING:");
+
+        HBox tipHBox = new HBox();
+        Label tipLabel = new Label("Tip:");
+        TextArea tipTextArea = new TextArea();
+        tipHBox.getChildren().addAll(tipLabel,tipTextArea);
+
         HBox cStringHBox = new HBox();
         TextField cStringField = new TextField();
         Button removeCStringButton = new Button("Remove cString");
@@ -105,6 +113,7 @@ public class PracticalExerciseMakerController implements Initializable {
         StringProperty orig = new SimpleStringProperty();
         orig.bind(cStringField.textProperty());
         CString cString = new CString(orig);
+        cString.tipProperty().bind(tipTextArea.textProperty()); //tipProperty
 
         addEquivalentButton.setOnAction(event -> {
             TextField eTextField = new TextField();
@@ -136,7 +145,7 @@ public class PracticalExerciseMakerController implements Initializable {
 
         //practicalExercise.setCGroup(cGroup);
 
-        cStringVBox.getChildren().addAll(separator,cStringHBox,addEquivalentButton);
+        cStringVBox.getChildren().addAll(separator,cStringLabel,tipHBox,cStringHBox,addEquivalentButton);
         cGroupVBox.getChildren().add(cStringVBox);
 
         System.out.println("CGroup size: " + cGroup.getSize());

@@ -163,7 +163,13 @@ public abstract class PracticalExercise extends Exercise {
         return cGroup.getSize();
     }
 
-    public boolean checkCGroup(StringProperty codeText) {
+    public int checkCGroup(StringProperty codeText) {
         return cGroup.check(codeText);
     }
+
+    public String getCStringTip(int i) {
+        return cGroup.getCStringTip(i);
+    }
+
+
 }

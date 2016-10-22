@@ -20,6 +20,7 @@ public class CString {
 
 
     private ArrayList<StringProperty> equivalents;
+    private StringProperty tip = new SimpleStringProperty();
 
     public CString() {
         equivalents = new ArrayList<>();
@@ -38,6 +39,7 @@ public class CString {
     public CString(CStringSerializable cStringSerializable) {
         this();
         cStringSerializable.getEquivalents().forEach(string -> equivalents.add(new SimpleStringProperty(string)));
+        tip.set(cStringSerializable.getTip());
     }
 
     public ArrayList<StringProperty> getEquivalents() {
@@ -54,6 +56,7 @@ public class CString {
 
     public void clearAll() {
         this.equivalents.clear();
+        tip.set("");
     }
 
     public void clearAllExcept(StringProperty cString) {
@@ -80,8 +83,21 @@ public class CString {
     }
 
     public String toString() {
-        return "equivalents: " + equivalents.stream()
+        return  "tip: " + tip.get() + "\n" +
+                "equivalents: " + equivalents.stream()
                           .map(property -> property.get())
                           .collect(Collectors.joining(", "));
+    }
+
+    public void setTip(String tip) {
+        this.tip.set(tip);
+    }
+
+    public String getTip() {
+        return tip.get();
+    }
+
+    public StringProperty tipProperty() {
+        return tip;
     }
 }

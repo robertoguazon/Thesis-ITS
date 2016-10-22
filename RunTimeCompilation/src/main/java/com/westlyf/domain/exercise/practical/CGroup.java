@@ -48,6 +48,7 @@ public class CGroup {
         this.cStrings.add(cString);
     }
 
+
     public void removeCString(CString cString) {
         this.cStrings.remove(cString);
     }
@@ -61,14 +62,15 @@ public class CGroup {
         addCString(cString);
     }
 
-    public boolean check(StringProperty codeText) {
-        for (CString cString : cStrings) {
-            if (!cString.check(codeText)) {
-                return false;
+    public int check(StringProperty codeText) {
+
+        for (int i = 0; i < cStrings.size(); i++) {
+            if (!cStrings.get(i).check(codeText)) {
+                return i;
             }
         }
 
-        return true;
+        return -1;
     }
 
     public int getSize() {
@@ -86,4 +88,13 @@ public class CGroup {
 
         return "cStrings: \n\t" + cs;
     }
+
+    public CString getCString(int i) {
+        return cStrings.get(i);
+    }
+
+    public String getCStringTip(int i) {
+        return cStrings.get(i).getTip();
+    }
+
 }
