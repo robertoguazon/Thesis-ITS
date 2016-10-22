@@ -72,6 +72,7 @@ public class SplashController implements Initializable{
                             Scene scene = new Scene(root);
                             scene.getStylesheets().add(getStylePath());
                             window = new Stage();
+                            window.setResizable(false);
                             window.setTitle("Free Apples");
                             window.setOnCloseRequest(e -> {
                                 e.consume();

@@ -12,7 +12,7 @@
     <top>
       <HBox>
          <children>
-              <VBox alignment="CENTER" spacing="5.0" styleClass="header" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" prefWidth="100.0" spacing="5.0" styleClass="header" BorderPane.alignment="CENTER">
                   <children>
                       <Label text="Practical Print Exercise" textAlignment="CENTER" wrapText="true" />
                       <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
@@ -27,7 +27,7 @@
       </HBox>
     </top>
     <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
             <content>
             <StackPane>
                <children>
@@ -43,7 +43,7 @@
                         <Insets />
                      </StackPane.margin>
                   </HBox>
-                  <VBox fx:id="codePane" spacing="5.0" styleClass="body">
+                  <VBox fx:id="codePane" styleClass="body">
                      <children>
                         <VBox VBox.vgrow="ALWAYS">
                            <children>
@@ -54,8 +54,11 @@
                                               <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" text="Reset Code" />
                                               <Button fx:id="runCodeButton" mnemonicParsing="false" onAction="#runCode" text="Run" />
                                         </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
                                     </HBox>
-                                      <TextArea fx:id="codeTextArea" prefHeight="220.0" prefWidth="548.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                                      <TextArea fx:id="codeTextArea" prefHeight="220.0" wrapText="true" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox>
@@ -66,14 +69,14 @@
                                     <Region HBox.hgrow="ALWAYS" />
                                               <Button fx:id="clearOutputButton" mnemonicParsing="false" onAction="#clearOutput" text="Clear" />
                                         </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
                                     </HBox>
                                       <TextArea fx:id="outputTextArea" editable="false" prefHeight="120.0" styleClass="console" wrapText="true" HBox.hgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
                   </VBox>
                </children>
             </StackPane>

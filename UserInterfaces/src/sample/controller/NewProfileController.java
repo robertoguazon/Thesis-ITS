@@ -57,7 +57,7 @@ public class NewProfileController implements Initializable{
         if (event.getSource() == createNewProfile){
             if (createNewProfile()){
                 AlertBox.display("Successful Insert",
-                        "You have been successfully registered as one of the users.",
+                        "You have been successfully registe#FF8A80 as one of the users.",
                         "Going back to the start menu...");
                 scene = backToMenu.getScene();
                 stage = (Stage)scene.getWindow();
@@ -120,25 +120,25 @@ public class NewProfileController implements Initializable{
         confirmPassword = confirmPassword.trim();
         name = name.trim();
         school = school.trim();
-        if(username.isEmpty()){usernameText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(username.isEmpty()){usernameText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{usernameText.setStyle("");}
-        if(password.isEmpty()){passwordText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(password.isEmpty()){passwordText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{passwordText.setStyle("");}
-        if(confirmPassword.isEmpty()){confirmPasswordText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(confirmPassword.isEmpty()){confirmPasswordText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{confirmPasswordText.setStyle("");}
-        if(name.isEmpty()){nameText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(name.isEmpty()){nameText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{nameText.setStyle("");}
-        if(age.isEmpty()){ageText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(age.isEmpty()){ageText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{ageText.setStyle("");}
         if(sex.isEmpty()){
-            maleButton.setStyle("-fx-text-fill: orange;");
-            femaleButton.setStyle("-fx-text-fill: orange;");
+            maleButton.setStyle("-fx-text-fill: #FFCC80;");
+            femaleButton.setStyle("-fx-text-fill: #FFCC80;");
             b++;
         }else{
             maleButton.setStyle("");
             femaleButton.setStyle("");
         }
-        if(school.isEmpty()){schoolText.setStyle("-fx-text-box-border: orange;"); b++;}
+        if(school.isEmpty()){schoolText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else {schoolText.setStyle("");}
 
         if (b == 0){
@@ -155,37 +155,37 @@ public class NewProfileController implements Initializable{
         String regex = "[a-zA-Z0-9]{4,}";
         String text = "Invalid: ";
         if (!username.matches(regex)) {
-            usernameText.setStyle("-fx-text-box-border: red;");
+            usernameText.setStyle("-fx-background-color: #FF8A80;");
             text = text + "username(must be atleast 4 characters long), ";
             b++;
         }else{usernameText.setStyle("");}
         if (!password.matches(regex)){
-            passwordText.setStyle("-fx-text-box-border: red;");
+            passwordText.setStyle("-fx-background-color: #FF8A80;");
             text = text + "password(must be atleast 4 characters long), ";
             b++;
         }else{passwordText.setStyle("");}
         if (!confirmPassword.matches(regex)){
-            confirmPasswordText.setStyle("-fx-text-box-border: red;");
+            confirmPasswordText.setStyle("-fx-background-color: #FF8A80;");
             text = text + "confirm password(must be atleast 4 characters long), ";
             b++;
         }else{confirmPasswordText.setStyle("");}
         if (!name.matches("[a-zA-Z\\s]*")){
-            nameText.setStyle("-fx-text-box-border: red;");
+            nameText.setStyle("-fx-background-color: #FF8A80;");
             text = text + "name(must not contain numbers), ";
             b++;
         }else{nameText.setStyle("");}
         if (!age.matches("[0-9]{2}")){
-            ageText.setStyle("-fx-text-box-border: red;");
+            ageText.setStyle("-fx-background-color: #FF8A80;");
             text = text + "age(numbers only and maximum of 2 digits), ";
             b++;
         }else{ageText.setStyle("");}
         if (!school.matches("[a-zA-Z\\s]*")){
-            schoolText.setStyle("-fx-text-box-border: red;");
+            schoolText.setStyle("-fx-background-color: #FF8A80;");
             text = text + "school(must not contain numbers), ";
             b++;
         }else{schoolText.setStyle("");}
         if (!yearLevel.matches("[a-zA-Z0-9\\s]*")){
-            //yearLevelComboBox.setStyle("-fx-text-box-border: red;");
+            //yearLevelComboBox.setStyle("-fx-background-color: #FF8A80;");
             text = text + "year level, ";
             b++;
         }//else{yearLevel.setStyle("");}
@@ -203,7 +203,7 @@ public class NewProfileController implements Initializable{
             return true;
         }
         setErrorMessage("Age must not be below 14.");
-        ageText.setStyle("-fx-text-box-border: red;");
+        ageText.setStyle("-fx-background-color: #FF8A80;");
         return false;
     }
 
@@ -212,8 +212,8 @@ public class NewProfileController implements Initializable{
             return true;
         }
         setErrorMessage("Password and Confirm Password are not the same.");
-        passwordText.setStyle("-fx-text-box-border: red;");
-        confirmPasswordText.setStyle("-fx-text-box-border: red;");
+        passwordText.setStyle("-fx-background-color: #FF8A80;");
+        confirmPasswordText.setStyle("-fx-background-color: #FF8A80;");
         return false;
     }
 
@@ -227,6 +227,6 @@ public class NewProfileController implements Initializable{
 
     public void setErrorMessage(String message){
         errorMessage.setText(message);
-        errorMessage.setTextFill(Color.RED);
+        errorMessage.setStyle("-fx-text-fill: #FF8A80");
     }
 }

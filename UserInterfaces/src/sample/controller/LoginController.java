@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
  */
 public class LoginController implements Initializable{
 
+    @FXML private Label errorMessage;
     @FXML private TextField username;
     @FXML private TextField password;
     @FXML private Button loginButton;
@@ -81,8 +82,6 @@ public class LoginController implements Initializable{
         Scene scene = loginButton.getScene();
         Stage stage = (Stage) scene.getWindow();
         Pane root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-        stage.setHeight(root.getPrefHeight() + 40);
-        stage.setWidth(root.getPrefWidth() + 16);
 
         goTo(scene,root,stage);
     }
@@ -92,67 +91,4 @@ public class LoginController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-
-    public void doBackgroundProcess(){
-        backgroundThread = new Service<Boolean>() {
-            @Override
-            protected Task<Boolean> createTask() {
-                return new Task<Boolean>() {
-                    @Override
-                    protected Boolean call() throws Exception {
-
-
-
-                     return true;
-                    }
-                };
-            }
-        };
-        //progressBar = new ProgressBar(0);
-        progressBar.progressProperty().bind(backgroundThread.progressProperty());
-        backgroundThread.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                progressBar.progressProperty().unbind();
-                progressBar.setProgress(1);
-                backgroundThread.getValue();
-            }
-        });
-        backgroundThread.start();
-    }
-<<<<<<< HEAD
-
-    public boolean login() throws IOException {
-        if (validateFields()){
-            Users user = Agent.getUserUsingCredentials(username.getText(), password.getText());
-            if(user != null){
-                new Agent(user);
-                return true;
-            }else {
-                username.setStyle("-fx-background-color: #FFAB91;");
-                password.setStyle("-fx-background-color: #FFAB91;");
-            }
-        }
-        return false;
-    }
-
-    public boolean validateFields(){
-        String usernameText = username.getText().trim();
-        String passwordText = password.getText().trim();
-        int count = 0;
-        if (usernameText.isEmpty()){
-            username.setStyle("-fx-background-color: #FFE0B2;");
-            count++;
-        }else {username.setStyle("");}
-        if (passwordText.isEmpty()){
-            password.setStyle("-fx-background-color: #FFE0B2;");
-            count++;
-        }else {password.setStyle("");}
-        if (count > 0){
-            return false;
-        }
-        return true;
-    }
-=======
->>>>>>> 1acba8d8c695d25aee6242f1cd2a0bcf3fd58386
 }

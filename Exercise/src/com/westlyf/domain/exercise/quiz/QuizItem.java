@@ -325,6 +325,8 @@ public class QuizItem implements Serializable {
             choice.setAlignment(Pos.BASELINE_CENTER);
             choice.setTextAlignment(TextAlignment.JUSTIFY);
             choice.setFont(Font.font("System", FontWeight.NORMAL, 12));
+            choice.getStyleClass().remove("radio-button");
+            choice.getStyleClass().add("toggle-button");
 
             choicesArrayList.add(choice);
         }
