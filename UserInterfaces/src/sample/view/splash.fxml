@@ -8,7 +8,7 @@
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../style/images/FreeApples.png" />
+            <Image url="@../style/images/dark-apples.png" />
          </image>
       </ImageView>
       <Pane prefHeight="200.0" prefWidth="200.0" />

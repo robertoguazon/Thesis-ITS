@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../style/images/kendy_side_100x200.png" />
+                        <Image url="@../style/images/learn.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -67,9 +67,9 @@
             </Button>
             <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button2" text="Exam">
                <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../style/images/kendy_side_100x200_black&amp;white.png" />
+                        <Image url="@../style/images/exam.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -79,9 +79,9 @@
             </Button>
             <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button3" text="Grades">
                <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../style/images/old_lady_100x200.png" />
+                        <Image url="@../style/images/grades.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -91,9 +91,9 @@
             </Button>
             <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button4" text="Challenge">
                <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../style/images/old_lady_100x200_black&amp;white.png" />
+                        <Image url="@../style/images/challenge.png" />
                      </image>
                   </ImageView>
                </graphic>

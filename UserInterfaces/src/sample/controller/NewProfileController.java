@@ -57,7 +57,7 @@ public class NewProfileController implements Initializable{
         if (event.getSource() == createNewProfile){
             if (createNewProfile()){
                 AlertBox.display("Successful Insert",
-                        "You have been successfully registe#FF8A80 as one of the users.",
+                        "You have been successfully registered as one of the users.",
                         "Going back to the start menu...");
                 scene = backToMenu.getScene();
                 stage = (Stage)scene.getWindow();
@@ -176,7 +176,7 @@ public class NewProfileController implements Initializable{
         }else{nameText.setStyle("");}
         if (!age.matches("[0-9]{2}")){
             ageText.setStyle("-fx-background-color: #FF8A80;");
-            text = text + "age(numbers only and maximum of 2 digits), ";
+            text = text + "age(numbers only and made of 2 digits), ";
             b++;
         }else{ageText.setStyle("");}
         if (!school.matches("[a-zA-Z\\s]*")){
@@ -199,10 +199,10 @@ public class NewProfileController implements Initializable{
     }
 
     public boolean isAge(int age){
-        if (age >= 14) {
+        if (age >= 10) {
             return true;
         }
-        setErrorMessage("Age must not be below 14.");
+        setErrorMessage("Age must not be below 10.");
         ageText.setStyle("-fx-background-color: #FF8A80;");
         return false;
     }

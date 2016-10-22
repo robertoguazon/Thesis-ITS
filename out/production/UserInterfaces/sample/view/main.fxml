@@ -21,7 +21,7 @@
                      <children>
                         <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../style/images/apple_75x75.png" />
+                              <Image url="@../style/images/free-apples.png" />
                            </image>
                         </ImageView>
                         <Label styleClass="label-header" text="Free Apples" textAlignment="CENTER">
