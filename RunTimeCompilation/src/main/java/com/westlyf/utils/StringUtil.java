@@ -4,11 +4,13 @@ package com.westlyf.utils;
  * Created by robertoguazon on 13/10/2016.
  */
 public class StringUtil {
+    // - ("[^"\\]*(?:\\.[^"\\]*)*")|(\s+)   error: removes all inside quotes
+    // - \s+(?=((\\[\\"]|[^\\"])*"(\\[\\"]|[^\\"])*")*(\\[\\"]|[^\\"])*$) error: escape characters problems
 
-    public static final String REGEX_REMOVE_WHITESPACE = "(\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\")|(\\s+)";
+    public static final String REGEX_REMOVE_WHITESPACE = "\\s+";
 
     public static String removeWhiteSpaces(String string) {
-        
+
         return string.replaceAll(REGEX_REMOVE_WHITESPACE,"");
     }
 
