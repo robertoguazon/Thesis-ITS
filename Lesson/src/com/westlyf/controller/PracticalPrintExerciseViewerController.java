@@ -91,6 +91,30 @@ public class PracticalPrintExerciseViewerController implements Initializable {
                 return;
             }
 
+            // -1 means no error; returns index of CString
+            int errorCStringIndex = practicalPrintExercise.checkCGroup(codeTextArea.textProperty());
+            boolean correctOutput = practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString());
+            if (errorCStringIndex == -1 && correctOutput) {
+                responseText.setText("Correct");
+                responseText.getParent().setStyle("-fx-background-color: #00C853");
+                statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
+                statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
+                statusPane.toFront();
+                codeTextArea.setEditable(false);
+                clearCodeButton.setDisable(true);
+                runCodeButton.setDisable(true);
+                clearOutputButton.setDisable(true);
+                submitButton.setDisable(false);
+            } else if (errorCStringIndex != -1) {
+                //responseText.setText(practicalPrintExercise.getExplanation());
+                responseText.setText(practicalPrintExercise.getCStringTip(errorCStringIndex));
+                responseText.getParent().setStyle("-fx-background-color: #F44336");
+            } else if (!correctOutput) {
+                responseText.setText("Output not match: follow instructions");
+                responseText.getParent().setStyle("-fx-background-color: #F44336");
+            }
+
+            /*
             if (practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString())) {
 
                 // -1 means no error; returns index of CString
@@ -115,6 +139,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
                 responseText.setText(practicalPrintExercise.getExplanation());
                 responseText.getParent().setStyle("-fx-background-color: #F44336");
             }
+             */
         }else {
             System.out.println("practicalPrintExercise is null");
         }

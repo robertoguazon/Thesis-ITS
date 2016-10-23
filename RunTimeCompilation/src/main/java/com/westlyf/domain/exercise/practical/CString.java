@@ -74,6 +74,8 @@ public class CString {
     public boolean check(StringProperty codeText) {
         String codeTextString = StringUtil.removeWhiteSpaces(codeText.get());
         for (StringProperty cString : equivalents) {
+            System.out.println("Tocheck:" + codeTextString);
+            System.out.println("Checker: " + StringUtil.removeWhiteSpaces(cString.get()));
             if (codeTextString.contains(StringUtil.removeWhiteSpaces(cString.get()))) {
                 return true;
             }
