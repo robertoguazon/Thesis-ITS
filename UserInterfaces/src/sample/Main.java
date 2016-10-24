@@ -25,6 +25,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        //change text format remove anti-aliasing
+        System.setProperty("prism.lcdtext", "false");
+        //System.setProperty("prism.text", "t2k");
+
         window = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("view/splash.fxml"));
         Scene scene = new Scene(root);

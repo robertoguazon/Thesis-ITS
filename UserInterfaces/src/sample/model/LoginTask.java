@@ -31,7 +31,6 @@ public class LoginTask extends Task {
 
     @Override
     protected Boolean call() throws Exception {
-
         updateMessage("Login: validating fields...");
         updateProgress(20,MAX);
         if (validateUsername() != null && validatePassword() != null){

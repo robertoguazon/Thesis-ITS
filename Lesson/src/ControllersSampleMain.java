@@ -27,11 +27,11 @@ public class ControllersSampleMain extends Application {
         Controllers.loadAll();
 
         //viewers
-        //testTextLessonViewer(primaryStage);
+        testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
-        testPracticalReturnExerciseViewer(primaryStage);
+        //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
         //testExamChoicesOnlyViewer(primaryStage);
 
@@ -50,7 +50,7 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testTextLessonViewer(Stage primaryStage) {
-        Node node = Controllers.getNode(ControllerType.TEXT_LESSON_VIEWER, LessonDatabase.getTextLessonUsingLID("lid815455460051384"));
+        Node node = Controllers.getNode(ControllerType.TEXT_LESSON_VIEWER, LessonDatabase.getTextLessonUsingLID("lid9765525428077"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
