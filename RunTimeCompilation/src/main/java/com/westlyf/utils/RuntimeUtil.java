@@ -73,6 +73,8 @@ public class RuntimeUtil {
         Class[] parametersTypes = DataTypeUtil.toClassArray(practicalReturnExercise.getParameterTypes());
         Method main = aClass.getMethod(practicalReturnExercise.getMethodName(), parametersTypes);
 
+        boolean noErrors = true;
+
         ArrayList<PracticalReturnValidator> practicalReturnValidators = practicalReturnExercise.getReturnValidators();
         for (int i = 0; i < practicalReturnValidators.size(); i++) {
 
@@ -80,15 +82,31 @@ public class RuntimeUtil {
             ArrayList<InputParameter> inputs = practicalReturnValidators.get(i).getInputs();
             Object[] inputsArray = new Object[inputs.size()];
 
+            System.out.print("Inputs: (");
             for (int j = 0; j < inputs.size(); j++) {
                 inputsArray[j] = DataTypeUtil.cast(inputs.get(j).getInput(), inputs.get(j).getInputType());
+
+                if (j < inputs.size() - 1) {
+                    System.out.print(inputsArray[j] + ",");
+                } else {
+                    System.out.print(inputsArray[j]);
+                }
             }
 
+            System.out.print(") | Expected output: " + expectedReturn);
             Object result = main.invoke(obj, inputsArray);
-            if (!result.equals(DataTypeUtil.cast(expectedReturn,practicalReturnExercise.getReturnType()))) return false;
+            System.out.print( ", Actual output: " + result + " => ");
+            if (!result.equals(DataTypeUtil.cast(expectedReturn,practicalReturnExercise.getReturnType()))) {
+                System.out.print("NOT MATCH");
+                noErrors = false;
+            } else {
+                System.out.print("MATCH");
+            }
+
+            System.out.println();
         }
 
-        return true;
+        return noErrors;
     }
 
     public static String compile(PracticalReturnExercise practicalReturnExercise, String ... inputs) throws Exception {

@@ -62,10 +62,30 @@ public class CGroup {
         addCString(cString);
     }
 
+    /**
+     * Check if the code is present. If not then return error.
+     * @param codeText the code in StringProperty
+     * @return If return = -1 then no error (or the requirements are fulfilled) else return the index where the requirement is not found.
+     */
     public int check(StringProperty codeText) {
 
         for (int i = 0; i < cStrings.size(); i++) {
             if (!cStrings.get(i).check(codeText)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Different from check. ReverseCheck returns the index of matched string. Best used for PracticalReturnExercise
+     * @param codeText the code in StringProperty
+     * @return  If return = -1 then no error (or did not cheat) else return the number of index where the cheating is found.
+     */
+    public int reverseCheck(StringProperty codeText) {
+        for (int i = 0; i < cStrings.size(); i++) {
+            if (cStrings.get(i).check(codeText)) {
                 return i;
             }
         }

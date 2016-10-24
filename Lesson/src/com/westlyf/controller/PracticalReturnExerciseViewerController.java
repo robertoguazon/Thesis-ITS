@@ -8,6 +8,7 @@ import com.westlyf.user.UserExercise;
 import com.westlyf.user.Users;
 import com.westlyf.utils.DataTypeUtil;
 import com.westlyf.utils.RuntimeUtil;
+import com.westlyf.utils.StringUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -38,7 +39,7 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     @FXML private TextArea instructionsTextArea;
 
     @FXML private TextArea codeTextArea;
-    @FXML private Button clearCodeButton;
+    @FXML private Button resetCodeButton;
 
 
     @FXML private Button executeSampleInputButton;
@@ -51,7 +52,6 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     @FXML private Label responseText;
 
     private PracticalReturnExercise practicalReturnExercise;
-    private StringProperty[] parametersArray;
     private String initialCode;
 
     public void setPracticalReturnExercise(PracticalReturnExercise practicalReturnExercise) {
@@ -63,17 +63,6 @@ public class PracticalReturnExerciseViewerController implements Initializable {
         initialCode = practicalReturnExercise.getCode();
         codeTextArea.setText(initialCode);
         practicalReturnExercise.codeProperty().bind(codeTextArea.textProperty());
-
-        int parametersSize = practicalReturnExercise.getParametersSize();
-        parametersArray = new StringProperty[parametersSize];
-        for (int i = 0; i < parametersSize; i++) {
-            TextField textField = new TextField();
-
-            StringProperty stringProperty = new SimpleStringProperty();
-            stringProperty.bind(textField.textProperty());
-            parametersArray[i] = stringProperty;
-            sampleInputFlowPane.getChildren().add(textField);
-        }
     }
 
     public PracticalReturnExercise getPracticalReturnExercise() {
@@ -87,20 +76,21 @@ public class PracticalReturnExerciseViewerController implements Initializable {
     }
 
     @FXML
-    private void clearCode() {
+    private void resetCode() {
         this.codeTextArea.setText(initialCode);
     }
 
     @FXML
-    private void executeSampleInput() {
-        clearOutput();
+    private void execute() {
         if (practicalReturnExercise != null) {
             try {
-                outputTextArea.setText(RuntimeUtil.compile(practicalReturnExercise, DataTypeUtil.toString(parametersArray)));
+                clearOutput();
                 if (compileCode()) {
 
+                    outputStream(RuntimeUtil.CONSOLE_OUTPUT.toString());
+
                     // -1 means no error; returns index of CString
-                    int errorCStringIndex = practicalReturnExercise.checkCGroup(codeTextArea.textProperty());
+                    int errorCStringIndex = practicalReturnExercise.reverseCheckCGroup(codeTextArea.textProperty());
                     if (errorCStringIndex == -1) {
                         responseText.setText("Correct!");
                         responseText.getParent().setStyle("-fx-background-color: #00C853");
@@ -108,7 +98,7 @@ public class PracticalReturnExerciseViewerController implements Initializable {
                         statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
                         statusPane.toFront();
                         codeTextArea.setEditable(false);
-                        clearCodeButton.setDisable(true);
+                        resetCodeButton.setDisable(true);
                         executeSampleInputButton.setDisable(true);
                         clearOutputButton.setDisable(true);
                         submitButton.setDisable(false);
@@ -118,7 +108,23 @@ public class PracticalReturnExerciseViewerController implements Initializable {
                         responseText.getParent().setStyle("-fx-background-color: #F44336");
                     }
                 } else {
-                    System.out.println("Correct: false");
+                    System.out.println("Error: compilation or value");
+
+                    String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
+                    errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
+
+                    if (!errorString.isEmpty()) {
+                        outputError(errorString); //output errors
+                        responseText.setText("Error: Compilation");
+                        responseText.getParent().setStyle("-fx-background-color: #F44336");
+                        return;
+                    } else {
+                        //if value validators not match
+                        outputStream(RuntimeUtil.CONSOLE_OUTPUT.toString());
+                        responseText.setText("Incorrect: did not match expected return values");
+                        responseText.getParent().setStyle("-fx-background-color: #F44336");
+                    }
+
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
@@ -163,13 +169,35 @@ public class PracticalReturnExerciseViewerController implements Initializable {
 
     private boolean compileCode() {
         try {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
+
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
             return RuntimeUtil.compile(practicalReturnExercise);
 
         } catch (Exception e) {
             e.printStackTrace();
 
             return false;
+        } finally {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STREAM);
         }
+    }
+
+    private void outputStream(String string) {
+        outputTextArea.appendText(string);
+    }
+
+    private void outputLine(String string) {
+        outputTextArea.appendText(string + "\n");
+    }
+
+    private void outputError(String string) {
+        outputTextArea.appendText("Error: " + string + "\n");
     }
 
 

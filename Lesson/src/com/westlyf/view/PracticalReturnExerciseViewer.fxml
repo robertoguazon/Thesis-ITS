@@ -41,7 +41,7 @@
                                       <TextArea fx:id="codeTextArea" wrapText="true" HBox.hgrow="ALWAYS" />
                                       <VBox alignment="CENTER">
                                           <children>
-                                              <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" text="Clear">
+                                              <Button fx:id="resetCodeButton" mnemonicParsing="false" onAction="#resetCode" text="Reset">
                                                   <VBox.margin>
                                                       <Insets top="10.0" />
                                                   </VBox.margin>
@@ -58,16 +58,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                   <children>
-                                      <Label text="Sample Input" />
-                                      <Button fx:id="executeSampleInputButton" mnemonicParsing="false" onAction="#executeSampleInput" text="Execute" />
-                                  </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                              </HBox>
-                              <HBox prefHeight="71.0" prefWidth="598.0">
-                                  <children>
-                                      <FlowPane fx:id="sampleInputFlowPane" HBox.hgrow="ALWAYS" />
+                                      <Button fx:id="execute" mnemonicParsing="false" onAction="#execute" text="Execute" />
                                   </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

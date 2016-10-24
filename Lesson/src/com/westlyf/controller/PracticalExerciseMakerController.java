@@ -276,7 +276,7 @@ public class PracticalExerciseMakerController implements Initializable {
             practicalPrintExercise.makeID();
             if (practicalPrintExercise != null && practicalPrintExercise.isValid()) {
 
-                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, practicalPrintExercise.toString());
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, practicalPrintExercise.check());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
@@ -297,7 +297,7 @@ public class PracticalExerciseMakerController implements Initializable {
 
             if (practicalReturnExercise != null && practicalReturnExercise.isValid()) {
 
-                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, practicalReturnExercise.toString());
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, practicalReturnExercise.check());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {

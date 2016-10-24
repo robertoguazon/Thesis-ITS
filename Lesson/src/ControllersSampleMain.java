@@ -30,8 +30,8 @@ public class ControllersSampleMain extends Application {
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
-        testPracticalPrintExerciseViewer(primaryStage);
-        //testPracticalReturnExerciseViewer(primaryStage);
+        //testPracticalPrintExerciseViewer(primaryStage);
+        testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
         //testExamChoicesOnlyViewer(primaryStage);
 
@@ -91,7 +91,7 @@ public class ControllersSampleMain extends Application {
 
     private void testPracticalReturnExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingLID("lid496485989650777"));
+        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingTitle("Sample Multiply"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

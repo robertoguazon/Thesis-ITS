@@ -106,11 +106,18 @@ public abstract class PracticalExercise extends Exercise {
 
     @Override
     public String check() {
+        /*
         return super.check() + "\n" +
                 "instructions: " + ((instructions == null || instructions.isEmpty().get()) ? "empty" : instructions.get()) + "\n" +
                 "code: " + ((code == null || code.isEmpty().get()) ? "empty" : code.get()) + "\n" +
                 "className: " + ((className == null || className.isEmpty().get()) ? "empty" : className.get()) + "\n" +
                 "methodName: " + ((methodName == null || methodName.isEmpty().get()) ? "empty" : methodName.get());
+         */
+        return super.check() + "\n" +
+                "instructions: " + ((instructions == null || instructions.isEmpty().get()) ? "empty" : "not empty") + "\n" +
+                "code: " + ((code == null || code.isEmpty().get()) ? "empty" : "not empty") + "\n" +
+                "className: " + ((className == null || className.isEmpty().get()) ? "empty" : "not empty") + "\n" +
+                "methodName: " + ((methodName == null || methodName.isEmpty().get()) ? "empty" : "not empty");
     }
 
 
@@ -171,5 +178,8 @@ public abstract class PracticalExercise extends Exercise {
         return cGroup.getCStringTip(i);
     }
 
+    public int reverseCheckCGroup(StringProperty codeText){
+        return cGroup.reverseCheck(codeText);
+    }
 
 }
