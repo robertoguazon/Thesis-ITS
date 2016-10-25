@@ -139,22 +139,22 @@ public class Agent {
         }
     }
 
-    public static void loadLesson(String module, String lesson){
+    public static void loadLesson(String tag1, String tag2){
         TextLesson match = null;
         for (int i = 0; i < getTextLessons().size(); i++) {
             match = getTextLessons().get(i);
-            if (match.getTagsString().contains(module) && match.getTagsString().contains(lesson)){
+            if (match.getTagsString().contains(tag1) && match.getTagsString().contains(tag2)){
                 setLesson(match);
             }
         }
         System.out.println("\nRetrieved Lesson:\n" + getLesson());
     }
 
-    public static void loadExercise(String module, String lesson){
+    public static void loadExercise(String tag1, String tag2){
         VideoPracticalExercise match = null;
         for (int i = 0; i < getVideoPracticalExercises().size(); i++) {
             match = getVideoPracticalExercises().get(i);
-            if (match.getTagsString().contains(module) && match.getTagsString().contains(lesson)){
+            if (match.getTagsString().contains(tag1) && match.getTagsString().contains(tag2)){
                 setExercise(match);
             }
         }

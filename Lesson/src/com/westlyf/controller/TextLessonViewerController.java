@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import sample.model.AlertBox;
 import sample.model.ConfirmBox;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -94,21 +95,19 @@ public class TextLessonViewerController implements Initializable {
 
     public void setTextLesson(TextLesson textLesson) {
         Agent.setLesson(textLesson);
-        String textLessonTags = textLesson.getTagsString();
-        int indexOf = textLessonTags.indexOf("lesson");
-        String lessonTag = textLessonTags.substring(indexOf, indexOf+7);
-        Agent.setCurrentLesson(lessonTag);
-        System.out.println(lessonTag);
+        Agent.setCurrentLesson(textLesson.getTagsString());
         textLessonLabel.setText(textLesson.getTitle());
-        String st = textLesson.getText();
+        String url = new File(textLesson.getText()).toURI().toString();
+        /*String st = textLesson.getText();
         if(st.contains("contenteditable=\"true\"")){
             st=st.replace("contenteditable=\"true\"", "contenteditable=\"false\"");
-        }
-        textLessonWebView.getEngine().loadContent(st);
+        }*/
+        textLessonWebView.getEngine().load(url);
     }
 
     public void openExercise() throws IOException {
-        Agent.loadExercise(Agent.getCurrentModule(), Agent.getCurrentLesson());
+        String[] lessonTags = Agent.getCurrentLesson().split(",");
+        Agent.loadExercise(lessonTags[0], lessonTags[1]);
     }
 
     public void openLesson(int i){

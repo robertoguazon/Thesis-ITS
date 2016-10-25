@@ -2,6 +2,7 @@ package com.westlyf.utils;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import sample.model.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.nio.file.*;
 public class FileUtils {
 
     public static final String PATH_TO_VIDEOS = "resources\\videos";
+    public static final String PATH_TO_WEBVIEW = "resources\\WebView\\html";
     public static final CopyOption[] DEFAULT_COPY_OPTIONS = new CopyOption[] {
             StandardCopyOption.COPY_ATTRIBUTES,
             StandardCopyOption.REPLACE_EXISTING
@@ -32,6 +34,23 @@ public class FileUtils {
 
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Video files",
                 "*.avi", "*.mpg", "*.mp4", "*.wmv", "*.mkv"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            prevDirectory = selectedFile.getParentFile();
+        }
+
+        return selectedFile;
+    }
+
+    public static File chooseHtmlFile(Stage stage){
+        fileChooser.setTitle("Select a html file");
+
+        if (prevDirectory != null){
+            fileChooser.setInitialDirectory(prevDirectory);
+        }
+
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("html files", "*.html"));
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
@@ -72,6 +91,8 @@ public class FileUtils {
         return to + "\\" + id + extension;
     }
 
+    public static String pathToHtml(String from, String id) {return pathTo(from, PATH_TO_WEBVIEW, id);}
+
     public static String pathToVideo(String from, String id) {
         return pathTo(from, PATH_TO_VIDEOS, id);
     }
@@ -90,6 +111,17 @@ public class FileUtils {
         }
 
         return true;
+    }
+
+    public static boolean copyHtmlFileTo(File source, String id){
+        String name = source.getName();
+        String extension = getFileExtension(source);
+        String dest = PATH_TO_WEBVIEW + "\\" + id + extension;
+        return copyFileTo(source.toPath(), Paths.get(dest));
+    }
+
+    public static boolean copyHtmlFileTo(String source, String id) {
+        return copyHtmlFileTo(new File(source), id);
     }
 
     public static boolean copyVideoFileTo(File source, String id) {
