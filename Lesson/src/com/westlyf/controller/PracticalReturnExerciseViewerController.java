@@ -157,8 +157,6 @@ public class PracticalReturnExerciseViewerController implements Initializable {
             } else {
                 if (Agent.addUserExercise(new UserExercise(loggedUser.getUserId(),
                         practicalReturnExercise.getTitle(), practicalReturnExercise.getCode())) < 0) {
-                    Agent.setIsExerciseCleared(true);
-                } else {
                     return;
                 }
             }

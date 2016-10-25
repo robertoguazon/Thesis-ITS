@@ -163,17 +163,16 @@ public class PracticalPrintExerciseViewerController implements Initializable {
         Users loggedUser = Agent.getLoggedUser();
         if (loggedUser != null) {
             if (Agent.containsPracticalExercise(practicalPrintExercise)) {
-                if (Agent.updateUserExercise(practicalPrintExercise.getCode()) > 0) {
-                    Agent.setIsExerciseCleared(true);
+                if (Agent.updateUserExercise(practicalPrintExercise.getCode()) < 0) {
+                    return;
                 }
             } else {
                 if (Agent.addUserExercise(new UserExercise(loggedUser.getUserId(),
-                        practicalPrintExercise.getTitle(), practicalPrintExercise.getCode())) > 0) {
-                    Agent.setIsExerciseCleared(true);
-                } else {
+                        practicalPrintExercise.getTitle(), practicalPrintExercise.getCode())) < 0) {
                     return;
                 }
             }
+            Agent.setIsExerciseCleared(true);
         }
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));

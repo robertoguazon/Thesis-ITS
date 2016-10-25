@@ -91,16 +91,14 @@ public class UserController implements Initializable{
     @FXML
     private void handleNewWindowAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        Scene scene = null;
         Parent root = null;
         if (event.getSource() == settings){
-//            scene = settings.getScene();
-//            root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         }else if (event.getSource() == about){
-//            scene = about.getScene();
-//            root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
         }else {return;}
-        scene.setRoot(root);
+        Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(settings.getScene().getStylesheets());
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(settings.getScene().getWindow());
@@ -129,7 +127,7 @@ public class UserController implements Initializable{
 
     private boolean confirmTakeExam(){
         return ConfirmBox.display("Are you sure you want to take the exam?", "Exam Description: ",
-                        "Topic: " + Agent.getCurrentModule() + "\n\n" +
+                        "Topic: " + Agent.getLoggedUser().getCurrentExamId() + "\n\n" +
                         "Length: This exam has a time limit of 15mins.\n\n" +
                         "Timer Setting: This exam will save and submit automatically \n" +
                         "\tupon time expiry.\n\n" +
