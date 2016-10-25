@@ -18,6 +18,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -112,7 +113,7 @@ public class LessonMakerController implements Initializable {
             textLessonMakerController = loader.getController();
 
             textLesson.titleProperty().bind(titleTextField.textProperty());
-            //textLessonMakerController.bindTextLesson(textLesson.textProperty()); //!got changed because of htmleditor
+            textLessonMakerController.bindPath(textLesson.textProperty()); //!got changed because of htmleditor
 
             lesson = textLesson;
 
@@ -150,14 +151,15 @@ public class LessonMakerController implements Initializable {
             TextLesson textLesson = ((TextLesson)lesson).clone();
             textLesson.makeID();
 
-            //!got changed because of htmleditor
-            textLesson.setText(textLessonMakerController.getHtml());
-
             if (textLesson!= null && textLesson.isValid()) {
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, textLesson.toString());
                 confirmation.setTitle("CONFIRM");
                 confirmation.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
+                        FileUtils.copyHtmlFileTo(textLesson.getText(), textLesson.getLessonId());
+                        String location = FileUtils.pathToHtml(textLesson.getText(), textLesson.getLessonId());
+                        textLesson.setText(location);
+                        System.out.println(location);
                         LessonDatabase.storeData(textLesson);
                         System.out.println("data was pushed to database");
                     }

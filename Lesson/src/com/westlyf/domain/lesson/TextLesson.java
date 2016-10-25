@@ -42,7 +42,7 @@ public class TextLesson extends Lesson implements Serializable {
 
     public boolean isValid() {
         if (!super.isValid()) return false;
-        if (text == null || text.get().equals("") || text.get().equals("<html dir=\"ltr\"><head></head><body contenteditable=\"true\"></body></html>")) return false;
+        if (text == null || text.get().equals("")) return false;
 
         return true;
     }

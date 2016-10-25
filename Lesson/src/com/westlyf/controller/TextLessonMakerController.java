@@ -1,12 +1,21 @@
 package com.westlyf.controller;
 
+import com.westlyf.utils.FileUtils;
+import com.westlyf.utils.file.FileUtil;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.shape.Path;
 import javafx.scene.web.HTMLEditor;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,31 +24,24 @@ import java.util.ResourceBundle;
  */
 public class TextLessonMakerController implements Initializable {
 
-    //@FXML private TextArea lessonTextArea; //!got changed because of htmleditor
-    @FXML private HTMLEditor textLessonHtmlEditor;
+    @FXML private TextField pathTextField;
+    @FXML private Button chooseButton;
     @FXML private Button clearButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        textLessonHtmlEditor.setHtmlText("<html><head></head><body style='background-color: #FAFAFA;' contenteditable=\"false\"></body></html>");
+
     }
 
-    @FXML
-    private void clear() {
-
-        //lessonTextArea.clear(); //!got changed because of htmleditor
-        textLessonHtmlEditor.setHtmlText("<html><head></head><body style='background-color: #FAFAFA;' contenteditable=\"false\"></body></html>");
+    @FXML private void choose(){
+        pathTextField.setText(FileUtils.chooseHtmlFile(LessonMakerController.stage).getPath());
     }
 
-    /*!got changed because of htmleditor
-    public void bindTextLesson(StringProperty text) {
-
-        text.bind(lessonTextArea.textProperty());
-    }
-    */
-
-    public String getHtml() {
-        return textLessonHtmlEditor.getHtmlText();
+    @FXML private void clear(){
+        pathTextField.clear();
     }
 
+    public void bindPath(StringProperty path) {
+        path.bind(pathTextField.textProperty());
+    }
 }
