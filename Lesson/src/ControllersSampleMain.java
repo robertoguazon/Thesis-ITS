@@ -83,7 +83,7 @@ public class ControllersSampleMain extends Application {
     private void testPracticalPrintExerciseViewer(Stage primaryStage) {
 
         Node node = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER,
-                ExerciseDatabase.getPracticalExerciseUsingTitle("Sample"));
+                ExerciseDatabase.getPracticalExerciseUsingTitle("Exercise 2 - Strings and Chars"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
