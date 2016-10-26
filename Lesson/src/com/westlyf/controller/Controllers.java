@@ -68,6 +68,38 @@ public class Controllers {
 
     //TODO static methods for calling different controllers
 
+    public Object getController(ControllerType controllerType) {
+        switch (controllerType) {
+            //viewers
+            case TEXT_LESSON_VIEWER:
+                return textLessonViewerController;
+            case VIDEO_LESSON_VIEWER:
+                return videoLessonViewerController;
+            case QUIZ_EXERCISE_VIEWER:
+                return quizExerciseViewerController;
+            case PRACTICAL_PRINT_EXERCISE_VIEWER:
+                return practicalPrintExerciseViewerController;
+            case PRACTICAL_RETURN_EXERCISE_VIEWER:
+                return practicalReturnExerciseViewerController;
+            case EXAM_CHOICES_ONLY_VIEWER:
+                return examChoicesOnlyViewerController;
+
+            //makers
+            case LESSON_MAKER:
+                return lessonMakerController;
+            case QUIZ_EXERCISE_MAKER:
+                return quizExerciseMakerController;
+            case PRACTICAL_EXERCISE_MAKER:
+                return practicalExerciseMakerController;
+            case VIDEO_PRACTICAL_EXERCISE_MAKER:
+                return videoPracticalExerciseMakerController;
+            case EXAM_CHOICES_ONLY_MAKER:
+                return examChoicesOnlyMakerController;
+            default:
+                return null;
+        }
+    }
+
     public static void loadAll() {
         try {
 

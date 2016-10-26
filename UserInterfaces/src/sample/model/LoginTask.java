@@ -1,6 +1,7 @@
 package sample.model;
 
 import com.westlyf.agent.Agent;
+import com.westlyf.controller.Controllers;
 import com.westlyf.user.Users;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -32,15 +33,21 @@ public class LoginTask extends Task {
     @Override
     protected Boolean call() throws Exception {
         updateMessage("Login: validating fields...");
-        updateProgress(20,MAX);
         if (validateUsername() != null && validatePassword() != null){
+            updateProgress(20,MAX);
 
             updateMessage("Login: checking user credentials...");
-            updateProgress(80,MAX);
             Users user = Agent.getUserUsingCredentials(username.getText(), password.getText());
+            updateProgress(60,MAX);
             if(user != null){
+                updateMessage("Login: logging in to user");
                 new Agent(user);
+                updateProgress(80,MAX);
+
+                updateMessage("Loading all controllers");
+                //Controllers.loadAll(); //TODO -fix
                 updateProgress(100,MAX);
+
                 return true;
             }else {
                 Platform.runLater(() -> {

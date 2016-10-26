@@ -3,6 +3,7 @@ package sample;/**
  */
 
 import com.westlyf.agent.Agent;
+import com.westlyf.controller.Controllers;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,6 +34,13 @@ public class Main extends Application {
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
+    }
+
+    @Override
+    public void stop() {
+        //dispose everything just to be sure
+        System.out.println("Disposing...");
+        //Controllers.disposeAll(); //TODO -fix
     }
 
 }
