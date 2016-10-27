@@ -43,8 +43,8 @@ public class ControllersSampleMain extends Application {
         //testLessonMaker(primaryStage);
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
-        //testVideoPracticalExerciseMaker(primaryStage);
-        testExamChoicesOnlyMaker(primaryStage);
+        testVideoPracticalExerciseMaker(primaryStage);
+        //testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
