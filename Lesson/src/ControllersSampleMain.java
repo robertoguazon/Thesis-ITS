@@ -40,10 +40,10 @@ public class ControllersSampleMain extends Application {
         //testPracticalExerciseReviewViewer();
 
         //makers
-        //testLessonMaker(primaryStage);
+        testLessonMaker(primaryStage);
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
-        testVideoPracticalExerciseMaker(primaryStage);
+        //testVideoPracticalExerciseMaker(primaryStage);
         //testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
