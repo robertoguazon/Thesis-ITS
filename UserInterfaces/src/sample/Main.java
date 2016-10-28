@@ -40,7 +40,7 @@ public class Main extends Application {
     public void stop() {
         //dispose everything just to be sure
         System.out.println("Disposing...");
-        //Controllers.disposeAll(); //TODO -fix
+        Controllers.disposeAll(); //TODO -fix
     }
 
 }
