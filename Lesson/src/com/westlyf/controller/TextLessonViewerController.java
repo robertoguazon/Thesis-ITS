@@ -50,6 +50,7 @@ public class TextLessonViewerController implements Initializable {
     private VideoLessonViewerController vlc;
     private PracticalPrintExerciseViewerController ppec;
     private PracticalReturnExerciseViewerController prec;
+    private String[] lessonTags;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,54 +73,85 @@ public class TextLessonViewerController implements Initializable {
         }
     }
 
-    public void setExerciseButton(int i){
+    public void setExercise(int i){
         if (i != 0) {
-            exerciseButton.setText("Exercise");
-            exerciseButton.setOnAction(event -> {
-                try {
-                    handleNewWindowAction(event);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+            Agent.loadExercise(lessonTags[0], lessonTags[1]);
+            if (Agent.getExercise() != null){
+                exerciseButton.setDisable(false);
+                exerciseButton.setText("Exercise");
+                exerciseButton.setOnAction(event -> {
+                    try {
+                        openExercise();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }else {
+                exerciseButton.setDisable(true);
+            }
         }else {
             final int finalI = ++i;
+            exerciseButton.setDisable(false);
             exerciseButton.setText("Next Lesson");
             exerciseButton.setOnAction(event -> {
                 unlock(finalI);
                 setTextLesson(lessonsInModule.get(finalI));
-                setExerciseButton(finalI);
+                setExercise(finalI);
             });
         }
     }
 
     public void setTextLesson(TextLesson textLesson) {
-        Agent.setLesson(textLesson);
-        Agent.setCurrentLesson(textLesson.getTagsString());
+        if (Agent.getLoggedUser() != null) {
+            Agent.setLesson(textLesson);
+            lessonTags = textLesson.getTagsString().split(",");
+            int i = 0;
+            while (i < lessonTags.length) {
+                if (lessonTags[i].contains("lesson")) {
+                    Agent.setCurrentLesson(lessonTags[i]);
+                    break;
+                } else {
+                    i++;
+                }
+            }
+        }
         textLessonLabel.setText(textLesson.getTitle());
         String url = new File(textLesson.getText()).toURI().toString();
-        /*String st = textLesson.getText();
-        if(st.contains("contenteditable=\"true\"")){
-            st=st.replace("contenteditable=\"true\"", "contenteditable=\"false\"");
-        }*/
         textLessonWebView.getEngine().load(url);
     }
 
     public void openExercise() throws IOException {
-        String[] lessonTags = Agent.getCurrentLesson().split(",");
-        Agent.loadExercise(lessonTags[0], lessonTags[1]);
+        if (Agent.getExercise() != null){
+            window = new Stage();
+            Parent root;
+            Node vlNode = loadVideoLessonNode();
+            Node peNode = loadPracticalExerciseNode();
+            root = (Parent)combine(vlNode, peNode);
+            window.setOnCloseRequest(e -> {
+                e.consume();
+                closeExercise();
+            });
+            Scene scene = new Scene(root);
+            scene.getStylesheets().addAll(pane.getScene().getStylesheets());
+            window.setScene(scene);
+            window.initModality(Modality.APPLICATION_MODAL);
+            window.initOwner(exerciseButton.getScene().getWindow());
+            window.showAndWait();
+        }
     }
 
     public void openLesson(int i){
         setTextLesson(lessonsInModule.get(i));
-        setExerciseButton(i);
+        setExercise(i);
     }
 
     public void unlock(int i){
         if (i < lesson.length) {
-            lesson[i].setDisable(false);
-            Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
-            AlertBox.display("Unlocked", "Unlocked new lesson " + i, "Click \"ok\" to close this alert box.");
+            if (lesson[i].isDisabled()) {
+                lesson[i].setDisable(false);
+                Agent.getLoggedUser().setCurrentLessonId("lesson" + i);
+                AlertBox.display("Unlocked", "Unlocked new lesson " + i, "Click \"ok\" to close this alert box.");
+            }
         }else {
             Users loggedUser = Agent.getLoggedUser();
             if (loggedUser.getCurrentExamId() == null) {
@@ -130,18 +162,9 @@ public class TextLessonViewerController implements Initializable {
                                     "You are now ready to take the exam.",
                             "Do you wish to go back to the main menu to take the exam?");
                     if (answer) {
-                        try {
-                            Agent.load(LoadType.EXAM);
-                            Agent.clearLessonsInModule();
-                            Parent root = FXMLLoader.load(getClass().getResource("../../../sample/view/user.fxml"));
-                            Scene scene = back.getScene();
-                            Stage stage = (Stage) scene.getWindow();
-                            scene.setRoot(root);
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Agent.load(LoadType.EXAM);
+                        Agent.clearLessonsInModule();
+                        changeScene("../../../sample/view/user.fxml");
                     }
                 }
             }
@@ -149,42 +172,24 @@ public class TextLessonViewerController implements Initializable {
     }
 
     @FXML
-    private void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
+    private void handleChangeSceneAction(ActionEvent event){
         if (event.getSource() == back){
             Agent.clearLessonsInModule();
-            scene = back.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../../../sample/view/modules.fxml"));
+            changeScene("../../../sample/view/modules.fxml");
         }
-        else {return;}
-        scene.setRoot(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
-    private void handleNewWindowAction(ActionEvent event) throws IOException {
-        window = new Stage();
-        Parent root;
-        if (event.getSource() == exerciseButton){
-            openExercise();
-            Node vlNode = loadVideoLessonNode();
-            Node peNode = loadPracticalExerciseNode();
-            root = (Parent)combine(vlNode, peNode);
-        }else {return;}
-
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            closeExercise();
-        });
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
-        window.setScene(scene);
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.initOwner(exerciseButton.getScene().getWindow());
-        window.showAndWait();
+    private void changeScene(String resource){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(resource));
+            Scene scene = back.getScene();
+            Stage stage = (Stage)scene.getWindow();
+            scene.setRoot(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private Node loadVideoLessonNode() throws IOException {
