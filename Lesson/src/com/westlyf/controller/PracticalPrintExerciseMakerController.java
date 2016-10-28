@@ -33,10 +33,12 @@ public class PracticalPrintExerciseMakerController implements Initializable {
 
     public void bindPrintValidator(StringProperty expectedOutput) {
 
-        expectedOutput.bind(expectedOutputTextArea.textProperty());
+        //expectedOutput.bind(expectedOutputTextArea.textProperty());
+        expectedOutput.bindBidirectional(expectedOutputTextArea.textProperty());
     }
 
     public void bindMustMatch(BooleanProperty mustMatchProperty) {
-        mustMatchProperty.bind(mustMatchCheckBox.selectedProperty());
+        //mustMatchProperty.bind(mustMatchCheckBox.selectedProperty());
+        mustMatchProperty.bindBidirectional(mustMatchCheckBox.selectedProperty());
     }
 }
