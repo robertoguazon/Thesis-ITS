@@ -28,7 +28,9 @@ public class ControllersSampleMain extends Application {
 
         //viewers
         //testTextLessonViewer(primaryStage);
-        testVideoLessonViewer(primaryStage);
+        //testVideoLessonViewer(primaryStage);
+        testTextLessonViewer(primaryStage);
+        //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
