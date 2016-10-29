@@ -44,7 +44,7 @@ public class ControllersSampleMain extends Application {
         //makers
         //testLessonMaker(primaryStage);
         //testQuizExerciseMaker(primaryStage);
-        testPracticalExerciseMaker(primaryStage);
+        //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
         //testExamChoicesOnlyMaker(primaryStage);
 
