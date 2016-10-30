@@ -30,6 +30,9 @@ public class DataTypeUtil {
                 case CHAR:
                     parametersTypesArray[i] = char.class;
                     break;
+                case INT_ARRAY:
+                    parametersTypesArray[i] = int[].class;
+                    break;
                 default:
                     parametersTypesArray = null;
                     break;
@@ -55,10 +58,27 @@ public class DataTypeUtil {
 
             case CHAR:
                 return value.charAt(0);
-
+            case INT_ARRAY:
+                return toIntArray(value);
             default:
                 return null;
         }
+    }
+
+    public static int[] toIntArray(String string) {
+        try {
+            String[] stringArray = string.split(",");
+            int[] intArray = new int[stringArray.length];
+            for (int i = 0; i < intArray.length; i++) {
+                intArray[i] = Integer.parseInt(stringArray[i]);
+            }
+
+            return intArray;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
     public static String[] toStringArray(ArrayList<String> strings) {
