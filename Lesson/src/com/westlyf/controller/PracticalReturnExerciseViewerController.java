@@ -90,7 +90,7 @@ public class PracticalReturnExerciseViewerController implements Initializable {
                     outputStream(RuntimeUtil.CONSOLE_OUTPUT.toString());
 
                     // -1 means no error; returns index of CString
-                    int errorCStringIndex = practicalReturnExercise.reverseCheckCGroup(codeTextArea.textProperty());
+                    int errorCStringIndex = practicalReturnExercise.checkCGroup(codeTextArea.textProperty());
                     if (errorCStringIndex == -1) {
                         responseText.setText("Correct!");
                         responseText.getParent().setStyle("-fx-background-color: #00C853");
