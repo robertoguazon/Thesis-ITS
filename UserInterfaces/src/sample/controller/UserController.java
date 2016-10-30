@@ -112,6 +112,10 @@ public class UserController implements Initializable{
         Agent.loadExam();
         examChoicesOnlyViewerController.setExam(Agent.getExam());
         //loadFER(examChoicesOnlyViewerController);
+
+        //TODO start timer when exam is opened
+        ExamChoicesOnlyViewerController examController = loader.getController();
+        examController.startTimer();
         return node;
     }
 
