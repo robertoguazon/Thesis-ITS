@@ -93,7 +93,8 @@ public class ControllersSampleMain extends Application {
 
     private void testPracticalReturnExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingTitle("Challenge - Linear Search"));
+        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER,
+                ExerciseDatabase.getPracticalExerciseUsingTitle("Challenge - Palindrome"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by robertoguazon on 24/08/2016.
@@ -96,9 +97,19 @@ public class RuntimeUtil {
             System.out.print(") | Expected output: " + expectedReturn);
             Object result = main.invoke(obj, inputsArray);
             System.out.print( ", Actual output: " + result + " => ");
-            if (!result.equals(DataTypeUtil.cast(expectedReturn,practicalReturnExercise.getReturnType()))) {
-                System.out.print("NOT MATCH");
-                noErrors = false;
+
+            DataType expectedReturnType = practicalReturnExercise.getReturnType();
+            Object expectedOutput = DataTypeUtil.cast(expectedReturn, expectedReturnType);
+            if (!result.equals(expectedOutput)) {
+
+                //IF INT_ARRAY convert result to int[]
+                if (expectedReturnType.equals(DataType.INT_ARRAY) && DataTypeUtil.isEqualsObjectIntArray(result,expectedOutput)) {
+                        System.out.println("MATCH");
+                } else {
+                    System.out.print("NOT MATCH");
+                    noErrors = false;
+                }
+
             } else {
                 System.out.print("MATCH");
             }

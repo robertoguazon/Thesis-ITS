@@ -12,4 +12,5 @@ public enum DataType {
     STRING,
     CHAR,
     INT_ARRAY,
+    BOOLEAN,
 }

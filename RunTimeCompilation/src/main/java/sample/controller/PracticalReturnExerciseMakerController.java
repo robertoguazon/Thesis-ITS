@@ -132,7 +132,8 @@ public class PracticalReturnExerciseMakerController implements Initializable {
                 DataType.FLOAT,
                 DataType.STRING,
                 DataType.CHAR,
-                DataType.INT_ARRAY
+                DataType.INT_ARRAY,
+                DataType.BOOLEAN
         );
         return comboBox;
     }
