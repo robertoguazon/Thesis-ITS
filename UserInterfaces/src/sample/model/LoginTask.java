@@ -45,7 +45,7 @@ public class LoginTask extends Task {
                 updateProgress(80,MAX);
 
                 updateMessage("Loading all controllers");
-                Platform.runLater(() -> {Controllers.loadAll();}); //TODO -fix
+                Platform.runLater(() -> {Controllers.loadAllViewers();}); //TODO -fix
                 updateProgress(100,MAX);
 
                 return true;

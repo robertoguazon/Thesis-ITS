@@ -31,7 +31,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logout" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="33.0" prefWidth="100.0" text="Logout">
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#handleAction" prefHeight="33.0" prefWidth="100.0" text="Logout">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -53,7 +53,7 @@
    <center>
       <HBox alignment="CENTER" prefHeight="326.0" prefWidth="640.0" spacing="15.0" styleClass="body">
          <children>
-            <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button1" text="Learn">
+            <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button1" text="Learn">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -65,7 +65,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button2" text="Exam">
+            <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button2" text="Exam">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
                      <image>
@@ -77,7 +77,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button3" text="Grades">
+            <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button3" text="Grades">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
                      <image>
@@ -89,7 +89,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="300.0" prefWidth="144.0" styleClass="button4" text="Challenge">
+            <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button4" text="Challenge">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -110,7 +110,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0" spacing="10.0" styleClass="footer">
          <children>
-            <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
+            <Hyperlink fx:id="settings" onAction="#handleAction" text="Settings">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -119,7 +119,7 @@
                   </ImageView>
                </graphic>
             </Hyperlink>
-            <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
+            <Hyperlink fx:id="about" onAction="#handleAction" text="About">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

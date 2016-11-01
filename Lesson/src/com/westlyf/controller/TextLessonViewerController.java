@@ -2,32 +2,23 @@ package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.agent.LoadType;
-import com.westlyf.domain.exercise.practical.PracticalExercise;
-import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
-import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
+import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.user.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebView;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.controller.ControllerManager;
 import sample.model.AlertBox;
 import sample.model.ConfirmBox;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -35,10 +26,8 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class TextLessonViewerController implements Initializable {
+public class TextLessonViewerController extends ControllerManager implements Initializable {
 
-    Stage window;
-    @FXML private BorderPane pane;
     @FXML private VBox lessonsVBox;
     @FXML private Label textLessonLabel;
     @FXML private WebView textLessonWebView;
@@ -47,25 +36,56 @@ public class TextLessonViewerController implements Initializable {
     @FXML private Hyperlink[] lesson;
 
     private ArrayList<TextLesson> lessonsInModule;
-    private VideoLessonViewerController vlc;
-    private PracticalPrintExerciseViewerController ppec;
-    private PracticalReturnExerciseViewerController prec;
-    private String[] lessonTags;
+    private int currentLessonNo;
+    private String currentModule;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void setCurrentLessonNo(int currentLessonNo) {
+        this.currentLessonNo = currentLessonNo;
+    }
+
+    public void setTextLesson(TextLesson textLesson) {
         if (Agent.getLoggedUser() != null) {
-            lessonsInModule = Agent.getLessonsInModule(Agent.getCurrentModule());
+            Agent.setLesson(textLesson);
+        }
+        textLessonLabel.setText(textLesson.getTitle());
+        String url = new File(textLesson.getText()).toURI().toString();
+        textLessonWebView.getEngine().load(url);
+        setExercise(textLesson);
+    }
+
+    public void setExercise(TextLesson textLesson){
+        String[] lessonTags = textLesson.getTagsString().split(",");
+        for (int i=0; i<lessonTags.length; i++) {
+            if (Agent.loadExercise(lessonTags[0], lessonTags[1]) == null) {
+                exerciseButton.setText("Next Lesson");
+                return;
+            } else {
+                exerciseButton.setText("Exercise");
+                return;
+            }
+        }
+    }
+
+    public void setLessonList(String module){
+        currentModule = module;
+        if (Agent.getLoggedUser() != null) {
+            lessonsInModule = Agent.getLessonsInModule(currentModule);
             lesson = new Hyperlink[lessonsInModule.size()];
             for (int i = 0; i < lesson.length; i++) {
-                lesson[i] = new Hyperlink();
-                lesson[i].setText(i==0?"Introduction":"Lesson " + i);
-                lesson[i].setFont(Font.font("System", FontWeight.NORMAL, 16));
+                lesson[i] = new Hyperlink(i==0?"Introduction":"Lesson " + i);
                 final int finalI = i;
-                lesson[i].setOnAction(event -> openLesson(finalI));
-                if (Agent.getLoggedUser().getCurrentModuleId().compareTo(Agent.getCurrentModule()) == 0) {
+                lesson[i].setOnAction(event -> {
+                    setTextLesson(lessonsInModule.get(finalI));
+                    currentLessonNo = finalI;
+                });
+                if (Agent.getLoggedUser().getCurrentModuleId().compareTo(currentModule) == 0) {
                     if (Agent.getLoggedUser().getCurrentLessonId().compareTo("lesson" + finalI) < 0) {
-                        lesson[finalI].setDisable(true);
+                        lesson[i].setDisable(true);
                     }
                 }
             }
@@ -73,76 +93,12 @@ public class TextLessonViewerController implements Initializable {
         }
     }
 
-    public void setExercise(int i){
-        if (i != 0) {
-            Agent.loadExercise(lessonTags[0], lessonTags[1]);
-            if (Agent.getExercise() != null){
-                exerciseButton.setDisable(false);
-                exerciseButton.setText("Exercise");
-                exerciseButton.setOnAction(event -> {
-                    try {
-                        openExercise();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }else {
-                exerciseButton.setDisable(true);
-            }
-        }else {
-            final int finalI = ++i;
-            exerciseButton.setDisable(false);
-            exerciseButton.setText("Next Lesson");
-            exerciseButton.setOnAction(event -> {
-                unlock(finalI);
-                setTextLesson(lessonsInModule.get(finalI));
-                setExercise(finalI);
-            });
+    public void openExercise(){
+        VideoPracticalExercise videoPracticalExercise = Agent.getExercise();
+        if (videoPracticalExercise != null){
+            Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, videoPracticalExercise);
+            newChildWindow(node, videoPracticalExercise.getTitle());
         }
-    }
-
-    public void setTextLesson(TextLesson textLesson) {
-        if (Agent.getLoggedUser() != null) {
-            Agent.setLesson(textLesson);
-            lessonTags = textLesson.getTagsString().split(",");
-            int i = 0;
-            while (i < lessonTags.length) {
-                if (lessonTags[i].contains("lesson")) {
-                    Agent.setCurrentLesson(lessonTags[i]);
-                    break;
-                } else {
-                    i++;
-                }
-            }
-        }
-        textLessonLabel.setText(textLesson.getTitle());
-        String url = new File(textLesson.getText()).toURI().toString();
-        textLessonWebView.getEngine().load(url);
-    }
-
-    public void openExercise() throws IOException {
-        if (Agent.getExercise() != null){
-            window = new Stage();
-            Parent root;
-            Node vlNode = loadVideoLessonNode();
-            Node peNode = loadPracticalExerciseNode();
-            root = (Parent)combine(vlNode, peNode);
-            window.setOnCloseRequest(e -> {
-                e.consume();
-                closeExercise();
-            });
-            Scene scene = new Scene(root);
-            scene.getStylesheets().addAll(pane.getScene().getStylesheets());
-            window.setScene(scene);
-            window.initModality(Modality.APPLICATION_MODAL);
-            window.initOwner(exerciseButton.getScene().getWindow());
-            window.showAndWait();
-        }
-    }
-
-    public void openLesson(int i){
-        setTextLesson(lessonsInModule.get(i));
-        setExercise(i);
     }
 
     public void unlock(int i){
@@ -153,10 +109,9 @@ public class TextLessonViewerController implements Initializable {
                 AlertBox.display("Unlocked", "Unlocked new lesson " + i, "Click \"ok\" to close this alert box.");
             }
         }else {
-            Users loggedUser = Agent.getLoggedUser();
-            if (loggedUser.getCurrentExamId() == null) {
-                if (loggedUser.getCurrentModuleId().equals(Agent.getCurrentModule())) {
-                    loggedUser.setCurrentExamId(Agent.getCurrentModule());
+            if (Agent.getLoggedUser().getCurrentExamId() == null) {
+                if (Agent.getLoggedUser().getCurrentModuleId().equals(currentModule)) {
+                    Agent.getLoggedUser().setCurrentExamId(currentModule);
                     Boolean answer = ConfirmBox.display("Take Exam",
                             "Congratulations!\nYou have completed the entire module.\n" +
                                     "You are now ready to take the exam.",
@@ -171,110 +126,39 @@ public class TextLessonViewerController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleChangeSceneAction(ActionEvent event){
+    @FXML public void handleAction(ActionEvent event){
         if (event.getSource() == back){
             Agent.clearLessonsInModule();
+            lessonsVBox.getChildren().clear();
             changeScene("../../../sample/view/modules.fxml");
+        }else if (event.getSource() == exerciseButton){
+            if (exerciseButton.getText().equals("Next Lesson")){
+                unlock(++currentLessonNo);
+                setTextLesson(lessonsInModule.get(currentLessonNo));
+            } else {openExercise();}
         }
     }
 
-    private void changeScene(String resource){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(resource));
-            Scene scene = back.getScene();
-            Stage stage = (Stage)scene.getWindow();
-            scene.setRoot(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Node loadVideoLessonNode() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/VideoLessonViewer.fxml"));
-        Node vlNode = loader.load();
-        vlc = loader.getController();
-        //System.out.println(Agent.getExercise().getVideoLesson());
-        vlc.setVideoLesson(Agent.getExercise().getVideoLesson());
-        return vlNode;
-    }
-
-    private Node loadPracticalExerciseNode() throws IOException {
-        PracticalExercise practicalExercise = Agent.getExercise().getPracticalExercise();
-        if (Agent.containsPracticalExercise(practicalExercise)){
-            practicalExercise.setCode(Agent.getUserExercise().getCode());
-        }
-        FXMLLoader loader = new FXMLLoader();
-        Node peNode;
-        if (practicalExercise instanceof PracticalPrintExercise){
-            loader.setLocation(getClass().getResource("../view/PracticalPrintExerciseViewer.fxml"));
-            peNode = loader.load();
-            ppec = loader.getController();
-            //System.out.println(Agent.getExercise().getPracticalExercise());
-            ppec.setPracticalPrintExercise((PracticalPrintExercise) practicalExercise);
-        }else if (practicalExercise instanceof PracticalReturnExercise){
-            loader.setLocation(getClass().getResource("../view/PracticalReturnExerciseViewer.fxml"));
-            peNode = loader.load();
-            prec = loader.getController();
-            //System.out.println(Agent.getExercise().getPracticalExercise());
-            prec.setPracticalReturnExercise((PracticalReturnExercise) practicalExercise);
-        }else {return null;}
-        return peNode;
-    }
-
-    private Node combine(Node left, Node right) {
-        BorderPane borderPane = new BorderPane();
-        SplitPane splitPane = new SplitPane();
-        //splitPane.setPrefWidth(1120);
-        //splitPane.setPrefHeight(560);
-        borderPane.setCenter(splitPane);
-
-        Pane leftPaneContainer = new Pane(left);
-        leftPaneContainer.setMinWidth(600);
-        leftPaneContainer.setMinHeight(600);
-        Pane rightPaneContainer = new Pane(right);
-        rightPaneContainer.setMinWidth(600);
-        rightPaneContainer.setMinHeight(600);
-
-        if (left instanceof Pane && right instanceof Pane) {
-            Pane leftPane = (Pane) left;
-            Pane rightPane = (Pane) right;
-
-            leftPane.prefWidthProperty().bind(leftPaneContainer.widthProperty());
-            leftPane.prefHeightProperty().bind(leftPaneContainer.heightProperty());
-            rightPane.prefWidthProperty().bind(rightPaneContainer.widthProperty());
-            rightPane.prefHeightProperty().bind(rightPaneContainer.heightProperty());
-        }
-
-        splitPane.getItems().addAll(leftPaneContainer,rightPaneContainer);
-        return borderPane;
-    }
-
-    private void closeExercise(){
+    public void closeChildWindow(){
         if (Agent.isCleared()){
-            if (vlc instanceof Disposable) {
-                String currentLesson = Agent.getCurrentLesson();
-                int i = Integer.parseInt(String.valueOf(currentLesson.charAt(currentLesson.length() - 1)));
-                Agent.setIsExerciseCleared(false);
-                disposeExercise();
-                unlock(++i);
-            }
+            Agent.setIsExerciseCleared(false);
+            disposeExercise();
+            unlock(++currentLessonNo);
         }else {
-            Boolean answer = ConfirmBox.display("Confirm Exit",
-                    "Are you sure you want to close the exercise?", "All changes will not be saved.");
-            if (answer) {
-                if (vlc instanceof Disposable) {
-                    disposeExercise();
-                }
+            Boolean answer = ConfirmBox.display("Close window",
+                    "Are you sure you want to close this window?", "All changes will not be saved.");
+            if (answer){
+                disposeExercise();
             }
         }
     }
 
     public void disposeExercise(){
-        vlc.dispose();
-        window.close();
+        VideoLessonViewerController videoLessonViewerController =
+                (VideoLessonViewerController) Controllers.getController(ControllerType.VIDEO_LESSON_VIEWER);
+        if (videoLessonViewerController instanceof Disposable) {
+            videoLessonViewerController.dispose();
+        }
+        child.close();
     }
 }

@@ -7,12 +7,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.TextLessonViewerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.TextLessonViewerController">
    <center>
       <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="body">
          <children>
             <WebView fx:id="textLessonWebView" prefHeight="500.0" prefWidth="490.0" BorderPane.alignment="CENTER" />
-            <Button fx:id="exerciseButton" mnemonicParsing="false" text="Exercise">
+            <Button fx:id="exerciseButton" mnemonicParsing="false" onAction="#handleAction" text="Exercise">
                <font>
                   <Font size="14.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding></VBox>
             <Region VBox.vgrow="ALWAYS" />
-            <Button fx:id="back" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="33.0" prefWidth="83.0" text="Back">
+            <Button fx:id="back" mnemonicParsing="false" onAction="#handleAction" prefHeight="33.0" prefWidth="83.0" text="Back">
                <font>
                   <Font size="14.0" />
                </font>

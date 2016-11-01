@@ -35,7 +35,7 @@
                            </font>
                         </Label>
                         <Region VBox.vgrow="ALWAYS" />
-                        <Hyperlink fx:id="loadProfile" onAction="#handleChangeSceneAction" text="Load Profile">
+                        <Hyperlink fx:id="loadProfile" onAction="#handleAction" text="Load Profile">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -47,7 +47,7 @@
                               </ImageView>
                            </graphic>
                         </Hyperlink>
-                        <Hyperlink fx:id="newProfile" onAction="#handleChangeSceneAction" text="New Profile">
+                        <Hyperlink fx:id="newProfile" onAction="#handleAction" text="New Profile">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -66,7 +66,7 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="69.0" prefWidth="207.0" spacing="10.0" styleClass="header" VBox.vgrow="ALWAYS">
                      <children>
-                        <Hyperlink fx:id="settings" onAction="#handleNewWindowAction" text="Settings">
+                        <Hyperlink fx:id="settings" onAction="#handleAction" text="Settings">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -75,7 +75,7 @@
                               </ImageView>
                            </graphic>
                         </Hyperlink>
-                        <Hyperlink fx:id="about" onAction="#handleNewWindowAction" text="About">
+                        <Hyperlink fx:id="about" onAction="#handleAction" text="About">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

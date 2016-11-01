@@ -129,6 +129,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
         setQuizItem();
 
+        startTimer();
         //TODO set timer and start
     }
 

@@ -1,5 +1,6 @@
 package com.westlyf.controller;
 
+import com.westlyf.agent.Agent;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
@@ -48,6 +49,8 @@ public class Controllers {
     private static ExamChoicesOnlyViewerController examChoicesOnlyViewerController;
     private static Node examChoicesOnlyViewerNode;
 
+    private static Node videoPracticalExerciseViewerNode;
+
 
     //makers
 
@@ -68,7 +71,7 @@ public class Controllers {
 
     //TODO static methods for calling different controllers
 
-    public Object getController(ControllerType controllerType) {
+    public static Object getController(ControllerType controllerType) {
         switch (controllerType) {
             //viewers
             case TEXT_LESSON_VIEWER:
@@ -138,6 +141,32 @@ public class Controllers {
             load(ControllerType.EXAM_CHOICES_ONLY_MAKER, "../view/ExamChoicesOnlyMaker.fxml");
             System.out.println(ControllerType.EXAM_CHOICES_ONLY_MAKER + " loaded");
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            //System.err.println("Error: " + e);
+        }
+    }
+
+    public static void loadAllViewers() {
+        try {
+            //viewers
+            load(ControllerType.TEXT_LESSON_VIEWER, "../view/TextLessonViewer.fxml");
+            System.out.println(ControllerType.TEXT_LESSON_VIEWER + " loaded");
+
+            load(ControllerType.VIDEO_LESSON_VIEWER, "../view/VideoLessonViewer.fxml");
+            System.out.println(ControllerType.VIDEO_LESSON_VIEWER + " loaded");
+/*
+            load(ControllerType.QUIZ_EXERCISE_VIEWER, "../view/QuizExerciseViewer.fxml");
+            System.out.println(ControllerType.QUIZ_EXERCISE_VIEWER + " loaded");
+*/
+            load(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, "../view/PracticalPrintExerciseViewer.fxml");
+            System.out.println(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER + " loaded");
+
+            load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "../view/PracticalReturnExerciseViewer.fxml");
+            System.out.println(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER + " loaded");
+
+            load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "../view/ExamChoicesOnlyViewer.fxml");
+            System.out.println(ControllerType.EXAM_CHOICES_ONLY_VIEWER + " loaded");
         } catch (Exception e) {
             e.printStackTrace();
             //System.err.println("Error: " + e);
@@ -319,8 +348,7 @@ public class Controllers {
                 addToPane(parent,practicalReturnExerciseViewerNode);
                 break;
             case VIDEO_PRACTICAL_EXERCISE_VIEWER:
-                Node videoPracticalExerciseNode = getNode(controllerType, lesson);
-                addToPane(parent, videoPracticalExerciseNode);
+                addToPane(parent, videoPracticalExerciseViewerNode);
                 break;
             case EXAM_CHOICES_ONLY_VIEWER:
                 addToPane(parent,examChoicesOnlyViewerNode);
@@ -374,14 +402,19 @@ public class Controllers {
 
                 //practical exercise
                 PracticalExercise practicalExercise = videoPracticalExercise.getPracticalExercise();
+                if (Agent.getLoggedUser() != null){
+                    if (Agent.containsPracticalExercise(practicalExercise)){
+                        practicalExercise.setCode(Agent.getUserExercise().getCode());
+                    }
+                }
                 Node peNode = null;
                 if (practicalExercise instanceof PracticalPrintExercise) {
                     peNode = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, practicalExercise);
                 } else if (practicalExercise instanceof PracticalReturnExercise) {
                     peNode = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, practicalExercise);
                 }
-
-                return combine(vlNode,peNode);
+                videoPracticalExerciseViewerNode = combine(vlNode,peNode);
+                return videoPracticalExerciseViewerNode;
             case EXAM_CHOICES_ONLY_VIEWER:
                 return examChoicesOnlyViewerNode;
 
@@ -468,9 +501,15 @@ public class Controllers {
             Pane leftPane = (Pane) left;
             Pane rightPane = (Pane) right;
 
+            leftPaneContainer.setMinWidth(leftPane.getPrefWidth());
+            leftPaneContainer.setMinHeight(leftPane.getPrefHeight());
+            rightPaneContainer.setMinWidth(rightPane.getPrefWidth());
+            rightPaneContainer.setMinHeight(rightPane.getPrefHeight());
+
             leftPane.prefWidthProperty().bind(leftPaneContainer.widthProperty());
             leftPane.prefHeightProperty().bind(leftPaneContainer.heightProperty());
-
+            rightPane.prefWidthProperty().bind(rightPaneContainer.widthProperty());
+            rightPane.prefHeightProperty().bind(rightPaneContainer.heightProperty());
         }
 
         splitPane.getItems().addAll(leftPaneContainer,rightPaneContainer);

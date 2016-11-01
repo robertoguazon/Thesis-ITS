@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sample.controller.ControllerManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class PracticalPrintExerciseViewerController implements Initializable {
+public class PracticalPrintExerciseViewerController extends ControllerManager implements Initializable {
 
     @FXML private VBox codePane;
     @FXML private HBox statusPane;
@@ -47,13 +48,20 @@ public class PracticalPrintExerciseViewerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    public void clearStyle(){
         codePane.toFront();
         submitButton.setDisable(true);
+        responseText.setText("");
+        responseText.getParent().setStyle("");
+        statusLabel.setText("");
+        statusPane.setStyle("");
     }
 
     public void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
         this.practicalPrintExercise = practicalPrintExercise;
-
+        clearStyle();
         titleLabel.setText(practicalPrintExercise.getTitle());
         instructionsTextArea.setText(practicalPrintExercise.getInstructions());
 
@@ -100,10 +108,6 @@ public class PracticalPrintExerciseViewerController implements Initializable {
                 statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
                 statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
                 statusPane.toFront();
-                codeTextArea.setEditable(false);
-                clearCodeButton.setDisable(true);
-                runCodeButton.setDisable(true);
-                clearOutputButton.setDisable(true);
                 submitButton.setDisable(false);
             } else if (errorCStringIndex != -1) {
                 //responseText.setText(practicalPrintExercise.getExplanation());
@@ -174,8 +178,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             }
             Agent.setIsExerciseCleared(true);
         }
-        Stage stage = (Stage) submitButton.getScene().getWindow();
-        stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+        child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     private void compileCode() {

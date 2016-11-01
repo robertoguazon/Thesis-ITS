@@ -34,12 +34,12 @@
                         <Font size="16.0" />
                      </font>
                   </PasswordField>
-                  <Button fx:id="loginButton" contentDisplay="TOP" defaultButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" prefHeight="37.0" prefWidth="200.0" text="LOGIN" textFill="WHITE">
+                  <Button fx:id="loginButton" contentDisplay="TOP" defaultButton="true" mnemonicParsing="false" onAction="#handleAction" prefHeight="37.0" prefWidth="200.0" text="LOGIN" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="backToMenu" onAction="#handleChangeSceneAction" text="Back to Menu" />
+                  <Hyperlink fx:id="backToMenu" onAction="#handleAction" text="Back to Menu" />
                   <Label fx:id="errorMessage" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                </children>
                <BorderPane.margin>
