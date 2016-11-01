@@ -35,21 +35,18 @@ public class SplashController extends ControllerManager implements Initializable
             try {
                 Thread.sleep(1000);
 
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), stackPane);
-                        fadeOut.setFromValue(1);
-                        fadeOut.setToValue(0);
-                        fadeOut.setCycleCount(1);
+                Platform.runLater(() -> {
+                    FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), stackPane);
+                    fadeOut.setFromValue(1);
+                    fadeOut.setToValue(0);
+                    fadeOut.setCycleCount(1);
 
-                        fadeOut.play();
+                    fadeOut.play();
 
-                        fadeOut.setOnFinished(event -> {
-                            closeWindow();
-                            newWindow("../view/main.fxml", "Free Apples", StageStyle.DECORATED, getStylePath());
-                        });
-                    }
+                    fadeOut.setOnFinished(event -> {
+                        closeWindow();
+                        newWindow("../view/main.fxml", "Free Apples", StageStyle.DECORATED, getStylePath());
+                    });
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();

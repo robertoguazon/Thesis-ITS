@@ -33,13 +33,8 @@ public class ControllersSampleMain extends Application {
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
-<<<<<<< HEAD
-        //testPracticalReturnExerciseViewer(primaryStage);
-        testVideoPracticalExerciseViewer(primaryStage);
-=======
         testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
->>>>>>> origin/master
         //testExamChoicesOnlyViewer(primaryStage);
 
             //reviews

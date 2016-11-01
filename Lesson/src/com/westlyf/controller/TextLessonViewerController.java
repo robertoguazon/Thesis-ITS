@@ -44,6 +44,10 @@ public class TextLessonViewerController extends ControllerManager implements Ini
 
     }
 
+    public void setCurrentLessonNo(int currentLessonNo) {
+        this.currentLessonNo = currentLessonNo;
+    }
+
     public void setTextLesson(TextLesson textLesson) {
         if (Agent.getLoggedUser() != null) {
             Agent.setLesson(textLesson);
@@ -57,17 +61,11 @@ public class TextLessonViewerController extends ControllerManager implements Ini
     public void setExercise(TextLesson textLesson){
         String[] lessonTags = textLesson.getTagsString().split(",");
         for (int i=0; i<lessonTags.length; i++) {
-            if (!lessonTags[i].contains("lesson0")) {
-                if (Agent.loadExercise(lessonTags[0], lessonTags[1]) != null) {
-                    exerciseButton.setDisable(false);
-                    exerciseButton.setText("Exercise");
-                } else {
-                    exerciseButton.setDisable(true);
-                }
+            if (Agent.loadExercise(lessonTags[0], lessonTags[1]) == null) {
+                exerciseButton.setText("Next Lesson");
                 return;
             } else {
-                exerciseButton.setDisable(false);
-                exerciseButton.setText("Start Lesson 1");
+                exerciseButton.setText("Exercise");
                 return;
             }
         }
@@ -128,15 +126,15 @@ public class TextLessonViewerController extends ControllerManager implements Ini
         }
     }
 
-    @FXML private void handleAction(ActionEvent event){
+    @FXML public void handleAction(ActionEvent event){
         if (event.getSource() == back){
             Agent.clearLessonsInModule();
             lessonsVBox.getChildren().clear();
             changeScene("../../../sample/view/modules.fxml");
         }else if (event.getSource() == exerciseButton){
-            if (exerciseButton.getText().equals("Start Lesson 1")){
-                unlock(1);
-                setTextLesson(lessonsInModule.get(1));
+            if (exerciseButton.getText().equals("Next Lesson")){
+                unlock(++currentLessonNo);
+                setTextLesson(lessonsInModule.get(currentLessonNo));
             } else {openExercise();}
         }
     }

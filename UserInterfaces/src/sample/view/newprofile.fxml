@@ -85,16 +85,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="ageText" prefHeight="30.0" prefWidth="50.0" promptText="14" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
                         <Label text="Year Level" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
+                        <ComboBox fx:id="ageComboBox" prefWidth="150.0" promptText="-" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <ComboBox fx:id="yearLevelComboBox" prefHeight="25.0" prefWidth="155.0" promptText="Level" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <Label text="Name" GridPane.rowIndex="3">
                            <font>
@@ -147,12 +143,12 @@
    <bottom>
       <HBox alignment="CENTER" spacing="50.0" styleClass="footer" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backToMenu" cancelButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Back to Menu">
+            <Button fx:id="backToMenu" cancelButton="true" mnemonicParsing="false" onAction="#handleAction" text="Back to Menu">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="createNewProfile" defaultButton="true" mnemonicParsing="false" onAction="#handleChangeSceneAction" text="Create Profile">
+            <Button fx:id="createNewProfile" defaultButton="true" mnemonicParsing="false" onAction="#handleAction" text="Create Profile">
                <font>
                   <Font size="14.0" />
                </font>

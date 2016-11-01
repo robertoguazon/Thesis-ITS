@@ -1,5 +1,6 @@
 package com.westlyf.controller;
 
+import com.westlyf.agent.Agent;
 import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
@@ -401,6 +402,11 @@ public class Controllers {
 
                 //practical exercise
                 PracticalExercise practicalExercise = videoPracticalExercise.getPracticalExercise();
+                if (Agent.getLoggedUser() != null){
+                    if (Agent.containsPracticalExercise(practicalExercise)){
+                        practicalExercise.setCode(Agent.getUserExercise().getCode());
+                    }
+                }
                 Node peNode = null;
                 if (practicalExercise instanceof PracticalPrintExercise) {
                     peNode = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, practicalExercise);

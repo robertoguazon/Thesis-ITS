@@ -15,10 +15,10 @@ import java.io.IOException;
 /**
  * Created by Yves on 10/27/2016.
  */
-public class ControllerManager {
+public class ControllerManager{
 
-    private static Scene scene;
-    private static Stage stage;
+    protected static Scene scene;
+    protected static Stage stage;
     protected static Stage child;
 
     public void newWindow(String resource, String title, StageStyle stageStyle, String stylesheetPath){
@@ -50,6 +50,10 @@ public class ControllerManager {
             child = new Stage();
             scene2.getStylesheets().addAll(this.scene.getStylesheets());
             child.setTitle(title);
+            child.setOnCloseRequest(event -> {
+                event.consume();
+                closeChildWindow();
+            });
             child.setScene(scene2);
             child.initModality(Modality.APPLICATION_MODAL);
             child.initOwner(stage);

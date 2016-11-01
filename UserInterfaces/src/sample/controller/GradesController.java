@@ -1,29 +1,22 @@
 package sample.controller;
 
 import com.westlyf.agent.Agent;
-import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.user.ExamGrade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
  * Created by Yves on 10/13/2016.
  */
-public class GradesController implements Initializable{
+public class GradesController extends ControllerManager implements Initializable{
 
     private ObservableList<ExamGrade> gradesList;
     @FXML private TableView<ExamGrade> tableView;
@@ -49,17 +42,9 @@ public class GradesController implements Initializable{
     }
 
     @FXML
-    private void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
+    public void handleAction(ActionEvent event) {
         if (event.getSource() == backToMenu){
-            scene = backToMenu.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-        }else {return;}
-        scene.setRoot(root);
-        stage.setScene(scene);
-        stage.show();
+            changeScene("../view/user.fxml");
+        }
     }
 }

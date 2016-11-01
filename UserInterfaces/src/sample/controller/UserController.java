@@ -1,29 +1,18 @@
 package sample.controller;
 
 import com.westlyf.agent.Agent;
-import com.westlyf.controller.BackgroundProcess;
 import com.westlyf.controller.ControllerType;
 import com.westlyf.controller.Controllers;
-import com.westlyf.controller.ExamChoicesOnlyViewerController;
 import com.westlyf.user.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import sample.model.ConfirmBox;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,7 +47,7 @@ public class UserController extends ControllerManager implements Initializable{
     }
 
     @FXML
-    private void handleAction(ActionEvent event) throws IOException {
+    public void handleAction(ActionEvent event) {
         if (event.getSource() == learn){
             changeScene("../view/modules.fxml");
         }else if (event.getSource() == exam){
@@ -79,25 +68,10 @@ public class UserController extends ControllerManager implements Initializable{
         }else {return;}
     }
 
-<<<<<<< HEAD
-    private void openExam() throws IOException {
+    private void openExam() {
         Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, Agent.loadExam());
         changeScene(node);
         loadFER();
-=======
-    private Node openExam() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/ExamChoicesOnlyViewer.fxml"));
-        Node node = loader.load();
-        ExamChoicesOnlyViewerController examChoicesOnlyViewerController = loader.getController();
-        Agent.loadExam();
-        examChoicesOnlyViewerController.setExam(Agent.getExam());
-        //loadFER(examChoicesOnlyViewerController);
-
-        //TODO start timer when exam is opened
-        ExamChoicesOnlyViewerController examController = loader.getController();
-        examController.startTimer();
-        return node;
->>>>>>> origin/master
     }
 
     private void loadFER(){

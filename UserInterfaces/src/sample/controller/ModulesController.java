@@ -4,22 +4,14 @@ import com.westlyf.agent.Agent;
 import com.westlyf.controller.ControllerType;
 import com.westlyf.controller.Controllers;
 import com.westlyf.controller.TextLessonViewerController;
-import com.westlyf.domain.lesson.TextLesson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -63,7 +55,7 @@ public class ModulesController extends ControllerManager implements Initializabl
     }
 
     @FXML
-    public void handleChangeSceneAction(ActionEvent event) throws IOException {
+    public void handleAction(ActionEvent event) {
         if (event.getSource() == backToMenu){
             changeScene("../view/user.fxml");
         }else {
@@ -95,6 +87,7 @@ public class ModulesController extends ControllerManager implements Initializabl
         TextLessonViewerController textLessonViewerController =
                 (TextLessonViewerController) Controllers.getController(ControllerType.TEXT_LESSON_VIEWER);
         textLessonViewerController.setLessonList(module);
+        textLessonViewerController.setCurrentLessonNo(Integer.parseInt(String.valueOf(lesson.charAt(lesson.length()-1))));
         Node node = Controllers.getNode(ControllerType.TEXT_LESSON_VIEWER, Agent.loadLesson(module, lesson));
         changeScene(node);
     }

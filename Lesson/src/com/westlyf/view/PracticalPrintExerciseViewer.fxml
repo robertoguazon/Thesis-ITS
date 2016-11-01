@@ -58,7 +58,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                     </HBox>
-                                      <TextArea fx:id="codeTextArea" prefHeight="220.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                                      <TextArea fx:id="codeTextArea" wrapText="true" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox>
@@ -89,11 +89,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
          <children>
-            <Label fx:id="responseText">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <Label fx:id="responseText" wrapText="true" />
             <Region HBox.hgrow="ALWAYS" />
                     <Button fx:id="submitButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#submit" text="SUBMIT">
                <graphic>
