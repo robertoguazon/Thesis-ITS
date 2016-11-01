@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Yves on 9/18/2016.
  */
-public class NewProfileController implements Initializable{
+public class NewProfileController extends ControllerManager implements Initializable{
 
     ObservableList<String> yearLevelList = FXCollections
             .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
@@ -51,26 +51,16 @@ public class NewProfileController implements Initializable{
 
     @FXML
     public void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
         if (event.getSource() == createNewProfile){
             if (createNewProfile()){
                 AlertBox.display("Successful Insert",
                         "You have been successfully registered as one of the users.",
                         "Going back to the start menu...");
-                scene = backToMenu.getScene();
-                stage = (Stage)scene.getWindow();
-                root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
+                changeScene("../view/user.fxml");
             }else {return;}
         }else if (event.getSource() == backToMenu){
-            scene = backToMenu.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
+            changeScene("../view/main.fxml");
         }else {return;}
-        scene.setRoot(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public boolean createNewProfile(){

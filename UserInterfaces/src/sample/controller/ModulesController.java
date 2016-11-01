@@ -1,6 +1,8 @@
 package sample.controller;
 
 import com.westlyf.agent.Agent;
+import com.westlyf.controller.ControllerType;
+import com.westlyf.controller.Controllers;
 import com.westlyf.controller.TextLessonViewerController;
 import com.westlyf.domain.lesson.TextLesson;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -23,7 +26,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Yves on 9/24/2016.
  */
-public class ModulesController implements Initializable{
+public class ModulesController extends ControllerManager implements Initializable{
 
     @FXML private Label title;
     @FXML private Button module1;
@@ -61,13 +64,8 @@ public class ModulesController implements Initializable{
 
     @FXML
     public void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
         if (event.getSource() == backToMenu){
-            scene = backToMenu.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
+            changeScene("../view/user.fxml");
         }else {
             if (event.getSource() == module1) {
                 openModule("module1");
@@ -84,36 +82,20 @@ public class ModulesController implements Initializable{
             } else if (event.getSource() == module7) {
                 openModule("module7");
             } else {return;}
-            scene = module1.getScene();
-            stage = (Stage)scene.getWindow();
-            root = (Parent) loadTextLessonNode();
         }
-        scene.setRoot(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
-    public String openModule(String module){
+    public void openModule(String module){
         String lesson;
         if (Agent.getLoggedUser().getCurrentModuleId().equals(module)) {
             lesson = Agent.getLoggedUser().getCurrentLessonId();
-            Agent.loadLesson(module, lesson);
         }else {
             lesson = "lesson0";
-            Agent.loadLesson(module, lesson);
         }
-        Agent.setCurrentModule(module);
-        Agent.setCurrentLesson(lesson);
-        return lesson;
-    }
-
-    public Node loadTextLessonNode() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/TextLessonViewer.fxml"));
-        Node node = loader.load();
-        TextLessonViewerController textLessonViewerController = loader.getController();
-        String currentLesson = Agent.getCurrentLesson();
-        int i = Integer.parseInt(String.valueOf(currentLesson.charAt(currentLesson.length()-1)));
-        textLessonViewerController.openLesson(i);
-        return node;
+        TextLessonViewerController textLessonViewerController =
+                (TextLessonViewerController) Controllers.getController(ControllerType.TEXT_LESSON_VIEWER);
+        textLessonViewerController.setLessonList(module);
+        Node node = Controllers.getNode(ControllerType.TEXT_LESSON_VIEWER, Agent.loadLesson(module, lesson));
+        changeScene(node);
     }
 }

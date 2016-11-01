@@ -2,6 +2,8 @@ package sample.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.controller.BackgroundProcess;
+import com.westlyf.controller.ControllerType;
+import com.westlyf.controller.Controllers;
 import com.westlyf.controller.ExamChoicesOnlyViewerController;
 import com.westlyf.user.Users;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,7 +30,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Yves on 9/22/2016.
  */
-public class UserController implements Initializable{
+public class UserController extends ControllerManager implements Initializable{
 
     @FXML private Label user;
     @FXML private Button learn;
@@ -55,68 +58,34 @@ public class UserController implements Initializable{
     }
 
     @FXML
-    private void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
+    private void handleAction(ActionEvent event) throws IOException {
         if (event.getSource() == learn){
-            scene = learn.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/modules.fxml"));
+            changeScene("../view/modules.fxml");
         }else if (event.getSource() == exam){
             if (confirmTakeExam()) {
-                scene = exam.getScene();
-                stage = (Stage)scene.getWindow();
-                root = (Parent)openExam();
+               openExam();
             }else {return;}
         }else if (event.getSource() == grades){
-            scene = grades.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/grades.fxml"));
+            changeScene("../view/grades.fxml");
         }else if (event.getSource() == challenge){
-            scene = challenge.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/challenges.fxml"));
+            changeScene("../view/challenges.fxml");
         }else if (event.getSource() == logout){
             logout();
-            scene = logout.getScene();
-            stage = (Stage)scene.getWindow();
-            root = FXMLLoader.load(getClass().getResource("../view/loadprofile.fxml"));
-        }else {return;}
-        scene.setRoot(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    private void handleNewWindowAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root = null;
-        if (event.getSource() == settings){
-            root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
+            changeScene("../view/loadprofile.fxml");
+        }else if (event.getSource() == settings){
+            newChildWindow("../view/settings.fxml", "Settings");
         }else if (event.getSource() == about){
-            root = FXMLLoader.load(getClass().getResource("../view/about.fxml"));
+            newChildWindow("../view/about.fxml", "About");
         }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(settings.getScene().getStylesheets());
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(settings.getScene().getWindow());
-        stage.showAndWait();
     }
 
-    private Node openExam() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/ExamChoicesOnlyViewer.fxml"));
-        Node node = loader.load();
-        ExamChoicesOnlyViewerController examChoicesOnlyViewerController = loader.getController();
-        Agent.loadExam();
-        examChoicesOnlyViewerController.setExam(Agent.getExam());
-        //loadFER(examChoicesOnlyViewerController);
-        return node;
+    private void openExam() throws IOException {
+        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, Agent.loadExam());
+        changeScene(node);
+        loadFER();
     }
 
-    private void loadFER(ExamChoicesOnlyViewerController examChoicesOnlyViewerController){
-        BackgroundProcess.setExamChoicesOnlyViewerController(examChoicesOnlyViewerController);
+    private void loadFER(){
         Agent.startBrowser();
         Agent.startBackground();
     }

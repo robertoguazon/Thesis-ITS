@@ -34,7 +34,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
-        //testVideoPracticalExerciseViewer(primaryStage);
+        testVideoPracticalExerciseViewer(primaryStage);
         //testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
@@ -85,7 +85,7 @@ public class ControllersSampleMain extends Application {
     private void testPracticalPrintExerciseViewer(Stage primaryStage) {
 
         Node node = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER,
-                ExerciseDatabase.getPracticalExerciseUsingTitle("Exercise 2 - Strings and Chars"));
+                ExerciseDatabase.getPracticalExerciseUsingTitle("Exercise 4 - Comments"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

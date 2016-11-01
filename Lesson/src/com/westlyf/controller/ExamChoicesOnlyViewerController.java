@@ -75,7 +75,6 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     public void initialize(URL location, ResourceBundle resources) {
         setHintButtonDisable(true);
         setHintTextAreaVisible(false);
-        setTimer(15);
     }
 
     public void setTimer(int minutes){
@@ -126,6 +125,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
         setQuizItem();
 
+        setTimer(15);
         //TODO set timer and start
     }
 

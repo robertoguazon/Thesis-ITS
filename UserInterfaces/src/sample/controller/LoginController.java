@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Yves on 9/15/2016.
  */
-public class LoginController implements Initializable{
+public class LoginController extends ControllerManager implements Initializable{
 
     @FXML private Label errorMessage;
     @FXML private TextField username;
@@ -39,8 +39,6 @@ public class LoginController implements Initializable{
     @FXML private Hyperlink backToMenu;
     @FXML private ProgressBar progressBar;
 
-    private Service<Boolean> backgroundThread;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -48,9 +46,6 @@ public class LoginController implements Initializable{
 
     @FXML
     public void handleChangeSceneAction(ActionEvent event) throws IOException {
-        final Stage stage;
-        final Scene scene;
-        final Pane root;
         if (event.getSource() == loginButton){
             LoginTask loginTask = new LoginTask(username,password,errorMessage);
             progressBar.progressProperty().bind(loginTask.progressProperty());
@@ -58,37 +53,16 @@ public class LoginController implements Initializable{
             loginThread.start();
             loginTask.setOnSucceeded((stateEvent) -> {
                 if ((boolean)loginTask.getValue()) {
-                    try {
-                        goToHome();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    goToHome();
                 } else return;
             });
 
         }else if (event.getSource() == backToMenu){
-            goBack();
+            changeScene("../view/main.fxml");
         }else {return;}
     }
 
-    public void goBack() throws IOException {
-        Scene scene = backToMenu.getScene();
-        Stage stage = (Stage) scene.getWindow();
-        Pane root = FXMLLoader.load(getClass().getResource("../view/main.fxml"));
-        goTo(scene,root,stage);
-    }
-
-    public void goToHome() throws IOException {
-        Scene scene = loginButton.getScene();
-        Stage stage = (Stage) scene.getWindow();
-        Pane root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-
-        goTo(scene,root,stage);
-    }
-
-    public void goTo(Scene scene, Pane root, Stage stage) {
-        scene.setRoot(root);
-        stage.setScene(scene);
-        stage.show();
+    public void goToHome(){
+        changeScene("../view/user.fxml");
     }
 }

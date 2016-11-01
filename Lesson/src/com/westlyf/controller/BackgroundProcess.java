@@ -18,12 +18,14 @@ public class BackgroundProcess extends Thread{
 
     boolean running = true;
     BufferedInputStream reader;
-    private static ExamChoicesOnlyViewerController examChoicesOnlyViewerController;
+    private ExamChoicesOnlyViewerController examChoicesOnlyViewerController;
 
     @Override
     public void run() {
         try {
             String fer;
+            examChoicesOnlyViewerController =
+                    (ExamChoicesOnlyViewerController) Controllers.getController(ControllerType.EXAM_CHOICES_ONLY_VIEWER);
             while( running ) {
                 fer = "";
                 reader = new BufferedInputStream(new FileInputStream( "C:\\Users\\Yves\\Desktop\\emotion.txt" ) );
@@ -32,9 +34,9 @@ public class BackgroundProcess extends Thread{
                 }
                 System.out.println(fer);
                 if (fer.equals("Anxious")){
-                    getExamChoicesOnlyViewerController().setHintButtonDisable(false);
+                    examChoicesOnlyViewerController.setHintButtonDisable(false);
                 }else {
-                    getExamChoicesOnlyViewerController().setHintButtonDisable(true);
+                    examChoicesOnlyViewerController.setHintButtonDisable(true);
                 }
                 Thread.sleep( 5000 );
             }
@@ -45,21 +47,5 @@ public class BackgroundProcess extends Thread{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /*public Node loadController() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ExamChoicesOnlyViewer.fxml"));
-        Node node = loader.load();
-        examChoicesOnlyViewerController = loader.getController();
-        examChoicesOnlyViewerController.setExam(Agent.getExam());
-        return node;
-    }*/
-
-    public static void setExamChoicesOnlyViewerController(ExamChoicesOnlyViewerController examChoicesOnlyViewerController) {
-        BackgroundProcess.examChoicesOnlyViewerController = examChoicesOnlyViewerController;
-    }
-
-    public static ExamChoicesOnlyViewerController getExamChoicesOnlyViewerController() {
-        return examChoicesOnlyViewerController;
     }
 }

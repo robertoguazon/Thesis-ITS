@@ -19,8 +19,6 @@ import java.util.ArrayList;
 public class Agent {
 
     private static Users loggedUser;
-    private static String currentModule;
-    private static String currentLesson;
     private static boolean isExerciseCleared;
 
     private static UserExercise userExercise = new UserExercise();
@@ -40,20 +38,14 @@ public class Agent {
 
     public Agent(Users user) {
         setLoggedUser(user);
-        setCurrentModule(getLoggedUser().getCurrentModuleId());
-        setCurrentLesson(getLoggedUser().getCurrentLessonId());
         loadAll();
-    }
-
-    public static void initializeProgram(){
-
     }
 
     public static void loadAll(){
         String s = "module";
         int i = 1;
         //extract data from db
-        while (!getCurrentModule().equals(s)) {
+        while (!Agent.getLoggedUser().getCurrentModuleId().equals(s)) {
             s = "module" + i++;
             load(LoadType.LESSON, s);
             load(LoadType.EXERCISE, s);
@@ -124,8 +116,6 @@ public class Agent {
         if (getLoggedUser() != null) {
             if (updateUser() > 0) {
                 setLoggedUser(null);
-                setCurrentModule(null);
-                setCurrentLesson(null);
                 setLesson(null);
                 setExercise(null);
                 setExam(null);
@@ -139,42 +129,48 @@ public class Agent {
         }
     }
 
-    public static void loadLesson(String tag1, String tag2){
+    public static TextLesson loadLesson(String tag1, String tag2){
         TextLesson match = null;
         for (int i = 0; i < getTextLessons().size(); i++) {
             match = getTextLessons().get(i);
             if (match.getTagsString().contains(tag1) && match.getTagsString().contains(tag2)){
-                setLesson(match);
-            }
+                break;
+            }else {match = null;}
         }
+        setLesson(match);
         System.out.println("\nRetrieved Lesson:\n" + getLesson());
+        return match;
     }
 
-    public static void loadExercise(String tag1, String tag2){
+    public static VideoPracticalExercise loadExercise(String tag1, String tag2){
         VideoPracticalExercise match = null;
         for (int i = 0; i < getVideoPracticalExercises().size(); i++) {
             match = getVideoPracticalExercises().get(i);
             if (match.getTagsString().contains(tag1) && match.getTagsString().contains(tag2)){
-                setExercise(match);
-            }
+                break;
+            }else {match = null;}
         }
+        setExercise(match);
         System.out.println("\nRetrieved Exercise:\n" + getExercise());
+        return match;
     }
 
-    public static void loadExam(){
+    public static Exam loadExam(){
+        Exam match = null;
         if (!getLoggedUser().getCurrentExamId().contains("exam")){
-            setExam(getExams().get((int) (Math.random() * getExams().size())));
-            Agent.getLoggedUser().setCurrentExamId(getExam().getTagsString());
+            match = getExams().get((int) (Math.random() * getExams().size()));
+            getLoggedUser().setCurrentExamId(getExam().getTagsString());
         }else {
             for (int i = 0; i < getExams().size(); i++){
-                Exam match = getExams().get(i);
+                match = getExams().get(i);
                 if (getLoggedUser().getCurrentExamId().contains(match.getTagsString())){
-                    setExam(match);
-                }
+                    break;
+                }else {match = null;}
             }
         }
-
+        setExam(match);
         System.out.println("\nRetrieved Exam:\n" + getExam());
+        return match;
     }
 
     public static ArrayList<TextLesson> getLessonsInModule(String currentModule) {
@@ -294,22 +290,6 @@ public class Agent {
 
     public static void setLoggedUser(Users loggedUser) {
         Agent.loggedUser = loggedUser;
-    }
-
-    public static String getCurrentModule() {
-        return currentModule;
-    }
-
-    public static void setCurrentModule(String currentModule) {
-        Agent.currentModule = currentModule;
-    }
-
-    public static String getCurrentLesson() {
-        return currentLesson;
-    }
-
-    public static void setCurrentLesson(String currentLesson) {
-        Agent.currentLesson = currentLesson;
     }
 
     public static UserExercise getUserExercise() {

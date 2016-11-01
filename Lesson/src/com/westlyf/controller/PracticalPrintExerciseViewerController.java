@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sample.controller.ControllerManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class PracticalPrintExerciseViewerController implements Initializable {
+public class PracticalPrintExerciseViewerController extends ControllerManager implements Initializable {
 
     @FXML private VBox codePane;
     @FXML private HBox statusPane;
@@ -174,8 +175,7 @@ public class PracticalPrintExerciseViewerController implements Initializable {
             }
             Agent.setIsExerciseCleared(true);
         }
-        Stage stage = (Stage) submitButton.getScene().getWindow();
-        stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+        child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     private void compileCode() {
