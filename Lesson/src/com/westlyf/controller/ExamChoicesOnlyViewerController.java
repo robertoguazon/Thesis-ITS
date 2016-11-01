@@ -77,6 +77,32 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         setHintTextAreaVisible(false);
     }
 
+    public void reset() {
+        choicesVBox.getChildren().clear();
+
+        examTitleLabel.setText("");
+        timeLeftSlider.setValue(0);
+        questionTextArea.setText("");
+        hintTextArea.setText("");
+
+        exam = null;
+        randomizedQuizItems.clear();
+
+        itemsSlider.setValue(0);
+
+        currentItem.set(1);
+        itemsSize = 0;
+
+        timer = null;
+        minutesTimer = null;
+        minutesProperty.set(0);
+
+        rawGrade = 0;
+        totalItems = 0;
+        percentGrade = 0;
+        status = "";
+    }
+
     public void startTimer() {
         setTimer(15); // 15minutes
     }
@@ -134,7 +160,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     }
 
     private void setQuizItem() {
-        choicesVBox.getChildren().clear(); //erase nodes
+        choicesVBox.getChildren().clear(); //erase nodes //TODO put this in the furture in reset
 
         QuizItem quizItem = randomizedQuizItems.get(currentItem.get() - 1); //for array
 
@@ -186,6 +212,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
 
     @FXML private void stopExam() {
         //TODO - stop?
+        reset();
         stopTimer();
         System.out.println("Stopped Exam -test");
     }
