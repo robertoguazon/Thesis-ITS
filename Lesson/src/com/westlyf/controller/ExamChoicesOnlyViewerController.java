@@ -89,6 +89,8 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         randomizedQuizItems.clear();
 
         itemsSlider.setValue(0);
+        itemsSliderRightButton.setDisable(false);
+        itemsSliderLeftButton.setDisable(true);
 
         currentItem.set(1);
         itemsSize = 0;
