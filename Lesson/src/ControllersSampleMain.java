@@ -33,8 +33,13 @@ public class ControllersSampleMain extends Application {
         //testVideoLessonViewer(primaryStage);
         //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
+<<<<<<< HEAD
         //testPracticalReturnExerciseViewer(primaryStage);
         testVideoPracticalExerciseViewer(primaryStage);
+=======
+        testPracticalReturnExerciseViewer(primaryStage);
+        //testVideoPracticalExerciseViewer(primaryStage);
+>>>>>>> origin/master
         //testExamChoicesOnlyViewer(primaryStage);
 
             //reviews
@@ -93,7 +98,8 @@ public class ControllersSampleMain extends Application {
 
     private void testPracticalReturnExerciseViewer(Stage primaryStage) {
 
-        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, ExerciseDatabase.getPracticalExerciseUsingTitle("Sample Multiply"));
+        Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER,
+                ExerciseDatabase.getPracticalExerciseUsingTitle("Challenge - Palindrome"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -130,7 +136,7 @@ public class ControllersSampleMain extends Application {
 
     private void testVideoPracticalExerciseViewer(Stage primaryStage) {
         Node node = Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER,
-                ExerciseDatabase.getVideoPracticalExerciseUsingTitle("Exercise 5 - More About Loops"));
+                ExerciseDatabase.getVideoPracticalExerciseUsingTitle("Exercise 4 - Do While Loop"));
         //Controllers.getNode(ControllerType.VIDEO_PRACTICAL_EXERCISE_VIEWER, ExerciseDatabase.getVideoPracticalExerciseUsingLID("lid51204534921811"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);

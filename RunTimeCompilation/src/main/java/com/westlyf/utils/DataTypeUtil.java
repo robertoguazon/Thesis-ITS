@@ -4,6 +4,7 @@ import com.westlyf.domain.exercise.practical.DataType;
 import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by robertoguazon on 31/08/2016.
@@ -30,6 +31,11 @@ public class DataTypeUtil {
                 case CHAR:
                     parametersTypesArray[i] = char.class;
                     break;
+                case INT_ARRAY:
+                    parametersTypesArray[i] = int[].class;
+                    break;
+                case BOOLEAN:
+                    parametersTypesArray[i] = boolean.class;
                 default:
                     parametersTypesArray = null;
                     break;
@@ -55,10 +61,29 @@ public class DataTypeUtil {
 
             case CHAR:
                 return value.charAt(0);
-
+            case INT_ARRAY:
+                return toIntArray(value);
+            case BOOLEAN:
+                return Boolean.parseBoolean(value);
             default:
                 return null;
         }
+    }
+
+    public static int[] toIntArray(String string) {
+        try {
+            String[] stringArray = string.split(",");
+            int[] intArray = new int[stringArray.length];
+            for (int i = 0; i < intArray.length; i++) {
+                intArray[i] = Integer.parseInt(stringArray[i]);
+            }
+
+            return intArray;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
     public static String[] toStringArray(ArrayList<String> strings) {
@@ -76,5 +101,12 @@ public class DataTypeUtil {
         }
 
         return stringsArray;
+    }
+
+    public static boolean isEqualsObjectIntArray(Object objectArray1, Object objectArray2) {
+        int[] array1 = (int[]) objectArray1;
+        int[] array2 = (int[]) objectArray2;
+
+        return Arrays.equals(array1,array2);
     }
 }

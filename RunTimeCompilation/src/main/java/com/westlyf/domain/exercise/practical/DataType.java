@@ -10,5 +10,7 @@ public enum DataType {
     INT,
     FLOAT,
     STRING,
-    CHAR
+    CHAR,
+    INT_ARRAY,
+    BOOLEAN,
 }

@@ -77,7 +77,11 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         setHintTextAreaVisible(false);
     }
 
-    public void setTimer(int minutes){
+    public void startTimer() {
+        setTimer(15); // 15minutes
+    }
+
+    private void setTimer(int minutes){
         long delay = delayMinute * minutes;
 
         timeLeftSlider.setMin(0);
@@ -275,11 +279,15 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     }
 
     private void stopTimer() {
-        timer.cancel();
-        timer.purge();
+        if (timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
 
-        minutesTimer.cancel();
-        minutesTimer.purge();
+        if (minutesTimer != null) {
+            minutesTimer.cancel();
+            minutesTimer.purge();
+        }
     }
     //TODO -dispose resources
 }

@@ -79,10 +79,25 @@ public class UserController extends ControllerManager implements Initializable{
         }else {return;}
     }
 
+<<<<<<< HEAD
     private void openExam() throws IOException {
         Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, Agent.loadExam());
         changeScene(node);
         loadFER();
+=======
+    private Node openExam() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../com/westlyf/view/ExamChoicesOnlyViewer.fxml"));
+        Node node = loader.load();
+        ExamChoicesOnlyViewerController examChoicesOnlyViewerController = loader.getController();
+        Agent.loadExam();
+        examChoicesOnlyViewerController.setExam(Agent.getExam());
+        //loadFER(examChoicesOnlyViewerController);
+
+        //TODO start timer when exam is opened
+        ExamChoicesOnlyViewerController examController = loader.getController();
+        examController.startTimer();
+        return node;
+>>>>>>> origin/master
     }
 
     private void loadFER(){
