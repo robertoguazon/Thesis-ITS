@@ -48,13 +48,20 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    public void clearStyle(){
         codePane.toFront();
         submitButton.setDisable(true);
+        responseText.setText("");
+        responseText.getParent().setStyle("");
+        statusLabel.setText("");
+        statusPane.setStyle("");
     }
 
     public void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
         this.practicalPrintExercise = practicalPrintExercise;
-
+        clearStyle();
         titleLabel.setText(practicalPrintExercise.getTitle());
         instructionsTextArea.setText(practicalPrintExercise.getInstructions());
 
@@ -101,10 +108,6 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
                 statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
                 statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
                 statusPane.toFront();
-                codeTextArea.setEditable(false);
-                clearCodeButton.setDisable(true);
-                runCodeButton.setDisable(true);
-                clearOutputButton.setDisable(true);
                 submitButton.setDisable(false);
             } else if (errorCStringIndex != -1) {
                 //responseText.setText(practicalPrintExercise.getExplanation());
