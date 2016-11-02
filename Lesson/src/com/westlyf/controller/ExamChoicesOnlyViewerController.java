@@ -249,6 +249,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             if (status.equals("Passed")){
                 if (++moduleNo <= 7) {
                     unlockNextModule("module" + moduleNo);
+                    Agent.clearExams();
                 }else {unlockChallenge();}
             }else {
                 Agent.getLoggedUser().setCurrentExamId(module);
@@ -256,7 +257,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         }
         AlertBox.display("Exam Finished", title, message);
         Agent.stopBackground();
-        Agent.clearExams();
         reset();
         changeScene("../../../sample/view/user.fxml");
     }

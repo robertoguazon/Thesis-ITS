@@ -54,11 +54,11 @@ public class Agent {
             load(LoadType.LESSON, s);
             load(LoadType.EXERCISE, s);
         };
-        if (loggedUser.getCurrentExamId() == "challenge"){
+        if (getLoggedUser().getCurrentExamId() == "challenge"){
             load(LoadType.CHALLENGE, "challenge");
-        }else if (loggedUser.getCurrentExamId() != null) {
+        }else if (getLoggedUser().getCurrentExamId() != null) {
             load(LoadType.EXAM, s);
-        }
+        }else {load(LoadType.EXAM, getLoggedUser().getCurrentExamId());}
         load(LoadType.USER_EXERCISE);
         load(LoadType.GRADE);
         //prints out the arraylists
