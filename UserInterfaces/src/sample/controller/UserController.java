@@ -35,13 +35,15 @@ public class UserController extends ControllerManager implements Initializable{
         Users loggedUser = Agent.getLoggedUser();
         if (loggedUser != null){
             user.setText(loggedUser.getName());
-            if (!loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId())){
+            if (loggedUser.getCurrentExamId() == null ||
+                    !loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId())){
                 exam.setDisable(true);
             }
             if (Agent.getExamGrades().isEmpty()){
                 grades.setDisable(true);
             }
-            if (!loggedUser.getCurrentExamId().contains("challenge")) {
+            if (loggedUser.getCurrentExamId() == null ||
+                    !loggedUser.getCurrentExamId().contains("challenge")) {
                 challenge.setDisable(true);
             }
         }

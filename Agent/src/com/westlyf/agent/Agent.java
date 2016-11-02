@@ -54,9 +54,9 @@ public class Agent {
             load(LoadType.LESSON, s);
             load(LoadType.EXERCISE, s);
         };
-        if (loggedUser.getCurrentExamId().equals("challenge")){
+        if (loggedUser.getCurrentExamId() == "challenge"){
             load(LoadType.CHALLENGE, "challenge");
-        }else {
+        }else if (loggedUser.getCurrentExamId() != null) {
             load(LoadType.EXAM, s);
         }
         load(LoadType.USER_EXERCISE);
