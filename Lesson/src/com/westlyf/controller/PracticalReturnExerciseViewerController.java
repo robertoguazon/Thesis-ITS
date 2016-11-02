@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class PracticalReturnExerciseViewerController extends ControllerManager implements Initializable {
+public class PracticalReturnExerciseViewerController extends ControllerManager implements Initializable, Disposable {
 
     @FXML private VBox codePane;
     @FXML private HBox statusPane;
@@ -74,6 +74,16 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
     public void initialize(URL location, ResourceBundle resources) {
         codePane.toFront();
         submitButton.setDisable(true);
+    }
+
+    public void reset(){
+        codePane.toFront();
+        submitButton.setDisable(true);
+        responseText.setText("");
+        responseText.getParent().setStyle("");
+        statusLabel.setText("");
+        statusPane.setStyle("");
+        clearOutput();
     }
 
     @FXML
@@ -199,5 +209,9 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
         outputTextArea.appendText("Error: " + string + "\n");
     }
 
+    @Override
+    public void dispose() {
+
+    }
 
 }

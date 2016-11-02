@@ -1,8 +1,7 @@
 package sample.controller;
 
 import com.westlyf.agent.Agent;
-import com.westlyf.controller.ControllerType;
-import com.westlyf.controller.Controllers;
+import com.westlyf.controller.*;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +42,7 @@ public class ChallengesController extends ControllerManager implements Initializ
                 if (confirmTakeChallenge(selectedChallenge)) {
                     Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER,
                             Agent.loadChallenge(selectedChallenge));
-                    newChildWindow(node, "Challenge");
+                    newChildWindow(node, ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER,  "Challenge");
                 }
             }
         });
@@ -61,9 +60,9 @@ public class ChallengesController extends ControllerManager implements Initializ
     }
 
     public void reset(){
-        challenges.clear();
-        challengesList.clear();
-        challengesListView.getItems().clear();
+        //challenges.clear();
+        //challengesList.clear(); //TODO don't clear on reset
+        //challengesListView.getItems().clear();
     }
 
     @FXML
