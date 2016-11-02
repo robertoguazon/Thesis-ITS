@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.controller.ControllerManager;
 import sample.controller.ResultController;
 import sample.model.AlertBox;
 
@@ -29,7 +30,7 @@ import java.util.TimerTask;
 /**
  * Created by robertoguazon on 24/09/2016.
  */
-public class ExamChoicesOnlyViewerController implements Initializable, Disposable {
+public class ExamChoicesOnlyViewerController extends ControllerManager implements Initializable, Disposable {
 
     @FXML private BorderPane pane;
     @FXML private VBox hintPane;
@@ -63,7 +64,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     private DoubleProperty minutesProperty = new SimpleDoubleProperty();
 
     private long delayMinute = 1_000 * 60; //60_000 (seconds in delta time) * 60 (to minutes) * 60 (to hour)
-    private static final double passingGrade = 0.6;
+    private static final int passingGrade = 60; //60% passing grade
     private int rawGrade;
     private int totalItems;
     private int percentGrade;
@@ -224,23 +225,19 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         stopExam();
         rawGrade = exam.evaluate();
         totalItems = exam.getQuizItems().size();
-        System.out.println(rawGrade + " / " + totalItems);
-        double d = 100 * rawGrade / totalItems;
-        System.out.println(d);
-        percentGrade = (int) d;
+        System.out.println("score: " + rawGrade + " / " + totalItems);
+        percentGrade = (int) 100 * rawGrade / totalItems;
+        System.out.println("percent grade: " + percentGrade);
         String currentModule = Agent.getLoggedUser().getCurrentModuleId();
         int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
-        String module = "module" + ++moduleNo;
+        String module = "module" + moduleNo;
         String title, message;
-        if (percentGrade >= totalItems * passingGrade) {
+        if (percentGrade >= passingGrade) {
             status = "Passed";
             title = "Congratulations! You have passed the exam.";
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
-            if (Agent.getLoggedUser() != null){
-                saveRecords(module);
-            }
         }else {
             status = "Failed";
             title = "Your grade didn't reach the passing score of " +
@@ -248,39 +245,64 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
-            if (Agent.getLoggedUser() != null){
-                saveRecords(module);
+        }
+        if (Agent.getLoggedUser() != null){
+            saveRecords();
+            if (status.equals("Passed")){
+                unlockNextModule("module" + ++moduleNo);
+            }else {
+                Agent.getLoggedUser().setCurrentExamId(module);
             }
         }
-
         AlertBox.display("Exam Finished", title, message);
         Agent.stopBackground();
-        handleChangeSceneAction();
-
-        reset(); //TODO
+        Agent.clearExams();
+        reset();
+        changeScene("../../../sample/view/user.fxml");
+        //handleChangeSceneAction();
     }
 
-    public void saveRecords(String module){
+    public void saveRecords(){
         if (Agent.getLoggedUser() != null) {
+/*
             if (Agent.containsExamGrade(exam)) {
+                System.out.println("current percent grade: " + percentGrade);
+                System.out.println("Agent percent grade: " + Agent.getExamGrade().getPercentGrade());
                 percentGrade = (int) (Math.ceil(Agent.getExamGrade().getPercentGrade() + percentGrade) / 2);
+                System.out.println("Ave percent grade: " + percentGrade);
+                System.out.println("updating.. " +
+                        "\nrawgrade: " + rawGrade +
+                        "\ntotalitems: " + totalItems +
+                        "\npercentgrade: " + percentGrade +
+                        "\nstatus: " + status);
                 if (Agent.updateExamGrade(rawGrade, totalItems, percentGrade, status) < 0) {
                     return;
                 }
             } else {
+*/
+                System.out.println("storing.. " +
+                        "\nrawgrade: " + rawGrade +
+                        "\ntotalitems: " + totalItems +
+                        "\npercentgrade: " + percentGrade +
+                        "\nstatus: " + status);
                 if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
                     return;
                 }
+/*
             }
-            Agent.getLoggedUser().setCurrentModuleId(module);
-            Agent.getLoggedUser().setCurrentLessonId("lesson0");
-            Agent.getLoggedUser().setCurrentExamId(null);
-            Agent.load(LoadType.LESSON, module);
-            Agent.print(LoadType.LESSON);
-            Agent.load(LoadType.EXERCISE, module);
-            Agent.print(LoadType.EXERCISE);
-            Agent.updateUser();
+*/
         }
+    }
+
+    public void unlockNextModule(String module){
+        Agent.getLoggedUser().setCurrentModuleId(module);
+        Agent.getLoggedUser().setCurrentLessonId("lesson0");
+        Agent.getLoggedUser().setCurrentExamId(null);
+        Agent.load(LoadType.LESSON, module);
+        Agent.print(LoadType.LESSON);
+        Agent.load(LoadType.EXERCISE, module);
+        Agent.print(LoadType.EXERCISE);
+        Agent.updateUser();
     }
 
     public void handleChangeSceneAction(){

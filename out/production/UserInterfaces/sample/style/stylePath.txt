@@ -1,1 +1,1 @@
-sample/style/css/dark.css
+sample/style/css/light.css

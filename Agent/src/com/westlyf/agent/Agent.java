@@ -51,7 +51,7 @@ public class Agent {
             load(LoadType.LESSON, s);
             load(LoadType.EXERCISE, s);
         };
-        load(LoadType.EXAM);
+        load(LoadType.EXAM, s);
         load(LoadType.USER_EXERCISE);
         load(LoadType.GRADE);
         //prints out the arraylists
@@ -75,7 +75,7 @@ public class Agent {
                 getVideoPracticalExercises().addAll(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains(s));
                 break;
             case EXAM:
-                setExams(ExamDatabase.getExamsUsingTagsContains(getLoggedUser().getCurrentExamId()));
+                setExams(ExamDatabase.getExamsUsingTagsContains(s));
                 break;
             case USER_EXERCISE:
                 getUserExercises().addAll(UserDatabase.getUserExercisesUsingUserId(getLoggedUser().getUserId()));
@@ -190,6 +190,7 @@ public class Agent {
         getLessonsInModule().clear();
     }
 
+    public static void clearExams() { getExams().clear(); }
     public static boolean containsPracticalExercise(PracticalExercise practicalExercise){
         UserExercise match = null;
         for (int i = 0; i < getUserExercises().size(); i++){
