@@ -34,6 +34,7 @@ public class Agent {
     private static ArrayList<Exam> exams = new ArrayList<Exam>();
     private static ArrayList<ExamGrade> examGrades = new ArrayList<ExamGrade>();
 
+    private static BackgroundProcess background = new BackgroundProcess();
     private static final String fer = "http://localhost/emotion-detection/";
 
     public Agent(Users user) {
@@ -223,14 +224,12 @@ public class Agent {
     }
 
     public static void startBackground(){
-        BackgroundProcess background = new BackgroundProcess();
         background.setDaemon(true);
         background.start();
     }
 
     public static void stopBackground(){
-        BackgroundProcess background = new BackgroundProcess();
-        background.interrupt();
+        background.stopBackground();
     }
 
     //database methods

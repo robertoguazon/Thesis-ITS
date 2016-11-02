@@ -10,13 +10,14 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Yves on 10/16/2016.
  */
 public class BackgroundProcess extends Thread{
 
-    boolean running = true;
+    private volatile boolean running = true;
     BufferedInputStream reader;
     private ExamChoicesOnlyViewerController examChoicesOnlyViewerController;
 
@@ -40,10 +41,21 @@ public class BackgroundProcess extends Thread{
                 }
                 Thread.sleep( 5000 );
             }
+            System.out.println("Background Process has been stopped: FER");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stopBackground(){
+        running = false;
+        System.out.println("Stopping Background Process...");
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
