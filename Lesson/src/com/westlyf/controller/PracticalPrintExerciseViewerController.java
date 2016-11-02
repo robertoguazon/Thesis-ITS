@@ -50,18 +50,18 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    public void clearStyle(){
+    public void reset(){
         codePane.toFront();
         submitButton.setDisable(true);
         responseText.setText("");
         responseText.getParent().setStyle("");
         statusLabel.setText("");
         statusPane.setStyle("");
+        clearOutput();
     }
 
     public void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
         this.practicalPrintExercise = practicalPrintExercise;
-        clearStyle();
         titleLabel.setText(practicalPrintExercise.getTitle());
         instructionsTextArea.setText(practicalPrintExercise.getInstructions());
 
@@ -178,6 +178,7 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
             }
             Agent.setIsExerciseCleared(true);
         }
+        reset();
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 

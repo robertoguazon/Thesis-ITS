@@ -80,6 +80,7 @@ public class UserController extends ControllerManager implements Initializable{
     }
 
     private void logout(){
+        Controllers.disposeAll(); //TODO -fix
         Agent.removeLoggedUser();
     }
 

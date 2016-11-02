@@ -52,7 +52,7 @@ public class NewProfileController extends ControllerManager implements Initializ
                 AlertBox.display("Successful Insert",
                         "You have been successfully registered as one of the users.",
                         "Going back to the start menu...");
-                changeScene("../view/user.fxml");
+                changeScene("../view/main.fxml");
             }else {return;}
         }else if (event.getSource() == backToMenu){
             changeScene("../view/main.fxml");
@@ -66,7 +66,7 @@ public class NewProfileController extends ControllerManager implements Initializ
         String name = nameText.getText().trim();
         String age = ageComboBox.getValue().toString();
         String sex = getSex();
-        String school = schoolText.getText();
+        String school = schoolText.getText().trim();
         String yearLevel = yearLevelComboBox.getValue().toString();
         String currentModule = "module1";
         String currentLesson = "lesson0";

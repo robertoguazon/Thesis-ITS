@@ -116,9 +116,10 @@ public class TextLessonViewerController extends ControllerManager implements Ini
                             "Congratulations!\nYou have completed the entire module.\n" +
                                     "You are now ready to take the exam.",
                             "Do you wish to go back to the main menu to take the exam?");
+                    Agent.load(LoadType.EXAM);
                     if (answer) {
-                        Agent.load(LoadType.EXAM);
                         Agent.clearLessonsInModule();
+                        lessonsVBox.getChildren().clear();
                         changeScene("../../../sample/view/user.fxml");
                     }
                 }
