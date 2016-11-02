@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.controller.ControllerManager;
 import sample.controller.ResultController;
 import sample.model.AlertBox;
 
@@ -29,7 +30,7 @@ import java.util.TimerTask;
 /**
  * Created by robertoguazon on 24/09/2016.
  */
-public class ExamChoicesOnlyViewerController implements Initializable, Disposable {
+public class ExamChoicesOnlyViewerController extends ControllerManager implements Initializable, Disposable {
 
     @FXML private BorderPane pane;
     @FXML private VBox hintPane;
@@ -63,7 +64,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
     private DoubleProperty minutesProperty = new SimpleDoubleProperty();
 
     private long delayMinute = 1_000 * 60; //60_000 (seconds in delta time) * 60 (to minutes) * 60 (to hour)
-    private static final double passingGrade = 0.6;
+    private static final int passingGrade = 60; //60% passing grade
     private int rawGrade;
     private int totalItems;
     private int percentGrade;
@@ -224,23 +225,17 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         stopExam();
         rawGrade = exam.evaluate();
         totalItems = exam.getQuizItems().size();
-        System.out.println(rawGrade + " / " + totalItems);
-        double d = 100 * rawGrade / totalItems;
-        System.out.println(d);
-        percentGrade = (int) d;
+        percentGrade = (int) 100 * rawGrade / totalItems;
         String currentModule = Agent.getLoggedUser().getCurrentModuleId();
         int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
-        String module = "module" + ++moduleNo;
+        String module = "module" + moduleNo;
         String title, message;
-        if (percentGrade >= totalItems * passingGrade) {
+        if (percentGrade >= passingGrade) {
             status = "Passed";
             title = "Congratulations! You have passed the exam.";
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
-            if (Agent.getLoggedUser() != null){
-                saveRecords(module);
-            }
         }else {
             status = "Failed";
             title = "Your grade didn't reach the passing score of " +
@@ -248,30 +243,34 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
-            if (Agent.getLoggedUser() != null){
-                saveRecords(module);
+        }
+        if (Agent.getLoggedUser() != null){
+            saveRecords();
+            if (status.equals("Passed")){
+                if (++moduleNo <= 7) {
+                    unlockNextModule("module" + moduleNo);
+                }else {unlockChallenge();}
+            }else {
+                Agent.getLoggedUser().setCurrentExamId(module);
             }
         }
-
         AlertBox.display("Exam Finished", title, message);
         Agent.stopBackground();
-        handleChangeSceneAction();
-
-        reset(); //TODO
+        Agent.clearExams();
+        reset();
+        changeScene("../../../sample/view/user.fxml");
     }
 
-    public void saveRecords(String module){
+    private void saveRecords(){
         if (Agent.getLoggedUser() != null) {
-            if (Agent.containsExamGrade(exam)) {
-                percentGrade = (int) (Math.ceil(Agent.getExamGrade().getPercentGrade() + percentGrade) / 2);
-                if (Agent.updateExamGrade(rawGrade, totalItems, percentGrade, status) < 0) {
-                    return;
-                }
-            } else {
-                if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
-                    return;
-                }
+            if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
+                return;
             }
+        }
+    }
+
+    private void unlockNextModule(String module){
+        if (Agent.getLoggedUser() != null) {
             Agent.getLoggedUser().setCurrentModuleId(module);
             Agent.getLoggedUser().setCurrentLessonId("lesson0");
             Agent.getLoggedUser().setCurrentExamId(null);
@@ -279,21 +278,41 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
             Agent.print(LoadType.LESSON);
             Agent.load(LoadType.EXERCISE, module);
             Agent.print(LoadType.EXERCISE);
-            Agent.updateUser();
+            if (Agent.updateUser() > 0){
+                AlertBox.display("Unlocked", "Unlocked " + module, "Click \"ok\" to close this alert box.");
+            }
         }
     }
 
-    public void handleChangeSceneAction(){
+    private void unlockChallenge() {
+        if (Agent.getLoggedUser() != null) {
+            Agent.getLoggedUser().setCurrentExamId("challenge");
+            Agent.load(LoadType.CHALLENGE, "challenge");
+            Agent.print(LoadType.CHALLENGE);
+            if (Agent.updateUser() > 0){
+                AlertBox.display("Unlocked",
+                        "Congratulations! You've cleared all the modules.\n" +
+                        "Unlocked Challenges Area.",
+                        "You have unlocked the Challenges Area.\n" +
+                        "Take on different known algorithms and \n" +
+                        "try to solve them with the knowledge you've acquired and \n" +
+                        "apply what you have learned in the past modules.\n\n" +
+                        "Click \"ok\" to close this alert box.");
+            }
+        }
+    }
+
+    private void viewResults(){
         Stage stage;
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/user.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/results.fxml"));
             root = loader.load();
-//            ResultController resultController = loader.getController();
-//            resultController.setExam(exam);
-//            resultController.setRawGrade(rawGrade);
-//            resultController.setTotalItems(totalItems);
-//            resultController.setPercentGrade(percentGrade);
+            ResultController resultController = loader.getController();
+            resultController.setExam(exam);
+            resultController.setRawGrade(rawGrade);
+            resultController.setTotalItems(totalItems);
+            resultController.setPercentGrade(percentGrade);
             stage = (Stage)submitExamButton.getScene().getWindow();
             Scene scene = new Scene(root);
             scene.getStylesheets().addAll(pane.getScene().getStylesheets());

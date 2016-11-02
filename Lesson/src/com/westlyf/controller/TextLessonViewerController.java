@@ -62,7 +62,11 @@ public class TextLessonViewerController extends ControllerManager implements Ini
         String[] lessonTags = textLesson.getTagsString().split(",");
         for (int i=0; i<lessonTags.length; i++) {
             if (Agent.loadExercise(lessonTags[0], lessonTags[1]) == null) {
-                exerciseButton.setText("Next Lesson");
+                if (currentLessonNo < lesson.length-1){
+                    exerciseButton.setText("Next Lesson");
+                }else {
+                    exerciseButton.setText("Exam");
+                }
                 return;
             } else {
                 exerciseButton.setText("Exercise");
@@ -116,7 +120,7 @@ public class TextLessonViewerController extends ControllerManager implements Ini
                             "Congratulations!\nYou have completed the entire module.\n" +
                                     "You are now ready to take the exam.",
                             "Do you wish to go back to the main menu to take the exam?");
-                    Agent.load(LoadType.EXAM);
+                    Agent.load(LoadType.EXAM, currentModule);
                     if (answer) {
                         Agent.clearLessonsInModule();
                         lessonsVBox.getChildren().clear();
@@ -136,7 +140,9 @@ public class TextLessonViewerController extends ControllerManager implements Ini
             if (exerciseButton.getText().equals("Next Lesson")){
                 unlock(++currentLessonNo);
                 setTextLesson(lessonsInModule.get(currentLessonNo));
-            } else {openExercise();}
+            }
+            else if (exerciseButton.getText().equals("Exam")){unlock(++currentLessonNo);}
+            else { openExercise(); }
         }
     }
 

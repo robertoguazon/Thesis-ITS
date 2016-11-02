@@ -11,5 +11,6 @@
     <orderEntry type="module" module-name="Lesson" />
     <orderEntry type="module" module-name="User" />
     <orderEntry type="module" module-name="Exercise" />
+    <orderEntry type="module" module-name="RunTimeCompilation" />
   </component>
 </module>

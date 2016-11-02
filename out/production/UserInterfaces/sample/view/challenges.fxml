@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ChallengesController">
+   <top>
+      <HBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="label-header" text="Challenges">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#handleAction" text="Back to Menu" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox styleClass="body" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="challengesListView" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

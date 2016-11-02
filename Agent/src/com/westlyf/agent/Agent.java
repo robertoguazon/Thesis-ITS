@@ -4,6 +4,7 @@ import com.westlyf.controller.BackgroundProcess;
 import com.westlyf.database.*;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.user.ExamGrade;
@@ -12,6 +13,7 @@ import com.westlyf.user.Users;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by robertoguazon on 05/09/2016.
@@ -30,10 +32,12 @@ public class Agent {
     private static ArrayList<UserExercise> userExercises = new ArrayList<UserExercise>();
     private static ArrayList<TextLesson> lessonsInModule = new ArrayList<TextLesson>();
     private static ArrayList<TextLesson> textLessons = new ArrayList<TextLesson>();
+    private static ArrayList<PracticalExercise> challenges = new ArrayList<PracticalExercise>();
     private static ArrayList<VideoPracticalExercise> videoPracticalExercises = new ArrayList<VideoPracticalExercise>();
     private static ArrayList<Exam> exams = new ArrayList<Exam>();
     private static ArrayList<ExamGrade> examGrades = new ArrayList<ExamGrade>();
 
+    private static BackgroundProcess background = new BackgroundProcess();
     private static final String fer = "http://localhost/emotion-detection/";
 
     public Agent(Users user) {
@@ -50,13 +54,18 @@ public class Agent {
             load(LoadType.LESSON, s);
             load(LoadType.EXERCISE, s);
         };
-        load(LoadType.EXAM);
+        if (loggedUser.getCurrentExamId().equals("challenge")){
+            load(LoadType.CHALLENGE, "challenge");
+        }else {
+            load(LoadType.EXAM, s);
+        }
         load(LoadType.USER_EXERCISE);
         load(LoadType.GRADE);
         //prints out the arraylists
         print(LoadType.LESSON);
         print(LoadType.EXERCISE);
         print(LoadType.EXAM);
+        print(LoadType.CHALLENGE);
         print(LoadType.USER_EXERCISE);
         print(LoadType.GRADE);
     }
@@ -74,7 +83,7 @@ public class Agent {
                 getVideoPracticalExercises().addAll(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains(s));
                 break;
             case EXAM:
-                setExams(ExamDatabase.getExamsUsingTagsContains(getLoggedUser().getCurrentExamId()));
+                setExams(ExamDatabase.getExamsUsingTagsContains(s));
                 break;
             case USER_EXERCISE:
                 getUserExercises().addAll(UserDatabase.getUserExercisesUsingUserId(getLoggedUser().getUserId()));
@@ -82,6 +91,8 @@ public class Agent {
             case GRADE:
                 getExamGrades().addAll(UserDatabase.getExamGradesUsingUserId(getLoggedUser().getUserId()));
                 break;
+            case CHALLENGE:
+                getChallenges().addAll(ExerciseDatabase.getPracticalExercisesUsingTagsContains(s));
             default:
                 System.out.println("empty.");
                 break;
@@ -106,6 +117,8 @@ public class Agent {
             case GRADE:
                 getExamGrades().forEach((a)->System.out.println(a));
                 break;
+            case CHALLENGE:
+                getChallenges().forEach((a)->System.out.println(a));
             default:
                 System.out.println("empty.");
                 break;
@@ -173,6 +186,18 @@ public class Agent {
         return match;
     }
 
+    public static PracticalExercise loadChallenge(String title){
+        PracticalExercise match = null;
+        for (int i = 0; i < getChallenges().size(); i++) {
+            match = getChallenges().get(i);
+            if (match.getTitle().contains(title)){
+                break;
+            }else {match = null;}
+        }
+        System.out.println("\nRetrieved Challenge:\n" + match);
+        return match;
+    }
+
     public static ArrayList<TextLesson> getLessonsInModule(String currentModule) {
         for (int i = 0; i < getTextLessons().size(); i++) {
             TextLesson match = getTextLessons().get(i);
@@ -188,6 +213,8 @@ public class Agent {
     public static void clearLessonsInModule(){
         getLessonsInModule().clear();
     }
+
+    public static void clearExams() { getExams().clear(); }
 
     public static boolean containsPracticalExercise(PracticalExercise practicalExercise){
         UserExercise match = null;
@@ -223,14 +250,12 @@ public class Agent {
     }
 
     public static void startBackground(){
-        BackgroundProcess background = new BackgroundProcess();
         background.setDaemon(true);
         background.start();
     }
 
     public static void stopBackground(){
-        BackgroundProcess background = new BackgroundProcess();
-        background.interrupt();
+        background.stopBackground();
     }
 
     //database methods
@@ -361,6 +386,14 @@ public class Agent {
         Agent.lessonsInModule = lessonsInModule;
     }
 
+    public static ArrayList<PracticalExercise> getChallenges() {
+        return challenges;
+    }
+
+    public static void setChallenges(ArrayList<PracticalExercise> challenges) {
+        Agent.challenges = challenges;
+    }
+
     public static ArrayList<VideoPracticalExercise> getVideoPracticalExercises() {
         return videoPracticalExercises;
     }
@@ -386,4 +419,6 @@ public class Agent {
     public static void setExamGrades(ArrayList<ExamGrade> examGrades) {
         Agent.examGrades = examGrades;
     }
+
+
 }

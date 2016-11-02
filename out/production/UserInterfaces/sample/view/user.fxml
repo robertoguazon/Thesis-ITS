@@ -51,61 +51,65 @@
       </HBox>
    </top>
    <center>
-      <HBox alignment="CENTER" prefHeight="326.0" prefWidth="640.0" spacing="15.0" styleClass="body">
+      <VBox styleClass="body">
          <children>
-            <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button1" text="Learn">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/learn.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button2" text="Exam">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../style/images/exam.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button3" text="Grades">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../style/images/grades.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button4" text="Challenge">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../style/images/challenge.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
+            <HBox alignment="CENTER" prefHeight="326.0" prefWidth="640.0" spacing="15.0">
+               <children>
+                  <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button1" text="Learn">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../style/images/learn.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button2" text="Exam">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../style/images/exam.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button3" text="Grades">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../style/images/grades.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button4" text="Challenge">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../style/images/challenge.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </HBox>
+      </VBox>
    </center>
    <bottom>
       <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0" spacing="10.0" styleClass="footer">

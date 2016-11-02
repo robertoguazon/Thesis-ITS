@@ -22,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sample.controller.ControllerManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +30,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class PracticalReturnExerciseViewerController implements Initializable {
+public class PracticalReturnExerciseViewerController extends ControllerManager implements Initializable {
 
     @FXML private VBox codePane;
     @FXML private HBox statusPane;
@@ -160,9 +161,9 @@ public class PracticalReturnExerciseViewerController implements Initializable {
                     return;
                 }
             }
+            Agent.setIsExerciseCleared(true);
         }
-        Stage stage = (Stage) submitButton.getScene().getWindow();
-        stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+        child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
     private boolean compileCode() {
