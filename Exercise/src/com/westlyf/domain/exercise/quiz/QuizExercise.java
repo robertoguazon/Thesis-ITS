@@ -184,4 +184,8 @@ public class QuizExercise extends Exercise implements Serializable {
 
         return score;
     }
+
+    public void clearAllAnswers() {
+        quizItems.forEach(QuizItem::clearAnswers);
+    }
 }

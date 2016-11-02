@@ -441,4 +441,10 @@ public class QuizItem implements Serializable {
 
         return box;
     }
+
+    public void clearAnswers() {
+        if (answers != null) {
+            answers.clear();
+        }
+    }
 }

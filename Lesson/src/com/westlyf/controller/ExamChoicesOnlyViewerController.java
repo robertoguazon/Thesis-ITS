@@ -86,7 +86,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         questionTextArea.setText("");
         hintTextArea.setText("");
 
-        exam = null;
+        exam.clearAllAnswers(); //clear the user's answers
+        exam = null; // set the reference to null
         randomizedQuizItems.clear();
 
         itemsSlider.setValue(0);
