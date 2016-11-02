@@ -226,6 +226,7 @@ public class ExamChoicesOnlyViewerController implements Initializable, Disposabl
         }
 
         AlertBox.display("Exam Finished", title, message);
+        Agent.stopBackground();
         handleChangeSceneAction();
     }
 

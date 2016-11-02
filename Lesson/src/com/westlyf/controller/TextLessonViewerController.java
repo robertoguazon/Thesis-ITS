@@ -143,23 +143,34 @@ public class TextLessonViewerController extends ControllerManager implements Ini
     public void closeChildWindow(){
         if (Agent.isCleared()){
             Agent.setIsExerciseCleared(false);
-            disposeExercise();
+            disposeVideoLesson();
+            disposePracticalExercise();
+            child.close();
             unlock(++currentLessonNo);
         }else {
             Boolean answer = ConfirmBox.display("Close window",
                     "Are you sure you want to close this window?", "All changes will not be saved.");
             if (answer){
-                disposeExercise();
+                disposeVideoLesson();
+                disposePracticalExercise();
+                child.close();
             }
         }
     }
 
-    public void disposeExercise(){
+    public void disposeVideoLesson(){
         VideoLessonViewerController videoLessonViewerController =
                 (VideoLessonViewerController) Controllers.getController(ControllerType.VIDEO_LESSON_VIEWER);
         if (videoLessonViewerController instanceof Disposable) {
             videoLessonViewerController.dispose();
         }
-        child.close();
+    }
+
+    public void disposePracticalExercise(){
+        PracticalPrintExerciseViewerController practicalPrintExerciseViewerController =
+                (PracticalPrintExerciseViewerController) Controllers.getController(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER);
+        if (practicalPrintExerciseViewerController instanceof Disposable) {
+            practicalPrintExerciseViewerController.dispose();
+        }
     }
 }

@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * Created by robertoguazon on 04/09/2016.
  */
-public class PracticalPrintExerciseViewerController extends ControllerManager implements Initializable {
+public class PracticalPrintExerciseViewerController extends ControllerManager implements Initializable, Disposable{
 
     @FXML private VBox codePane;
     @FXML private HBox statusPane;
@@ -178,7 +178,6 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
             }
             Agent.setIsExerciseCleared(true);
         }
-        reset();
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
@@ -211,5 +210,10 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
 
     private void outputError(String string) {
         outputTextArea.appendText("Error: " + string + "\n");
+    }
+
+    @Override
+    public void dispose() {
+        reset();
     }
 }

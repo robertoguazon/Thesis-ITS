@@ -159,7 +159,7 @@ public class Agent {
         Exam match = null;
         if (!getLoggedUser().getCurrentExamId().contains("exam")){
             match = getExams().get((int) (Math.random() * getExams().size()));
-            getLoggedUser().setCurrentExamId(getExam().getTagsString());
+            getLoggedUser().setCurrentExamId(match.getTagsString());
         }else {
             for (int i = 0; i < getExams().size(); i++){
                 match = getExams().get(i);
@@ -226,6 +226,11 @@ public class Agent {
         BackgroundProcess background = new BackgroundProcess();
         background.setDaemon(true);
         background.start();
+    }
+
+    public static void stopBackground(){
+        BackgroundProcess background = new BackgroundProcess();
+        background.interrupt();
     }
 
     //database methods
