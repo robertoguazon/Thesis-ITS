@@ -8,5 +8,6 @@ public enum LoadType {
     LESSON,
     EXERCISE,
     EXAM,
-    GRADE
+    GRADE,
+    CHALLENGE
 }

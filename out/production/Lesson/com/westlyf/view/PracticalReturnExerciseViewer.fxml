@@ -7,12 +7,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalReturnExerciseViewerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalReturnExerciseViewerController">
     <top>
-        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Practical Return Exercise" />
-                <Label fx:id="titleLabel" />
+                <Label fx:id="titleLabel" styleClass="body" />
             </children>
         </VBox>
     </top>
@@ -30,7 +30,7 @@
                         </Label>
                      </children>
                   </HBox>
-                      <VBox fx:id="codePane">
+                      <VBox fx:id="codePane" styleClass="body">
                           <children>
                         <VBox VBox.vgrow="ALWAYS">
                            <children>
@@ -71,7 +71,7 @@
         </ScrollPane>
     </center>
    <bottom>
-            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" styleClass="footer" BorderPane.alignment="CENTER">
                 <children>
             <Label fx:id="responseText">
                <font>

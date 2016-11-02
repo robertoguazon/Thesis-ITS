@@ -225,9 +225,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         stopExam();
         rawGrade = exam.evaluate();
         totalItems = exam.getQuizItems().size();
-        System.out.println("score: " + rawGrade + " / " + totalItems);
         percentGrade = (int) 100 * rawGrade / totalItems;
-        System.out.println("percent grade: " + percentGrade);
         String currentModule = Agent.getLoggedUser().getCurrentModuleId();
         int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
         String module = "module" + moduleNo;
@@ -249,7 +247,9 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         if (Agent.getLoggedUser() != null){
             saveRecords();
             if (status.equals("Passed")){
-                unlockNextModule("module" + ++moduleNo);
+                if (++moduleNo <= 7) {
+                    unlockNextModule("module" + moduleNo);
+                }else {unlockChallenge();}
             }else {
                 Agent.getLoggedUser().setCurrentExamId(module);
             }
@@ -259,63 +259,60 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         Agent.clearExams();
         reset();
         changeScene("../../../sample/view/user.fxml");
-        //handleChangeSceneAction();
     }
 
-    public void saveRecords(){
+    private void saveRecords(){
         if (Agent.getLoggedUser() != null) {
-/*
-            if (Agent.containsExamGrade(exam)) {
-                System.out.println("current percent grade: " + percentGrade);
-                System.out.println("Agent percent grade: " + Agent.getExamGrade().getPercentGrade());
-                percentGrade = (int) (Math.ceil(Agent.getExamGrade().getPercentGrade() + percentGrade) / 2);
-                System.out.println("Ave percent grade: " + percentGrade);
-                System.out.println("updating.. " +
-                        "\nrawgrade: " + rawGrade +
-                        "\ntotalitems: " + totalItems +
-                        "\npercentgrade: " + percentGrade +
-                        "\nstatus: " + status);
-                if (Agent.updateExamGrade(rawGrade, totalItems, percentGrade, status) < 0) {
-                    return;
-                }
-            } else {
-*/
-                System.out.println("storing.. " +
-                        "\nrawgrade: " + rawGrade +
-                        "\ntotalitems: " + totalItems +
-                        "\npercentgrade: " + percentGrade +
-                        "\nstatus: " + status);
-                if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
-                    return;
-                }
-/*
+            if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
+                return;
             }
-*/
         }
     }
 
-    public void unlockNextModule(String module){
-        Agent.getLoggedUser().setCurrentModuleId(module);
-        Agent.getLoggedUser().setCurrentLessonId("lesson0");
-        Agent.getLoggedUser().setCurrentExamId(null);
-        Agent.load(LoadType.LESSON, module);
-        Agent.print(LoadType.LESSON);
-        Agent.load(LoadType.EXERCISE, module);
-        Agent.print(LoadType.EXERCISE);
-        Agent.updateUser();
+    private void unlockNextModule(String module){
+        if (Agent.getLoggedUser() != null) {
+            Agent.getLoggedUser().setCurrentModuleId(module);
+            Agent.getLoggedUser().setCurrentLessonId("lesson0");
+            Agent.getLoggedUser().setCurrentExamId(null);
+            Agent.load(LoadType.LESSON, module);
+            Agent.print(LoadType.LESSON);
+            Agent.load(LoadType.EXERCISE, module);
+            Agent.print(LoadType.EXERCISE);
+            if (Agent.updateUser() > 0){
+                AlertBox.display("Unlocked", "Unlocked " + module, "Click \"ok\" to close this alert box.");
+            }
+        }
     }
 
-    public void handleChangeSceneAction(){
+    private void unlockChallenge() {
+        if (Agent.getLoggedUser() != null) {
+            Agent.getLoggedUser().setCurrentExamId("challenge");
+            Agent.load(LoadType.CHALLENGE, "challenge");
+            Agent.print(LoadType.CHALLENGE);
+            if (Agent.updateUser() > 0){
+                AlertBox.display("Unlocked",
+                        "Congratulations! You've cleared all the modules.\n" +
+                        "Unlocked Challenges Area.",
+                        "You have unlocked the Challenges Area.\n" +
+                        "Take on different known algorithms and \n" +
+                        "try to solve them with the knowledge you've acquired and \n" +
+                        "apply what you have learned in the past modules.\n\n" +
+                        "Click \"ok\" to close this alert box.");
+            }
+        }
+    }
+
+    private void viewResults(){
         Stage stage;
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/user.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/results.fxml"));
             root = loader.load();
-//            ResultController resultController = loader.getController();
-//            resultController.setExam(exam);
-//            resultController.setRawGrade(rawGrade);
-//            resultController.setTotalItems(totalItems);
-//            resultController.setPercentGrade(percentGrade);
+            ResultController resultController = loader.getController();
+            resultController.setExam(exam);
+            resultController.setRawGrade(rawGrade);
+            resultController.setTotalItems(totalItems);
+            resultController.setPercentGrade(percentGrade);
             stage = (Stage)submitExamButton.getScene().getWindow();
             Scene scene = new Scene(root);
             scene.getStylesheets().addAll(pane.getScene().getStylesheets());
