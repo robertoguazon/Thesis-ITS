@@ -226,7 +226,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         stopExam();
         rawGrade = exam.evaluate();
         totalItems = exam.getQuizItems().size();
-        percentGrade = (int) 100 * rawGrade / totalItems;
+        percentGrade = 100 * rawGrade / totalItems;
         String currentModule = Agent.getLoggedUser().getCurrentModuleId();
         int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
         String module = "module" + moduleNo;
@@ -240,11 +240,12 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         }else {
             status = "Failed";
             title = "Your grade didn't reach the passing score of " +
-                    passingGrade*100 + "%.\n Please review your " + module + " then try again next time.";
+                    passingGrade + "%.\n Please review your " + module + " then try again next time.";
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
         }
+        AlertBox.display("Exam Finished", title, message);
         if (Agent.getLoggedUser() != null){
             saveRecords();
             if (status.equals("Passed")){
@@ -256,7 +257,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                 Agent.getLoggedUser().setCurrentExamId(module);
             }
         }
-        AlertBox.display("Exam Finished", title, message);
         Agent.stopBackground();
         reset();
         changeScene("../../../sample/view/user.fxml");
@@ -304,9 +304,9 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     }
 
     private void viewResults(){
-        Stage stage;
-        Parent root;
         try {
+            Stage stage = new Stage();
+            Parent root;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/results.fxml"));
             root = loader.load();
             ResultController resultController = loader.getController();
@@ -314,7 +314,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             resultController.setRawGrade(rawGrade);
             resultController.setTotalItems(totalItems);
             resultController.setPercentGrade(percentGrade);
-            stage = (Stage)submitExamButton.getScene().getWindow();
             Scene scene = new Scene(root);
             scene.getStylesheets().addAll(pane.getScene().getStylesheets());
             stage.setScene(scene);

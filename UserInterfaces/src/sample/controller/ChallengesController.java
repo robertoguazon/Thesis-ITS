@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import sample.model.ConfirmBox;
@@ -42,7 +43,7 @@ public class ChallengesController extends ControllerManager implements Initializ
                 if (confirmTakeChallenge(selectedChallenge)) {
                     Node node = Controllers.getNode(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER,
                             Agent.loadChallenge(selectedChallenge));
-                    newChildWindow(node, ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER,  "Challenge");
+                    newChildWindow(node, "Challenge");
                 }
             }
         });
@@ -79,7 +80,6 @@ public class ChallengesController extends ControllerManager implements Initializ
                 "Challenge: " + selectedChallenge);
     }
 
-/*
     public void closeChildWindow(){
         if (Agent.isCleared()){
             Agent.setIsExerciseCleared(false);
@@ -88,10 +88,8 @@ public class ChallengesController extends ControllerManager implements Initializ
             Boolean answer = ConfirmBox.display("Close window",
                     "Are you sure you want to close this window?", "All changes will not be saved.");
             if (answer){
-
                 child.close();
             }
         }
     }
-*/
 }

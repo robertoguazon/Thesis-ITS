@@ -152,7 +152,7 @@ public class TextLessonViewerController extends ControllerManager implements Ini
             disposeVideoLesson();
             disposePracticalExercise();
             child.close();
-            unlock(++currentLessonNo);
+            unlock(currentLessonNo+1);
         }else {
             Boolean answer = ConfirmBox.display("Close window",
                     "Are you sure you want to close this window?", "All changes will not be saved.");

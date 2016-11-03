@@ -54,10 +54,12 @@ public class Agent {
             load(LoadType.LESSON, s);
             load(LoadType.EXERCISE, s);
         };
-        if (getLoggedUser().getCurrentExamId() == "challenge"){
-            load(LoadType.CHALLENGE, "challenge");
-        }else if (getLoggedUser().getCurrentExamId() != null) {
-            load(LoadType.EXAM, s);
+        if (getLoggedUser().getCurrentExamId() != null) {
+            if (getLoggedUser().getCurrentExamId().equals("challenge")){
+                load(LoadType.CHALLENGE, "challenge");
+            }else{
+                load(LoadType.EXAM, s);
+            }
         }else {load(LoadType.EXAM, getLoggedUser().getCurrentExamId());}
         load(LoadType.USER_EXERCISE);
         load(LoadType.GRADE);

@@ -16,6 +16,8 @@
                </font>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
+            <Label text="-Double click an item in the list to open.-" />
+            <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="backToMenu" mnemonicParsing="false" onAction="#handleAction" text="Back to Menu" />
          </children>
          <padding>

@@ -47,8 +47,7 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
     private String initialCode;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
+    public void initialize(URL location, ResourceBundle resources) {reset();}
 
     public void reset(){
         codePane.toFront();
@@ -178,6 +177,7 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
             }
             Agent.setIsExerciseCleared(true);
         }
+        reset();
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 

@@ -60,7 +60,7 @@ public class GradesController extends ControllerManager implements Initializable
             if (k != 0){
                 averageGrade = averageGrade / k;
                 overallGrade = overallGrade + averageGrade;
-                aveGradeList.add("Module " + i + " - " + averageGrade);
+                aveGradeList.add("Module " + i + " - " + averageGrade + "%");
                 l++;
             }
         }

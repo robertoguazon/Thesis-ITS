@@ -71,10 +71,7 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        codePane.toFront();
-        submitButton.setDisable(true);
-    }
+    public void initialize(URL location, ResourceBundle resources) {reset();}
 
     public void reset(){
         codePane.toFront();
@@ -173,6 +170,7 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
             }
             Agent.setIsExerciseCleared(true);
         }
+        reset();
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 

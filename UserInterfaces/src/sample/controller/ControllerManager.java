@@ -1,12 +1,11 @@
 package sample.controller;
 
 import com.westlyf.agent.Agent;
-import com.westlyf.controller.*;
-import com.westlyf.controller.PracticalReturnExerciseViewerController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -65,44 +64,15 @@ public class ControllerManager{
         }
     }
 
-    //TODO copy from original to reset
-    public void newChildWindow(Node node, ControllerType controllerTYpe, String title) {
-        Scene scene2 = new Scene((Parent) node);
-        child = new Stage();
-        scene2.getStylesheets().addAll(this.scene.getStylesheets());
-        child.setTitle(title);
-        child.setOnCloseRequest(event -> {
-            event.consume();
-            closeChildWindow();
-
-            //TODO -temporary fix?
-            PracticalReturnExerciseViewerController controller = (com.westlyf.controller.PracticalReturnExerciseViewerController)
-                    Controllers.getController(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER);
-            controller.reset();
-            //TODO -temporary fix?
-            if (scene2 != null) {
-                scene2.setRoot(null);
-            }
-        });
-        child.setScene(scene2);
-        child.initModality(Modality.APPLICATION_MODAL);
-        child.initOwner(stage);
-        child.showAndWait();
-    }
-
     public void newChildWindow(Node node, String title){
-        Scene scene2 = new Scene((Parent) node);
+        Pane pane = new Pane(node);
+        Scene scene2 = new Scene(pane);
         child = new Stage();
         scene2.getStylesheets().addAll(this.scene.getStylesheets());
         child.setTitle(title);
         child.setOnCloseRequest(event -> {
             event.consume();
             closeChildWindow();
-
-            //TODO -temporary fix?
-            if (scene2 != null) {
-                scene2.setRoot(null);
-            }
         });
         child.setScene(scene2);
         child.initModality(Modality.APPLICATION_MODAL);
