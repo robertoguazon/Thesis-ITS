@@ -62,6 +62,7 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
         instructionsTextArea.setText(practicalReturnExercise.getInstructions());
 
         initialCode = practicalReturnExercise.getCode();
+        System.out.println("INITIAL CODE: " + initialCode);
         codeTextArea.setText(initialCode);
         practicalReturnExercise.codeProperty().bind(codeTextArea.textProperty());
     }
@@ -81,6 +82,9 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
         statusLabel.setText("");
         statusPane.setStyle("");
         clearOutput();
+
+        //fixed
+        codeTextArea.setEditable(true);
     }
 
     @FXML
