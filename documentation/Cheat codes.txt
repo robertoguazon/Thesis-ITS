@@ -1,0 +1,446 @@
+********
+Module 1
+
+-Exercise 1
+public class Apples {
+	public static void main(String[] args) {
+		
+	}
+}
+
+-Exercise 2
+class Apples {
+	
+	public static void main (String[] args){
+		
+		System.out.print("Hello, I am Alexavier");
+		
+	}
+	
+}
+
+-Exercise 3
+class Apples {
+
+	public static void main(String[] args){
+		//Write your code here
+		System.out.println("I am trying to learn… the Java Programming Language");
+		System.out.println("I am trying to learn…");
+		System.out.println("the Java Programming Language");
+	}
+
+}
+
+-Exercise 4
+public class Apples {
+	public static void main(String[] args) {
+		//
+	}
+}
+
+*****************************************
+Module 2
+
+-Exercise 1
+public class Apples {
+	public static void main(String[] args) {
+		int  myFirstNumber = 1;
+		double mySecondNumber = 3.14;
+		System.out.println("My first number is " + myFirstNumber);
+		System.out.println("My second number is " + mySecondNumber);
+	}
+}
+
+-Exercise 2
+public class Apples {
+	public static void main(String[] args) {
+		//Write your variables here
+		char myFirstCharacter = 'A';
+		String myFirstString = "Hello Java!";
+		//Write your system.out here
+		System.out.println("This is my first character " + myFirstCharacter + " and " + myFirstString);
+			
+	}
+}
+
+-Exercise 3
+NO EXERCISE
+
+-Exercise 4
+public class Apples {
+	public static void main(String[] args) {
+		//Write your first boolean variable here
+		boolean myFirstFlag = true;	
+	System.out.print(myFirstFlag);
+	}
+}
+
+-Exercise 5
+public class Apples {
+	public static void main(String[] args) {
+		//Initialize your variable here
+		double myDouble = 3.14;
+		//Set the new value of your variable here
+		myDouble = 3.0;
+		//Print your variable here
+		System.out.print(myDouble);
+	}
+}
+
+-Exercise 6
+public class Apples {
+	public static void main(String[] args) {
+		//Create your first array here
+		int[] myFirstArray ={15,32,44};
+		//Create your second array here
+		String[] mySecondArray =  {"Robert", "Rupert"};
+		//Output your arrays here
+		System.out.println("This is my number " + myFirstArray[2] + " and my name is " + mySecondArray[0]);
+	}
+}
+
+***********************
+Module 3
+
+-Exercise 1
+public class Apples {
+	public static void main(String[] args) {
+		//create your variable here
+		int postIncrement = 1;
+		//output your variable with a post increment inside the console
+		System.out.print(postIncrement++);
+	}
+}
+
+-Exercise 2
+public class Apples {
+	public static void main(String[] args) {
+		//Create your variables here
+		int x = 3;
+		int y = 2;
+		int result = 0;
+		//Create statement 1 here;
+		result = x+y;
+		System.out.println(result);
+		//Create statement 2 here;
+		result = x-y;
+		System.out.println(result);
+		//Create statement 3 here;
+		result = x*y;
+		System.out.println(result);
+		//Create statement 4 here;
+		result = x/y;
+		System.out.println(result);
+		//Create statement 5 here;
+		result = x%y;
+		System.out.println(result);
+		//print the result here
+	}
+}
+
+-Exercise 3
+public class Apples {
+	public static void main(String[] args) {
+		//Create your variables here
+		int x = 6;
+		int y = 9;
+		int temp;
+		//Swap your variables just like the Lesson!
+		temp  = x;
+		x = y;
+		y = temp;
+		System.out.println(x);
+		System.out.println(y);
+	}
+}
+
+
+-Exercise 4
+public class Apples {
+	public static void main(String[] args) {
+		//Create your variables here
+		int test = 0;
+		//Create your statement here
+		test += 69;
+		//Print it baby!	
+		System.out.print(test);
+	}
+}
+
+-Exercise 5
+public class Apples {
+	public static void main(String[] args) {
+		//Create your variables here
+		int []myArray = {6,9};
+		//Create your statement 1 here
+		myArray[0] += myArray[1];
+		//Create your statement 2 here
+	myArray[0] -= myArray[1];
+		//Create your statement 3 here
+	myArray[0] *= myArray[1];
+		//Create your statement 4 here
+	myArray[0] /= myArray[1];
+		//Create your statement 5 here
+	myArray[0] %= myArray[1];
+		//Print the result here
+System.out.print(myArray[0]);
+	}
+}
+
+-Exercise 6
+NO EXERCISE
+
+***********************
+Module 4
+
+-Exercise 1
+public class Apples {
+	public static void main(String[] args) {
+		//This is the variable you'll be testing
+		int number = 6;
+		
+		//Write your if here! Don't forget the brackets though { }
+		if (number >= 7) {
+			System.out.println(number);
+		}
+		//Write your else here!
+		System.out.println("I am not greater than or equal to 7");
+	}
+}
+
+-Exercise 2
+public class Apples {
+	public static void main(String[] args) {
+		int testNumber = 69;
+
+		//Write yout if statement here
+		if (testNumber == 70) testNumber = 70;
+		//Write your else if statement here
+		else if (testNumber == 71) testNumber = 71;
+		//Write your else here
+		else testNumber = 96;
+	}
+}
+
+-Exercise 3
+public class Apples {
+	public static void main(String[] args) {
+		boolean flagOne = true;
+		boolean flagTwo = true;
+		boolean flagThree = false;
+
+		//Write yout if statement here
+		if (flagOne && flagTwo && !flagThree) 
+			System.out.print("All conditions are satisfied");
+	
+	}
+}
+
+-Exercise 4
+public class Apples {
+	public static void main(String[] args) {
+		boolean flagOne = true;
+		boolean flagTwo = true;
+
+		//Create your if statement here
+		if (flagOne) {
+			if (flagTwo) {
+				System.out.println("Both Are True!");
+			}
+		}
+			//Create your nested if here
+		
+		System.out.println("I am the remaining code!");
+	}
+}
+
+-Exercise 5
+public class Apples {
+	public static void main(String[] args) {
+		int x = 9;
+		
+		if (x == 9) {
+			System.out.println(x);
+		} else {
+			System.out.println("Deym");
+		}
+
+		//Create your transformed if else statement here
+		System.out.println(x ==9 ? x : "Deym");
+	}
+}
+
+-Exercise 6
+public class Apples {
+	public static void main(String[] args) {
+		//Create your own variable here
+		char myTest = '6';
+		//Create your switch statement here
+		switch(myTest) {
+			case '6':
+			System.out.println(myTest);
+			break;
+case '9':
+			System.out.println(myTest);
+			break;
+		default:
+			System.out.println(myTest);
+		break;
+		}
+	}
+}
+
+***************
+Module 5
+
+
+***************
+Module 6
+
+
+***************
+Module 7
+
+
+***************
+Challenges
+
+-linearSearch
+public class Apples {
+	public int linearSearch(int[] arr, int x) {
+		//return the index if search is complete
+		//otherwise return -1
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == x) return i;
+		}
+		return -1;
+	}
+}
+
+-binarySearch 
+public class Apples {
+	public int binarySearch(int[] arr, int x) {
+		//returns the index if found else -1
+		
+		int left = 0;
+		int right = arr.length - 1;
+		
+		int count = 0;
+		while (left <= right) {
+			int middle = (left + right) / 2;
+			if (arr[middle] < x) {
+				left = middle + 1;
+			} else if (arr[middle] > x) {
+				right = middle - 1;
+			} else {
+				return middle;
+			}
+			
+			System.out.println("iteration: " + ++count);
+		}
+		
+		
+		return -1;
+		
+	}
+}
+
+-bubbleSort
+public class Apples {
+	public int[] bubbleSort(int[] arr) {
+		//sort the parameter "arr" using bubble sort
+		//return the array in sorted order
+		int j;
+     boolean flag = true;
+     int temp;   //holding variable
+
+     while ( flag )
+     {
+            flag= false;
+            for( j=0;  j < arr.length -1;  j++ )
+            {
+                   if ( arr[ j ] > arr[j+1] )
+                   {
+                           temp = arr[ j ];
+                           arr[ j ] = arr[ j+1 ];
+                           arr[ j+1 ] = temp;
+                          flag = true; 
+                  } 
+            } 
+      } 
+
+	return arr;
+	}
+}
+
+-factorial
+public class Apples {
+	public int factorial(int x) {
+		//return -1 if  x == negative
+		//return 0 if x == 0 or x == 1
+		if (x < 0) return -1;
+		if (x == 0 || x == 1) return 1;
+		
+		return factorial(x - 1) * x;
+	}
+}
+
+-oddOrEven
+public class Apples {
+	public int oddOrEven(int x) {
+		//return 1 if even
+		//return -1 if odd
+		if(x%2 == 0) return 1;
+		return -1;
+	}
+}
+
+-fibonacci
+public class Apples {
+	public int fibonacci(int x) {
+		//return the xth place in the fibonacci series starting from 0
+		//if x == 0 negative return -1
+		//if x == 0 return -1
+		if (x <= 0) return -1;
+		if (x == 1) return 0;
+		int a = 0;
+		int sum = 1;
+		int temp = 0;
+		for (int i = 2; i < x; i++) {
+			temp = sum;
+			sum += a;
+			a = temp;
+			
+		} 
+		return sum;
+	}
+}
+
+-powerOf
+public class Apples {
+	public int powerOf(int number, int power) {
+		//return the number to the xth power
+		//only nonnegative integers for the parameter x
+		if (power == 0) return 1;
+
+		return powerOf(number,power - 1) * number;
+
+	}
+}
+
+-palindrome
+public class Apples  {
+	public boolean isPalindrome(String string) {
+		//return true if palindrome
+		//else return false
+		String newString = "";
+
+		for (int i = 0; i < string.length(); i++) {
+			newString += string.charAt(string.length() - 1 - i);
+		}
+		
+		return newString.equals(string);
+	}
+}
+
+
