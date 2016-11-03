@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.VideoLessonViewerController">
     <center>
-      <Pane fx:id="screenPane" styleClass="body">
+      <Pane fx:id="screenPane" styleClass="body" BorderPane.alignment="CENTER">
          <children>
               <MediaView fx:id="videoLessonMediaView" BorderPane.alignment="CENTER">
                   <viewport>
