@@ -82,7 +82,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        reset();
+        itemsSliderRightButton.setDisable(false);
+        itemsSliderLeftButton.setDisable(true);
     }
 
     public void reset() {
