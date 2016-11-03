@@ -2,17 +2,11 @@ package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
-import com.westlyf.user.UserExercise;
-import com.westlyf.user.Users;
-import com.westlyf.utils.RuntimeUtil;
-import com.westlyf.utils.StringUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
 import sample.controller.ControllerManager;
 
@@ -62,9 +56,7 @@ public class ExamExerciseViewerController extends ControllerManager implements I
 
     @FXML
     private void submit() {
-        PracticalPrintExercise newPracticalPrintExercise = practicalPrintExercise.clone();
-        newPracticalPrintExercise.setCode(codeTextArea.getText());
-        Agent.setPracticalPrintExercise(newPracticalPrintExercise);
+        Agent.setExamExercise(practicalPrintExercise);
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 

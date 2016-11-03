@@ -46,6 +46,9 @@ public class Controllers {
     private static PracticalReturnExerciseViewerController practicalReturnExerciseViewerController;
     private static Node practicalReturnExerciseViewerNode;
 
+    private static ExamExerciseViewerController examExerciseViewerController;
+    private static Node examExerciseViewerNode;
+
     private static ExamChoicesOnlyViewerController examChoicesOnlyViewerController;
     private static Node examChoicesOnlyViewerNode;
 
@@ -84,6 +87,8 @@ public class Controllers {
                 return practicalPrintExerciseViewerController;
             case PRACTICAL_RETURN_EXERCISE_VIEWER:
                 return practicalReturnExerciseViewerController;
+            case EXAM_EXERCISE_VIEWER:
+                return examExerciseViewerController;
             case EXAM_CHOICES_ONLY_VIEWER:
                 return examChoicesOnlyViewerController;
 
@@ -121,6 +126,9 @@ public class Controllers {
 
             load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "../view/PracticalReturnExerciseViewer.fxml");
             System.out.println(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER + " loaded");
+
+            load(ControllerType.EXAM_EXERCISE_VIEWER, "../view/ExamExerciseViewer.fxml");
+            System.out.println(ControllerType.EXAM_EXERCISE_VIEWER + " loaded");
 
             load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "../view/ExamChoicesOnlyViewer.fxml");
             System.out.println(ControllerType.EXAM_CHOICES_ONLY_VIEWER + " loaded");
@@ -165,6 +173,9 @@ public class Controllers {
             load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "../view/PracticalReturnExerciseViewer.fxml");
             System.out.println(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER + " loaded");
 
+            load(ControllerType.EXAM_EXERCISE_VIEWER, "../view/ExamExerciseViewer.fxml");
+            System.out.println(ControllerType.EXAM_EXERCISE_VIEWER + " loaded");
+
             load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "../view/ExamChoicesOnlyViewer.fxml");
             System.out.println(ControllerType.EXAM_CHOICES_ONLY_VIEWER + " loaded");
         } catch (Exception e) {
@@ -198,6 +209,9 @@ public class Controllers {
                 practicalReturnExerciseViewerNode = loader.load();
                 practicalReturnExerciseViewerController = loader.getController();
                 break;
+            case EXAM_EXERCISE_VIEWER:
+                examExerciseViewerNode = loader.load();
+                examExerciseViewerController = loader.getController();
             case EXAM_CHOICES_ONLY_VIEWER:
                 examChoicesOnlyViewerNode = loader.load();
                 examChoicesOnlyViewerController = loader.getController();
@@ -239,6 +253,7 @@ public class Controllers {
         dispose(ControllerType.QUIZ_EXERCISE_VIEWER);
         dispose(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER);
         dispose(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER);
+        dispose(ControllerType.EXAM_EXERCISE_VIEWER);
         dispose(ControllerType.EXAM_CHOICES_ONLY_VIEWER);
 
         //dispose makers
@@ -281,6 +296,10 @@ public class Controllers {
                     ((Disposable)practicalReturnExerciseViewerController).dispose();
                 }
                 break;
+            case EXAM_EXERCISE_VIEWER:
+                if (examExerciseViewerController instanceof Disposable) {
+                    ((Disposable)examExerciseViewerController).dispose();
+                }
             case EXAM_CHOICES_ONLY_VIEWER:
                 if (examChoicesOnlyViewerController instanceof Disposable) {
                     ((Disposable)examChoicesOnlyViewerController).dispose();
@@ -350,6 +369,8 @@ public class Controllers {
             case VIDEO_PRACTICAL_EXERCISE_VIEWER:
                 addToPane(parent, videoPracticalExerciseViewerNode);
                 break;
+            case EXAM_EXERCISE_VIEWER:
+                addToPane(parent, examExerciseViewerNode);
             case EXAM_CHOICES_ONLY_VIEWER:
                 addToPane(parent,examChoicesOnlyViewerNode);
                 break;
@@ -415,6 +436,8 @@ public class Controllers {
                 }
                 videoPracticalExerciseViewerNode = combine(vlNode,peNode);
                 return videoPracticalExerciseViewerNode;
+            case EXAM_EXERCISE_VIEWER:
+                return examExerciseViewerNode;
             case EXAM_CHOICES_ONLY_VIEWER:
                 return examChoicesOnlyViewerNode;
 
@@ -458,6 +481,8 @@ public class Controllers {
                 case PRACTICAL_RETURN_EXERCISE_VIEWER:
                     practicalReturnExerciseViewerController.setPracticalReturnExercise((PracticalReturnExercise)lesson);
                     break;
+                case EXAM_EXERCISE_VIEWER:
+                    examExerciseViewerController.setPracticalPrintExercise((PracticalPrintExercise) lesson);
                 case EXAM_CHOICES_ONLY_VIEWER:
                     examChoicesOnlyViewerController.setExam((Exam)lesson);
                     break;
@@ -466,6 +491,7 @@ public class Controllers {
             }
         }
     }
+
     private static void checkSetLesson(ControllerType controllerType, Lesson lesson) {
         switch(controllerType) {
             case TEXT_LESSON_VIEWER:
@@ -473,6 +499,7 @@ public class Controllers {
             case QUIZ_EXERCISE_VIEWER:
             case PRACTICAL_PRINT_EXERCISE_VIEWER:
             case PRACTICAL_RETURN_EXERCISE_VIEWER:
+            case EXAM_EXERCISE_VIEWER:
             case EXAM_CHOICES_ONLY_VIEWER:
                 setLesson(controllerType, lesson);
                 break;

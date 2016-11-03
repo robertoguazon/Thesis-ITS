@@ -7,6 +7,7 @@ public enum LoadType {
     USER_EXERCISE,
     LESSON,
     EXERCISE,
+    EXAM_EXERCISE,
     EXAM,
     GRADE,
     CHALLENGE
