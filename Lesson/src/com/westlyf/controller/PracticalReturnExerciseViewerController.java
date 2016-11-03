@@ -209,7 +209,7 @@ public class PracticalReturnExerciseViewerController extends ControllerManager i
 
     @Override
     public void dispose() {
-
+        reset();
     }
 
 }

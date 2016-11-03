@@ -4,7 +4,7 @@ import com.westlyf.controller.BackgroundProcess;
 import com.westlyf.database.*;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
-import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
+import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.user.ExamGrade;
@@ -13,7 +13,6 @@ import com.westlyf.user.Users;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by robertoguazon on 05/09/2016.
@@ -25,6 +24,7 @@ public class Agent {
 
     private static UserExercise userExercise = new UserExercise();
     private static TextLesson lesson = new TextLesson();
+    private static PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
     private static VideoPracticalExercise exercise = new VideoPracticalExercise();
     private static Exam exam = new Exam();
     private static ExamGrade examGrade = new ExamGrade();
@@ -333,6 +333,14 @@ public class Agent {
 
     public static void setLesson(TextLesson lesson) {
         Agent.lesson = lesson;
+    }
+
+    public static PracticalPrintExercise getPracticalPrintExercise() {
+        return practicalPrintExercise;
+    }
+
+    public static void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
+        Agent.practicalPrintExercise = practicalPrintExercise;
     }
 
     public static VideoPracticalExercise getExercise() {

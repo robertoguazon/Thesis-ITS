@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.ExamExerciseViewerController">
+    <top>
+      <HBox>
+         <children>
+              <VBox alignment="CENTER" prefWidth="100.0" spacing="5.0" styleClass="header" BorderPane.alignment="CENTER">
+                  <children>
+                      <Label text="Exam" textAlignment="CENTER" wrapText="true" />
+                      <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
+                  </children>
+              </VBox>
+                  <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                      <children>
+                          <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="150.0" wrapText="true" HBox.hgrow="ALWAYS" />
+                      </children>
+                  </HBox>
+         </children>
+      </HBox>
+    </top>
+    <center>
+      <VBox VBox.vgrow="ALWAYS">
+         <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                      <children>
+                          <Label text="Code" />
+                  <Region HBox.hgrow="ALWAYS" />
+                            <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" text="Reset Code" />
+                      </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+                  </HBox>
+                    <TextArea fx:id="codeTextArea" wrapText="true" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+    </center>
+   <bottom>
+            <HBox alignment="CENTER" styleClass="footer" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="submitButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#submit" text="SUBMIT">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../sample/style/images/check.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+            </HBox>
+   </bottom>
+</BorderPane>
