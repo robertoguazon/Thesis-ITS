@@ -30,6 +30,7 @@ public class BackgroundProcess extends Thread{
             while( running ) {
                 fer = "";
                 reader = new BufferedInputStream(new FileInputStream( "C:\\Users\\Yves\\Desktop\\emotion.txt" ) );
+                //reader = new BufferedInputStream(new FileInputStream( "C:\\Users\\robertoguazon\\Desktop\\emotion.txt" ) );
                 while ( reader.available() > 0 ) {
                     fer = fer + String.valueOf((char)reader.read());
                 }
