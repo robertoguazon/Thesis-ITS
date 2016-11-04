@@ -56,7 +56,7 @@ public class ExamExerciseViewerController extends ControllerManager implements I
 
     @FXML
     private void submit() {
-        Agent.setExamExercise(practicalPrintExercise);
+        Agent.setIsExerciseCleared(true);
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
