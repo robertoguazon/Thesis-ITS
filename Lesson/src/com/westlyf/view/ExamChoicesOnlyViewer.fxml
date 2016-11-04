@@ -80,7 +80,7 @@
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="itemsSliderLeftButton" mnemonicParsing="false" onAction="#slideLeft" text="&lt;" />
             <Button fx:id="itemsSliderRightButton" mnemonicParsing="false" onAction="#slideRight" text="&gt;" />
-            <Button fx:id="codeButton" mnemonicParsing="false" onAction="#openExercise" text="Code" />
+            <Button fx:id="examExerciseButton" mnemonicParsing="false" onAction="#openExamExercise" text="Code" />
          </children>
          <BorderPane.margin>
             <Insets />

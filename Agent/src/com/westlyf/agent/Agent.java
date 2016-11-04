@@ -24,16 +24,17 @@ public class Agent {
 
     private static UserExercise userExercise = new UserExercise();
     private static TextLesson lesson = new TextLesson();
-    private static PracticalPrintExercise practicalPrintExercise = new PracticalPrintExercise();
     private static VideoPracticalExercise exercise = new VideoPracticalExercise();
+    private static PracticalPrintExercise examExercise = new PracticalPrintExercise();
     private static Exam exam = new Exam();
     private static ExamGrade examGrade = new ExamGrade();
 
     private static ArrayList<UserExercise> userExercises = new ArrayList<UserExercise>();
     private static ArrayList<TextLesson> lessonsInModule = new ArrayList<TextLesson>();
     private static ArrayList<TextLesson> textLessons = new ArrayList<TextLesson>();
-    private static ArrayList<PracticalExercise> challenges = new ArrayList<PracticalExercise>();
     private static ArrayList<VideoPracticalExercise> videoPracticalExercises = new ArrayList<VideoPracticalExercise>();
+    private static ArrayList<PracticalExercise> challenges = new ArrayList<PracticalExercise>();
+    private static ArrayList<PracticalPrintExercise> examExercises = new ArrayList<PracticalPrintExercise>();
     private static ArrayList<Exam> exams = new ArrayList<Exam>();
     private static ArrayList<ExamGrade> examGrades = new ArrayList<ExamGrade>();
 
@@ -58,9 +59,20 @@ public class Agent {
             if (getLoggedUser().getCurrentExamId().equals("challenge")){
                 load(LoadType.CHALLENGE, "challenge");
             }else{
+                System.out.println("exam");
                 load(LoadType.EXAM, s);
+                System.out.println("exam exercise");
+                load(LoadType.EXAM_EXERCISE, s);
             }
-        }else {load(LoadType.EXAM, getLoggedUser().getCurrentExamId());}
+        }else {
+            System.out.println("exam empty.");
+            /*
+            System.out.println("exam null");
+            load(LoadType.EXAM, getLoggedUser().getCurrentExamId());
+            System.out.println("exam exercise null");
+            load(LoadType.EXAM_EXERCISE, getLoggedUser().getCurrentExamId());
+            */
+        }
         load(LoadType.USER_EXERCISE);
         load(LoadType.GRADE);
         //prints out the arraylists
@@ -84,6 +96,11 @@ public class Agent {
             case EXERCISE:
                 getVideoPracticalExercises().addAll(ExerciseDatabase.getVideoPracticalExercisesUsingTagsContains(s));
                 break;
+            case EXAM_EXERCISE:
+                ArrayList<PracticalExercise> temp = ExerciseDatabase.getPracticalExercisesUsingTagsContains(s);
+                for (int i=0; i<temp.size(); i++){
+                    getExamExercises().add((PracticalPrintExercise) temp.get(i));
+                }
             case EXAM:
                 setExams(ExamDatabase.getExamsUsingTagsContains(s));
                 break;
@@ -131,11 +148,16 @@ public class Agent {
         if (getLoggedUser() != null) {
             if (updateUser() > 0) {
                 setLoggedUser(null);
+                setUserExercise(null);
                 setLesson(null);
                 setExercise(null);
+                setExamExercise(null);
                 setExam(null);
+                setExamGrade(null);
                 getLessonsInModule().clear();
                 getTextLessons().clear();
+                getChallenges().clear();
+                getExamExercises().clear();
                 getVideoPracticalExercises().clear();
                 getExams().clear();
                 getUserExercises().clear();
@@ -154,6 +176,19 @@ public class Agent {
         }
         setLesson(match);
         System.out.println("\nRetrieved Lesson:\n" + getLesson());
+        return match;
+    }
+
+    public static PracticalPrintExercise loadExamExercise(String tag1, String tag2){
+        PracticalPrintExercise match = null;
+        for (int i=0; i<getExamExercises().size(); i++){
+            match = getExamExercises().get(i);
+            if (match.getTagsString().contains(tag1) && match.getTagsString().contains(tag2)){
+                break;
+            }else {match = null;}
+        }
+        setExamExercise(match);
+        System.out.println("\nRetrieved Exam Exercise:\n" + getExamExercise());
         return match;
     }
 
@@ -217,6 +252,8 @@ public class Agent {
     }
 
     public static void clearExams() { getExams().clear(); }
+
+    public static void clearExamExercises(){ getExamExercises().clear(); }
 
     public static boolean containsPracticalExercise(PracticalExercise practicalExercise){
         UserExercise match = null;
@@ -335,20 +372,20 @@ public class Agent {
         Agent.lesson = lesson;
     }
 
-    public static PracticalPrintExercise getPracticalPrintExercise() {
-        return practicalPrintExercise;
-    }
-
-    public static void setPracticalPrintExercise(PracticalPrintExercise practicalPrintExercise) {
-        Agent.practicalPrintExercise = practicalPrintExercise;
-    }
-
     public static VideoPracticalExercise getExercise() {
         return exercise;
     }
 
     public static void setExercise(VideoPracticalExercise exercise) {
         Agent.exercise = exercise;
+    }
+
+    public static PracticalPrintExercise getExamExercise() {
+        return examExercise;
+    }
+
+    public static void setExamExercise(PracticalPrintExercise examExercise) {
+        Agent.examExercise = examExercise;
     }
 
     public static Exam getExam() {
@@ -391,6 +428,14 @@ public class Agent {
         Agent.lessonsInModule = lessonsInModule;
     }
 
+    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercises() {
+        return videoPracticalExercises;
+    }
+
+    public static void setVideoPracticalExercises(ArrayList<VideoPracticalExercise> videoPracticalExercises) {
+        Agent.videoPracticalExercises = videoPracticalExercises;
+    }
+
     public static ArrayList<PracticalExercise> getChallenges() {
         return challenges;
     }
@@ -399,12 +444,12 @@ public class Agent {
         Agent.challenges = challenges;
     }
 
-    public static ArrayList<VideoPracticalExercise> getVideoPracticalExercises() {
-        return videoPracticalExercises;
+    public static ArrayList<PracticalPrintExercise> getExamExercises() {
+        return examExercises;
     }
 
-    public static void setVideoPracticalExercises(ArrayList<VideoPracticalExercise> videoPracticalExercises) {
-        Agent.videoPracticalExercises = videoPracticalExercises;
+    public static void setExamExercises(ArrayList<PracticalPrintExercise> examExercises) {
+        Agent.examExercises = examExercises;
     }
 
     public static ArrayList<Exam> getExams() {
@@ -424,6 +469,4 @@ public class Agent {
     public static void setExamGrades(ArrayList<ExamGrade> examGrades) {
         Agent.examGrades = examGrades;
     }
-
-
 }

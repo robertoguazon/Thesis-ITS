@@ -2,14 +2,18 @@ package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.agent.LoadType;
+import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.user.ExamGrade;
+import com.westlyf.utils.RuntimeUtil;
+import com.westlyf.utils.StringUtil;
 import com.westlyf.utils.array.ArrayUtil;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -44,6 +48,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     @FXML private TextArea questionTextArea;
     @FXML private Button hintButton;
     @FXML private TextArea hintTextArea;
+    @FXML private Button examExerciseButton;
     @FXML private Button submitExamButton;
 
     @FXML private Slider itemsSlider;
@@ -77,8 +82,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setHintButtonDisable(true);
-        setHintTextAreaVisible(false);
+        reset();
     }
 
     public void reset() {
@@ -88,6 +92,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         timeLeftSlider.setValue(0);
         questionTextArea.setText("");
         hintTextArea.setText("");
+        setHintButtonDisable(true);
+        setHintTextAreaVisible(false);
 
         exam.clearAllAnswers(); //clear the user's answers
         exam = null; // set the reference to null
@@ -180,6 +186,14 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         setHintTextAreaVisible(false);
     }
 
+    public void setHintButtonDisable(boolean disable){
+        hintButton.setDisable(disable);
+    }
+
+    public void setHintTextAreaVisible(boolean visible) {
+        hintTextArea.setVisible(visible);
+    }
+
     @FXML private void slideLeft() {
         currentItem.setValue(currentItem.get() - 1);
         if (currentItem.get() < 2) {
@@ -209,18 +223,15 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         setHintTextAreaVisible(true);
     }
 
-    public void setHintButtonDisable(boolean disable){
-        hintButton.setDisable(disable);
-    }
-
-    public void setHintTextAreaVisible(boolean visible) {
-        hintTextArea.setVisible(visible);
-    }
-
     @FXML private void stopExam() {
         //TODO - stop?
         stopTimer();
         System.out.println("Stopped Exam -test");
+    }
+
+    @FXML private void openExamExercise(){
+        Node node = Controllers.getNode(ControllerType.EXAM_EXERCISE_VIEWER, Agent.getExamExercise());
+        newChildWindow(node, "Exam Exercise");
     }
 
     //TODO evaluate after submit
@@ -229,7 +240,10 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         stopExam();
         Agent.stopBackground();
         rawGrade = exam.evaluate();
-        totalItems = exam.getQuizItems().size();
+        if (isExamExerciseCorrect()){
+            rawGrade = rawGrade + 5;
+        }
+        totalItems = exam.getQuizItems().size() + 5;
         percentGrade = 100 * rawGrade / totalItems;
         String currentModule = Agent.getLoggedUser().getCurrentModuleId();
         int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
@@ -260,7 +274,10 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             if (status.equals("Passed")){
                 if (++moduleNo <= 7) {
                     unlockNextModule("module" + moduleNo);
+                    Agent.setExam(null);
+                    Agent.setExamExercise(null);
                     Agent.clearExams();
+                    Agent.clearExamExercises();
                 }else {unlockChallenge();}
             }else {
                 Agent.getLoggedUser().setCurrentExamId(module);
@@ -268,6 +285,32 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         }
         reset();
         changeScene("../../../sample/view/user.fxml");
+    }
+
+    private boolean isExamExerciseCorrect() {
+        PracticalPrintExercise practicalPrintExercise = Agent.getExamExercise();
+        if (practicalPrintExercise != null) {
+            //compileCode();
+
+            String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
+            errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
+
+            if (!errorString.isEmpty()) {
+                return false;
+            }
+
+            // -1 means no error; returns index of CString
+            int errorCStringIndex = practicalPrintExercise.checkCGroup(practicalPrintExercise.codeProperty());
+            boolean correctOutput = practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString());
+            if (errorCStringIndex == -1 && correctOutput) {
+                return true;
+            } else if (errorCStringIndex != -1 || !correctOutput) {
+                return false;
+            }
+        }else {
+            System.out.println("practicalPrintExercise is null");
+        }
+        return false;
     }
 
     private void saveRecords(){

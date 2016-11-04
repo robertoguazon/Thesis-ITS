@@ -121,6 +121,7 @@ public class TextLessonViewerController extends ControllerManager implements Ini
                                     "You are now ready to take the exam.",
                             "Do you wish to go back to the main menu to take the exam?");
                     Agent.load(LoadType.EXAM, currentModule);
+                    Agent.load(LoadType.EXAM_EXERCISE, currentModule);
                     if (answer) {
                         Agent.clearLessonsInModule();
                         lessonsVBox.getChildren().clear();

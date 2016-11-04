@@ -73,6 +73,8 @@ public class UserController extends ControllerManager implements Initializable{
 
     private void openExam() {
         Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, Agent.loadExam());
+        String[] examTags = Agent.getExam().getTagsString().split(",");
+        Agent.loadExamExercise(examTags[0], examTags[1]);
         changeScene(node);
         loadFER();
     }

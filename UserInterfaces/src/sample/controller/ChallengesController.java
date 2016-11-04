@@ -85,6 +85,7 @@ public class ChallengesController extends ControllerManager implements Initializ
     public void closeChildWindow(){
         if (Agent.isCleared()){
             Agent.setIsExerciseCleared(false);
+            disposeChallenge();
             child.close();
         }else {
             Boolean answer = ConfirmBox.display("Close window",
