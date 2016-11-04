@@ -212,6 +212,7 @@ public class Controllers {
             case EXAM_EXERCISE_VIEWER:
                 examExerciseViewerNode = loader.load();
                 examExerciseViewerController = loader.getController();
+                break;
             case EXAM_CHOICES_ONLY_VIEWER:
                 examChoicesOnlyViewerNode = loader.load();
                 examChoicesOnlyViewerController = loader.getController();
