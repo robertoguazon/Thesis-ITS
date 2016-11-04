@@ -2,7 +2,9 @@ package sample.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.controller.*;
+import com.westlyf.controller.PracticalReturnExerciseViewerController;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
+import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -88,8 +90,18 @@ public class ChallengesController extends ControllerManager implements Initializ
             Boolean answer = ConfirmBox.display("Close window",
                     "Are you sure you want to close this window?", "All changes will not be saved.");
             if (answer){
+                disposeChallenge();
                 child.close();
             }
+        }
+    }
+
+    public void disposeChallenge(){
+        PracticalReturnExerciseViewerController practicalReturnExerciseViewerController =
+                (PracticalReturnExerciseViewerController)
+                        Controllers.getController(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER);
+        if (practicalReturnExerciseViewerController instanceof Disposable){
+            practicalReturnExerciseViewerController.dispose();
         }
     }
 }

@@ -76,10 +76,11 @@
       <HBox alignment="CENTER_LEFT" spacing="5.0" styleClass="footer" BorderPane.alignment="CENTER">
          <children>
             <Label text="Items" />
-            <Slider fx:id="itemsSlider" blockIncrement="1.0" majorTickUnit="1.0" max="15.0" min="1.0" minorTickCount="0" prefHeight="20.0" prefWidth="500.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" HBox.hgrow="ALWAYS" />
+            <Slider fx:id="itemsSlider" blockIncrement="1.0" majorTickUnit="1.0" max="15.0" min="1.0" minorTickCount="0" prefHeight="20.0" prefWidth="460.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" HBox.hgrow="ALWAYS" />
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="itemsSliderLeftButton" mnemonicParsing="false" onAction="#slideLeft" text="&lt;" />
             <Button fx:id="itemsSliderRightButton" mnemonicParsing="false" onAction="#slideRight" text="&gt;" />
+            <Button fx:id="codeButton" mnemonicParsing="false" onAction="#openExercise" text="Code" />
          </children>
          <BorderPane.margin>
             <Insets />
