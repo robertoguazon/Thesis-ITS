@@ -65,8 +65,15 @@ public class ControllerManager{
     }
 
     public void newChildWindow(Node node, String title){
-        Pane pane = new Pane(node);
-        Scene scene2 = new Scene(pane);
+        Pane container = new Pane(node);
+        if (node instanceof Pane){
+            Pane pane = (Pane) node;
+            container.setMinWidth(pane.getPrefWidth());
+            container.setMinHeight(pane.getPrefHeight());
+            pane.prefWidthProperty().bind(container.widthProperty());
+            pane.prefHeightProperty().bind(container.heightProperty());
+        }
+        Scene scene2 = new Scene(container);
         child = new Stage();
         scene2.getStylesheets().addAll(this.scene.getStylesheets());
         child.setTitle(title);

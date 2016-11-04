@@ -4,6 +4,7 @@ import com.westlyf.agent.Agent;
 import com.westlyf.agent.LoadType;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizItem;
+import com.westlyf.user.ExamGrade;
 import com.westlyf.utils.array.ArrayUtil;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
@@ -15,10 +16,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.controller.ControllerManager;
 import sample.controller.ResultController;
 import sample.model.AlertBox;
+import sample.model.ConfirmBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -224,6 +227,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     @FXML private void submitExam() {
         System.out.println("Exam submitted");
         stopExam();
+        Agent.stopBackground();
         rawGrade = exam.evaluate();
         totalItems = exam.getQuizItems().size();
         percentGrade = 100 * rawGrade / totalItems;
@@ -233,7 +237,9 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         String title, message;
         if (percentGrade >= passingGrade) {
             status = "Passed";
-            title = "Congratulations! You have passed the exam.";
+            title = "Congratulations! You have passed the exam.\n" +
+                    "Click \"ok\" to view your results.\n" +
+                    "Click \"cancel\" to return to home.";
             message = "Raw grade: " + rawGrade + "\n" +
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
@@ -245,7 +251,10 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
         }
-        AlertBox.display("Exam Finished", title, message);
+        //AlertBox.display("Exam Finished", title, message);
+        if (ConfirmBox.display("Exam Finished", title, message)){
+            viewResults();
+        }
         if (Agent.getLoggedUser() != null){
             saveRecords();
             if (status.equals("Passed")){
@@ -257,14 +266,14 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                 Agent.getLoggedUser().setCurrentExamId(module);
             }
         }
-        Agent.stopBackground();
         reset();
         changeScene("../../../sample/view/user.fxml");
     }
 
     private void saveRecords(){
         if (Agent.getLoggedUser() != null) {
-            if (Agent.addExamGrade(exam.getTitle(), rawGrade, totalItems, percentGrade, status) < 0) {
+            if (Agent.addExamGrade(new ExamGrade(Agent.getLoggedUser().getUserId(),
+                    exam.getTitle(), rawGrade, totalItems, percentGrade, status)) < 0) {
                 return;
             }
         }
@@ -305,19 +314,25 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     private void viewResults(){
         try {
-            Stage stage = new Stage();
-            Parent root;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/results.fxml"));
-            root = loader.load();
+            Parent root = loader.load();
             ResultController resultController = loader.getController();
             resultController.setExam(exam);
             resultController.setRawGrade(rawGrade);
             resultController.setTotalItems(totalItems);
             resultController.setPercentGrade(percentGrade);
-            Scene scene = new Scene(root);
-            scene.getStylesheets().addAll(pane.getScene().getStylesheets());
-            stage.setScene(scene);
-            stage.show();
+            Scene scene2 = new Scene(root);
+            child = new Stage();
+            scene2.getStylesheets().addAll(scene.getStylesheets());
+            child.setTitle("Exam Results");
+            child.setOnCloseRequest(event -> {
+                event.consume();
+                closeChildWindow();
+            });
+            child.setScene(scene2);
+            child.initModality(Modality.APPLICATION_MODAL);
+            child.initOwner(stage);
+            child.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -83,7 +83,7 @@ public class VideoLessonViewerController implements Initializable, Disposable {
         volumeSlider.setMaxWidth(Region.USE_PREF_SIZE);
 
         videoLessonMediaView.fitHeightProperty().bind(screenPane.heightProperty());
-        videoLessonMediaView.fitWidthProperty().bind(screenPane.widthProperty());
+        //videoLessonMediaView.fitWidthProperty().bind(screenPane.widthProperty());
     }
 
     @FXML

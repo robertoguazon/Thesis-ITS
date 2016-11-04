@@ -26,10 +26,8 @@ import java.util.ResourceBundle;
  */
 public class ResultController implements Initializable {
 
-    @FXML private BorderPane pane;
     @FXML private Label titleLabel;
     @FXML private Label gradeLabel;
-    @FXML private Button back;
     @FXML private TableView<QuizItem> tableView;
     @FXML private TableColumn<QuizItem, String> pointsColumn;
     @FXML private TableColumn<QuizItem, String> choicesColumn;
@@ -69,23 +67,10 @@ public class ResultController implements Initializable {
 
     }
 
-    @FXML private void handleChangeSceneAction(ActionEvent event) throws IOException {
-        Stage stage;
-        Parent root;
-        if (event.getSource() == back){
-            root = FXMLLoader.load(getClass().getResource("../view/user.fxml"));
-            stage = (Stage) back.getScene().getWindow();
-        }else {return;}
-        Scene scene = new Scene(root);
-        scene.getStylesheets().addAll(pane.getScene().getStylesheets());
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void setExam(Exam exam){
         this.exam = exam;
         titleLabel.setText(exam.getTitle());
-        gradeLabel.setText("Score: " + rawGrade + " / " + totalItems + " = " + percentGrade);
+        gradeLabel.setText("Score: " + rawGrade + " / " + totalItems + " = " + percentGrade + "%");
     }
 
     public void setRawGrade(int rawGrade) {

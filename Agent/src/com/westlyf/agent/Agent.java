@@ -275,13 +275,8 @@ public class Agent {
         return UserDatabase.addUserExercise(userExercise);
     }
 
-    public static int addExamGrade(String exam_title, int grade, int totalItems, int percentGrade, String status){
-        getExamGrade().setUserId(getLoggedUser().getUserId());
-        getExamGrade().setExam_title(exam_title);
-        getExamGrade().setRawGrade(grade);
-        getExamGrade().setTotalItems(totalItems);
-        getExamGrade().setStatus(status);
-        getExamGrade().setPercentGrade(percentGrade);
+    public static int addExamGrade(ExamGrade examGrade){
+        setExamGrade(examGrade);
         getExamGrades().add(getExamGrade());
         return UserDatabase.addExamGrade(getExamGrade());
     }
