@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
@@ -80,7 +81,24 @@
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="itemsSliderLeftButton" mnemonicParsing="false" onAction="#slideLeft" text="&lt;" />
             <Button fx:id="itemsSliderRightButton" mnemonicParsing="false" onAction="#slideRight" text="&gt;" />
-            <Button fx:id="examExerciseButton" mnemonicParsing="false" onAction="#openExamExercise" text="Code" />
+            <StackPane>
+               <children>
+                  <HBox fx:id="clearLabelPane" alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../sample/style/images/check.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="examExerciseButtonPane" alignment="CENTER">
+                     <children>
+                        <Button fx:id="examExerciseButton" mnemonicParsing="false" onAction="#openExamExercise" text="Code" />
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
          </children>
          <BorderPane.margin>
             <Insets />

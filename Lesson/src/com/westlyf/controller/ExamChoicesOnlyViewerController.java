@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -42,6 +43,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     @FXML private BorderPane pane;
     @FXML private VBox hintPane;
     @FXML private VBox choicesVBox;
+    @FXML private HBox clearLabelPane;
+    @FXML private HBox examExerciseButtonPane;
 
     @FXML private Label examTitleLabel;
     @FXML private Slider timeLeftSlider;
@@ -73,10 +76,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     private long delayMinute = 1_000 * 60; //60_000 (seconds in delta time) * 60 (to minutes) * 60 (to hour)
     private static final int passingGrade = 60; //60% passing grade
-    private int rawGrade;
-    private int totalItems;
-    private int percentGrade;
-    private String status;
+    private int rawGrade, totalItems, percentGrade;
+    private String status, title, message, module;
 
     //TODO time tracker and format to display slider
 
@@ -88,11 +89,16 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     public void reset() {
         choicesVBox.getChildren().clear();
+        hintPane.toBack();
+        clearLabelPane.toBack();
+        clearLabelPane.setStyle("");
+        examExerciseButtonPane.toFront();
 
         examTitleLabel.setText("");
         timeLeftSlider.setValue(0);
         questionTextArea.setText("");
         hintTextArea.setText("");
+        examExerciseButton.setDisable(false);
         setHintButtonDisable(true);
         setHintTextAreaVisible(false);
 
@@ -237,19 +243,49 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     //TODO evaluate after submit
     @FXML private void submitExam() {
-        System.out.println("Exam submitted");
-        stopExam();
-        Agent.stopBackground();
-        rawGrade = exam.evaluate();
+        if (!Agent.isCleared()){
+            AlertBox.display("Answer Exam Exercise first", "Please answer the exercise first.", "Click \"ok\" to close this window.");
+            openExamExercise();
+            return;
+        }else {
+            stopExam();
+            Agent.setIsExerciseCleared(false);
+            Agent.stopBackground();
+            computeGrade();
+            String currentModule = Agent.getLoggedUser().getCurrentModuleId();
+            int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length() - 1)));
+            module = "module" + moduleNo;
+            Boolean answer = ConfirmBox.display("Exam Finished", title, message);
+            if (Agent.getLoggedUser() != null) {
+                saveRecords();
+                if (status.equals("Passed")) {
+                    if (answer) {
+                        viewResults();
+                    }
+                    if (++moduleNo <= 7) {
+                        unlockNextModule("module" + moduleNo);
+                        Agent.clearExams();
+                        Agent.clearExamExercises();
+                    } else {
+                        unlockChallenge();
+                    }
+                } else {
+                    Agent.getLoggedUser().setCurrentExamId(module);
+                }
+                Agent.setExam(null);
+                Agent.setExamExercise(null);
+            }
+            reset();
+            changeScene("../../../sample/view/user.fxml");
+        }
+    }
+
+    private void computeGrade(){rawGrade = exam.evaluate();
         if (isExamExerciseCorrect()){
             rawGrade = rawGrade + 5;
         }
         totalItems = exam.getQuizItems().size() + 5;
         percentGrade = 100 * rawGrade / totalItems;
-        String currentModule = Agent.getLoggedUser().getCurrentModuleId();
-        int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length()-1)));
-        String module = "module" + moduleNo;
-        String title, message;
         if (percentGrade >= passingGrade) {
             status = "Passed";
             title = "Congratulations! You have passed the exam.\n" +
@@ -266,32 +302,12 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                     "Total Items: " + totalItems + "\n" +
                     "Percent grade: " + percentGrade;
         }
-        //AlertBox.display("Exam Finished", title, message);
-        if (ConfirmBox.display("Exam Finished", title, message)){
-            viewResults();
-        }
-        if (Agent.getLoggedUser() != null){
-            saveRecords();
-            if (status.equals("Passed")){
-                if (++moduleNo <= 7) {
-                    unlockNextModule("module" + moduleNo);
-                    Agent.setExam(null);
-                    Agent.setExamExercise(null);
-                    Agent.clearExams();
-                    Agent.clearExamExercises();
-                }else {unlockChallenge();}
-            }else {
-                Agent.getLoggedUser().setCurrentExamId(module);
-            }
-        }
-        reset();
-        changeScene("../../../sample/view/user.fxml");
     }
 
     private boolean isExamExerciseCorrect() {
         PracticalPrintExercise practicalPrintExercise = Agent.getExamExercise();
         if (practicalPrintExercise != null) {
-            //compileCode();
+            compileCode(practicalPrintExercise);
 
             String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
             errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
@@ -312,6 +328,25 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             System.out.println("practicalPrintExercise is null");
         }
         return false;
+    }
+
+    private void compileCode(PracticalPrintExercise practicalPrintExercise) {
+        try {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
+
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+
+            RuntimeUtil.compile(practicalPrintExercise);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STREAM);
+        }
     }
 
     private void saveRecords(){
@@ -379,6 +414,36 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             child.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void closeChildWindow() {
+        if (Agent.isCleared()){
+            Boolean answer = ConfirmBox.display("Close window",
+                    "Are you sure you want to close this window?",
+                    "Once you submit, you cannot make any more changes to this exercise.");
+            if (answer){
+                disposeExamExercise();
+                examExerciseButton.setDisable(true);
+                examExerciseButtonPane.toBack();
+                clearLabelPane.toFront();
+                clearLabelPane.setStyle("-fx-background-color: #00C853; -fx-opacity: 0.6");
+                child.close();
+            }else {Agent.setIsExerciseCleared(false);}
+        }else {
+            AlertBox.display("Close window", "All changes will be retained.",
+                    "You can go back and answer this later by clicking the \"code\" button again.");
+            disposeExamExercise();
+            child.close();
+        }
+    }
+
+    public void disposeExamExercise(){
+        ExamExerciseViewerController examExerciseViewerController =
+                (ExamExerciseViewerController) Controllers.getController(ControllerType.EXAM_EXERCISE_VIEWER);
+        if (examExerciseViewerController instanceof Disposable){
+            examExerciseViewerController.dispose();
         }
     }
 

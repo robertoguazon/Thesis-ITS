@@ -484,6 +484,7 @@ public class Controllers {
                     break;
                 case EXAM_EXERCISE_VIEWER:
                     examExerciseViewerController.setPracticalPrintExercise((PracticalPrintExercise) lesson);
+                    break;
                 case EXAM_CHOICES_ONLY_VIEWER:
                     examChoicesOnlyViewerController.setExam((Exam)lesson);
                     break;
