@@ -11,6 +11,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" styleClass="header">
          <children>
+            <Button fx:id="exerciseResultButton" mnemonicParsing="false" onAction="#openExerciseResult" text="View Exercise Result" />
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
             <Label fx:id="titleLabel" styleClass="label-header" text="Title" BorderPane.alignment="CENTER">
                <font>
