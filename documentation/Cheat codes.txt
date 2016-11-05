@@ -23,10 +23,10 @@ class Apples {
 class Apples {
 
 	public static void main(String[] args){
-		//Write your code here
-		System.out.println("I am trying to learn� the Java Programming Language");
-		System.out.println("I am trying to learn�");
+		System.out.println("I am trying to learn… the Java Programming Language");
+		System.out.println("I am trying to learn…");
 		System.out.println("the Java Programming Language");
+
 	}
 
 }
@@ -444,3 +444,211 @@ public class Apples  {
 }
 
 
+EXAM
+
+    -exam 1 module 1 set A
+public class Apples {
+	public static void main(String[] args) {
+		System.out.println("I have passed the...");
+		System.out.println("Exam!!!!");
+	}
+}
+
+    -exam 1 module 1 set B
+public class Orange {
+	public static void main(String[] args) {
+		System.out.println("I have not passed the");
+		System.out.println("first");
+		System.out.println("but I passed the second…");
+	}
+}
+
+    -exam 1 module 1 set C
+public class Pineapples {
+	public static void main (String[] args) {
+		System.out.println("I will pass");
+		System.out.println("...this exam!!!");
+	}
+}
+
+    -exam 2 module 2 set A
+public class Apples {
+	public static void main(String[] args) {
+		String myTest = "I will pass this test!";
+		int[] myInteger = {99,12,14,28};
+		System.out.println(myTest);
+		System.out.println();
+		System.out.print(myInteger[2]);
+	}
+}
+
+    -exam 2 module 2 set B
+public class Apples {
+	public static void main(String[] args) {
+		float myFloat = 6.19f;
+		String[] myString = {"Rey", "Mysterio"};
+
+		System.out.println(myString[0] + " " + myString[1]);
+		System.out.println();
+		System.out.println(myFloat);
+	}
+}
+
+    -exam 2 module 2 set C
+public class Apples {
+	public static void main(String[] args) {
+		String myComment = "This is Test C";
+		String[] myTest = {"This", "Test", "is", "hard…"};
+		System.out.println(myTest[0] + " " + myTest[1] + " " + myTest[2] + " " + myTest[3]);
+		System.out.println();
+		System.out.println(myComment);
+	}
+}
+
+    -exam 3 module 3 set A
+public class Apples {
+	public static void main(String[] args) {
+		int x = 69;
+		int y = 96;
+		int temp;
+		temp = x;
+		x = y;
+		y = temp;
+		System.out.println(y);
+	}
+}
+
+    -exam 3 module 3 set B
+public class Apples {
+	public static void main(String[] args) {
+		int x = 96;
+		int y = 69;
+		int temp;
+		temp = x;
+		x = y;
+		y = temp;
+		System.out.println(x);
+	}
+}
+
+    -exam 3 module 3 set C
+public class Apples {
+	public static void main(String[] args) {
+		int[] x = {6,9};
+		x[0] += x[1];
+		System.out.println(x[0]);
+	}
+}
+
+    -exam 4 module 4 set A
+public class Apples {
+	public static void main(String[] args) {
+		int x = 96;
+		int y = 69;
+		int temp;
+		temp = x;
+		x = y;
+		y = temp;
+		if (x == 96) {
+			System.out.print(69);
+		} else {
+			System.out.print("96");
+		}
+	}
+}
+
+    -exam 4 module 4 set B
+public class Apples {
+	public static void main(String[] args) {
+		boolean myTest = false;
+		System.out.print(myTest ? "true" : "false");
+	}
+}
+
+    -exam 4 module 4 set C
+public class Apples {
+	public static void main(String[] args) {
+		int test = 4;
+		if (test % 2 == 0) {
+			System.out.println("Even");
+		} else {
+			System.out.println("Odd");
+		}
+	}
+}
+
+    -exam 5 module 5 set A
+public class Apples {
+	public static void main(String[] args) {
+		int sum = 1;
+		for (int i = 0; i < 5; i++) {
+			sum += 2;
+			System.out.println(sum);
+		}
+	}
+}
+
+    -exam 5 module 5 set B
+public class Apples {
+	public static void main(String[] args) {
+		for (int i = 0; i < 40; i++) {
+			if (i % 8 == 0) {
+				System.out.println(i);
+			}
+		}
+	}
+}
+
+    -exam 5 module 5 set C
+public class Apples {
+	public static void main(String[] args) {
+		int sum = 0;
+		int counter = 0;
+		do {
+		    sum += 5;
+		    System.out.println(sum);
+			counter ++;
+		} while ( counter < 10);
+	}
+}
+
+    -exam 6 module 6 set A
+public class Apples {
+	public static void main(String[] args) {
+		System.out.println(checkOdd(2));
+		System.out.println(checkOdd(6));
+		System.out.println(checkOdd(9));
+	}
+
+	static boolean checkOdd(int test) {
+		if (test % 2 == 0) return false;
+		return true;
+	}
+}
+
+    -exam 6 module 6 set B
+public class Apples {
+	public static void main(String[] args) {
+		displayArea();
+	}
+
+	static double computeAreaRectangle(double length, double width) {
+		return length * width;
+	}
+
+	static void displayArea() {
+		System.out.println("Area: " + computeAreaRectangle(4.5, 1.5));
+	}
+
+}
+
+    -exam module 6 set C
+public class Apples {
+	public static void main(String[] args) {
+		System.out.println("Answer: " + multiplyNumber(2,4));
+	}
+
+	static int multiplyNumber(int base, int multiplier) {
+		return base * multiplier;
+	}
+}
