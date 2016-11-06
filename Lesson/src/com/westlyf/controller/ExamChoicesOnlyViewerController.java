@@ -9,6 +9,7 @@ import com.westlyf.user.ExamGrade;
 import com.westlyf.utils.RuntimeUtil;
 import com.westlyf.utils.StringUtil;
 import com.westlyf.utils.array.ArrayUtil;
+import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -124,7 +125,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     }
 
     public void startTimer() {
-        setTimer(15); // 15minutes
+        setTimer(1); // 15minutes
     }
 
     private void setTimer(int minutes){
@@ -138,7 +139,9 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                 new TimerTask() {
                     @Override
                     public void run() {
-                        submitExam();
+                        Platform.runLater(() -> {
+                            submitExam();
+                        });
                     }
                 }, delay);
 
