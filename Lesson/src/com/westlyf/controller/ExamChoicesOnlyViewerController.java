@@ -399,10 +399,10 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/results.fxml"));
             Parent root = loader.load();
             ResultController resultController = loader.getController();
-            resultController.setExam(exam);
             resultController.setRawGrade(rawGrade);
             resultController.setTotalItems(totalItems);
             resultController.setPercentGrade(percentGrade);
+            resultController.setExam(exam);
             Scene scene2 = new Scene(root);
             child = new Stage();
             scene2.getStylesheets().addAll(scene.getStylesheets());

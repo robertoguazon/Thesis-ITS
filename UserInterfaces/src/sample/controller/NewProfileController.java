@@ -21,7 +21,7 @@ public class NewProfileController extends ControllerManager implements Initializ
 
     ObservableList<String> yearLevelList = FXCollections
             .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
-                    "Collage 1st Year", "Collage 2nd Year", "Collage 3rd Year", "Collage 4th Year");
+                    "College 1st Year", "College 2nd Year", "College 3rd Year", "College 4th Year");
     ObservableList<Integer> ageList = FXCollections.observableArrayList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
 
     @FXML private Label errorMessage;

@@ -76,7 +76,7 @@ public class UserController extends ControllerManager implements Initializable{
         String[] examTags = Agent.getExam().getTagsString().split(",");
         Agent.loadExamExercise(examTags[0], examTags[1]);
         changeScene(node);
-        loadFER();
+        //loadFER();
     }
 
     private void loadFER(){
