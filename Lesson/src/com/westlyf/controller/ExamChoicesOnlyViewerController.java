@@ -125,7 +125,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     }
 
     public void startTimer() {
-        setTimer(20); // 15minutes
+        setTimer(10); // set minutes
     }
 
     private void setTimer(int minutes){
