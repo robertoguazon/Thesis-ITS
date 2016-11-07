@@ -125,7 +125,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     }
 
     public void startTimer() {
-        setTimer(1); // 15minutes
+        setTimer(20); // 15minutes
     }
 
     private void setTimer(int minutes){
@@ -140,7 +140,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                     @Override
                     public void run() {
                         Platform.runLater(() -> {
-                            submitExam();
+                            submit();
                         });
                     }
                 }, delay);
@@ -244,43 +244,46 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         newChildWindow(node, "Exam Exercise");
     }
 
-    //TODO evaluate after submit
     @FXML private void submitExam() {
         if (!Agent.isCleared()){
             AlertBox.display("Answer Exam Exercise first", "Please answer the exercise first.", "Click \"ok\" to close this window.");
             openExamExercise();
             return;
         }else {
-            stopExam();
             Agent.setIsExerciseCleared(false);
-            Agent.stopBackground();
-            computeGrade();
-            String currentModule = Agent.getLoggedUser().getCurrentModuleId();
-            int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length() - 1)));
-            module = "module" + moduleNo;
-            Boolean answer = ConfirmBox.display("Exam Finished", title, message);
-            if (Agent.getLoggedUser() != null) {
-                saveRecords();
-                if (status.equals("Passed")) {
-                    if (answer) {
-                        viewResults();
-                    }
-                    if (++moduleNo <= 7) {
-                        unlockNextModule("module" + moduleNo);
-                        Agent.clearExams();
-                        Agent.clearExamExercises();
-                    } else {
-                        unlockChallenge();
-                    }
-                } else {
-                    Agent.getLoggedUser().setCurrentExamId(module);
-                }
-                Agent.setExam(null);
-                Agent.setExamExercise(null);
-            }
-            reset();
-            changeScene("../../../sample/view/user.fxml");
+            submit();
         }
+    }
+
+    private void submit(){
+        stopExam();
+        Agent.stopBackground();
+        computeGrade();
+        String currentModule = Agent.getLoggedUser().getCurrentModuleId();
+        int moduleNo = Integer.parseInt(String.valueOf(currentModule.charAt(currentModule.length() - 1)));
+        module = "module" + moduleNo;
+        Boolean answer = ConfirmBox.display("Exam Finished", title, message);
+        if (Agent.getLoggedUser() != null) {
+            saveRecords();
+            if (status.equals("Passed")) {
+                if (answer) {
+                    viewResults();
+                }
+                if (++moduleNo <= 7) {
+                    unlockNextModule("module" + moduleNo);
+                    Agent.clearExams();
+                    Agent.clearExamExercises();
+                } else {
+                    unlockChallenge();
+                }
+            } else {
+                Agent.getLoggedUser().setCurrentExamId(module);
+            }
+            Agent.setExam(null);
+            Agent.setExamExercise(null);
+        }
+        reset();
+        changeScene("../../../sample/view/user.fxml");
     }
 
     private void computeGrade(){rawGrade = exam.evaluate();
