@@ -46,7 +46,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
-        testExamChoicesOnlyMaker(primaryStage);
+        //testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -85,7 +85,7 @@ public class ControllersSampleMain extends Application {
     private void testPracticalPrintExerciseViewer(Stage primaryStage) {
 
         Node node = Controllers.getNode(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER,
-                ExerciseDatabase.getPracticalExerciseUsingTitle("Module 6 Exam - Set C"));
+                ExerciseDatabase.getPracticalExerciseUsingTitle("Exercise 8 - Variables From Parameters"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();
