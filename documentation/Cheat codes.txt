@@ -736,6 +736,66 @@ public class Apples {
 	}
 }
 
+    -exam module 7 set A
+public class Apples {
+	public static void main(String[] args) {
+		ComputeRectangle test1 = new ComputeRectangle (6,9);
+	}
+}
+class ComputeRectangle {
+	private int length;
+	private int width;
+
+	ComputeRectangle(int length, int width) {
+		this.length = length;
+        this.width = width;
+		System.out.println("Rectangle Area: " + computeArea());
+	}
+	private int computeArea() {
+		return this.length * this.width;
+	}
+}
+
+    -exam module 7 set B
+public class Apples {
+	public static void main(String[] args) {
+        ComputeTriangle test1 = new ComputeTriangle(6,9);
+	}
+}
+
+class ComputeTriangle {
+    private int base;
+    private int height;
+    ComputeTriangle(int base, int height) {
+        this.base = base;
+        this.height = height;
+        System.out.println("Triangle Area: " + computeArea());
+    }
+    private int computeArea() {
+        return this.base * this.height / 2;
+    }
+}
+
+    -exam module 7 set C
+public class Apples {
+	public static void main(String[] args) {
+        ComputeSquare test1 = new ComputeSquare(69);
+	}
+}
+
+class ComputeSquare {
+    private int side;
+
+    ComputeSquare(int side) {
+        this.side = side;
+        System.out.println("Square Area: " + computeArea());
+    }
+
+    private int computeArea() {
+        return this.side * this.side;
+    }
+}
+
 ***************
 Challenges
 
