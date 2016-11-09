@@ -43,10 +43,12 @@ public class LoginTask extends Task {
                 updateMessage("Login: logging in to user");
                 new Agent(user);
                 updateProgress(80,MAX);
+                Thread.sleep(200);
 
                 updateMessage("Loading all controllers");
                 Platform.runLater(() -> {Controllers.loadAllViewers();}); //TODO -fix
                 updateProgress(100,MAX);
+                Thread.sleep(200);
 
                 return true;
             }else {
@@ -70,6 +72,7 @@ public class LoginTask extends Task {
                 });
             }else {Platform.runLater(() -> {clearStyle(password);});}
         }
+        updateMessage("");
         updateProgress(100,MAX);
         return false;
 

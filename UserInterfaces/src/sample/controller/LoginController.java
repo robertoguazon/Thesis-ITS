@@ -19,6 +19,7 @@ public class LoginController extends ControllerManager implements Initializable{
     @FXML private TextField password;
     @FXML private Button loginButton;
     @FXML private Hyperlink backToMenu;
+    @FXML private Label progressLabel;
     @FXML private ProgressBar progressBar;
 
     @Override
@@ -30,6 +31,7 @@ public class LoginController extends ControllerManager implements Initializable{
     public void handleAction(ActionEvent event) {
         if (event.getSource() == loginButton){
             LoginTask loginTask = new LoginTask(username,password,errorMessage);
+            progressLabel.textProperty().bind(loginTask.messageProperty());
             progressBar.progressProperty().bind(loginTask.progressProperty());
             Thread loginThread = new Thread(loginTask);
             loginThread.start();

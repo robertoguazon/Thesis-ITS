@@ -60,6 +60,7 @@
          <children>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
+                  <Label fx:id="progressLabel" />
                   <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="696.0" progress="0.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>

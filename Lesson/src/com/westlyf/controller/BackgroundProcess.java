@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Yves on 10/16/2016.
  */
-public class BackgroundProcess extends Thread{
+public class BackgroundProcess implements Runnable{
 
     private volatile boolean running = true;
     BufferedInputStream reader;
@@ -23,10 +23,12 @@ public class BackgroundProcess extends Thread{
 
     @Override
     public void run() {
+        System.out.println("Starting Background Process...");
         try {
             String fer;
             examChoicesOnlyViewerController =
                     (ExamChoicesOnlyViewerController) Controllers.getController(ControllerType.EXAM_CHOICES_ONLY_VIEWER);
+            running = true;
             while( running ) {
                 fer = "";
                 reader = new BufferedInputStream(new FileInputStream( "C:\\Users\\Yves\\Desktop\\emotion.txt" ) );
@@ -52,7 +54,7 @@ public class BackgroundProcess extends Thread{
         }
     }
 
-    public void stopBackground(){
+    public void stop(){
         running = false;
         System.out.println("Stopping Background Process...");
         try {

@@ -35,7 +35,7 @@ public class GradesController extends ControllerManager implements Initializable
         gradesList = FXCollections.observableArrayList();
         gradesList.addAll(Agent.getExamGrades());
         aveGradeList = FXCollections.observableArrayList();
-        computeAverageGrades();
+        computeModuleGrades();
         averageGradesListView.setItems(aveGradeList);
         examTitleColumn.setCellValueFactory(new PropertyValueFactory<>("exam_title"));
         rawGradeColumn.setCellValueFactory(new PropertyValueFactory<>("rawGrade"));
@@ -45,29 +45,31 @@ public class GradesController extends ControllerManager implements Initializable
         tableView.setItems(gradesList);
     }
 
-    public void computeAverageGrades(){
+    public void computeModuleGrades(){
         int overallGrade = 0;
         int l = 0;
         for (int i=1; i<=7; i++){
-            int averageGrade = 0;
-            int k = 0;
+            int moduleGrade = 0;
+            boolean b = false;
             for (int j=0; j<gradesList.size(); j++){
-                if (gradesList.get(j).getExam_title().contains("Module "+i)){
-                    averageGrade = averageGrade + gradesList.get(j).getPercentGrade();
-                    k++;
+                ExamGrade temp = gradesList.get(j);
+                if (temp.getExam_title().contains("Module "+i)){
+                    if (moduleGrade <= temp.getPercentGrade()){
+                        moduleGrade = temp.getPercentGrade();
+                    }
+                    b = true;
                 }
             }
-            if (k != 0){
-                averageGrade = averageGrade / k;
-                overallGrade = overallGrade + averageGrade;
-                aveGradeList.add("Module " + i + " - " + averageGrade + "%");
+            if (b){
+                overallGrade = overallGrade + moduleGrade;
+                aveGradeList.add("Module " + i + " - " + moduleGrade + "%");
                 l++;
             }
         }
         if (l != 0){
             overallGrade = overallGrade / l;
             overallLabel.setText(overallGrade + " / 100");
-            if (overallGrade > 60){
+            if (overallGrade > 75){
                 overallLabel.getParent().setStyle("-fx-background-color: #00C853");
             }else {
                 overallLabel.getParent().setStyle("-fx-background-color: #F44336");

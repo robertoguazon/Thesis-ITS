@@ -10,6 +10,12 @@ for (i = 0; i < acc.length; i++) {
     }
 }
 
+/* Prevent right click */
+$(document).ready(function() {
+    $("html").on("contextmenu",function(){
+       return false;
+    }); 
+}); 
 
 /* Module1-Lesson 1*/
 $(document).ready(function() {
@@ -116,4 +122,79 @@ $(document).ready(function() {
         $("#slideitbaby").slideDown('slow');
     });
     
+});
+
+
+/*Module5-Lesson 2*/
+$(document).ready(function(){
+
+    $('#forstatement').delay('1900').fadeIn("slow");
+
+});
+
+/*Module5-Lesson 4*/
+$(document).ready(function(){
+
+      $("#dowhiletrigger").click(
+
+    function() {
+        $("#dowhile").slideDown('slow');
+    });
+    
+
+});
+
+/*Module6-Lesson 2*/
+$(document).ready(
+    function(){
+
+    $('#displayvoid').delay('1900').slideDown("slow");
+    $('#displaytextvoid').delay('3900').slideDown("slow");
+    }
+);
+
+/*Module6-Lesson 6*/
+$(document).ready(function(){
+
+      $("#displaymv").click(
+
+    function() {
+        $("#variablemethod").slideDown('slow');
+        $("#desc").delay('1900').slideDown('slow');
+        $("#localinstance").delay('3900').slideDown('slow');
+    });
+    
+
+});
+
+/*Module6-Lesson 7*/
+$(document).ready(function(){
+
+      $("#potatotrigger").click(
+
+    function() {
+        $("#potato").slideDown('slow');
+    });
+    
+
+});
+
+/*Module6-Lesson 8*/
+$(document).ready(function(){
+
+    $('#condimethod').delay('2900').fadeIn("slow");
+
+});
+
+/*Module7-Lesson2*/
+
+$(document).ready(function(){
+
+      $("#displayproperties").click(
+
+    function() {
+        $("#props").slideToggle('slow');
+    });
+    
+
 });
