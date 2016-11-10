@@ -20,8 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import sample.controller.ControllerManager;
 import sample.controller.ResultController;
 import sample.model.AlertBox;
@@ -266,7 +265,12 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                 Agent.clearExams();
                 Agent.clearExamExercises();
             } else {
-                AlertBox.display("Exam Finished", title, message);
+                //AlertBox.display("Exam Finished", title, message);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Exam Finished");
+                alert.setHeaderText(title);
+                alert.setContentText(message);
+                alert.showAndWait();
                 Agent.getLoggedUser().setCurrentExamId(module);
             }
             Agent.setExam(null);
@@ -308,8 +312,9 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     }
 
     private int computeUpperLimit(){
-        int tries = Agent.countTries() + 1;
-        return 100 - (tries - 1) * (tries + 4);
+        int tries = Agent.getTries() + 1;
+        int upperLimit = 100 - (tries - 1) * (tries + 4);
+        return upperLimit>76?upperLimit:76;
     }
 
     private boolean isExamExerciseCorrect() {

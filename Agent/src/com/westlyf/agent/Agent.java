@@ -21,6 +21,7 @@ public class Agent {
 
     private static Users loggedUser;
     private static boolean isExerciseCleared;
+    private static int tries;
 
     private static UserExercise userExercise = new UserExercise();
     private static TextLesson lesson = new TextLesson();
@@ -209,7 +210,7 @@ public class Agent {
     public static Exam loadExam(){
         Exam match = null;
         if (!getLoggedUser().getCurrentExamId().contains("exam")){
-            match = getExams().get((int) (Math.random() * getExams().size()));
+            match = getExams().get(tries%3);
             getLoggedUser().setCurrentExamId(match.getTagsString());
         }else {
             for (int i = 0; i < getExams().size(); i++){
@@ -287,12 +288,14 @@ public class Agent {
     }
 
     public static int countTries(){
-        int tries = 0;
+        tries = 0;
         for (ExamGrade aGradesList : getExamGrades()) {
-            if (aGradesList.getExam_title().toLowerCase().contains(getLoggedUser().getCurrentExamId())) {
+            if (aGradesList.getExam_title().contains("Module " +
+                    getLoggedUser().getCurrentExamId().charAt(getLoggedUser().getCurrentExamId().length()-1))) {
                 tries++;
             }
         }
+        System.out.println("No. of Tries: " + tries);
         return tries;
     }
 
@@ -343,6 +346,10 @@ public class Agent {
 
     public static void setIsExerciseCleared(boolean isExerciseCleared) {
         Agent.isExerciseCleared = isExerciseCleared;
+    }
+
+    public static int getTries() {
+        return tries;
     }
 
     public static UserExercise getUserExercise() {

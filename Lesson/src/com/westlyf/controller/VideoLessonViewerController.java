@@ -49,6 +49,7 @@ public class VideoLessonViewerController implements Initializable, Disposable {
     public void setVideoLesson(VideoLesson videoLesson) {
         this.videoLesson = videoLesson;
         videoLessonLabel.setText(videoLesson.getTitle());
+        playButton.setText("Play");
         set();
     }
 
