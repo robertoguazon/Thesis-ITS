@@ -80,78 +80,22 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
 
     @FXML
     private void runCode() {
-        if (practicalPrintExercise != null) {
-            clearOutput();
-            compileCode();
-            /*if ( RuntimeUtil.STRING_OUTPUT.toString().isEmpty()) {
-                outputError("use System.out.println() to output something");
-            }*/
-            outputStream(RuntimeUtil.CONSOLE_OUTPUT.toString());
-
-            String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
-            errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
-
-            if (!errorString.isEmpty()) {
-                outputError(errorString); //output errors
-                responseText.setText("Error: Compilation");
-                responseText.getParent().setStyle("-fx-background-color: #F44336");
-                return;
-            }
-
-            // -1 means no error; returns index of CString
-            int errorCStringIndex = practicalPrintExercise.checkCGroup(codeTextArea.textProperty());
-            boolean correctOutput = practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString());
-            if (errorCStringIndex == -1 && correctOutput) {
-                responseText.setText("Correct");
-                responseText.getParent().setStyle("-fx-background-color: #00C853");
-                statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
-                statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
-                statusPane.toFront();
-                submitButton.setDisable(false);
-            } else if (errorCStringIndex != -1) {
-                //responseText.setText(practicalPrintExercise.getExplanation());
-                responseText.setText(practicalPrintExercise.getCStringTip(errorCStringIndex));
-                responseText.getParent().setStyle("-fx-background-color: #F44336");
-            } else if (!correctOutput) {
-                responseText.setText("Output not match: follow instructions");
-                responseText.getParent().setStyle("-fx-background-color: #F44336");
-            }
-
-            /*
-            if (practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString())) {
-
-                // -1 means no error; returns index of CString
-                int errorCStringIndex = practicalPrintExercise.checkCGroup(codeTextArea.textProperty());
-                if (errorCStringIndex == -1) {
-                    responseText.setText("Correct");
-                    responseText.getParent().setStyle("-fx-background-color: #00C853");
-                    statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
-                    statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
-                    statusPane.toFront();
-                    codeTextArea.setEditable(false);
-                    clearCodeButton.setDisable(true);
-                    runCodeButton.setDisable(true);
-                    clearOutputButton.setDisable(true);
-                    submitButton.setDisable(false);
-                } else {
-                    //responseText.setText(practicalPrintExercise.getExplanation());
-                    responseText.setText(practicalPrintExercise.getCStringTip(errorCStringIndex));
-                    responseText.getParent().setStyle("-fx-background-color: #F44336");
-                }
-            } else {
-                responseText.setText(practicalPrintExercise.getExplanation());
-                responseText.getParent().setStyle("-fx-background-color: #F44336");
-            }
-             */
+        if (Agent.runCode(practicalPrintExercise)){
+            responseText.getParent().setStyle("-fx-background-color: #00C853");
+            statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
+            statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
+            statusPane.toFront();
+            submitButton.setDisable(false);
         }else {
-            System.out.println("practicalPrintExercise is null");
+            responseText.getParent().setStyle("-fx-background-color: #F44336");
         }
+        responseText.setText(Agent.getResponse());
+        outputStream(Agent.getOutput());
     }
 
 
     @FXML
     private void clearOutput() {
-
         try {
             this.outputTextArea.clear();
             RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
@@ -181,35 +125,8 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
         child.fireEvent(new WindowEvent(child, WindowEvent.WINDOW_CLOSE_REQUEST));
     }
 
-    private void compileCode() {
-        try {
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
-            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
-            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
-            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
-
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
-            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
-
-            RuntimeUtil.compile(practicalPrintExercise);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        } finally {
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
-            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STREAM);
-        }
-    }
-
     private void outputStream(String string) {
         outputTextArea.appendText(string);
-    }
-
-    private void outputLine(String string) {
-        outputTextArea.appendText(string + "\n");
-    }
-
-    private void outputError(String string) {
-        outputTextArea.appendText("Error: " + string + "\n");
     }
 
     @Override

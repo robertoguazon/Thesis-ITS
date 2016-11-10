@@ -265,8 +265,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                 Agent.clearExams();
                 Agent.clearExamExercises();
             } else {
-                Boolean answer = ConfirmBox.display("Exam Finished", title, message); //TODO delete
-                if (answer) { viewResults(); } //TODO delete
                 //AlertBox.display("Exam Finished", title, message);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Exam Finished");
@@ -277,6 +275,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             }
             Agent.setExam(null);
             Agent.setExamExercise(null);
+            Agent.setResponse("");
+            Agent.setOutput("");
         }
         reset();
         changeScene("../../../sample/view/user.fxml");
@@ -284,19 +284,19 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     private void computeGrade(){
         rawGrade = exam.evaluate();
-        if (isExamExerciseCorrect()){
+        if (Agent.runCode(Agent.getExamExercise())){
             rawGrade = rawGrade + 5;
         }
         totalItems = exam.getQuizItems().size() + 5;
         percentGrade = 50 * rawGrade / totalItems + 50;
+        message = "Raw grade: " + rawGrade + "\n" +
+                "Total Items: " + totalItems + "\n" +
+                "Percent grade: " + percentGrade + "%";
         if (percentGrade >= passingGrade) {
             status = "Passed";
             title = "Congratulations! You have passed the exam.\n" +
                     "Click \"ok\" to view your results.\n" +
                     "Click \"cancel\" to return to home.";
-            message = "Raw grade: " + rawGrade + "\n" +
-                    "Total Items: " + totalItems + "\n" +
-                    "Percent grade: " + percentGrade + "%";
             int upperLimit = computeUpperLimit();
             if (percentGrade > upperLimit) {
                 message = message + " => " + upperLimit + "%\n" +
@@ -307,9 +307,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             status = "Failed";
             title = "Your grade didn't reach the passing score of " +
                     passingGrade + "%.\n Please review your " + module + " then try again next time.";
-            message = "Raw grade: " + rawGrade + "\n" +
-                    "Total Items: " + totalItems + "\n" +
-                    "Percent grade: " + percentGrade + "%";
         }
     }
 
@@ -317,47 +314,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         int tries = Agent.getTries() + 1;
         int upperLimit = 100 - (tries - 1) * (tries + 4);
         return upperLimit>76?upperLimit:76;
-    }
-
-    private boolean isExamExerciseCorrect() {
-        PracticalPrintExercise practicalPrintExercise = Agent.getExamExercise();
-        if (practicalPrintExercise != null) {
-            compileCode(practicalPrintExercise);
-
-            String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
-            errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
-
-            if (!errorString.isEmpty()) {
-                return false;
-            }
-
-            // -1 means no error; returns index of CString
-            int errorCStringIndex = practicalPrintExercise.checkCGroup(practicalPrintExercise.codeProperty());
-            boolean correctOutput = practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString());
-            return errorCStringIndex == -1 && correctOutput;
-        }else {
-            System.out.println("practicalPrintExercise is null");
-        }
-        return false;
-    }
-
-    private void compileCode(PracticalPrintExercise practicalPrintExercise) {
-        try {
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
-            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
-            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
-            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
-
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
-            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
-
-            RuntimeUtil.compile(practicalPrintExercise);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        } finally {
-            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
-            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STREAM);
-        }
     }
 
     private void saveRecords(){
