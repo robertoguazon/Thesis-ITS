@@ -265,6 +265,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
                 Agent.clearExams();
                 Agent.clearExamExercises();
             } else {
+                Boolean answer = ConfirmBox.display("Exam Finished", title, message); //TODO delete
+                if (answer) { viewResults(); } //TODO delete
                 //AlertBox.display("Exam Finished", title, message);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Exam Finished");
