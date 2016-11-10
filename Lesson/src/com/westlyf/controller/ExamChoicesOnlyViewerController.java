@@ -20,7 +20,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+<<<<<<< HEAD
 import javafx.stage.*;
+=======
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+>>>>>>> origin/master
 import sample.controller.ControllerManager;
 import sample.controller.ResultController;
 import sample.model.AlertBox;
@@ -172,7 +178,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
     }
 
     private void setQuizItem() {
-        choicesVBox.getChildren().clear(); //erase nodes //TODO put this in the furture in reset
+        choicesVBox.getChildren().clear(); //erase nodes //TODO put this in the future in reset
 
         QuizItem quizItem = randomizedQuizItems.get(currentItem.get() - 1); //for array
 
