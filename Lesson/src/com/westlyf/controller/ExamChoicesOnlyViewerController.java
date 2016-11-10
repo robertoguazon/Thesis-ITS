@@ -18,15 +18,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-<<<<<<< HEAD
-import javafx.stage.*;
-=======
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
->>>>>>> origin/master
 import sample.controller.ControllerManager;
 import sample.controller.ResultController;
 import sample.model.AlertBox;
