@@ -5,17 +5,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.QuizUpdateController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ExamUpdateController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="loadTextField" />
-            <RadioButton fx:id="quizRadioButton" mnemonicParsing="false" selected="true" text="Quiz">
-               <toggleGroup>
-                  <ToggleGroup fx:id="quizType" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="examRadioButton" mnemonicParsing="false" text="Exam" toggleGroup="$quizType" />
             <Button fx:id="loadButton" mnemonicParsing="false" onAction="#load" text="Load" />
             <Button fx:id="updateButton" mnemonicParsing="false" onAction="#update" text="Update" />
             <Label fx:id="statusLabel" text="Sample" textFill="#ab2222">

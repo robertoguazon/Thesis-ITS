@@ -45,8 +45,55 @@ public class ExamDatabase {
             GET_EXAMS_USING_TAGS_EXACTLY = "SELECT * FROM exam WHERE tags = ?",
             GET_EXAMS_USING_TAGS_CONTAINS = "SELECT * FROM exam WHERE tags LIKE ?";
 
+    /**
+     * String statements for updating exams
+     * */
+    public static final String
+            UPDATE_EXAM_EXAMOBJECT_USING_TITLE = "UPDATE exam SET exam = ? WHERE title = ?";
+
     public static int createExamTable() {
         return Database.createTable(Database.EXAM, CREATE_EXAM_TABLE);
+    }
+
+    public static int updateExam(final String param, final String STATEMENT, Exam exam) {
+        Connection examConn = DatabaseConnection.getExamConn();
+
+        if (examConn == null) {
+            System.err.println("Error connecting to exam database...");
+
+            return -1;
+        }
+
+        PreparedStatement ps = null;
+        try {
+
+            ps = examConn.prepareStatement(STATEMENT);
+
+            ps.setBytes(1,Database.serialize(new QuizExerciseSerializable(exam)));
+            ps.setString(2,param);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+            return e.getErrorCode();
+
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (examConn != null) {
+                    examConn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println(e.getErrorCode());
+            }
+        }
+
+        return 0;
     }
 
     public static int storeData(Exam exam) {
@@ -306,4 +353,9 @@ public class ExamDatabase {
     public static ArrayList<Exam> getExamsUsingTagsContains(String ... tags) {
         return getExamsUsingTagsContains(LessonUtil.tagsToArrayList(tags));
     }
+
+    public static int updateExamUsingTitle(String title, Exam exam) {
+        return updateExam(title, UPDATE_EXAM_EXAMOBJECT_USING_TITLE, exam);
+    }
+
 }

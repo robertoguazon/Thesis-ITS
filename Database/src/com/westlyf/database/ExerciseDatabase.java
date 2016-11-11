@@ -114,9 +114,6 @@ public class ExerciseDatabase {
             GET_VIDEO_PRACTICAL_EXERCISES_USING_TAGS_EXACTLY = "SELECT * FROM video_practical_exercise WHERE tags = ?",
             GET_VIDEO_PRACTICAL_EXERCISES_USING_TAGS_CONTAINS = "SELECT * FROM video_practical_exercise WHERE tags LIKE ?";
 
-
-
-
     public static int createQuizExerciseTable() {
         return Database.createTable(Database.EXERCISE,CREATE_EXERCISE_QUIZ_TABLE);
     }

@@ -31,7 +31,7 @@ public class ControllersSampleMain extends Application {
         //testVideoLessonViewer(primaryStage);
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
-        testQuizExerciseViewer(primaryStage);
+        //testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
@@ -146,7 +146,7 @@ public class ControllersSampleMain extends Application {
     }
 
     private void testExamChoicesOnlyViewer(Stage primaryStage) {
-        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingLID("lid7824281890242"));
+        Node node = Controllers.getNode(ControllerType.EXAM_CHOICES_ONLY_VIEWER, ExamDatabase.getExamUsingTitle("24/7"));
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -1,19 +1,17 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
  * Created by robertoguazon on 11/11/2016.
  */
-public class QuizUpdateMain extends Application {
+public class ExamUpdateMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample/view/QuizUpdate.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample/view/ExamUpdate.fxml"));
 
         Parent parent = loader.load();
         Scene scene = new Scene(parent);

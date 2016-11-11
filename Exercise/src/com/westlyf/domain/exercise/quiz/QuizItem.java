@@ -460,4 +460,12 @@ public class QuizItem implements Serializable {
             answers.clear();
         }
     }
+
+    public void clearValidAnswers() {
+        this.validAnswers.clear();
+    }
+
+    public void removeValidAnswer(StringProperty stringProperty) {
+        this.validAnswers.remove(stringProperty);
+    }
 }
