@@ -1,0 +1,93 @@
+#module-title {
+    text-align: center;
+   font-family: "Arial";
+    color: #263238;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+#title {
+    text-align: center;
+     font-family: "Tahoma";
+    color: white;
+}
+
+
+.introduction {
+     font-family: "Lucida Sans Unicode";
+}
+
+.text {
+ font-family: "Segoe UI";
+    text-align: justify;
+}
+.section1 {
+    background-color: #E0E0E0;
+}
+
+.section2 {
+    background-color: #212121;
+}
+
+.section3 {
+    margin-top: 10px;
+
+}
+
+.section4 {
+    /*border-top: 1px solid #E0E0E0;
+*/
+}
+
+.section2 .container {
+    padding-bottom: 10px;
+}
+
+#variablemethod , #desc, #localinstance{
+    display:none;
+}
+
+
+/*Accordion*/
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+button.accordion {
+    background-color: #eee;
+    color: #263238;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-family: 'Segoe UI';
+}
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+button.accordion.active,
+button.accordion:hover {
+    background-color: #ddd;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+    text-align: justify;
+    font-family: 'Segoe UI';
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+    /* Whatever you like, as long as its more than the height of the content (on all screen sizes) */
+    text-align: justify;
+       font-family: 'Segoe UI';
+}

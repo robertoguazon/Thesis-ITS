@@ -1,0 +1,34 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Thesis-ITS">
+    <output-path>$PROJECT_DIR$/out/artifacts/Thesis_ITS</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="paramFile" value="" />
+        <option name="title" value="Thesis-ITS" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="UserInterfaces.jar">
+        <element id="module-output" name="UserInterfaces" />
+      </element>
+      <element id="module-output" name="Agent" />
+      <element id="module-output" name="Database" />
+      <element id="library" level="project" name="sqlite-jdbc-3.8.11.11" />
+      <element id="module-output" name="Exercise" />
+      <element id="module-output" name="Lesson" />
+      <element id="library" level="project" name="commons-compiler-jdk" />
+      <element id="module-output" name="RunTimeCompilation" />
+      <element id="library" level="project" name="Maven: com.intellij:annotations:12.0" />
+      <element id="library" level="project" name="javax.inject-1" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.14" />
+      <element id="library" level="project" name="Maven: net.openhft:compiler:2.2.5" />
+      <element id="module-output" name="User" />
+      <element id="module-output" name="VideoPlayer" />
+    </root>
+  </artifact>
+</component>
