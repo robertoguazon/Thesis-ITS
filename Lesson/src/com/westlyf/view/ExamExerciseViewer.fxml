@@ -16,6 +16,7 @@
                   <children>
                       <Label text="Exam" textAlignment="CENTER" wrapText="true" />
                       <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
+                  <Label layoutX="45.0" layoutY="66.0" text="5pts." textAlignment="CENTER" wrapText="true" />
                   </children>
               </VBox>
                   <HBox alignment="CENTER" HBox.hgrow="ALWAYS">

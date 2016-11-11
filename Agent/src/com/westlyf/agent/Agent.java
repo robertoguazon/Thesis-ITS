@@ -10,6 +10,8 @@ import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.user.ExamGrade;
 import com.westlyf.user.UserExercise;
 import com.westlyf.user.Users;
+import com.westlyf.utils.RuntimeUtil;
+import com.westlyf.utils.StringUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class Agent {
     private static Users loggedUser;
     private static boolean isExerciseCleared;
     private static int tries;
+    private static String response;
+    private static String output;
 
     private static UserExercise userExercise = new UserExercise();
     private static TextLesson lesson = new TextLesson();
@@ -164,6 +168,9 @@ public class Agent {
                 getExams().clear();
                 getUserExercises().clear();
                 getExamGrades().clear();
+                setOutput("");
+                setResponse("");
+                setTries(0);
             }
         }
     }
@@ -225,6 +232,18 @@ public class Agent {
         return match;
     }
 
+    public static int countTries(){
+        tries = 0;
+        for (ExamGrade aGradesList : getExamGrades()) {
+            if (aGradesList.getExam_title().contains("Module " +
+                    getLoggedUser().getCurrentExamId().charAt(getLoggedUser().getCurrentExamId().length()-1))) {
+                tries++;
+            }
+        }
+        System.out.println("No. of Tries: " + tries);
+        return tries;
+    }
+
     public static PracticalExercise loadChallenge(String title){
         PracticalExercise match = null;
         for (int i = 0; i < getChallenges().size(); i++) {
@@ -269,6 +288,59 @@ public class Agent {
         return false;
     }
 
+    //Run and Compile
+    public static boolean runCode(PracticalPrintExercise practicalPrintExercise){
+        if (practicalPrintExercise != null) {
+            compileCode(practicalPrintExercise);
+            setOutput(RuntimeUtil.CONSOLE_OUTPUT.toString());
+
+            String errorString = RuntimeUtil.CONSOLE_ERR_OUTPUT.toString();
+            errorString = StringUtil.replaceLineMatch(errorString, RuntimeUtil.LOGGER_SLF4J, ""); //remove log
+
+            if (!errorString.isEmpty()) {
+                setOutput("Error: " + errorString + "\n"); //output errors
+                setResponse("Error: Compilation");
+                return false;
+            }
+
+            // -1 means no error; returns index of CString
+            int errorCStringIndex = practicalPrintExercise.checkCGroup(practicalPrintExercise.codeProperty());
+            boolean correctOutput = practicalPrintExercise.evaluate(RuntimeUtil.CONSOLE_OUTPUT.toString());
+            if (errorCStringIndex == -1 && correctOutput) {
+                setResponse("Correct");
+                return true;
+            } else if (errorCStringIndex != -1) {
+                setResponse(practicalPrintExercise.getCStringTip(errorCStringIndex));
+                return false;
+            } else if (!correctOutput) {
+                setResponse("Output not match: follow instructions");
+                return false;
+            }
+        }
+        setResponse("practicalPrintExercise is null");
+        return false;
+    }
+
+    private static void compileCode(PracticalPrintExercise practicalPrintExercise) {
+        try {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_ERR_OUTPUT);
+
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STRING_STREAM);
+            RuntimeUtil.reset(RuntimeUtil.CONSOLE_OUTPUT);
+
+            RuntimeUtil.compile(practicalPrintExercise);
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            RuntimeUtil.setOutStream(RuntimeUtil.CONSOLE_STREAM);
+            RuntimeUtil.setErrStream(RuntimeUtil.CONSOLE_ERR_STREAM);
+        }
+    }
+
+    //FER methods
     public static void startBrowser(){
         try {
             Runtime rt = Runtime.getRuntime();
@@ -285,18 +357,6 @@ public class Agent {
 
     public static void stopBackground(){
         backgroundProcess.stop();
-    }
-
-    public static int countTries(){
-        tries = 0;
-        for (ExamGrade aGradesList : getExamGrades()) {
-            if (aGradesList.getExam_title().contains("Module " +
-                    getLoggedUser().getCurrentExamId().charAt(getLoggedUser().getCurrentExamId().length()-1))) {
-                tries++;
-            }
-        }
-        System.out.println("No. of Tries: " + tries);
-        return tries;
     }
 
     //database methods
@@ -350,6 +410,26 @@ public class Agent {
 
     public static int getTries() {
         return tries;
+    }
+
+    public static void setTries(int tries) {
+        Agent.tries = tries;
+    }
+
+    public static String getResponse() {
+        return response;
+    }
+
+    public static void setResponse(String response) {
+        Agent.response = response;
+    }
+
+    public static String getOutput() {
+        return output;
+    }
+
+    public static void setOutput(String output) {
+        Agent.output = output;
     }
 
     public static UserExercise getUserExercise() {

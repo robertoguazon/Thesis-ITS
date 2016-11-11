@@ -204,7 +204,7 @@ public class ResultController extends ControllerManager implements Initializable
 
     @FXML
     public void openExerciseResult(){
-        changeScene("../view/exerciseresult.fxml");
+        newChildWindow("../view/exerciseresult.fxml", "Exam Exercise Result");
     }
 
     public void setExam(Exam exam){

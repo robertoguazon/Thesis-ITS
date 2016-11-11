@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ExerciseResultController">
+    <top>
+      <HBox styleClass="header">
+         <children>
+              <VBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
+                  <children>
+                      <Label text="Exam Exercise" textAlignment="CENTER" wrapText="true" />
+                      <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label fx:id="pointsLabel" layoutX="53.0" layoutY="71.0" text="Points" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </HBox>
+                  </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+              </VBox>
+                  <HBox alignment="CENTER">
+                      <children>
+                          <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="160.0" prefWidth="400.0" promptText="Instructions" wrapText="true" HBox.hgrow="ALWAYS" />
+                      </children>
+                  </HBox>
+         </children>
+      </HBox>
+    </top>
+    <center>
+      <VBox styleClass="body">
+         <children>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                          <TextArea fx:id="codeTextArea" editable="false" prefHeight="240.0" promptText="Code Area" wrapText="true" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <HBox>
+               <children>
+                          <TextArea fx:id="outputTextArea" editable="false" prefHeight="120.0" promptText="Output" styleClass="console" wrapText="true" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+    </center>
+   <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" styleClass="footer" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <children>
+            <Label fx:id="responseText" wrapText="true" />
+         </children>
+            </HBox>
+   </bottom>
+</BorderPane>
