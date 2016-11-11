@@ -469,7 +469,7 @@ public class Controllers {
         return getNode(controllerType, null);
     }
 
-    private static void setLesson(ControllerType controllerType, Lesson lesson) {
+    private static void   setLesson(ControllerType controllerType, Lesson lesson) {
         if (lesson != null) {
             switch (controllerType) {
                 case TEXT_LESSON_VIEWER:
