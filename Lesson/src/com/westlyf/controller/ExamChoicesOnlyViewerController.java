@@ -2,12 +2,9 @@ package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.agent.LoadType;
-import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.user.ExamGrade;
-import com.westlyf.utils.RuntimeUtil;
-import com.westlyf.utils.StringUtil;
 import com.westlyf.utils.array.ArrayUtil;
 import javafx.application.Platform;
 import javafx.beans.property.*;
@@ -116,8 +113,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         status = "";
     }
 
-    public void startTimer() {
-        setTimer(20); // set minutes
+    public void startTimer(int minutes) {
+        setTimer(minutes); // set minutes
     }
 
     private void setTimer(int minutes){
@@ -168,7 +165,8 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
         setQuizItem();
 
-        startTimer();
+        totalItems = exam.getQuizItems().size() + 5;
+        startTimer(totalItems * 2);
     }
 
     private void setQuizItem() {
@@ -287,7 +285,6 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         if (Agent.runCode(Agent.getExamExercise())){
             rawGrade = rawGrade + 5;
         }
-        totalItems = exam.getQuizItems().size() + 5;
         percentGrade = 50 * rawGrade / totalItems + 50;
         message = "Raw grade: " + rawGrade + "\n" +
                 "Total Items: " + totalItems + "\n" +
@@ -367,19 +364,26 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             resultController.setPercentGrade(percentGrade);
             resultController.setExam(exam);
             Scene scene2 = new Scene(root);
-            child = new Stage();
+            Stage stage1 = new Stage();
             scene2.getStylesheets().addAll(scene.getStylesheets());
-            child.setTitle("Exam Results");
-            child.setOnCloseRequest(event -> {
+            stage1.setTitle("Exam Results");
+            stage1.setOnCloseRequest(event -> {
                 event.consume();
-                closeChildWindow();
+                closeResultWindow(stage1);
             });
-            child.setScene(scene2);
-            child.initModality(Modality.APPLICATION_MODAL);
-            child.initOwner(stage);
-            child.showAndWait();
+            stage1.setScene(scene2);
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.initOwner(stage);
+            stage1.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void closeResultWindow(Stage stage1) {
+        Boolean answer = ConfirmBox.display("Confirm Exit", "Close window?", "Are you sure you want to close this window?");
+        if (answer){
+            stage1.close();
         }
     }
 
@@ -410,7 +414,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     @Override
     public void dispose() {
-        stopTimer();
+        stopExam();
     }
 
     private void stopTimer() {
