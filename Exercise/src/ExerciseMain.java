@@ -1,6 +1,7 @@
 import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.exercise.quiz.QuizItem;
 import com.westlyf.domain.exercise.quiz.QuizType;
+import com.westlyf.utils.Convert;
 import com.westlyf.utils.array.ArrayUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -66,8 +67,8 @@ public class ExerciseMain extends Application {
         answers.add("None");
         answers.add("Superman");
 
-        quizItem1.setChoices(choices);
-        quizItem1.setValidAnswers(answers);
+        quizItem1.setChoices(Convert.convertToStringProperty(choices));
+        quizItem1.setValidAnswers(Convert.convertToStringProperty(answers));
 
         QuizItem quizItem2 = new QuizItem();
         quizItem2 = quizItem1;

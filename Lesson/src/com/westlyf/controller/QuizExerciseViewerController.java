@@ -59,6 +59,7 @@ public class QuizExerciseViewerController implements Initializable {
         quizExerciseLabel.setText(quiz.getTitle());
 
         quizItemVBox.getChildren().add(quiz.getQuizExercise());
+        System.out.println(quizExercise);
     }
 
     public QuizExercise getQuizExercise() {

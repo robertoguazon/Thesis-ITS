@@ -31,7 +31,7 @@ public class ControllersSampleMain extends Application {
         //testVideoLessonViewer(primaryStage);
         //testTextLessonViewer(primaryStage);
         //testVideoLessonViewer(primaryStage);
-        //testQuizExerciseViewer(primaryStage);
+        testQuizExerciseViewer(primaryStage);
         //testPracticalPrintExerciseViewer(primaryStage);
         //testPracticalReturnExerciseViewer(primaryStage);
         //testVideoPracticalExerciseViewer(primaryStage);
@@ -46,7 +46,7 @@ public class ControllersSampleMain extends Application {
         //testQuizExerciseMaker(primaryStage);
         //testPracticalExerciseMaker(primaryStage);
         //testVideoPracticalExerciseMaker(primaryStage);
-        testExamChoicesOnlyMaker(primaryStage);
+        //testExamChoicesOnlyMaker(primaryStage);
 
         //Platform.exit(); //TODO comment out when testing
     }
@@ -74,7 +74,7 @@ public class ControllersSampleMain extends Application {
         //Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid589434155957645"));
 
         /// /all types of items are included
-        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingLID("lid1710104421235870"));
+        Node node = Controllers.getNode(ControllerType.QUIZ_EXERCISE_VIEWER, ExerciseDatabase.getQuizExerciseUsingTitle("24/7"));
 
         Scene scene = new Scene((Parent)node);
         primaryStage.setScene(scene);

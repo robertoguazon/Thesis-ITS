@@ -1,5 +1,6 @@
 package com.westlyf.domain.exercise.quiz;
 
+import com.westlyf.utils.Convert;
 import com.westlyf.utils.array.ArrayUtil;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
@@ -25,11 +26,11 @@ public class QuizItem implements Serializable {
 
     private StringProperty question = new SimpleStringProperty();
     //private IntegerProperty questionId = new SimpleIntegerProperty(-1);
-    private ArrayList<String> choices = new ArrayList<>();
-    private ArrayList<String> validAnswers = new ArrayList<>();
+    private ArrayList<StringProperty> choices = new ArrayList<>();
+    private ArrayList<StringProperty> validAnswers = new ArrayList<>();
     private IntegerProperty points = new SimpleIntegerProperty();
     private IntegerProperty pointsPerCorrect = new SimpleIntegerProperty(1);
-    private ArrayList<String> answers = new ArrayList<>();
+    private ArrayList<StringProperty> answers = new ArrayList<>();
     private StringProperty explanation = new SimpleStringProperty();
 
     private StringProperty hint = new SimpleStringProperty();
@@ -62,13 +63,15 @@ public class QuizItem implements Serializable {
     }
 
     //TODO - check if efficient
-    public boolean isCorrect(ArrayList<String> answers) {
+    public boolean isCorrect(ArrayList<StringProperty> answers) {
+        ArrayList<String> answersStrings = Convert.convertToString(answers);
+        ArrayList<String> validAnswersStrings = Convert.convertToString(validAnswers);
 
         switch (type) {
             case TEXTFIELD:
-                String answer = answers.get(0).trim().toLowerCase();
+                String answer = answersStrings.get(0).trim().toLowerCase();
                 for (int i = 0; i < validAnswers.size(); i++) {
-                    if (answer.equals(validAnswers.get(i).trim().toLowerCase())) {
+                    if (answer.equals(validAnswersStrings.get(i).trim().toLowerCase())) {
                         return true;
                     }
                 }
@@ -76,11 +79,11 @@ public class QuizItem implements Serializable {
 
             case CHECKBOX:
             case RADIOBUTTON:
-                if (answers.size() != validAnswers.size()) {
+                if (answersStrings.size() != validAnswersStrings.size()) {
                     return false;
                 }
-                for (int i = 0; i < validAnswers.size(); i++) {
-                    if (!answers.contains(validAnswers.get(i))) {
+                for (int i = 0; i < validAnswersStrings.size(); i++) {
+                    if (!answersStrings.contains(validAnswersStrings.get(i))) {
                         return false;
                     }
                 }
@@ -97,9 +100,9 @@ public class QuizItem implements Serializable {
         this.pointsPerCorrect.set(quizItemsSerializable.getPointsPerCorrect());
         this.type = quizItemsSerializable.getType();
 
-        this.choices = quizItemsSerializable.getChoices();
-        this.validAnswers = quizItemsSerializable.getValidAnswers();
-        this.answers = quizItemsSerializable.getAnswers();
+        this.choices = Convert.convertToStringProperty(quizItemsSerializable.getChoices());
+        this.validAnswers = Convert.convertToStringProperty(quizItemsSerializable.getValidAnswers());
+        this.answers = Convert.convertToStringProperty(quizItemsSerializable.getAnswers());
         this.explanation.set(quizItemsSerializable.getExplanation());
         this.hint.set(quizItemsSerializable.getHint());
     }
@@ -190,11 +193,11 @@ public class QuizItem implements Serializable {
         return this.pointsPerCorrect.get();
     }
 
-    public void setChoices(ArrayList<String> choices) {
+    public void setChoices(ArrayList<StringProperty> choices) {
         this.choices = choices;
     }
 
-    public void setValidAnswers(ArrayList<String> validAnswers) {
+    public void setValidAnswers(ArrayList<StringProperty> validAnswers) {
         this.validAnswers = validAnswers;
     }
 
@@ -206,15 +209,15 @@ public class QuizItem implements Serializable {
         return this.type;
     }
 
-    public ArrayList<String> getChoices() {
+    public ArrayList<StringProperty> getChoices() {
         return choices;
     }
 
-    public ArrayList<String> getValidAnswers() {
+    public ArrayList<StringProperty> getValidAnswers() {
         return validAnswers;
     }
 
-    public ArrayList<String> getAnswers() {
+    public ArrayList<StringProperty> getAnswers() {
         return answers;
     }
 
@@ -242,7 +245,7 @@ public class QuizItem implements Serializable {
                     @Override
                     public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                         answers.clear();
-                        answers.add((String)newValue.getUserData());
+                        answers.add((StringProperty) newValue.getUserData());
                     }
 
                 });
@@ -260,11 +263,15 @@ public class QuizItem implements Serializable {
                     choice.selectedProperty().addListener(new ChangeListener<Boolean>() {
                         @Override
                         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                            if (newValue) {
-                                answers.add(choice.getText());
+                            String c = choice.getText();
+                            if (newValue.booleanValue()) {
+                                if (!answers.contains(c)) {
+                                    answers.add(new SimpleStringProperty(c));
+                                }
                             } else {
-                                if (answers.contains(choice.getText())) {
-                                    answers.remove(choice.getText());
+                                int index = Convert.indexOfEqualsString(answers,c);
+                                if (index >= 0) {
+                                    answers.remove(index);
                                 }
                             }
                         }
@@ -278,7 +285,7 @@ public class QuizItem implements Serializable {
                 TextField blankTextField = new TextField();
                 blankTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                     answers.clear();
-                    answers.add(newValue);
+                    answers.add(new SimpleStringProperty(newValue));
                 });
                 box.getChildren().add(blankTextField);
                 break;
@@ -298,12 +305,12 @@ public class QuizItem implements Serializable {
 
     public ArrayList<CheckBox> getChoicesCheckBoxes() {
         ArrayList<CheckBox> choicesArrayList = new ArrayList<>();
-        ArrayList<String> randomizedChoices = ArrayUtil.randomizeArrayList(this.choices);
+        ArrayList<StringProperty> randomizedChoices = ArrayUtil.randomizeArrayList(this.choices);
 
         for (int i = 0; i < randomizedChoices.size(); i++) {
             CheckBox choice = new CheckBox();
             choice.setVisible(true);
-            choice.setText(randomizedChoices.get(i));
+            choice.setText(randomizedChoices.get(i).get());
             choice.setIndeterminate(false);
             choicesArrayList.add(choice);
         }
@@ -313,11 +320,11 @@ public class QuizItem implements Serializable {
 
     public ArrayList<RadioButton> getChoicesRadioButtons() {
         ArrayList<RadioButton> choicesArrayList = new ArrayList<>();
-        ArrayList<String> randomizedChoices = this.choices;
+        ArrayList<StringProperty> randomizedChoices = this.choices;
         //ArrayList<String> randomizedChoices = ArrayUtil.randomizeArrayList(this.choices);
         for (int i = 0; i < randomizedChoices.size(); i++) {
             RadioButton choice = new RadioButton();
-            choice.setText(randomizedChoices.get(i));
+            choice.setText(randomizedChoices.get(i).get());
             choice.setUserData(randomizedChoices.get(i));
             choice.setVisible(true);
             choice.setSelected(false);
@@ -345,11 +352,17 @@ public class QuizItem implements Serializable {
         return group;
     }
 
-    public void addChoice(String choice) {
+    public void addChoice(StringProperty choice) {
         this.choices.add(choice);
     }
 
+    public void addChoice(String choice) {this.choices.add(new SimpleStringProperty(choice));}
+
     public void addValidAnswer(String validAnswer) {
+        this.validAnswers.add(new SimpleStringProperty(validAnswer));
+    }
+
+    public void addValidAnswer(StringProperty validAnswer) {
         this.validAnswers.add(validAnswer);
     }
 
@@ -358,13 +371,13 @@ public class QuizItem implements Serializable {
         System.out.println("question: " + question.getValue());
 
         System.out.println("choices: ");
-        for (String choice: choices) {
-            System.out.println("-" + choice);
+        for (StringProperty choice: choices) {
+            System.out.println("-" + choice.get());
         }
 
         System.out.println("answers: ");
-        for (String validAnswer: validAnswers) {
-            System.out.println("-" + validAnswer);
+        for (StringProperty validAnswer: validAnswers) {
+            System.out.println("-" + validAnswer.get());
         }
 
     }
@@ -413,7 +426,7 @@ public class QuizItem implements Serializable {
 
         for (int i = 0; i < buttons.size(); i++) {
             RadioButton radioButton = buttons.get(i);
-            String choice = (String) radioButton.getUserData();
+            StringProperty choice = (StringProperty) radioButton.getUserData();
             if (answers.contains(choice)) {
                 radioButton.setSelected(true);
             }
@@ -430,7 +443,7 @@ public class QuizItem implements Serializable {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 answers.clear();
-                answers.add((String)newValue.getUserData());
+                answers.add((StringProperty) newValue.getUserData());
             }
 
         });

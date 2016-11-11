@@ -1,5 +1,6 @@
 package com.westlyf.domain.exercise.quiz;
 
+import com.westlyf.utils.Convert;
 import javafx.beans.property.*;
 
 import java.io.Serializable;
@@ -35,9 +36,9 @@ public class QuizItemSerializable implements Serializable {
         type = quizItem.getType();
         //oneAnswer = quizItem.getOneAnswer(); //TODO- delete
 
-        choices = quizItem.getChoices();
-        validAnswers = quizItem.getValidAnswers();
-        answers = quizItem.getAnswers();
+        choices = Convert.convertToString(quizItem.getChoices());
+        validAnswers = Convert.convertToString(quizItem.getValidAnswers());
+        answers = Convert.convertToString(quizItem.getAnswers());
         explanation = quizItem.getExplanation();
         hint = quizItem.getHint();
     }

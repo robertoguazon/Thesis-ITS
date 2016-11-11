@@ -1,6 +1,7 @@
 package com.westlyf.domain.exercise.quiz;
 
 import com.westlyf.domain.exercise.Exercise;
+import com.westlyf.utils.Convert;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -37,8 +38,8 @@ public class QuizExercise extends Exercise implements Serializable {
         QuizItem quizItem = new QuizItem();
         quizItem.setType(type);
         quizItem.setQuestion(question);
-        quizItem.setChoices(choices);
-        quizItem.setValidAnswers(validAnswers);
+        quizItem.setChoices(Convert.convertToStringProperty(choices));
+        quizItem.setValidAnswers(Convert.convertToStringProperty(validAnswers));
 
         this.quizItems.add(quizItem);
         return true;
@@ -52,8 +53,8 @@ public class QuizExercise extends Exercise implements Serializable {
         QuizItem quizItem = new QuizItem();
         quizItem.setType(QuizType.RADIOBUTTON);
         quizItem.setQuestion(question);
-        quizItem.setChoices(choices);
-        quizItem.setValidAnswers(validAnswers);
+        quizItem.setChoices(Convert.convertToStringProperty(choices));
+        quizItem.setValidAnswers(Convert.convertToStringProperty(validAnswers));
 
         this.quizItems.add(quizItem);
         return true;
