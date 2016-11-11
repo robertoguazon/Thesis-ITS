@@ -21,6 +21,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,10 +45,17 @@ public class ExamUpdateController implements Initializable {
 
     private StringProperty statusProperty;
 
+    private Paint red;
+    private Paint green;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         statusProperty = new SimpleStringProperty();
         statusLabel.textProperty().bind(statusProperty);
+        red = new Color(0.5,0,0,1);
+        green = new Color(0,0.5,0,1);
+        statusLabel.setTextFill(green);
+
     }
 
     @FXML
@@ -57,10 +66,13 @@ public class ExamUpdateController implements Initializable {
 
 
         if (currentExam != null) {
+            statusLabel.setTextFill(green);
             statusProperty.set("Exam loaded");
             display(currentExam);
         } else {
+            statusLabel.setTextFill(red);
             statusProperty.set("No match found");
+            currentExam = null;
         }
     }
 
@@ -79,7 +91,7 @@ public class ExamUpdateController implements Initializable {
 
             //bind questions to textareas
             Label questionLabel = createLabel("Question: " + (i+1));
-            TextArea questionTextArea = createTextArea(500,100);
+            TextArea questionTextArea = createTextArea(550,200);
             questionTextArea.textProperty().bindBidirectional(quizItem.questionProperty());
 
             //bind choices to textAreas and display choices with radio buttons
@@ -126,7 +138,7 @@ public class ExamUpdateController implements Initializable {
             if (isValidAnswer(choice, validAnswers)) {
                 radioButton.setSelected(true);
             }
-            TextArea textArea = createTextArea(200,50);
+            TextArea textArea = createTextArea(300,80);
             textArea.textProperty().bindBidirectional(choice);
 
             HBox hBox = new HBox();
