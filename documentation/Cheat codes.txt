@@ -89,15 +89,15 @@ public class Apples {
 
 -Exercise 6
 public class Apples {
-	public static void main(String[] args) {
-		//Create your first array here
-		int[] myFirstArray ={15,32,44};
-		//Create your second array here
-		String[] mySecondArray =  {"Robert", "Rupert"};
-		//Output your arrays here
-		System.out.println("This is my number " + myFirstArray[2] + " and my name is " + mySecondArray[0]);
-	}
-}
+ 	public static void main(String[] args) {
+ 		//Create your first array here
+ 		int[] myFirstArray ={15,32,44};
+ 		//Create your second array here
+ 		String[] mySecondArray =  {"Robert", "Rupert"};
+ 		//Output your arrays here
+ 		System.out.println("This is my number " + myFirstArray[2] + " and my name is " + mySecondArray[0]);
+ 	}
+ }
 
 ***********************
 Module 3
@@ -289,6 +289,9 @@ case '9':
 		}
 	}
 }
+
+-Exercise 7
+NO EXERCISE
 
 ***************
 Module 5
