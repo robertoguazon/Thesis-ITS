@@ -57,10 +57,5 @@ public class BackgroundProcess implements Runnable{
     public void stop(){
         running = false;
         System.out.println("Stopping Background Process...");
-        try {
-            TimeUnit.MILLISECONDS.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

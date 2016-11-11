@@ -28,4 +28,9 @@ public class MainController extends ControllerManager implements Initializable{
         else if (event.getSource() == about){newChildWindow("../view/about.fxml", "About");}
         else {return;}
     }
+
+    @Override
+    public void closeChildWindow() {
+        child.close();
+    }
 }

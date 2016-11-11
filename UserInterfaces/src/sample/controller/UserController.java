@@ -92,15 +92,23 @@ public class UserController extends ControllerManager implements Initializable{
 
     private boolean confirmTakeExam(){
         return ConfirmBox.display("Are you sure you want to take the exam?", "Exam Description: ",
-                        "Topic: " + Agent.getLoggedUser().getCurrentExamId() + "\n\n" +
-                        "Length: This exam has a time limit of 15mins.\n\n" +
+                        "Topic: " + Agent.getLoggedUser().getCurrentExamId().toUpperCase() + "\n\n" +
                         "Timer Setting: This exam will save and submit automatically \n" +
-                        "\tupon time expiry.\n\n" +
+                            "\tupon time expiry.\n\n" +
                         "Submit Exam: Saves and submits all answers.\n" +
                         " *Note: Unanswered questions will be counted as 0 pts.*\n\n" +
                         "Hints: hints may be given when you are unable to answer \n" +
-                        "\ta question in the exam.\n\n" +
+                            "\ta question in the exam.\n\n" +
+                        "Passing Grade: 75% \n" +
+                            "*Note: 2 or more tries will give an upper limit to your grade.\n" +
+                            "\t= 1 point per question \n" +
+                            "\t= 5 points on the coding exercise\n\n" +
                         "Click \"Ok\" to start the exam, and \"Cancel\" to return to go back.\n"
         );
+    }
+
+    @Override
+    public void closeChildWindow() {
+        child.close();
     }
 }

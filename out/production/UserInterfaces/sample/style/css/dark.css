@@ -8,7 +8,7 @@
 
 .body{
     -fx-background-color: #424242;
-    -fx-effect: dropshadow(gaussian, #263238, 20, 0.5, 0, 3);
+    -fx-effect: dropshadow(gaussian, #263238, 10, 0.5, 0, 3);
 }
 
 .footer{

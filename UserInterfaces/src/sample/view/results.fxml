@@ -7,15 +7,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1080.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ResultController">
+<BorderPane prefHeight="614.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ResultController">
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" styleClass="header">
          <children>
-            <Button fx:id="exerciseResultButton" mnemonicParsing="false" onAction="#openExerciseResult" text="View Exercise Result" />
+            <Button fx:id="exerciseResultButton" defaultButton="true" mnemonicParsing="false" onAction="#openExerciseResult" text="View Exercise Result" />
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Label fx:id="titleLabel" styleClass="label-header" text="Title" BorderPane.alignment="CENTER">
+            <Label fx:id="titleLabel" text="Title" BorderPane.alignment="CENTER">
                <font>
-                  <Font size="32.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
@@ -31,22 +31,15 @@
       </HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" styleClass="body">
-         <children>
-            <TableView fx:id="tableView" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
-              <columns>
-                <TableColumn fx:id="choicesColumn" prefWidth="-1.0" sortable="false" text="Choices" />
-                  <TableColumn fx:id="correctAnswerColumn" prefWidth="-1.0" sortable="false" text="Correct Answer" />
-                  <TableColumn fx:id="userAnswerColumn" prefWidth="-1.0" sortable="false" text="Your Answer" />
-                  <TableColumn fx:id="questionColumn" prefWidth="-1.0" sortable="false" text="Question" />
-                  <TableColumn fx:id="explanationColumn" prefWidth="-1.0" sortable="false" text="Explanation" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-         </children>
-      </VBox>
+      <TableView fx:id="tableView" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="choicesColumn" prefWidth="216.0" sortable="false" text="Choices" />
+            <TableColumn fx:id="correctAnswerColumn" prefWidth="216.0" sortable="false" text="Correct Answer" />
+            <TableColumn fx:id="userAnswerColumn" prefWidth="216.0" sortable="false" text="Your Answer" />
+            <TableColumn fx:id="questionColumn" prefWidth="216.0" sortable="false" text="Question" />
+            <TableColumn fx:id="explanationColumn" prefWidth="216.0" sortable="false" text="Explanation" />
+        </columns>
+      </TableView>
    </center>
    <bottom>
       <HBox alignment="CENTER" styleClass="footer">

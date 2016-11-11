@@ -72,6 +72,10 @@ public class Controllers {
     private static ExamChoicesOnlyMakerController examChoicesOnlyMakerController;
     private static Node examChoicesOnlyMakerNode;
 
+    private static double leftPanePrefWidth;
+    private static double leftPanePrefHeight;
+    private static double rightPanePrefWidth;
+    private static double rightPanePrefHeight;
     //TODO static methods for calling different controllers
 
     public static Object getController(ControllerType controllerType) {
@@ -301,6 +305,7 @@ public class Controllers {
                 if (examExerciseViewerController instanceof Disposable) {
                     ((Disposable)examExerciseViewerController).dispose();
                 }
+                break;
             case EXAM_CHOICES_ONLY_VIEWER:
                 if (examChoicesOnlyViewerController instanceof Disposable) {
                     ((Disposable)examChoicesOnlyViewerController).dispose();
@@ -530,10 +535,22 @@ public class Controllers {
             Pane leftPane = (Pane) left;
             Pane rightPane = (Pane) right;
 
-            leftPaneContainer.setMinWidth(leftPane.getPrefWidth());
-            leftPaneContainer.setMinHeight(leftPane.getPrefHeight());
-            rightPaneContainer.setMinWidth(rightPane.getPrefWidth());
-            rightPaneContainer.setMinHeight(rightPane.getPrefHeight());
+            if (leftPanePrefWidth == 0) {
+                leftPanePrefWidth = leftPane.getPrefWidth();
+            }
+            if (leftPanePrefHeight == 0){
+                leftPanePrefHeight = leftPane.getPrefHeight();
+            }
+            if (rightPanePrefWidth == 0){
+                rightPanePrefWidth = rightPane.getPrefWidth();
+            }
+            if (rightPanePrefHeight == 0){
+                rightPanePrefHeight = rightPane.getPrefHeight();
+            }
+            leftPaneContainer.setMinWidth(leftPanePrefWidth);
+            leftPaneContainer.setMinHeight(leftPanePrefHeight);
+            rightPaneContainer.setMinWidth(rightPanePrefWidth);
+            rightPaneContainer.setMinHeight(rightPanePrefHeight);
 
             leftPane.prefWidthProperty().bind(leftPaneContainer.widthProperty());
             leftPane.prefHeightProperty().bind(leftPaneContainer.heightProperty());
