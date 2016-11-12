@@ -31,7 +31,7 @@ public class SettingsController extends ControllerManager implements Initializab
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changeToToggleButton();
-        stylePath = fileUtil.readFile();
+        stylePath = fileUtil.readFile(FileUtil.getStylePath());
         if (stylePath.contains("dark")){
             darkThemeRadioButton.setSelected(true);
         }else if (stylePath.contains("light")){

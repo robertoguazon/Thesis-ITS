@@ -26,7 +26,7 @@ public class SplashController extends ControllerManager implements Initializable
 
     private String getStylePath(){
         FileUtil fileUtil = new FileUtil();
-        return fileUtil.readFile();
+        return fileUtil.readFile(FileUtil.getStylePath());
     }
 
     class SplashScreen extends Thread{

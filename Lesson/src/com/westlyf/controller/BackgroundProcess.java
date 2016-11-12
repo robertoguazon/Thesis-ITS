@@ -5,6 +5,7 @@ import com.westlyf.domain.exercise.quiz.Exam;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import sample.model.FileUtil;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -24,6 +25,7 @@ public class BackgroundProcess implements Runnable{
     @Override
     public void run() {
         System.out.println("Starting Background Process...");
+        String ferPath = getFERPath();
         try {
             String fer;
             examChoicesOnlyViewerController =
@@ -31,8 +33,7 @@ public class BackgroundProcess implements Runnable{
             running = true;
             while( running ) {
                 fer = "";
-                reader = new BufferedInputStream(new FileInputStream( "C:\\Users\\Yves\\Desktop\\emotion.txt" ) );
-                //reader = new BufferedInputStream(new FileInputStream( "C:\\Users\\robertoguazon\\Desktop\\emotion.txt" ) );
+                reader = new BufferedInputStream(new FileInputStream(ferPath) );
                 while ( reader.available() > 0 ) {
                     fer = fer + String.valueOf((char)reader.read());
                 }
@@ -62,5 +63,10 @@ public class BackgroundProcess implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getFERPath(){
+        FileUtil fileUtil = new FileUtil();
+        return fileUtil.readFile("Lesson/src/com/westlyf/fer/FacialExpressionRecognitionPath");
     }
 }

@@ -10,9 +10,9 @@ public class FileUtil {
 
     private Scanner in;
     private FileWriter out;
-    private final String path = "UserInterfaces/src/sample/style/stylePath.txt";
+    private static final String stylePath = "UserInterfaces/src/sample/style/stylePath.txt";
 
-    public String readFile(){
+    public String readFile(String path){
         String str = null;
         try {
             File file = new File(path);
@@ -23,8 +23,6 @@ public class FileUtil {
             in = new Scanner(file);
             if (in.hasNextLine()){
                 str = in.nextLine();
-            }else {
-                //str = "sample/style/css/dark.css";
             }
             in.close();
         } catch (FileNotFoundException e) {
@@ -37,11 +35,15 @@ public class FileUtil {
 
     public void writeFile(String source){
         try {
-            out = new FileWriter(new File(path), false);
+            out = new FileWriter(new File(stylePath), false);
             out.write(source);
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getStylePath() {
+        return stylePath;
     }
 }
