@@ -3,6 +3,7 @@ package sample.controller;
 import com.westlyf.agent.Agent;
 import com.westlyf.domain.exercise.quiz.Exam;
 import com.westlyf.domain.exercise.quiz.QuizItem;
+import com.westlyf.utils.Convert;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,9 +42,12 @@ public class ResultController extends ControllerManager implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
         quizItemlist = FXCollections.observableArrayList();
         quizItemlist.addAll(Agent.getExam().getQuizItems());
-        choicesColumn.setCellValueFactory(cell -> new SimpleStringProperty(choiceListToString(cell.getValue().getChoices())));
-        correctAnswerColumn.setCellValueFactory(cell -> new SimpleStringProperty(answerListToString(cell.getValue().getValidAnswers())));
-        userAnswerColumn.setCellValueFactory(cell -> new SimpleStringProperty(answerListToString(cell.getValue().getAnswers())));
+        choicesColumn.setCellValueFactory(cell -> new SimpleStringProperty(
+                choiceListToString(Convert.convertToString(cell.getValue().getChoices()))));
+        correctAnswerColumn.setCellValueFactory(cell -> new SimpleStringProperty(
+                answerListToString(Convert.convertToString(cell.getValue().getValidAnswers()))));
+        userAnswerColumn.setCellValueFactory(cell -> new SimpleStringProperty(
+                answerListToString(Convert.convertToString(cell.getValue().getAnswers()))));
         questionColumn.setCellValueFactory(new PropertyValueFactory<>("question"));
         explanationColumn.setCellValueFactory(new PropertyValueFactory<>("explanation"));
         tableView.setItems(quizItemlist);

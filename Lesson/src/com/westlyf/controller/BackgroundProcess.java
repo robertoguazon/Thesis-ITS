@@ -44,7 +44,6 @@ public class BackgroundProcess implements Runnable{
                 }
                 Thread.sleep( 5000 );
             }
-            System.out.println("Background Process has been stopped: FER");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -57,5 +56,11 @@ public class BackgroundProcess implements Runnable{
     public void stop(){
         running = false;
         System.out.println("Stopping Background Process...");
+        try {
+            Thread.sleep(200);
+            System.out.println("Background Process has been stopped: FER");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

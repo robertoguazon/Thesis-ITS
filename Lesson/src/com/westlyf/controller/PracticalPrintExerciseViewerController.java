@@ -52,6 +52,9 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
     public void reset(){
         codePane.toFront();
         submitButton.setDisable(true);
+        clearCodeButton.setDisable(false);
+        clearOutputButton.setDisable(false);
+        runCodeButton.setDisable(false);
         responseText.setText("");
         responseText.getParent().setStyle("");
         statusLabel.setText("");
@@ -80,12 +83,16 @@ public class PracticalPrintExerciseViewerController extends ControllerManager im
 
     @FXML
     private void runCode() {
+        clearOutput();
         if (Agent.runCode(practicalPrintExercise)){
             responseText.getParent().setStyle("-fx-background-color: #00C853");
             statusLabel.setText("Click the Submit Button to save your work \nand proceed to the next lesson.");
             statusPane.setStyle("-fx-background-color: rgba(158, 158, 158, 0.7);");
             statusPane.toFront();
             submitButton.setDisable(false);
+            clearCodeButton.setDisable(true);
+            clearOutputButton.setDisable(true);
+            runCodeButton.setDisable(true);
         }else {
             responseText.getParent().setStyle("-fx-background-color: #F44336");
         }
