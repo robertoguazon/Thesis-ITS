@@ -45,7 +45,7 @@ public class SplashController extends ControllerManager implements Initializable
 
                     fadeOut.setOnFinished(event -> {
                         closeWindow();
-                        newWindow("../view/main.fxml", "Free Apples", StageStyle.DECORATED, getStylePath());
+                        newWindow("/sample/view/mainmenu.fxml", "Free Apples", StageStyle.DECORATED, getStylePath());
                     });
                 });
             } catch (InterruptedException e) {

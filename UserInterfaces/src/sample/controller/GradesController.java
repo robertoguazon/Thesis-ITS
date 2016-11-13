@@ -80,7 +80,7 @@ public class GradesController extends ControllerManager implements Initializable
     @FXML
     public void handleAction(ActionEvent event) {
         if (event.getSource() == backToMenu){
-            changeScene("../view/user.fxml");
+            changeScene("/sample/view/user.fxml");
         }
     }
 }

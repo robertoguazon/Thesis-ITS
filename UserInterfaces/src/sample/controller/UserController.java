@@ -52,22 +52,22 @@ public class UserController extends ControllerManager implements Initializable{
     @FXML
     public void handleAction(ActionEvent event) {
         if (event.getSource() == learn){
-            changeScene("../view/modules.fxml");
+            changeScene("/sample/view/modules.fxml");
         }else if (event.getSource() == exam){
             if (confirmTakeExam()) {
                openExam();
             }else {return;}
         }else if (event.getSource() == grades){
-            changeScene("../view/grades.fxml");
+            changeScene("/sample/view/grades.fxml");
         }else if (event.getSource() == challenge){
-            changeScene("../view/challenges.fxml");
+            changeScene("/sample/view/challenges.fxml");
         }else if (event.getSource() == logout){
             logout();
-            changeScene("../view/loadprofile.fxml");
+            changeScene("/sample/view/loadprofile.fxml");
         }else if (event.getSource() == settings){
-            newChildWindow("../view/settings.fxml", "Settings");
+            newChildWindow("/sample/view/settings.fxml", "Settings");
         }else if (event.getSource() == about){
-            newChildWindow("../view/about.fxml", "About");
+            newChildWindow("/sample/view/about.fxml", "About");
         }else {return;}
     }
 

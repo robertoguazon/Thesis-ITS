@@ -1,7 +1,6 @@
 package com.westlyf.controller;
 
 import com.westlyf.agent.Agent;
-import com.westlyf.database.LessonDatabase;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
@@ -11,17 +10,12 @@ import com.westlyf.domain.exercise.quiz.QuizExercise;
 import com.westlyf.domain.lesson.Lesson;
 import com.westlyf.domain.lesson.TextLesson;
 import com.westlyf.domain.lesson.VideoLesson;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -116,41 +110,41 @@ public class Controllers {
         try {
 
             //viewers
-            load(ControllerType.TEXT_LESSON_VIEWER, "../view/TextLessonViewer.fxml");
+            load(ControllerType.TEXT_LESSON_VIEWER, "/com/westlyf/view/TextLessonViewer.fxml");
             System.out.println(ControllerType.TEXT_LESSON_VIEWER + " loaded");
 
-            load(ControllerType.VIDEO_LESSON_VIEWER, "../view/VideoLessonViewer.fxml");
+            load(ControllerType.VIDEO_LESSON_VIEWER, "/com/westlyf/view/VideoLessonViewer.fxml");
             System.out.println(ControllerType.VIDEO_LESSON_VIEWER + " loaded");
 
-            load(ControllerType.QUIZ_EXERCISE_VIEWER, "../view/QuizExerciseViewer.fxml");
+            load(ControllerType.QUIZ_EXERCISE_VIEWER, "/com/westlyf/view/QuizExerciseViewer.fxml");
             System.out.println(ControllerType.QUIZ_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, "../view/PracticalPrintExerciseViewer.fxml");
+            load(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, "/com/westlyf/view/PracticalPrintExerciseViewer.fxml");
             System.out.println(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "../view/PracticalReturnExerciseViewer.fxml");
+            load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "/com/westlyf/view/PracticalReturnExerciseViewer.fxml");
             System.out.println(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.EXAM_EXERCISE_VIEWER, "../view/ExamExerciseViewer.fxml");
+            load(ControllerType.EXAM_EXERCISE_VIEWER, "/com/westlyf/view/ExamExerciseViewer.fxml");
             System.out.println(ControllerType.EXAM_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "../view/ExamChoicesOnlyViewer.fxml");
+            load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "/com/westlyf/view/ExamChoicesOnlyViewer.fxml");
             System.out.println(ControllerType.EXAM_CHOICES_ONLY_VIEWER + " loaded");
 
             //makers
-            load(ControllerType.LESSON_MAKER, "../view/LessonMaker.fxml");
+            load(ControllerType.LESSON_MAKER, "/com/westlyf/view/LessonMaker.fxml");
             System.out.println(ControllerType.LESSON_MAKER + " loaded");
 
-            load(ControllerType.QUIZ_EXERCISE_MAKER, "../view/QuizExerciseMaker.fxml");
+            load(ControllerType.QUIZ_EXERCISE_MAKER, "/com/westlyf/view/QuizExerciseMaker.fxml");
             System.out.println(ControllerType.QUIZ_EXERCISE_MAKER + " loaded");
 
-            load(ControllerType.PRACTICAL_EXERCISE_MAKER, "../view/PracticalExerciseMaker.fxml");
+            load(ControllerType.PRACTICAL_EXERCISE_MAKER, "/com/westlyf/view/PracticalExerciseMaker.fxml");
             System.out.println(ControllerType.PRACTICAL_EXERCISE_MAKER + " loaded");
 
-            load(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER, "../view/VideoPracticalExerciseMaker.fxml");
+            load(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER, "/com/westlyf/view/VideoPracticalExerciseMaker.fxml");
             System.out.println(ControllerType.VIDEO_PRACTICAL_EXERCISE_MAKER + " loaded");
 
-            load(ControllerType.EXAM_CHOICES_ONLY_MAKER, "../view/ExamChoicesOnlyMaker.fxml");
+            load(ControllerType.EXAM_CHOICES_ONLY_MAKER, "/com/westlyf/view/ExamChoicesOnlyMaker.fxml");
             System.out.println(ControllerType.EXAM_CHOICES_ONLY_MAKER + " loaded");
 
         } catch (Exception e) {
@@ -162,25 +156,25 @@ public class Controllers {
     public static void loadAllViewers() {
         try {
             //viewers
-            load(ControllerType.TEXT_LESSON_VIEWER, "../view/TextLessonViewer.fxml");
+            load(ControllerType.TEXT_LESSON_VIEWER, "/com/westlyf/view/TextLessonViewer.fxml");
             System.out.println(ControllerType.TEXT_LESSON_VIEWER + " loaded");
 
-            load(ControllerType.VIDEO_LESSON_VIEWER, "../view/VideoLessonViewer.fxml");
+            load(ControllerType.VIDEO_LESSON_VIEWER, "/com/westlyf/view/VideoLessonViewer.fxml");
             System.out.println(ControllerType.VIDEO_LESSON_VIEWER + " loaded");
 /*
-            load(ControllerType.QUIZ_EXERCISE_VIEWER, "../view/QuizExerciseViewer.fxml");
+            load(ControllerType.QUIZ_EXERCISE_VIEWER, "/com/westlyf/view/QuizExerciseViewer.fxml");
             System.out.println(ControllerType.QUIZ_EXERCISE_VIEWER + " loaded");
 */
-            load(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, "../view/PracticalPrintExerciseViewer.fxml");
+            load(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER, "/com/westlyf/view/PracticalPrintExerciseViewer.fxml");
             System.out.println(ControllerType.PRACTICAL_PRINT_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "../view/PracticalReturnExerciseViewer.fxml");
+            load(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER, "/com/westlyf/view/PracticalReturnExerciseViewer.fxml");
             System.out.println(ControllerType.PRACTICAL_RETURN_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.EXAM_EXERCISE_VIEWER, "../view/ExamExerciseViewer.fxml");
+            load(ControllerType.EXAM_EXERCISE_VIEWER, "/com/westlyf/view/ExamExerciseViewer.fxml");
             System.out.println(ControllerType.EXAM_EXERCISE_VIEWER + " loaded");
 
-            load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "../view/ExamChoicesOnlyViewer.fxml");
+            load(ControllerType.EXAM_CHOICES_ONLY_VIEWER, "/com/westlyf/view/ExamChoicesOnlyViewer.fxml");
             System.out.println(ControllerType.EXAM_CHOICES_ONLY_VIEWER + " loaded");
         } catch (Exception e) {
             e.printStackTrace();

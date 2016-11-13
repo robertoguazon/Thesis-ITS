@@ -20,7 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         ControllerManager controllerManager = new ControllerManager();
-        controllerManager.newWindow("../view/splash.fxml", "Free Apples", StageStyle.UNDECORATED, null);
+        controllerManager.newWindow("/sample/view/splash.fxml", "Free Apples", StageStyle.UNDECORATED, null);
     }
 
     @Override
