@@ -1,17 +1,17 @@
 package sample.controller;
 
 import com.westlyf.agent.Agent;
-import com.westlyf.controller.*;
+import com.westlyf.controller.ControllerType;
+import com.westlyf.controller.Controllers;
+import com.westlyf.controller.Disposable;
 import com.westlyf.controller.PracticalReturnExerciseViewerController;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
-import com.westlyf.domain.exercise.practical.PracticalReturnExercise;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import sample.model.ConfirmBox;
@@ -72,7 +72,7 @@ public class ChallengesController extends ControllerManager implements Initializ
     public void handleAction(ActionEvent event){
         if (event.getSource() == backToMenu){
             reset();
-            changeScene("../view/user.fxml");
+            changeScene("/sample/view/user.fxml");
         }
     }
 

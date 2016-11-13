@@ -22,10 +22,10 @@ public class MainController extends ControllerManager implements Initializable{
 
     @FXML
     public void handleAction(ActionEvent event) {
-        if (event.getSource() == loadProfile){changeScene("../view/loadprofile.fxml");}
-        else if (event.getSource() == newProfile){changeScene("../view/newprofile.fxml");}
-        else if (event.getSource() == settings){newChildWindow("../view/settings.fxml", "Settings");}
-        else if (event.getSource() == about){newChildWindow("../view/about.fxml", "About");}
+        if (event.getSource() == loadProfile){changeScene("/sample/view/loadprofile.fxml");}
+        else if (event.getSource() == newProfile){changeScene("/sample/view/newprofile.fxml");}
+        else if (event.getSource() == settings){newChildWindow("/sample/view/settings.fxml", "Settings");}
+        else if (event.getSource() == about){newChildWindow("/sample/view/about.fxml", "About");}
         else {return;}
     }
 

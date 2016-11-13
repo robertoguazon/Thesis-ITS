@@ -51,11 +51,11 @@ public class NewProfileController extends ControllerManager implements Initializ
             if (createNewProfile()){
                 AlertBox.display("Successful Insert",
                         "You have been successfully registered as one of the users.",
-                        "Going back to the start menu...");
-                changeScene("../view/main.fxml");
+                        "Going back to the start menu/sample.");
+                changeScene("/sample/view/mainmenu.fxml");
             }else {return;}
         }else if (event.getSource() == backToMenu){
-            changeScene("../view/main.fxml");
+            changeScene("/sample/view/mainmenu.fxml");
         }else {return;}
     }
 

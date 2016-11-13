@@ -277,7 +277,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             Agent.setOutput("");
         }
         reset();
-        changeScene("../../../sample/view/user.fxml");
+        changeScene("/sample/view/user.fxml");
     }
 
     private void computeGrade(){
@@ -356,7 +356,7 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
 
     private void viewResults(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../sample/view/results.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/results.fxml"));
             Parent root = loader.load();
             ResultController resultController = loader.getController();
             resultController.setRawGrade(rawGrade);

@@ -1,0 +1,62 @@
+<component name="ArtifactManager">
+<<<<<<< HEAD:.idea/artifacts/Thesis_ITS.xml
+  <artifact type="jar" name="Thesis-ITS">
+    <output-path>$PROJECT_DIR$/out/artifacts/Thesis_ITS</output-path>
+    <root id="archive" name="Thesis-ITS.jar">
+      <element id="archive" name="Thesis-ITS.jar">
+        <element id="module-output" name="Agent" />
+        <element id="module-output" name="Analytics" />
+        <element id="module-output" name="Data" />
+        <element id="module-output" name="Database" />
+        <element id="module-output" name="Exercise" />
+        <element id="module-output" name="FacialExpressionRecognition" />
+        <element id="module-output" name="Lesson" />
+        <element id="module-output" name="RunTimeCompilation" />
+=======
+  <artifact type="javafx" name="Thesis-ITS-1">
+    <output-path>$PROJECT_DIR$/out/artifacts/Thesis_ITS_1</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="paramFile" value="" />
+        <option name="title" value="Thesis-ITS" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Thesis_ITS_1.jar">
+>>>>>>> 2374690d498b2d419b5f64a49b1484e05e94b1fe:.idea/artifacts/Thesis_ITS_1.xml
+        <element id="module-output" name="Thesis-ITS-1" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+      <element id="module-output" name="Agent" />
+      <element id="module-output" name="Lesson" />
+      <element id="module-output" name="Database" />
+      <element id="library" level="project" name="sqlite-jdbc-3.8.11.11" />
+      <element id="module-output" name="RunTimeCompilation" />
+      <element id="library" level="project" name="commons-compiler-jdk" />
+      <element id="library" level="project" name="Maven: net.openhft:compiler:2.2.5" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.14" />
+      <element id="library" level="project" name="Maven: com.intellij:annotations:12.0" />
+      <element id="library" level="project" name="javax.inject-1" />
+<<<<<<< HEAD:.idea/artifacts/Thesis_ITS.xml
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.14" />
+      <element id="library" level="project" name="Maven: net.openhft:compiler:2.2.5" />
+      <element id="library" level="project" name="sqlite-jdbc-3.8.11.11" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+=======
+      <element id="module-output" name="Exercise" />
+      <element id="module-output" name="User" />
+      <element id="module-output" name="VideoPlayer" />
+      <element id="module-output" name="UserInterfaces" />
+>>>>>>> 2374690d498b2d419b5f64a49b1484e05e94b1fe:.idea/artifacts/Thesis_ITS_1.xml
+    </root>
+  </artifact>
+</component>

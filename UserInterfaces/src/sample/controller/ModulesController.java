@@ -57,7 +57,7 @@ public class ModulesController extends ControllerManager implements Initializabl
     @FXML
     public void handleAction(ActionEvent event) {
         if (event.getSource() == backToMenu){
-            changeScene("../view/user.fxml");
+            changeScene("/sample/view/user.fxml");
         }else {
             if (event.getSource() == module1) {
                 openModule("module1");

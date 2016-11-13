@@ -42,11 +42,11 @@ public class LoginController extends ControllerManager implements Initializable{
             });
 
         }else if (event.getSource() == backToMenu){
-            changeScene("../view/main.fxml");
+            changeScene("/sample/view/mainmenu.fxml");
         }else {return;}
     }
 
     public void goToHome(){
-        changeScene("../view/user.fxml");
+        changeScene("/sample/view/user.fxml");
     }
 }

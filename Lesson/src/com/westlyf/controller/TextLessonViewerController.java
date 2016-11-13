@@ -4,16 +4,15 @@ import com.westlyf.agent.Agent;
 import com.westlyf.agent.LoadType;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.lesson.TextLesson;
-import com.westlyf.user.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 import sample.controller.ControllerManager;
 import sample.model.AlertBox;
 import sample.model.ConfirmBox;
@@ -125,7 +124,7 @@ public class TextLessonViewerController extends ControllerManager implements Ini
                     if (answer) {
                         Agent.clearLessonsInModule();
                         lessonsVBox.getChildren().clear();
-                        changeScene("../../../sample/view/user.fxml");
+                        changeScene("/sample/view/user.fxml");
                     }
                 }
             }
@@ -136,7 +135,7 @@ public class TextLessonViewerController extends ControllerManager implements Ini
         if (event.getSource() == back){
             Agent.clearLessonsInModule();
             lessonsVBox.getChildren().clear();
-            changeScene("../../../sample/view/modules.fxml");
+            changeScene("/sample/view/modules.fxml");
         }else if (event.getSource() == exerciseButton){
             if (exerciseButton.getText().equals("Next Lesson")){
                 unlock(++currentLessonNo);
