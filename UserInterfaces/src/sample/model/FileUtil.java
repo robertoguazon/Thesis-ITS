@@ -10,7 +10,7 @@ public class FileUtil {
 
     private Scanner in;
     private FileWriter out;
-    private static final String stylePath = "UserInterfaces/src/sample/style/stylePath.txt";
+    private static final String stylePath = "resources/style/stylePath.txt";
 
     public String readFile(String path){
         String str = null;
