@@ -63,7 +63,7 @@
    <right>
       <VBox alignment="CENTER_LEFT" styleClass="list-background">
          <children>
-            <Label styleClass="list-header" text="Average Grades:">
+            <Label styleClass="list-header" text="Grades:">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
