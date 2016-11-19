@@ -18,21 +18,22 @@
         <element id="directory" name="META-INF">
           <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
         </element>
+        <element id="module-output" name="VideoPlayer" />
+        <element id="module-output" name="UserInterfaces" />
+        <element id="module-output" name="User" />
+        <element id="module-output" name="RunTimeCompilation" />
+        <element id="module-output" name="Lesson" />
+        <element id="module-output" name="Exercise" />
+        <element id="module-output" name="Database" />
+        <element id="module-output" name="Agent" />
       </element>
-      <element id="module-output" name="Agent" />
-      <element id="module-output" name="Lesson" />
-      <element id="module-output" name="Database" />
       <element id="library" level="project" name="sqlite-jdbc-3.8.11.11" />
-      <element id="module-output" name="RunTimeCompilation" />
       <element id="library" level="project" name="commons-compiler-jdk" />
       <element id="library" level="project" name="Maven: net.openhft:compiler:2.2.5" />
       <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.14" />
       <element id="library" level="project" name="Maven: com.intellij:annotations:12.0" />
       <element id="library" level="project" name="javax.inject-1" />
-      <element id="module-output" name="Exercise" />
-      <element id="module-output" name="User" />
-      <element id="module-output" name="VideoPlayer" />
-      <element id="module-output" name="UserInterfaces" />
+      <element id="library" level="project" name="tools" />
     </root>
   </artifact>
 </component>

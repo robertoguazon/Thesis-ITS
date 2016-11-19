@@ -22,7 +22,7 @@ public class VideoUtil {
     public static String formatTime(Duration elapsed, Duration duration) {
         int intElapsed = (int)Math.floor(elapsed.toSeconds());
         int elapsedHours = intElapsed / (60 * 60);
-        if (elapsedHours > 0) {
+        if (elapsedHours > 0 ) {
             intElapsed -= elapsedHours * 60 * 60;
         }
 

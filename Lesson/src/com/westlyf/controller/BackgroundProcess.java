@@ -67,6 +67,6 @@ public class BackgroundProcess implements Runnable{
 
     public String getFERPath(){
         FileUtil fileUtil = new FileUtil();
-        return fileUtil.readFile("Lesson/src/com/westlyf/fer/FacialExpressionRecognitionPath");
+        return fileUtil.readFile("resources/fer/FacialExpressionRecognitionPath");
     }
 }
