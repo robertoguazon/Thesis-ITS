@@ -8,36 +8,35 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalPrintExerciseViewerController">
-    <top>
-      <HBox styleClass="header">
+
+<VBox prefHeight="560.0" prefWidth="560.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westlyf.controller.PracticalPrintExerciseViewerController">
+   <children>
+      <HBox alignment="CENTER" styleClass="header" VBox.vgrow="SOMETIMES">
          <children>
-              <VBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
+              <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="130.0" spacing="5.0" BorderPane.alignment="CENTER" HBox.hgrow="SOMETIMES">
                   <children>
-                      <Label text="Practical Print Exercise" textAlignment="CENTER" wrapText="true" />
-                      <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
-                            <Button fx:id="clearCodeButton" mnemonicParsing="false" onAction="#clearCode" prefWidth="100.0" text="Reset Code" wrapText="true" />
-                            <Button fx:id="clearOutputButton" mnemonicParsing="false" onAction="#clearOutput" prefWidth="100.0" text="Clear Output" />
-                            <Button fx:id="runCodeButton" defaultButton="true" mnemonicParsing="false" onAction="#runCode" prefWidth="100.0" text="Run Code" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
+                      <Label text="Practical Print Exercise" textAlignment="CENTER" wrapText="true" VBox.vgrow="SOMETIMES" />
+                      <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" VBox.vgrow="SOMETIMES" />
+                            <Button fx:id="clearCodeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearCode" text="Reset Code" wrapText="true" VBox.vgrow="SOMETIMES" />
+                            <Button fx:id="clearOutputButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearOutput" text="Clear Output" VBox.vgrow="SOMETIMES" />
+                            <Button fx:id="runCodeButton" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#runCode" text="Run Code" textAlignment="CENTER" wrapText="true" VBox.vgrow="SOMETIMES" />
                   </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
               </VBox>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="SOMETIMES">
                       <children>
-                          <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="160.0" prefWidth="400.0" promptText="Instructions" wrapText="true" HBox.hgrow="ALWAYS" />
+                          <TextArea fx:id="instructionsTextArea" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="170.0" prefWidth="350.0" promptText="Instructions" wrapText="true" HBox.hgrow="ALWAYS" />
                       </children>
                   </HBox>
          </children>
       </HBox>
-    </top>
-    <center>
-      <StackPane>
+      <StackPane VBox.vgrow="SOMETIMES">
          <children>
             <HBox fx:id="statusPane" alignment="CENTER">
                <children>
-                  <Label fx:id="statusLabel" textAlignment="CENTER">
+                  <Label fx:id="statusLabel" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -63,9 +62,7 @@
             </VBox>
          </children>
       </StackPane>
-    </center>
-   <bottom>
-            <HBox alignment="CENTER" prefHeight="40.0" styleClass="footer" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="50.0" styleClass="footer">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -83,5 +80,5 @@
             </Button>
          </children>
             </HBox>
-   </bottom>
-</BorderPane>
+   </children>
+</VBox>

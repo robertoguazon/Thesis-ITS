@@ -31,7 +31,8 @@ public class ControllerManager{
             }
             stage = new Stage();
             stage.setTitle(title);
-            stage.setResizable(false);
+            stage.setMinHeight(520);
+            stage.setMinWidth(660);
             stage.initStyle(stageStyle);
             stage.setOnCloseRequest(event -> {
                 event.consume();

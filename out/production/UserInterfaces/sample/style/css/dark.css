@@ -83,6 +83,10 @@
     -fx-text-fill: #B3E5FC;
 }
 
+.hyperlink-lessons{
+    -fx-font-size: 16px;
+ }
+
 .hyperlink:hover{
     -fx-background-color: #303030;
     -fx-text-fill: #03A9F4;

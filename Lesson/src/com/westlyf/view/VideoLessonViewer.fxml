@@ -23,13 +23,13 @@
     <bottom>
         <HBox alignment="CENTER" spacing="10.0" styleClass="footer" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="playButton" mnemonicParsing="false" onAction="#play" text="Play" />
+                <Button fx:id="playButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#play" text="Play" HBox.hgrow="ALWAYS" />
                 <Label text="Time: ">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>
                 </Label>
-                <Slider fx:id="timeSlider" />
+                <Slider fx:id="timeSlider" HBox.hgrow="ALWAYS" />
                 <Label fx:id="timeLabel" text="00:00/00:00" />
                 <Label text="Volume">
                     <HBox.margin>

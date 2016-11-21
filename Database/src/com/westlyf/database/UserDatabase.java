@@ -62,6 +62,8 @@ public class UserDatabase {
     private static final String UPDATE_USER = "UPDATE users SET currentModuleId=?, currentLessonId=?, currentExamId=?, " +
             "username=?, password=?, name=?, age=?, sex=?, school=?, yearLevel=?, profilePicturePath=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE userId=?";
+    private static final String UPDATE_USER_PROFILE_PICTURE = "UPDATE users SET profilePicturePath=?, " +
+            "dateModified=CURRENT_TIMESTAMP WHERE userId=?";
     private static final String UPDATE_USER_EXERCISE = "UPDATE user_exercises SET userId=?, exercise_title=?, code=?, " +
             "dateModified=CURRENT_TIMESTAMP WHERE id=?";
     private static final String UPDATE_EXAM_GRADE = "UPDATE exam_grades SET userId=?, exam_title=?, raw_grade=?, " +
@@ -244,6 +246,34 @@ public class UserDatabase {
                 int update = preparedStatement.executeUpdate();
                 if (update > 0){
                     System.out.println("Successful Update: user");
+                    return update;
+                }else return update;
+            } catch (SQLException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getErrorCode() + " : " + e.getMessage());
+                alert.showAndWait();
+                e.printStackTrace();
+            } finally {
+                try {
+                    preparedStatement.close();
+                    userConn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }return -1;
+    }
+
+    public static int updateUserProfilePicture(Users user){
+        userConn = DatabaseConnection.getUserConnection();
+        if (userConn != null){
+            PreparedStatement preparedStatement = null;
+            try {
+                preparedStatement = userConn.prepareStatement(UPDATE_USER_PROFILE_PICTURE);
+                preparedStatement.setString(1, user.getProfilePicturePath());
+                preparedStatement.setInt(2, user.getUserId());
+                int update = preparedStatement.executeUpdate();
+                if (update > 0){
+                    System.out.println("Successful Update: profile picture path");
                     return update;
                 }else return update;
             } catch (SQLException e) {

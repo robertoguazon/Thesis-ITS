@@ -12,7 +12,7 @@
     <top>
       <HBox styleClass="header">
          <children>
-              <VBox alignment="CENTER" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="150.0" spacing="5.0" BorderPane.alignment="CENTER">
                   <children>
                       <Label text="Exam" textAlignment="CENTER" wrapText="true" />
                       <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" />
@@ -21,7 +21,7 @@
               </VBox>
                   <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                       <children>
-                          <TextArea fx:id="instructionsTextArea" editable="false" prefHeight="150.0" wrapText="true" HBox.hgrow="ALWAYS" />
+                          <TextArea fx:id="instructionsTextArea" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" wrapText="true" HBox.hgrow="ALWAYS" />
                       </children>
                   </HBox>
          </children>
@@ -53,4 +53,11 @@
          </children>
       </VBox>
     </center>
+   <bottom>
+      <HBox styleClass="footer" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>
