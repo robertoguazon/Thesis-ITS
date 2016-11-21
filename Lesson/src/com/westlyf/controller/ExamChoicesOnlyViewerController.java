@@ -15,6 +15,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -177,7 +179,9 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
         questionTextArea.setText(quizItem.getQuestion());
         hintTextArea.setText(quizItem.getHint());
 
-        choicesVBox.getChildren().add(quizItem.getExamChoicesOnlyBox(buttonPrefWidth,buttonPrefHeight));
+        HBox hBox = quizItem.getExamChoicesOnlyBox(buttonPrefWidth,buttonPrefHeight);
+        choicesVBox.setVgrow(hBox, Priority.ALWAYS);
+        choicesVBox.getChildren().add(hBox);
         hintPane.toBack();
         setHintButtonDisable(true);
         setHintTextAreaVisible(false);
@@ -230,7 +234,11 @@ public class ExamChoicesOnlyViewerController extends ControllerManager implement
             AlertBox.display("Answer Exam Exercise first", "Please answer the exercise first.", "Click \"ok\" to close this window.");
             openExamExercise();
         }else {
-            submit();
+            boolean confirm = ConfirmBox.display("Submit Exam", "Are you sure you want to submit this exam?",
+                    "Click \"ok\" to submit. and \"cancel\" to return.");
+            if (confirm) {
+                submit();
+            }
         }
     }
 

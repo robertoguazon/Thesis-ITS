@@ -68,15 +68,15 @@ public class ResultController extends ControllerManager implements Initializable
                 }
             }
         });
-        setWrapTextChoicesColumn();
-        setWrapTextCorrectAnswerColumn();
-        setWrapTextUserAnswerColumn();
-        setWrapTextQuestionColumn();
-        setWrapTextExplanationColumn();
+        setWrapTextColumn(choicesColumn);
+        setWrapTextColumn(correctAnswerColumn);
+        setWrapTextColumn(userAnswerColumn);
+        setWrapTextColumn(questionColumn);
+        setWrapTextColumn(explanationColumn);
     }
 
-    public void setWrapTextChoicesColumn(){
-        choicesColumn.setCellFactory(param -> {
+    public void setWrapTextColumn(TableColumn tableColumn){
+        tableColumn.setCellFactory(param -> {
             return new TableCell<QuizItem, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
@@ -90,99 +90,7 @@ public class ResultController extends ControllerManager implements Initializable
                         text.setStyle("-fx-padding: 5px 30px 5px 5px;" +
                                 "-fx-text-alignment:justify;" +
                                 "-fx-fill: white;");
-                        text.wrappingWidthProperty().bind(param.widthProperty());
-                        this.setGraphic(text);
-                    }
-                }
-            };
-        });
-    }
-
-    public void setWrapTextCorrectAnswerColumn(){
-        correctAnswerColumn.setCellFactory(param -> {
-            return new TableCell<QuizItem, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (item == null || empty) {
-                        this.setText(null);
-                        this.setStyle("");
-                    } else {
-                        Text text = new Text(item);
-                        text.setStyle("-fx-padding: 5px 30px 5px 5px;" +
-                                "-fx-text-alignment:justify;" +
-                                "-fx-fill: white;");
-                        text.wrappingWidthProperty().bind(param.widthProperty());
-                        this.setGraphic(text);
-                    }
-                }
-            };
-        });
-    }
-
-    public void setWrapTextUserAnswerColumn(){
-        userAnswerColumn.setCellFactory(param -> {
-            return new TableCell<QuizItem, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (item == null || empty) {
-                        this.setText(null);
-                        this.setStyle("");
-                    } else {
-                        Text text = new Text(item);
-                        text.setStyle("-fx-padding: 5px 30px 5px 5px;" +
-                                "-fx-text-alignment:justify;" +
-                                "-fx-fill: white;");
-                        text.wrappingWidthProperty().bind(param.widthProperty());
-                        this.setGraphic(text);
-                    }
-                }
-            };
-        });
-    }
-
-    public void setWrapTextQuestionColumn(){
-        questionColumn.setCellFactory(param -> {
-            return new TableCell<QuizItem, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (item == null || empty) {
-                        this.setText(null);
-                        this.setStyle("");
-                    } else {
-                        Text text = new Text(item);
-                        text.setStyle("-fx-padding: 5px 30px 5px 5px;" +
-                                "-fx-text-alignment:justify;" +
-                                "-fx-fill: white;");
-                        text.wrappingWidthProperty().bind(param.widthProperty());
-                        this.setGraphic(text);
-                    }
-                }
-            };
-        });
-    }
-
-    public void setWrapTextExplanationColumn(){
-        explanationColumn.setCellFactory(param -> {
-            return new TableCell<QuizItem, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (item == null || empty) {
-                        this.setText(null);
-                        this.setStyle("");
-                    } else {
-                        Text text = new Text(item);
-                        text.setStyle("-fx-padding: 5px 30px 5px 5px;" +
-                                "-fx-text-alignment:justify;" +
-                                "-fx-fill: white;");
-                        text.wrappingWidthProperty().bind(param.widthProperty());
+                        text.wrappingWidthProperty().bind(tableColumn.widthProperty());
                         this.setGraphic(text);
                     }
                 }
@@ -227,5 +135,10 @@ public class ResultController extends ControllerManager implements Initializable
 
     public void setPercentGrade(int percentGrade) {
         this.percentGrade = percentGrade;
+    }
+
+    @Override
+    public void closeChildWindow() {
+        child.close();
     }
 }

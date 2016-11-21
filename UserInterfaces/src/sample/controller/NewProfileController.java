@@ -2,14 +2,17 @@ package sample.controller;
 
 import com.westlyf.agent.Agent;
 import com.westlyf.user.Users;
+import com.westlyf.utils.FileUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import sample.model.AlertBox;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,12 +22,13 @@ import java.util.ResourceBundle;
  */
 public class NewProfileController extends ControllerManager implements Initializable{
 
-    ObservableList<String> yearLevelList = FXCollections
+    private ObservableList<String> yearLevelList = FXCollections
             .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
-                    "College 1st Year", "College 2nd Year", "College 3rd Year", "College 4th Year");
-    ObservableList<Integer> ageList = FXCollections.observableArrayList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+                    "College 1st Year", "College 2nd Year", "College 3rd Year", "College 4th Year", "College 5th Year");
+    private ObservableList<Integer> ageList = FXCollections.observableArrayList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
 
     @FXML private Label errorMessage;
+    @FXML private TextField profilePictureText;
     @FXML private TextField usernameText;
     @FXML private PasswordField passwordText;
     @FXML private PasswordField confirmPasswordText;
@@ -34,8 +38,14 @@ public class NewProfileController extends ControllerManager implements Initializ
     @FXML private RadioButton maleButton;
     @FXML private RadioButton femaleButton;
     @FXML private ComboBox yearLevelComboBox;
+    @FXML private Button chooseButton;
+    @FXML private Button clearButton;
     @FXML private Button backToMenu;
     @FXML private Button createNewProfile;
+
+    private static final String PATH_TO_PROFILE_PICTURES = "resources\\profile_pictures";
+    private FileChooser fileChooser;
+    private File prevDirectory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,6 +66,10 @@ public class NewProfileController extends ControllerManager implements Initializ
             }else {return;}
         }else if (event.getSource() == backToMenu){
             changeScene("/sample/view/mainmenu.fxml");
+        }else if (event.getSource() == chooseButton){
+            profilePictureText.setText(FileUtils.chooseImageFile(stage).getPath());
+        }else if (event.getSource() == clearButton){
+            profilePictureText.clear();
         }else {return;}
     }
 
@@ -71,11 +85,15 @@ public class NewProfileController extends ControllerManager implements Initializ
         String currentModule = "module1";
         String currentLesson = "lesson0";
         String currentExam = null;
-        String profilePicturePath = null;
+        String profilePicturePath = profilePictureText.getText();
         if (isFieldEmpty(username, password, confirmPassword, name, sex, school)){
             if (isFieldMatch(username, password, confirmPassword, name, school)){
                 int ageNum = Integer.parseInt(age);
                 if (confirmPassword(password, confirmPassword)){
+                    if (profilePicturePath != null){
+                        FileUtils.copyImageFileTo(profilePicturePath, username);
+                        profilePicturePath = FileUtils.pathToImage(profilePicturePath, username);
+                    }
                     if (Agent.addUser(new Users(username, password, name, ageNum, sex, school, yearLevel,
                             profilePicturePath, currentModule, currentLesson, currentExam)) > 0) {
                         return true;
@@ -89,7 +107,7 @@ public class NewProfileController extends ControllerManager implements Initializ
     public String getSex(){
         if (maleButton.isSelected()){return "Male";}
         else if (femaleButton.isSelected()){return "Female";}
-        else {return null;}
+        else {return "";}
     }
 
     public boolean isFieldEmpty(String username, String password, String confirmPassword,
@@ -117,7 +135,7 @@ public class NewProfileController extends ControllerManager implements Initializ
         if (b == 0){
             return true;
         }else {
-            setErrorMessage("Please fill out all the fields.");
+            setErrorMessage("Please fill out all the fields marked with *.");
             return false;
         }
     }
@@ -138,7 +156,6 @@ public class NewProfileController extends ControllerManager implements Initializ
         }else{passwordText.setStyle("");}
         if (!confirmPassword.matches(regex)){
             confirmPasswordText.setStyle("-fx-background-color: #FF8A80;");
-            text = text + "confirm password(must be atleast 4 characters long), ";
             b++;
         }else{confirmPasswordText.setStyle("");}
         if (!name.matches("[a-zA-Z\\s]*")){

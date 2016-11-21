@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="javafx" name="Thesis-ITS-1">
-    <output-path>$USER_HOME$/Desktop/Thesis-ITS-1</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/Thesis_ITS</output-path>
     <properties id="javafx-properties">
       <options>
         <option name="appClass" value="sample.Main" />

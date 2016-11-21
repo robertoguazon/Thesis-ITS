@@ -11,8 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sample.model.ConfirmBox;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,20 +26,25 @@ import java.util.ResourceBundle;
  */
 public class UserController extends ControllerManager implements Initializable{
 
-    @FXML private Label user;
+    @FXML private Label nameLabel;
     @FXML private Button learn;
     @FXML private Button exam;
     @FXML private Button grades;
     @FXML private Button challenge;
     @FXML private Button logout;
+    @FXML private Button viewProfileButton;
     @FXML private Hyperlink settings;
     @FXML private Hyperlink about;
+    @FXML private ImageView profilePictureImageView;
+    private Image image;
+    private Users loggedUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Users loggedUser = Agent.getLoggedUser();
+        loggedUser = Agent.getLoggedUser();
         if (loggedUser != null){
-            user.setText(loggedUser.getName());
+            nameLabel.setText(loggedUser.getName());
+            loadImage();
             if (loggedUser.getCurrentExamId() == null ||
                     !loggedUser.getCurrentExamId().contains(loggedUser.getCurrentModuleId())){
                 exam.setDisable(true);
@@ -45,6 +55,22 @@ public class UserController extends ControllerManager implements Initializable{
             if (loggedUser.getCurrentExamId() == null ||
                     !loggedUser.getCurrentExamId().contains("challenge")) {
                 challenge.setDisable(true);
+            }
+        }
+    }
+
+    public void loadImage(){
+        if (loggedUser.getProfilePicturePath() != null) {
+            try {
+                FileInputStream input = new FileInputStream(loggedUser.getProfilePicturePath());
+                image = new Image(input);
+                input.close();
+                profilePictureImageView.imageProperty().bindBidirectional(Agent.imageProperty());
+                profilePictureImageView.setImage(image);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -64,6 +90,8 @@ public class UserController extends ControllerManager implements Initializable{
         }else if (event.getSource() == logout){
             logout();
             changeScene("/sample/view/loadprofile.fxml");
+        }else if (event.getSource() == viewProfileButton){
+            newChildWindow("/sample/view/viewprofile.fxml", "View Profile");
         }else if (event.getSource() == settings){
             newChildWindow("/sample/view/settings.fxml", "Settings");
         }else if (event.getSource() == about){

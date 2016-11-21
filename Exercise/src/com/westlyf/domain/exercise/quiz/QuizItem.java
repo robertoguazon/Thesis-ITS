@@ -7,15 +7,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -329,7 +326,7 @@ public class QuizItem implements Serializable {
             choice.setVisible(true);
             choice.setSelected(false);
             choice.setWrapText(true);
-            choice.setAlignment(Pos.BASELINE_CENTER);
+            choice.setAlignment(Pos.CENTER);
             choice.setTextAlignment(TextAlignment.JUSTIFY);
             choice.setFont(Font.font("System", FontWeight.NORMAL, 12));
             choice.getStyleClass().remove("radio-button");
@@ -434,6 +431,8 @@ public class QuizItem implements Serializable {
             if (setPref) {
                 radioButton.setPrefWidth(prefWidth);
                 radioButton.setPrefHeight(prefHeight);
+                radioButton.setMaxWidth(Double.MAX_VALUE);
+                radioButton.setMaxHeight(Double.MAX_VALUE);
             }
         }
 

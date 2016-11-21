@@ -8,11 +8,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
-   <center>
-      <HBox alignment="CENTER" styleClass="footer">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="footer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
+   <children>
+      <Region prefHeight="50.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+      <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" fillWidth="false" spacing="5.0" styleClass="body" BorderPane.alignment="CENTER">
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" />
+            <VBox alignment="CENTER" fillWidth="false" minHeight="350.0" minWidth="300.0" spacing="5.0" styleClass="body" BorderPane.alignment="CENTER" HBox.hgrow="SOMETIMES">
                <children>
                   <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -45,29 +47,15 @@
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
-               <padding>
-                  <Insets bottom="10.0" left="40.0" right="40.0" />
-               </padding>
                <HBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                  <Insets />
                </HBox.margin>
             </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" />
          </children>
       </HBox>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER" styleClass="footer">
-         <children>
-            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="progressLabel" />
-                  <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="696.0" progress="0.0" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
-</BorderPane>
+      <Region minHeight="45.0" VBox.vgrow="SOMETIMES" />
+      <Label fx:id="progressLabel" />
+      <ProgressBar fx:id="progressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+   </children>
+</VBox>

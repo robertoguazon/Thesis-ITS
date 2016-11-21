@@ -9,24 +9,39 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UserController">
-   <top>
+<VBox styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UserController">
+   <children>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="640.0" styleClass="header">
          <children>
-            <Label styleClass="label-header" text="Free Apples" textAlignment="CENTER">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
+            <VBox alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="label-header" text="Free Apples" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="label-subheader" text="Version 1.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../style/images/create%20new%20profile.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="viewProfileButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#handleAction">
+               <graphic>
+                  <ImageView fx:id="profilePictureImageView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/images/create%20new%20profile.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </Button>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label fx:id="user" styleClass="label-subheader" text="Welcome User!">
+                  <Label fx:id="nameLabel" styleClass="label-subheader" text="Welcome User!">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -49,13 +64,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-   </top>
-   <center>
-      <VBox styleClass="body">
+      <VBox alignment="CENTER" styleClass="body" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER" prefHeight="326.0" prefWidth="640.0" spacing="15.0">
+            <HBox alignment="CENTER" prefHeight="326.0" prefWidth="640.0" spacing="15.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="learn" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button1" text="Learn">
+                  <Region HBox.hgrow="SOMETIMES" />
+                  <Button fx:id="learn" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="144.0" mnemonicParsing="false" onAction="#handleAction" styleClass="button1" text="Learn" HBox.hgrow="SOMETIMES">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -67,7 +81,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exam" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button2" text="Exam">
+                  <Button fx:id="exam" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="144.0" mnemonicParsing="false" onAction="#handleAction" styleClass="button2" text="Exam" HBox.hgrow="SOMETIMES">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
                            <image>
@@ -79,7 +93,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="grades" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button3" text="Grades">
+                  <Button fx:id="grades" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="144.0" mnemonicParsing="false" onAction="#handleAction" styleClass="button3" text="Grades" HBox.hgrow="SOMETIMES">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true">
                            <image>
@@ -91,7 +105,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="challenge" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAction" prefHeight="300.0" prefWidth="144.0" styleClass="button4" text="Challenge">
+                  <Button fx:id="challenge" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="144.0" mnemonicParsing="false" onAction="#handleAction" styleClass="button4" text="Challenge" HBox.hgrow="SOMETIMES">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -103,6 +117,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
+                  <Region HBox.hgrow="SOMETIMES" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -110,8 +125,6 @@
             </HBox>
          </children>
       </VBox>
-   </center>
-   <bottom>
       <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0" spacing="10.0" styleClass="footer">
          <children>
             <Hyperlink fx:id="settings" onAction="#handleAction" text="Settings">
@@ -122,6 +135,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Hyperlink>
             <Hyperlink fx:id="about" onAction="#handleAction" text="About">
                <graphic>
@@ -131,11 +147,14 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Hyperlink>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-   </bottom>
-</BorderPane>
+   </children>
+</VBox>

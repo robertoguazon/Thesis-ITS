@@ -1,7 +1,10 @@
 package com.westlyf.agent;
 
 import com.westlyf.controller.BackgroundProcess;
-import com.westlyf.database.*;
+import com.westlyf.database.ExamDatabase;
+import com.westlyf.database.ExerciseDatabase;
+import com.westlyf.database.LessonDatabase;
+import com.westlyf.database.UserDatabase;
 import com.westlyf.domain.exercise.mix.VideoPracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalExercise;
 import com.westlyf.domain.exercise.practical.PracticalPrintExercise;
@@ -12,6 +15,9 @@ import com.westlyf.user.UserExercise;
 import com.westlyf.user.Users;
 import com.westlyf.utils.RuntimeUtil;
 import com.westlyf.utils.StringUtil;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +32,7 @@ public class Agent {
     private static int tries;
     private static String response;
     private static String output;
+    private static ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
 
     private static UserExercise userExercise = new UserExercise();
     private static TextLesson lesson = new TextLesson();
@@ -384,6 +391,10 @@ public class Agent {
         return UserDatabase.updateUser(getLoggedUser());
     }
 
+    public static int updateUserProfilePicture() {
+        return UserDatabase.updateUserProfilePicture(loggedUser);
+    }
+
     public static int updateUserExercise(String code){
         int i = getUserExercises().indexOf(getUserExercise());
         getUserExercises().get(i).setCode(code);
@@ -430,6 +441,14 @@ public class Agent {
 
     public static void setOutput(String output) {
         Agent.output = output;
+    }
+
+    public static ObjectProperty<Image> imageProperty() {
+        return imageProperty;
+    }
+
+    public static void setImageProperty(Image imageProperty) {
+        Agent.imageProperty.set(imageProperty);
     }
 
     public static UserExercise getUserExercise() {

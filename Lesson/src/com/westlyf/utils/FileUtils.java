@@ -2,7 +2,6 @@ package com.westlyf.utils;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import sample.model.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +14,7 @@ public class FileUtils {
 
     public static final String PATH_TO_VIDEOS = "resources\\videos";
     public static final String PATH_TO_WEBVIEW = "resources\\WebView\\html";
+    public static final String PATH_TO_PROFILE_PICTURES = "resources\\profile_pictures";
     public static final CopyOption[] DEFAULT_COPY_OPTIONS = new CopyOption[] {
             StandardCopyOption.COPY_ATTRIBUTES,
             StandardCopyOption.REPLACE_EXISTING
@@ -60,6 +60,23 @@ public class FileUtils {
         return selectedFile;
     }
 
+    public static File chooseImageFile(Stage stage){
+        fileChooser.setTitle("Select a image file");
+
+        if (prevDirectory != null){
+            fileChooser.setInitialDirectory(prevDirectory);
+        }
+
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            prevDirectory = selectedFile.getParentFile();
+        }
+
+        return selectedFile;
+    }
+
     public static String pathTo(String filepath, String to) {
         return pathTo(new File(filepath), new File(to));
     }
@@ -93,6 +110,8 @@ public class FileUtils {
 
     public static String pathToHtml(String from, String id) {return pathTo(from, PATH_TO_WEBVIEW, id);}
 
+    public static String pathToImage(String from, String id) {return pathTo(from, PATH_TO_PROFILE_PICTURES, id);}
+
     public static String pathToVideo(String from, String id) {
         return pathTo(from, PATH_TO_VIDEOS, id);
     }
@@ -122,6 +141,16 @@ public class FileUtils {
 
     public static boolean copyHtmlFileTo(String source, String id) {
         return copyHtmlFileTo(new File(source), id);
+    }
+
+    public static boolean copyImageFileTo(File source, String id){
+        String extension = getFileExtension(source);
+        String dest = PATH_TO_PROFILE_PICTURES + "\\" + id + extension;
+        return copyFileTo(source.toPath(), Paths.get(dest));
+    }
+
+    public static boolean copyImageFileTo(String source, String id) {
+        return copyImageFileTo(new File(source), id);
     }
 
     public static boolean copyVideoFileTo(File source, String id) {
