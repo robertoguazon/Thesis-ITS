@@ -60,18 +60,25 @@ public class UserController extends ControllerManager implements Initializable{
     }
 
     public void loadImage(){
+        profilePictureImageView.imageProperty().bindBidirectional(Agent.imageProperty());
         if (loggedUser.getProfilePicturePath() != null) {
-            try {
-                FileInputStream input = new FileInputStream(loggedUser.getProfilePicturePath());
-                image = new Image(input);
-                input.close();
-                profilePictureImageView.imageProperty().bindBidirectional(Agent.imageProperty());
-                profilePictureImageView.setImage(image);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            readImage(loggedUser.getProfilePicturePath());
+        }else {
+            readImage("resources/profile_pictures/create_new_profile.png");
+            profilePictureImageView.setImage(image);
+        }
+    }
+
+    public void readImage(String imagePath){
+        try {
+            FileInputStream input = new FileInputStream(imagePath);
+            image = new Image(input);
+            input.close();
+            profilePictureImageView.setImage(image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

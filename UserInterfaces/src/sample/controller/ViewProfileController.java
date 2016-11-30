@@ -56,6 +56,7 @@ public class ViewProfileController extends ControllerManager implements Initiali
     }
 
     public void loadImage(){
+        profilePictureImageView.imageProperty().bindBidirectional(Agent.imageProperty());
         if (loggedUser.getProfilePicturePath() != null){
             try {
                 FileInputStream input = new FileInputStream(loggedUser.getProfilePicturePath());
