@@ -9,10 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
 import sample.model.AlertBox;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,10 +20,12 @@ import java.util.ResourceBundle;
  */
 public class NewProfileController extends ControllerManager implements Initializable{
 
-    private ObservableList<String> yearLevelList = FXCollections
-            .observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
+    private ObservableList<String> yearLevelList = 
+            FXCollections.observableArrayList("HS 1st Year", "HS 2nd Year", "HS 3rd Year", "HS 4th Year",
                     "College 1st Year", "College 2nd Year", "College 3rd Year", "College 4th Year", "College 5th Year");
-    private ObservableList<Integer> ageList = FXCollections.observableArrayList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+    private ObservableList<String> ageList =
+            FXCollections.observableArrayList("10", "11", "12", "13", "14", "15", "16",
+                    "17", "18", "19", "20", "21", "22", "23", "24");
 
     @FXML private Label errorMessage;
     @FXML private TextField profilePictureText;
@@ -43,15 +43,11 @@ public class NewProfileController extends ControllerManager implements Initializ
     @FXML private Button backToMenu;
     @FXML private Button createNewProfile;
 
-    private static final String PATH_TO_PROFILE_PICTURES = "resources\\profile_pictures";
-    private FileChooser fileChooser;
-    private File prevDirectory;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        yearLevelComboBox.setValue("HS 1st Year");
+        yearLevelComboBox.setValue("");
         yearLevelComboBox.setItems(yearLevelList);
-        ageComboBox.setValue(10);
+        ageComboBox.setValue("");
         ageComboBox.setItems(ageList);
     }
 
@@ -86,7 +82,7 @@ public class NewProfileController extends ControllerManager implements Initializ
         String currentLesson = "lesson0";
         String currentExam = null;
         String profilePicturePath = profilePictureText.getText();
-        if (isFieldEmpty(username, password, confirmPassword, name, sex, school)){
+        if (isFieldEmpty(username, password, confirmPassword, name, age, sex, school, yearLevel)){
             if (isFieldMatch(username, password, confirmPassword, name, school)){
                 int ageNum = Integer.parseInt(age);
                 if (confirmPassword(password, confirmPassword)){
@@ -111,7 +107,7 @@ public class NewProfileController extends ControllerManager implements Initializ
     }
 
     public boolean isFieldEmpty(String username, String password, String confirmPassword,
-                                String name, String sex, String school){
+                                String name, String age, String sex, String school, String yearLevel){
         int b = 0;
         if(username.isEmpty()){usernameText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{usernameText.setStyle("");}
@@ -121,6 +117,8 @@ public class NewProfileController extends ControllerManager implements Initializ
         else{confirmPasswordText.setStyle("");}
         if(name.isEmpty()){nameText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else{nameText.setStyle("");}
+        if(age.isEmpty()){ageComboBox.setStyle("-fx-background-color: #FFCC80;"); b++;}
+        else{ageComboBox.setStyle("");}
         if(sex.isEmpty()){
             maleButton.setStyle("-fx-text-fill: #FFCC80;");
             femaleButton.setStyle("-fx-text-fill: #FFCC80;");
@@ -131,6 +129,8 @@ public class NewProfileController extends ControllerManager implements Initializ
         }
         if(school.isEmpty()){schoolText.setStyle("-fx-background-color: #FFCC80;"); b++;}
         else {schoolText.setStyle("");}
+        if(yearLevel.isEmpty()){yearLevelComboBox.setStyle("-fx-background-color: #FFCC80;"); b++;}
+        else{yearLevelComboBox.setStyle("");}
 
         if (b == 0){
             return true;
@@ -158,14 +158,14 @@ public class NewProfileController extends ControllerManager implements Initializ
             confirmPasswordText.setStyle("-fx-background-color: #FF8A80;");
             b++;
         }else{confirmPasswordText.setStyle("");}
-        if (!name.matches("[a-zA-Z\\s]*")){
+        if (!name.matches("[a-zA-Z\\s]{3,}")){
             nameText.setStyle("-fx-background-color: #FF8A80;");
-            text = text + "name(must not contain numbers), ";
+            text = text + "name(must not contain numbers and atleast 3 characters long), ";
             b++;
         }else{nameText.setStyle("");}
-        if (!school.matches("[a-zA-Z\\s]*")){
+        if (!school.matches("[a-zA-Z\\s]{3,}")){
             schoolText.setStyle("-fx-background-color: #FF8A80;");
-            text = text + "school(must not contain numbers), ";
+            text = text + "school(must not contain numbers and atleast 3 characters long), ";
             b++;
         }else{schoolText.setStyle("");}
         if (b == 0){
@@ -189,6 +189,7 @@ public class NewProfileController extends ControllerManager implements Initializ
 
     public void setErrorMessage(String message){
         errorMessage.setText(message);
-        errorMessage.setStyle("-fx-text-fill: #FF8A80");
+        errorMessage.setStyle("-fx-text-fill: white");
+        errorMessage.getParent().setStyle("-fx-background-color: #F44336;");
     }
 }
