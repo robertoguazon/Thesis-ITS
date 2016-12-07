@@ -1,6 +1,12 @@
 #Thesis-ITS
 _Read the [Wiki](https://github.com/robertoguazon/Thesis-ITS/wiki) for the latest updates_
 
+*made by:*
+  * [Alexavier Borais](https://www.facebook.com/alexavier.borais)
+  * [Yves Francisco](https://www.facebook.com/yves.francisco.3)
+  * [John Robert Guazon](https://www.facebook.com/boboyguazon)
+  * [Ryan Mabasa](https://www.facebook.com/christopher.gmabasa)
+
 libraries for each module:
    * Agent
    * Analytics
